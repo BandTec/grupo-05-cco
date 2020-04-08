@@ -89,3 +89,42 @@ body{
     clear: both;
     float: left;
 }
+.conteudo{
+    position: absolute;
+    width: 450px;
+    height: 400px;
+    top: 35%;
+    right: 10%;
+    transform: translateX(-10%)
+}
+.conteudo h3{
+    font-size: 20px;
+    line-height: 25px;
+    color: #ffffff;
+}
+.conteudo h1{
+    font-size: 30px;
+    color: #ffffff;
+}
+.btn-saibamais{
+    margin-top: 50px;
+}
+.button-s{
+    cursor: pointer;
+    width: 250px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    color: #06D08A;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Roboto Mono', monospace;
+    transition: all .3s ease;
+}
+.button-s:hover {
+    cursor: pointer;
+    background-color: #06D08A;
+    color: #ffffff;
+    transition: all .3s ease;
+}
