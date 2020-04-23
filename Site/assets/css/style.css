@@ -129,8 +129,9 @@ body{
 }
 
 .cadastro{
-    margin-left: 45%;
-    margin-right: 45%;
+  margin:auto;
+margin-left: 35%;
+margin-right: 35%;
     margin-top: 60px;
     font-size: 15px;
     width: 500px;
@@ -145,6 +146,7 @@ body{
 
 .formCadastro{
     justify-content: center;
+    margin: auto;
 }
 
 /* PARTE DO CADASTRO */
@@ -197,3 +199,4 @@ color: #06D08A;
     text-decoration: none;
     color: #06D08A;
 }
+ 
