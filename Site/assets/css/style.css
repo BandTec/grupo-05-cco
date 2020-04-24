@@ -128,7 +128,7 @@ body{
     transition: all .3s ease;
 }
 
-.cadastro{
+.login{
   margin:auto;
 margin-left: 35%;
 margin-right: 35%;
@@ -140,11 +140,29 @@ margin-right: 35%;
     text-align: center;
     background-color: white;
     box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
-
-
 }
 
+.cadastro{
+    margin:auto;
+  margin-left: 35%;
+  margin-right: 35%;
+      margin-top: 60px;
+      font-size: 15px;
+      width: 500px;
+      height: 975px;
+    padding-top: 10px;
+        margin-bottom: 24px;
+      text-align: center;
+      background-color: white;
+      box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
+      
+  }
+
 .formCadastro{
+    justify-content: center;
+    margin: auto;
+}
+.formLogin{
     justify-content: center;
     margin: auto;
 }
@@ -152,6 +170,17 @@ margin-right: 35%;
 /* PARTE DO CADASTRO */
 
 .formCadastro input{
+    border-radius: 25px;
+    border: none;
+    background: rgba(120, 120, 120, 0.15);
+    margin-top: 30px;
+    width: 300px;
+    height: 40px;
+    text-indent: 10px;
+    
+}
+
+.formLogin input{
     border-radius: 25px;
     border: none;
     background: rgba(120, 120, 120, 0.15);
@@ -167,6 +196,13 @@ margin-right: 35%;
     color: #01B979;
     font-weight: bold;
 }
+
+.formLogin input::placeholder{
+    font-size: 15px;
+    color: #01B979;
+    font-weight: bold;
+}
+
 
 .btnCadastro{
     width: 300px;
@@ -200,3 +236,45 @@ color: #06D08A;
     color: #06D08A;
 }
  
+@keyframes safadetas{
+0%{}
+100%{
+    transform: translateY(3px); 
+}
+}
+
+#idseta{
+animation: safadetas .5s alternate-reverse infinite; 
+}
+
+.conteudo1{
+    width: 94%;
+    margin:auto;
+    overflow: hidden;
+   
+}
+
+.sobrenos{
+    width: 500px;
+    height: 400px;
+    color: #ffffff;
+    margin-left: 50px;
+    float: left;
+    margin-top: 68.9px;
+    text-align: right;
+}
+
+.bota{
+float: right;
+}
+
+.robsom{
+    margin-top: 80px;
+    overflow: hidden;
+}
+
+.idseta{
+align-items: center;
+justify-content: center;
+display: flex;
+}
