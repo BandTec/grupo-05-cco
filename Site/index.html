@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,56 +8,89 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    
+
 
 </head>
+
 <body>
 
     <div class="header">
         <div class="container">
             <div class="title-header">
-                <h1><span class="highlight">humildificadores</h1>
+                <span class="highlight"><a href="index.html"><h1>Humildificadores</h1></a></span>
             </div>
             <div class="nav">
                 <ul>
-                    <li><a href="sobrenos.html">Sobre Nós</li>
+                    <li><a href="#locais">Sobre Nós</a></li>
                     <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastrar.html">Cadastre-se</a></li>
+                    <li><a href="cadastro.html">Cadastre-se</a></li>
                 </ul>
             </div>
         </div>
-    </div> 
-
-    <div class="conteudo1">
-        <img src="assets/images/person1.png" width="600px" alt="">
-
-        <div class="conteudo">
-            <h1>Saiba exatamente onde e quando se exercitar</h1>
-            <h3>Com nosso serviço, tenha sempre em mãos onde e quando praticar suas atividades físicas ao ar livre.</h3>
-            <div class="btn-saibamais"><button class="button-s">SAIBA MAIS</button></div>
-        </div>
-    
-        <img src="assets/images/seta_branca.svg" id="idseta" style="width: 78px; ">
     </div>
 
-    <br><BR><BR><br>
-
-    <div class="conteudo1">  
-        <div class="robsom">
-            <div class="sobrenos">
-                <h1>Nós indicamos os melhores locais para sua atividade</h1>
-                <h3>Medimos a temperatura e a umidade dos ambientes para indicar para você o lugar ideal mais perto de você.</h3>
-                <div class="btn-saibamais"><button class="button-s">SAIBA MAIS</button></div>
+    <div class="container">
+        <div class="format">
+            <img src="assets/images/person1.png" width="550px" alt="Humildificadores">
+            <div class="conteudoDireita">
+                <div class="conteudo">
+                    <h1>Saiba exatamente onde e quando se exercitar</h1>
+                    <h3>Com nosso serviço, tenha sempre em mãos onde e quando praticar suas atividades físicas ao ar livre.</h3>
+                    <div class="btn-saibamais"><button class="button-s"><a href="#locais">SAIBA MAIS</a></button></div>
+                </div>
             </div>
-            <div class="bota">
-                <img src="assets/images/foto.png"  id="img11" width="600px" alt=""> 
-            </div> 
         </div>
 
-        <div class="idseta">
-            <img src="assets/images/seta_branca.svg" style="width: 78px;"> 
+        <div class="seta">
+            <a href="#locais"><img class="seta-animation" src="assets/images/seta_branca.svg" alt="seta"></a>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <a name="locais"></a>
+        <div class="format">
+            <div class="conteudoEsquerda">
+                <div class="conteudo">
+                    <h1>Nós indicamos os melhores locais para sua atividade</h1>
+                    <h3>Medimos a temperatura e a umidade dos ambientes para indicar para você o lugar ideal mais perto de você.</h3>
+                </div>
+            </div>
+
+            <div class="image">
+                <img class="border" src="assets/images/foto.png" width="550px" alt="Sobre nós">
+            </div>
+
+        </div>
+
+        <div class="seta">
+            <a href="#park"><img class="seta-animation" src="assets/images/seta_branca.svg" alt="seta"></a>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <a name="park"></a>
+        <div class="format">
+            <img src="assets/images/park.png" width="550px" alt="Humildificadores">
+            <div class="conteudoDireita">
+                <div class="conteudo">
+                    <h1>Utilizamos sensores nos principais parques...</h1>
+                    <h3>E te mostramos qual o melhor para ir!</h3>
+                </div>
+            </div>
+        </div>
+        <div class="seta">
+            <div class="start"><button class="button-s"><a href="Cadastro.html">COMECE AGORA</a></button></div>
         </div>
     </div>
-    
+
+    <div class="footer">
+        <div class="container">
+            <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+        </div>
+    </div>
+
 </body>
+
 </html>
