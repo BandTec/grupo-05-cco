@@ -469,3 +469,18 @@ a {
         transform: translateX(0);
     }
 }
+
+#cabelo1 {
+    animation: cabelo1 2s ease-in-out infinite alternate-reverse;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes cabelo1 {
+    50% {
+        transform: rotateZ(2deg);
+    }
+    100% {
+        transform: rotateZ(10deg);
+    }
+}
