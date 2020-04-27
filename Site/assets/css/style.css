@@ -325,3 +325,132 @@ a {
     align-items: center;
     font-size: 15px;
 }
+
+#braco {
+    animation: braco-animate 3s ease-in-out alternate-reverse infinite;
+    transform-origin: top;
+    transform-box: fill-box;
+}
+
+@keyframes braco-animate {
+    0% {}
+    50% {
+        transform: rotateZ(5deg);
+    }
+    100% {
+        transform: rotateZ(8deg);
+    }
+}
+
+#cabeca {
+    animation: move-head 3s ease-in-out alternate-reverse infinite;
+}
+
+#cabeca1 {
+    animation: move-head 3s ease-in-out alternate-reverse infinite;
+}
+
+@keyframes move-head {
+    0% {}
+    100% {
+        transform: translateY(-8px);
+    }
+}
+
+#cabelo {
+    animation: move-hair 3s ease-in-out alternate-reverse infinite;
+}
+
+@keyframes move-hair {
+    0% {}
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+#Group3 {
+    animation: celular 5s ease alternate-reverse infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+@keyframes celular {
+    0% {}
+    100% {
+        transform: rotateZ(3deg);
+    }
+}
+
+#roupa {
+    animation: roupa-animation 3s ease-in-out alternate-reverse infinite;
+}
+
+@keyframes roupa-animation {
+    0% {}
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+#nuvem1 {
+    animation: nuvem 10s infinite;
+    animation-delay: 1s;
+}
+
+#nuvem2 {
+    animation: nuvem 8s infinite;
+    animation-delay: 1s;
+}
+
+@keyframes nuvem {
+    0% {
+        opacity: 0;
+    }
+    20%,
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-500px);
+        opacity: 0;
+    }
+}
+
+#sol {
+    animation: sol 5s infinite alternate;
+}
+
+@keyframes sol {
+    0% {}
+    100% {
+        transform: translateY(20px);
+    }
+}
+
+#lines {
+    stroke-dashoffset: 1000;
+    stroke-dasharray: 1000;
+    animation: lines 5s ease-in-out infinite forwards alternate-reverse;
+    animation-delay: 2s;
+}
+
+@keyframes lines {
+    0% {
+        stroke-dasharray: 100;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 1000;
+    }
+}
+
+#local-icon {
+    animation: local-icon 3s infinite alternate-reverse;
+}
+
+@keyframes local-icon {
+    0% {}
+    100% {
+        transform: translateY(-20px);
+    }
+}
