@@ -344,6 +344,8 @@ a {
 
 #cabeca {
     animation: move-head 3s ease-in-out alternate-reverse infinite;
+    transform-origin: bottom;
+    transform-box: fill-box;
 }
 
 #cabeca1 {
@@ -354,6 +356,7 @@ a {
     0% {}
     100% {
         transform: translateY(-8px);
+        transform: rotateZ(2deg);
     }
 }
 
@@ -364,7 +367,7 @@ a {
 @keyframes move-hair {
     0% {}
     100% {
-        transform: translateY(-10px);
+        transform: translateY(-5px);
     }
 }
 
@@ -377,7 +380,7 @@ a {
 @keyframes celular {
     0% {}
     100% {
-        transform: rotateZ(3deg);
+        transform: rotateZ(5deg);
     }
 }
 
