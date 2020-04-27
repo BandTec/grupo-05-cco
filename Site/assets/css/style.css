@@ -487,3 +487,90 @@ a {
         transform: rotateZ(10deg);
     }
 }
+
+.boxDashboard {
+    margin: auto;
+    font-size: 15px;
+    width: 500px;
+    padding: 40px;
+    margin-bottom: 24px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
+}
+
+#h1Dashboard {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 56px;
+    color: white;
+    text-align: center;
+}
+
+.imagem1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgstar {
+    width: 25px;
+}
+
+.imgPark2 {
+    height: 140px;
+    padding: 5px;
+}
+
+.barraCinza {
+    background-color: #232323;
+    height: 2px;
+    border-radius: 2px;
+    width: 100%;
+    margin: auto;
+}
+
+#imagemClima {
+    width: 250px;
+    background-color: #F15959;
+    border-radius: 24px;
+}
+
+#imagemClimaBom {
+    width: 300px;
+    background-color: #00F5A0;
+    border-radius: 24px;
+}
+
+#boxParque {
+    margin: auto;
+    font-size: 15px;
+    width: 500px;
+    padding: 40px;
+    margin-bottom: 24px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
+}
+
+.barraMeio {
+    background-color: #232323;
+    width: 2px;
+    border-radius: 2px;
+    height: 50px;
+}
+
+.infoClima {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoClima h2 {
+    font-size: 2.5em;
+    margin: 0 20px 0 20px;
+}
