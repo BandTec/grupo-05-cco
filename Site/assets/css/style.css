@@ -500,6 +500,28 @@ a {
     border-radius: 18px;
 }
 
+.boxDashboard input {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #01B979;
+    border-radius: 25px;
+    border: none;
+    background: rgba(120, 120, 120, 0.15);
+    margin: 10px;
+    width: 300px;
+    height: 40px;
+    text-indent: 10px;
+}
+
+.boxDashboard input::placeholder {
+    font-size: 15px;
+    color: #01B979;
+    font-weight: bold;
+}
+
 #h1Dashboard {
     font-family: 'Roboto Mono';
     font-style: normal;
@@ -573,4 +595,19 @@ a {
 .infoClima h2 {
     font-size: 2.5em;
     margin: 0 20px 0 20px;
+}
+
+#tempCliente {
+    background-color: #00D9F5;
+}
+
+.boxGrafico {
+    margin: 20px;
+    font-size: 15px;
+    padding: 40px;
+    margin-bottom: 24px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
 }

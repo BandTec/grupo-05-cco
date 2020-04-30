@@ -17,7 +17,7 @@
          imagemClima.style.backgroundColor = '#F15959';
          boxParque.style.color = '#F15959';
      }
-     if(clima < 20 || clima > 28 && umidade < 40 || umidade > 70){
+     if (clima < 20 && umidade < 40 || clima > 28 || umidade > 70) {
          alert('Cuidado, o clima nao e a umidade nao esta propenso a atividades fisicas!!')
      }
  }
