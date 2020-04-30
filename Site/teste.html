@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div style="width:75%;">
+    <div style="width: 100%;">
         <canvas id="c_grafico"></canvas>
     </div>
     <br>
@@ -34,6 +34,17 @@
             datasets: [{
                 label: 'Temperatura',
                 backgroundColor: window.chartColors.blue,
+                borderColor: window.chartColors.blue,
+                data: [],
+                fill: false,
+            }]
+        },
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Umidade',
+                backgroundColor: window.chartColors.re,
                 borderColor: window.chartColors.blue,
                 data: [],
                 fill: false,
@@ -74,7 +85,7 @@
 
     // esse "sortearTemperatura()" será desnecessário quando usarmos o backend futuramente
     function sortearTemperatura() {
-        var limiteMin = -10;
+        var limiteMin = 10;
         var limiteMax = 70;
         var minimoAbsoluto = Math.abs(limiteMin);
         return (Math.random() * (minimoAbsoluto + limiteMax) - minimoAbsoluto).toFixed(1);
