@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="assets/js/calculadora.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <title>Humildificadores | Calculadora de custos</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <span class="highlight"><a href="index.html"><h1>Humildificadores</h1></a></span>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastre-se</a></li>
+                    <li><a href="calculadora.html">Calculadora</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="cadastro">
+        <div class="boxCalculadora">
+            <h1 id="h1Calc">Calculadora de Custos</h1>
+            <input id="imp_app" type="text" placeholder="Impressões diarias do app">
+            <input id="cli_anu" type="text" placeholder="Cliques nos anuncios">
+            <input id="tx_clique" type="text" placeholder="Custo de cliques">
+            <button id="bt" class="btnCadastro" onclick="calcular()">Calcular</button>
+            <div id="result">
+                <h3> Pessoas no App por dia: <b id="pessoas"></b></h3>
+                <h2>Lucro</h2>
+                <h3>Diariamente: <b id="dia"></b><br> Por Mês: <b id="mes"></b><br> Anual: <b id="ano"></b></h3>
+
+                <button id="bt" class="btnCadastro" onclick="voltar()">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+        </div>
+    </div>
+
+</body>
+
+</html>
