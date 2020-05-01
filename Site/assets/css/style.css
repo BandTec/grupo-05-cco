@@ -32,6 +32,12 @@ input {
     font-weight: bold;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .container {
     width: 80%;
     margin: auto;
@@ -186,6 +192,11 @@ input {
     text-align: center;
     background-color: white;
     box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
+}
+
+.boxCadastro h2 {
+    color: #01B979;
+    font-weight: bold;
 }
 
 .formCadastro {
@@ -695,4 +706,74 @@ h3 {
 
 #result {
     display: none;
+}
+
+#temperatura {
+    -webkit-appearance: none;
+    width: 640px;
+    height: 25px;
+    background: rgb(0, 255, 255);
+    background: linear-gradient(90deg, rgba(0, 255, 255, 1) 0%, rgba(51, 204, 204, 1) 25%, rgba(51, 204, 51, 1) 50%, rgba(255, 127, 0, 1) 75%, rgba(255, 80, 80, 1) 100%);
+    outline: none;
+    opacity: 0.7;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+#temperatura:hover {
+    opacity: 1;
+}
+
+#temperatura::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: white;
+    border: gray 2px solid;
+    cursor: pointer;
+}
+
+#umidade {
+    -webkit-appearance: none;
+    width: 640px;
+    height: 25px;
+    background: rgb(0, 255, 255);
+    background: linear-gradient(90deg, rgba(0, 255, 255, 1) 0%, rgba(51, 204, 204, 1) 25%, rgba(51, 204, 51, 1) 50%, rgba(255, 127, 0, 1) 75%, rgba(255, 80, 80, 1) 100%);
+    outline: none;
+    opacity: 0.7;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+#umidade:hover {
+    opacity: 1;
+}
+
+#umidade::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 40px;
+    border-radius: 15px;
+    background: white;
+    border: gray 2px solid;
+    cursor: pointer;
+}
+
+#selectTemp {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 47px;
+}
+
+#selectUmi {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 47px;
 }

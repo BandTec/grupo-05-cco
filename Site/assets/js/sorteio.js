@@ -1,9 +1,25 @@
+ function umidadeTelaSlide() {
+     selectUmi.value = umidade.value;
+ }
+
+ function umidadeTelaInput() {
+     umidade.value = selectUmi.value;
+ }
+
+ function temperaturaTelaSlide() {
+     selectTemp.value = temperatura.value;
+ }
+
+ function umidadeTelaInput() {
+     temperatura.value = selectTemp.value;
+ }
+
  function sorteio() {
 
      var clima = (Math.random() * 40 + 1).toFixed(0);
      var umidade = (Math.random() * 99 + 1).toFixed(0);
 
-     temperatura.innerHTML = `${clima}°`;
+     temperaturas.innerHTML = `${clima}°`;
      umidades.innerHTML = `${umidade}%`;
 
      if (clima <= 32 && clima >= 20 && umidade >= 30 && umidade < 85) {

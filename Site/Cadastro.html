@@ -2,13 +2,14 @@
 <html lang="pt-br">
 
 <head>
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humildificadores | Cadastro</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-
+    <script src="assets/js/sorteio.js"></script>
 
 </head>
 
@@ -48,6 +49,16 @@
                 <input type="text" id="cidade" placeholder="Cidade" disabled>
 
                 <input type="text" id="estado" placeholder="Estado" disabled>
+
+                <h2>Temperatura desejada</h2>
+                <input id="selectTemp" onchange="temperaturaTelaInput()" type="Number" min="18" max="30" value="24">
+                <br>
+                <input id="temperatura" onchange="temperaturaTelaSlide()" type="range" min="18" max="30" value="24">
+
+                <h2>Umidade desejada</h2>
+                <input id="selectUmi" onchange="umidadeTelaInput()" type="Number" min="30" max="70" value="50">
+                <br>
+                <input id="umidade" onchange="umidadeTelaSlide()" type="range" min="30" max="70" value="50">
 
                 <button class="btnCadastro" type="submit">Cadastrar</button>
 
