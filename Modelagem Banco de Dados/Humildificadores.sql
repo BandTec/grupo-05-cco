@@ -39,11 +39,11 @@ create table eventos (
 );
 
 insert into cliente values 
-(null, 'Kalil Bego', 'Rua Barreiro', 'Dog mal', 'Gorila', '2020-12-20', 'Kalilmito@gmail.com', 'senha', 1),
-(null, 'Kaio Katiau', 'Rua Camarelo', 'Dog bom', 'Caneta Azul', '2002-02-01', 'Kaiosilva@gmail.com', 'katiau', 3),
-(null, 'Eric Viezzer', 'Rua Jacinto Neves', 'Beija-flor', 'MlK piranha', '2010-10-03', 'Capivara@gmail.com', 'Capivara', 1),
-(null, 'Victor Barbosa', 'Rua Bacalhau', 'Butão', 'Paçoca', '2030-09-01', 'Victor@gmail.com', 'senha', 2),
-(null, 'Gabriel Marcolino', 'Rua Nada', 'Mais', 'Cachorro', '2005-03-15', 'Marcoli@gmail.com', 'senha', 2);
+(null, 'Kalil Bego', 'Rua Barreiro', 'Carapicuíba', 'São Paulo', '2020-12-20', 'Kalilmito@gmail.com', 'senha', 1),
+(null, 'Kaio Katiau', 'Rua Camarelo', 'Osasco', 'São Paulo', '2002-02-01', 'Kaiosilva@gmail.com', 'katiau', 3),
+(null, 'Eric Viezzer', 'Rua Jacinto Neves', 'Parati', 'Rio de Janeiro', '2010-10-03', 'Capivara@gmail.com', 'Capivara', 1),
+(null, 'Victor Barbosa', 'Rua Bacalhau', 'Butão', 'Goiana', '2030-09-01', 'Victor@gmail.com', 'senha', 2),
+(null, 'Gabriel Marcolino', 'Rua Nada', 'Piauzinho', 'Sergipe', '2005-03-15', 'Marcoli@gmail.com', 'senha', 2);
 
 insert into parque values
 (1, 'Rua Aviões do forró', 'Muito bom', 1),
@@ -69,7 +69,36 @@ insert into eventos values
 
 alter table cliente add foreign key(fkParque) references parque(idParque);
 
-select * from cliente;
-select * from parque;
-select * from sensor;
-select * from eventos;
+select * from cliente;-- Dados dos clientes
+select * from parque;-- Dados dos parques
+select * from sensor;-- Dados da tabela sensor
+select * from eventos;-- Dados dos eventos
+select * from cliente,parque where fkParque = idParque; -- Mostra dados dos clientes e seus respectivos parques ordenados pelo idParque
+select * from cliente,parque where fkParque = idParque order by idCliente;-- Mostra dados dos clientes e seus respectivos parques ordenados pelo idCliente
+select * from parque,sensor where fkParque = idParque; -- Mostra os dados dos parques junto aos dados da tabela sensor
+select * from sensor,eventos where fkSensor = idSensor;-- Mostra os dados dos Sensores junto aos dados da tabela Eventos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
