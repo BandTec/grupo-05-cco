@@ -10,7 +10,7 @@
      selectTemp.value = temperatura.value;
  }
 
- function umidadeTelaInput() {
+ function temperaturaTelaInput() {
      temperatura.value = selectTemp.value;
  }
 
