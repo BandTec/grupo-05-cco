@@ -768,243 +768,225 @@ h3 {
 #selectTemp {
     -webkit-appearance: none;
     appearance: none;
-    width: 47px;
+    width: 10%;
+    text-align: center;
 }
 
 #selectUmi {
     -webkit-appearance: none;
     appearance: none;
-    width: 47px;
+    width: 10%;
+    text-align: center;
 }
 
 @media screen and (max-width: 768px) {
     .container {
         padding: 0!important;
-        width: 90%; }
-
+        width: 90%;
+    }
     .title-header {
-        width: 100%; }
-
+        width: 100%;
+    }
     .title-header h1 {
         font-size: 1.5em;
-        text-align: center; }
-
+        text-align: center;
+    }
     .header .nav {
         float: none;
         text-align: center;
-        margin: 0; }
-
+        margin: 0;
+    }
     .header .nav ul {
-        padding: 0; }
-
+        padding: 0;
+    }
     .header .nav ul li {
-        padding: 0 10px; }
-
+        padding: 0 10px;
+    }
     .header .nav ul li a {
-        font-size: 16px; }
-
+        font-size: 16px;
+    }
     .format {
         flex-direction: column-reverse;
         flex-shrink: 2;
         margin: 20px 0;
-        height: auto; }
-
-    .conteudoEsquerda, .conteudoDireita {
+        height: auto;
+    }
+    .conteudoEsquerda,
+    .conteudoDireita {
         float: none;
-        text-align: center; }
-
+        text-align: center;
+    }
     .conteudo {
-        width: 100%; }
-
+        width: 100%;
+    }
     .conteudo h1 {
-        font-size: 24px; }
-
+        font-size: 24px;
+    }
     .conteudo h3 {
-        font-size: 16px; }
-
+        font-size: 16px;
+    }
     .button-s {
         font-size: 16px;
-        width: 200px; }
-
+        width: 200px;
+    }
     .image {
         float: none;
-        width: 90%; }
-
+        width: 90%;
+    }
     .format svg {
         width: 100%;
-        height: auto; }
-
+        height: auto;
+    }
     .seta-animation {
-       width: 50px; }
-
+        width: 50px;
+    }
     /* Login */
-
     .boxLogin {
         padding: 40px 0;
-        width: 90%; }
-
+        width: 90%;
+    }
     #h1Login {
-        font-size: 30px; }
-
+        font-size: 30px;
+    }
     .formLogin {
-        width: 90%; }
-
+        width: 90%;
+    }
     .formLogin input {
         text-indent: 20px;
         margin: 0;
         padding: 0;
-        width: 100%; }
-
+        width: 100%;
+    }
     .formLogin input:first-child {
-        margin-bottom: 10px; }
-
+        margin-bottom: 10px;
+    }
     .btnCadastro {
         font-size: 16px;
         margin-top: 15px;
-        width: 100%; }
-
+        width: 100%;
+    }
     #esqueciSenha a {
-        font-size: 14px; }
-
+        font-size: 14px;
+    }
     /* Sign up */
-
     .boxCadastro {
         padding: 40px 0;
-        width: 90%; }
-
+        width: 90%;
+    }
     .formCadastro {
-        width: 90%; }
-
+        width: 90%;
+    }
     .formCadastro input {
         text-indent: 20px;
         margin: 0;
-        padding: 0;  }
-
+        padding: 0;
+    }
     .formCadastro input:not(:last-of-type) {
-        margin-bottom: 10px; }
-
+        margin-bottom: 10px;
+    }
     /* Calculator */
-
     .boxCalculadora {
         padding: 40px 0;
-        width: 90%; }
-
+        width: 90%;
+    }
     #h1Calc {
         font-size: 30px;
         line-height: 35px;
-        margin: 0 0 20px 0; }
-
+        margin: 0 0 20px 0;
+    }
     .boxCalculadora input {
         text-indent: 20px;
         margin: 0;
-        padding: 0; }
-
+        padding: 0;
+    }
     .boxCalculadora input:not(:last-of-type) {
-        margin-bottom: 10px; }
-
+        margin-bottom: 10px;
+    }
     .boxCalculadora .btnCadastro {
-        width: 90%; }
-
+        width: 90%;
+    }
     /* Dashboard */
-    
     #h1Dashboard {
-        font-size: 30px; }
-
+        font-size: 30px;
+    }
     .boxDashboard {
         padding: 40px 0;
-        width: 90%; }
-
+        width: 90%;
+    }
     .boxDashboard .imagem1 {
         flex-direction: column;
-        margin-bottom: 10px; }
-
+        margin-bottom: 10px;
+    }
     .boxDashboard .imgPark2 {
         width: 120px;
-        height: auto; }
-
+        height: auto;
+    }
     .boxDashboard .barraCinza {
         margin: 10px auto;
-        width: 70%; }
-
+        width: 70%;
+    }
     /* Park */
-
     #boxParque {
         padding: 40px 15px;
         width: 90%;
     }
-
     #imagemClima {
         width: 100px;
     }
-
     .infoClima h2 {
         font-size: 1.5em;
     }
-
     .infoClima .barraMeio {
         height: 25px;
     }
-
     #resultado {
         font-size: 18px;
     }
-
     #boxParque iframe {
         margin: 0!important;
         width: 100%;
     }
-
     #boxParque .btn-saibamais {
         margin-bottom: 0;
     }
-
     .modal-header .close {
         right: 7px;
         font-size: 30px;
     }
-
     .modal-title {
         font-size: 18px;
     }
-
     .modal-body {
         overflow: scroll;
     }
-
     .modal-body::after {
         content: '* Arraste para o lado para ver tudo';
         color: #c6c6c6;
     }
 }
 
-
 #temperatura {
     padding: 5px 0;
     width: 90%;
 }
 
-
-#temperatura::-webkit-slider-thumb {
-   
-}
+#temperatura::-webkit-slider-thumb {}
 
 #umidade {
     padding: 5px 0;
     width: 90%;
 }
 
-
-
-#umidade::-webkit-slider-thumb {
-   
-}
+#umidade::-webkit-slider-thumb {}
 
 #selectTemp {
     padding: 5px 0;
-    width: 20%; 
+    width: 10%;
+    text-align: center;
 }
 
 #selectUmi {
     padding: 5px 0;
-    width: 20%;
+    width: 10%;
+    text-align: center;
 }
