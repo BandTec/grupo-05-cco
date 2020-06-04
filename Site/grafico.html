@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<!-- saved from url=(0061)https://www.chartjs.org/samples/latest/charts/line/basic.html -->
+<!doctype html>
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Line Chart</title>
-    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
-
-    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
     <style>
         canvas {
             -moz-user-select: none;
@@ -15,150 +13,200 @@
             -ms-user-select: none;
         }
     </style>
-    <style type="text/css">
-        /* Chart.js */
-        
-        @keyframes chartjs-render-animation {
-            from {
-                opacity: .99
-            }
-            to {
-                opacity: 1
-            }
-        }
-        
-        .chartjs-render-monitor {
-            animation: chartjs-render-animation 1ms
-        }
-        
-        .chartjs-size-monitor,
-        .chartjs-size-monitor-expand,
-        .chartjs-size-monitor-shrink {
-            position: absolute;
-            direction: ltr;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            pointer-events: none;
-            visibility: hidden;
-            z-index: -1
-        }
-        
-        .chartjs-size-monitor-expand>div {
-            position: absolute;
-            width: 1000000px;
-            height: 1000000px;
-            left: 0;
-            top: 0
-        }
-        
-        .chartjs-size-monitor-shrink>div {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            left: 0;
-            top: 0
-        }
-    </style>
 </head>
 
 <body>
-    <div style="width:100%;">
-        <div class="chartjs-size-monitor">
-            <div class="chartjs-size-monitor-expand">
-                <div class=""></div>
-            </div>
-            <div class="chartjs-size-monitor-shrink">
-                <div class=""></div>
-            </div>
-        </div>
-        <canvas id="canvas" style="display: block; height: 534px; width: 1068px;" width="2136" height="1068" class="chartjs-render-monitor"></canvas>
+    <div>
+        <h1>Sensor LM35 - Temperatura</h1>
+        <section>
+            <h2>Média: <label id='average'>0.00</label></h2>
+            <h2>Média Hora: <label id='averageHour'>0.00</label></h2>
+        </section>
+        <section style="width:100%">
+            <canvas id="chart"></canvas>
+            <section>
     </div>
-    <br>
-    <br>
-
+    <div>
+        <section>
+            <h1>Sensor DHT11 - Umidade</h1>
+            <h2>Média: <label id='averageHumidity'>0.00</label></h2>
+            <h2>Média Hora: <label id='averageHourHumidity'>0.00</label></h2>
+        </section>
+        <section style="width:100%">
+            <canvas id="chart-humidity"></canvas>
+            <section>
+    </div>
     <script>
-        var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        var config = {
+        var context = document.getElementById("chart").getContext("2d");
+        context.canvas.width = 1000;
+        context.canvas.height = 300;
+
+        var configuration = {
             type: 'line',
             data: {
                 labels: ['Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo', 'Segunda-feira'],
                 datasets: [{
-                    label: 'Temperatura',
-                    backgroundColor: window.chartColors.green,
-                    borderColor: window.chartColors.green,
-                    data: [
-                        (Math.random() * 40).toFixed(0),
-                        (Math.random() * 40).toFixed(0),
-                        (Math.random() * 40).toFixed(0),
-                        (Math.random() * 40).toFixed(0),
-                        (Math.random() * 40).toFixed(0),
-                        (Math.random() * 40).toFixed(0),
-                        (Math.random() * 40).toFixed(0),
-                    ],
-                    fill: false,
-                }, {
-                    label: 'Umidade',
-                    fill: false,
-                    backgroundColor: window.chartColors.blue,
-                    borderColor: window.chartColors.blue,
-                    data: [
-
-                        (Math.random() * 100).toFixed(0),
-                        (Math.random() * 100).toFixed(0),
-                        (Math.random() * 100).toFixed(0),
-                        (Math.random() * 100).toFixed(0),
-                        (Math.random() * 100).toFixed(0),
-                        (Math.random() * 100).toFixed(0),
-                        (Math.random() * 100).toFixed(0),
-                    ],
+                    label: "Temperatura",
+                    type: 'line',
+                    borderColor: ['#ff3232'],
+                    backgroundColor: ['#ff7f7f']
                 }]
             },
             options: {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Histórico dos últimos 7 dias'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
                 scales: {
                     xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: ''
+                        //type: 'value',
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
                         }
                     }],
                     yAxes: [{
-                        display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'C°'
+                            labelString: 'Temperatura'
+                        },
+                        ticks: {
+                            beginAtZero: true
                         }
                     }]
+                },
+                animation: {
+                    duration: 2
                 }
             }
         };
 
+        var chart = new Chart(context, configuration);
 
+        //Função para obter os dados de temperatura do server
 
-        window.onload = function() {
-            var ctx = document.getElementById('canvas').getContext('2d');
-            window.myLine = new Chart(ctx, config);
+        //Esse atributo dentro do contexto serve para saber qual foi o último índice processado, assim eliminado os outros elementos na
+        //hora de montar/atualizar o gráfico
+        this.lastIndexTemp = 0;
+        this.time = 0;
+
+        function get_data() {
+
+            var http = new XMLHttpRequest();
+            http.open('GET', 'http://localhost:3000/api', false);
+            http.send(null);
+
+            var obj = JSON.parse(http.responseText);
+            if (obj.data.length == 0) {
+                return;
+            }
+
+            var _lastIndexTemp = this.lastIndexTemp;
+            this.lastIndexTemp = obj.data.length;
+            listTemp = obj.data.slice(_lastIndexTemp);
+
+            listTemp.forEach(data => {
+                //Máximo de 60 itens exibidos no gráfico
+                if (chart.data.labels.length == 10 && chart.data.datasets[0].data.length == 10) {
+                    chart.data.labels.shift();
+                    chart.data.datasets[0].data.shift();
+                }
+                chart.data.labels.push(this.time++);
+                chart.data.datasets[0].data.push(parseFloat(data));
+                chart.update();
+            });
+            document.getElementById('average').textContent = obj.average;
+            document.getElementById('averageHour').textContent = obj.averageHour;
+        }
+
+        //Second Graphic
+
+        var context2 = document.getElementById("chart-humidity").getContext("2d");
+        context2.canvas.width = 1000;
+        context2.canvas.height = 300;
+
+        var humidity = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: "Humidade",
+                    type: 'line',
+                    borderColor: ['#3232ff'],
+                    backgroundColor: ['#9999ff']
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        //type: 'value',
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Humidade'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 2
+                }
+            }
         };
+
+        var chartHumidity = new Chart(context2, humidity);
+
+        //Função para obter os dados de temperatura do server
+
+
+        //Esse atributo dentro do contexto serve para saber qual foi o último índice processado, assim eliminado os outros elementos na
+        //hora de montar/atualizar o gráfico
+        this.lastIndexTempHumidity = 20;
+        this.timeHumidity = 0;
+
+        function get_dataHumidity() {
+
+            var http = new XMLHttpRequest();
+            http.open('GET', 'http://localhost:3000/api/humidity', false);
+            http.send(null);
+
+            var obj = JSON.parse(http.responseText);
+            if (obj.data.length == 0) {
+                return;
+            }
+
+            var _lastIndexTemp = this.lastIndexTempHumidity;
+            this.lastIndexTempHumidity = obj.data.length;
+            listTemp = obj.data.slice(_lastIndexTemp);
+
+            listTemp.forEach(data => {
+                //Máximo de 60 itens exibidos no gráfico
+                if (chartHumidity.data.labels.length == 10 && chartHumidity.data.datasets[0].data.length == 10) {
+                    chartHumidity.data.labels.shift();
+                    chartHumidity.data.datasets[0].data.shift();
+                }
+
+                chartHumidity.data.labels.push(this.time++);
+                chartHumidity.data.datasets[0].data.push(parseFloat(data));
+                chartHumidity.update();
+            });
+
+            document.getElementById('averageHumidity').textContent = obj.average;
+            document.getElementById('averageHourHumidity').textContent = obj.averageHour;
+        }
+
+        get_dataHumidity();
+
+        setInterval(() => {
+            get_data();
+            get_dataHumidity();
+            get_switch();
+            get_lumi();
+            sendTemperature();
+        }, 1000);
     </script>
-
-
-
 </body>
 
 </html>
