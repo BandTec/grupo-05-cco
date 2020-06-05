@@ -3,21 +3,21 @@ const { ArduinoData } = require('./newserial')
 const router = express.Router();
 
 
-router.get('/', (request, response, next) => {
+router.post('/sendData', (request, response) => {
+    temperature = ArduinoDataTemp.List[ArduinoDataTemp.List.length -1];
+    umidade = ArduinoDataHumidity.List[ArduinoDataHumidity.List.length -1];
+    //luminosidade = ArduinoDataLuminosity.List[ArduinoDataLuminosity.List.length -1]
 
-    let sum = ArduinoData.List.reduce((a, b) => a + b, 0);
-    let average = (sum / ArduinoData.List.length).toFixed(2);
-	let sumHour = ArduinoData.ListHour.reduce((a, b) => a + b, 0);
-	let averageHour = (sumHour / ArduinoData.ListHour.length).toFixed(2);
+    var sql = `INSERT INTO medidas (nome, leituratemp, nomeumi, leituraumi) VALUES ('temperatura', ${temperature}, 'umidade', ${umidade})`;
 
-    response.json({
-        data: ArduinoData.List,
-        total: ArduinoData.List.length,
-        average: isNaN(average) ? 0 : average,
-		dataHour: ArduinoData.ListHour,
-		totalHour: ArduinoData.ListHour.length,
-		averageHour: isNaN(averageHour) ? 0 : averageHour
-    });
+    db.query(sql, function(err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+      });
+    
+
+    response.sendStatus(200);
+})
 
 });
 
