@@ -92,8 +92,8 @@ function registrar_leitura(temperatura, umidade) {
         INSERT into eventos (temperatura, umidade, momento)
         values (${temperatura}, ${umidade}, CONVERT(Datetime, '${agora()}', 120));
         
-        delete from leitura where id not in 
-        (select top ${registros_mantidos_tabela_leitura} id from leitura order by id desc);`);
+        delete from eventos where idEvento not in 
+        (select top ${registros_mantidos_tabela_leitura} idEvento from eventos order by idEvento desc);`);
 
     }).catch(erro => {
 

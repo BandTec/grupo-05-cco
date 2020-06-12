@@ -2,7 +2,7 @@ create database humildificadores;
 use humildificadores;
 
 create table cliente (
-	idCliente int primary key auto_increment,
+	idCliente int primary key identity,
 	nome varchar (30),
 	rua varchar (40),
 	cidade varchar (20),
@@ -10,16 +10,14 @@ create table cliente (
 	ddn date,
 	email varchar (30),
 	senha varchar (15),
-    preferenciaTemp varchar (7),
-    preferenciaUmid varchar (3)
+    preferenciaTemp decimal (4,2),
+    preferenciaUmid decimal (5,2)
 )auto_increment = 1;
 
 create table parque (
 	idParque int primary key,
 	localização varchar (30),
-	avaliação varchar (50),
-	fkCliente int,
-	foreign key (fkCliente) references cliente(idCliente)
+	avaliação varchar (50)
 );
 
 create table sensor (
@@ -31,12 +29,10 @@ create table sensor (
 create table eventos (
 	fkSensor int,
 	foreign key (fkSensor) references sensor(idSensor),
-    idEvento int,
-    primary key (fkSensor,idEvento),
-	hora varchar (5),
-	dataEvento date,
-	umidade varchar (3),
-	temperatura varchar (7)
+    idEvento int primary key identity,
+	momento datetime,
+	umidade decimal (5,2),
+	temperatura decimal (4,2)
 );
 
 insert into cliente values 

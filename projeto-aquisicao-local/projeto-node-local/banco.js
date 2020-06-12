@@ -3,7 +3,7 @@ const configuracoes = {
         server: "humildificadores.database.windows.net",
         user: "adminlocal",
         password: "Safadinhos123@",
-        database: "bdHumildificadores",
+        database: "bancohumildificadores",
         options: {
             encrypt: true
         },
