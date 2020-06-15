@@ -13,23 +13,21 @@
 
     <form id="form_login" method="post" onsubmit="return entrar()">
         Usuário: <input type="text" name="login">
-        <br>
-        Senha: <input type="password" name="senha">
+        <br> Senha: <input type="password" name="senha">
         <br>
         <button id="btn_entrar">Entrar</button>
     </form>
-    
+
     <img src="aguarde.gif" id="img_aguarde" style="display: none;">
-    
+
     <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
-        
+
     </div>
 
 </body>
 
 </html>
 <script>
-
     function entrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_login));
@@ -37,14 +35,14 @@
             method: "POST",
             body: formulario
         }).then(resposta => {
-            
+
             if (resposta.ok) {
 
                 resposta.json().then(json => {
 
-                    sessionStorage.login_usuario_meuapp = json.login;
+                    sessionStorage.login_usuario_meuapp = json.email;
                     sessionStorage.nome_usuario_meuapp = json.nome;
-                    
+
                     window.location.href = 'grafico-chartjs.html';
                 });
 
@@ -70,9 +68,8 @@
 
     function finalizar_aguardar(resposta) {
         btn_entrar.disabled = false;
-        img_aguarde.style.display= 'none';
+        img_aguarde.style.display = 'none';
         div_erro.style.display = 'block';
         div_erro.innerHTML = resposta;
     }
-
 </script>
