@@ -1,27 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
+    <link rel="shortcut icon" type="image/png" href="../site/assets/images/icon.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Página com exemplo de Autenticação (Login)</title>
-
+    <title>Humildificadores | Login</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
 </head>
 
 <body>
 
-    <form id="form_login" method="post" onsubmit="return entrar()">
-        Usuário: <input type="text" name="login">
-        <br> Senha: <input type="password" name="senha">
-        <br>
-        <button id="btn_entrar">Entrar</button>
-    </form>
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <span class="highlight"><a href="index.html"><h1>Humildificadores</h1></a></span>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="Cadastro.html">Cadastre-se</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <img src="aguarde.gif" id="img_aguarde" style="display: none;">
+    <div class="login">
+        <div class="boxLogin">
+            <h1 id="h1Login">Login</h1>
 
-    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+            <form id="form_login" method="post" onsubmit="return entrar()">
+                <input type="email" id="usuario" placeholder="E-mail " name="login">
+                <br>
+                <input type="password" id="senha" placeholder="Senha " name="senha">
 
+                <div align="center">
+                    <img src="images/aguarde.gif" id="img_aguarde" style="display: none; height: 80px;">
+                </div>
+
+                <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+
+                </div>
+
+                <button id="btn_entrar">Entrar</button>
+
+                <p id="esqueciSenha"><a href="Cadastro.html ">Não tem conta? Cadastre-se</a></p>
+
+
+            </form>
+        </div>
+    </div>
+
+    <div class="footer ">
+        <div class="container ">
+            <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+        </div>
     </div>
 
 </body>
@@ -43,7 +80,7 @@
                     sessionStorage.login_usuario_meuapp = json.email;
                     sessionStorage.nome_usuario_meuapp = json.nome;
 
-                    window.location.href = 'grafico-chartjs.html';
+                    window.location.href = 'dashboard.html';
                 });
 
             } else {

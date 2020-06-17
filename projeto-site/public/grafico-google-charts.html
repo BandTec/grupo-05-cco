@@ -15,22 +15,21 @@
 
 <body onload="atualizarGrafico()">
     <div>
-        Olá, <b id="b_usuario"></b>  
+        Olá, <b id="b_usuario"></b>
         <a href="#" onclick="logoff()" style="color:maroon">[Sair]</a>
 
         <a href="tempo-real.html">Tempo Real</a>
     </div>
-    <div style="width:75%;">
+    <div style="width:100%;">
         <div id="div_grafico">Dados sendo obtidos...</div>
     </div>
 </body>
 
 </html>
 <script>
-
     // Não mexa nestas 3 linhas! 
     google.load('visualization', '1', {
-        packages: ['corechart','line'],
+        packages: ['corechart', 'line'],
         callback: obterDadosGrafico
     });
     // Não mexa nessas 3 linhas! 
@@ -60,8 +59,10 @@
                 },
             },
             title: 'Histórico recente de temperatura e umidade',
-            legend: { position: 'bottom' },
-            colors: ['green', 'blue'],            
+            legend: {
+                position: 'bottom'
+            },
+            colors: ['green', 'blue'],
             isStacked: true,
             width: largura,
             height: altura,
@@ -96,35 +97,37 @@
         dados.addColumn('number', 'Temperatura');
         dados.addColumn('number', 'Umidade');
 
-        fetch('/leituras/ultimas', {cache:'no-store'}).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    
-                    console.log(`Dados recebidos: ${JSON.stringify(dados)}`);
+        fetch('/leituras/ultimas', {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    resposta.reverse();
+                        console.log(`Dados recebidos: ${JSON.stringify(dados)}`);
 
-                    for (i = 0; i < resposta.length; i++) {
-                        var registro = resposta[i];
-                        // aqui, após registro. use os nomes 
-                        // dos atributos que vem no JSON 
-                        // que gerou na consulta ao banco de dados
-                        dados.addRow([
-                            registro.momento, 
-                            registro.temperatura, 
-                            registro.umidade
-                        ]);
-                    }
+                        resposta.reverse();
 
-                    plotarGrafico(dados);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            // aqui, após registro. use os nomes 
+                            // dos atributos que vem no JSON 
+                            // que gerou na consulta ao banco de dados
+                            dados.addRow([
+                                registro.momento,
+                                registro.temperatura,
+                                registro.umidade
+                            ]);
+                        }
+
+                        plotarGrafico(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
 
     }
 
@@ -135,5 +138,4 @@
         var chart = new google.visualization.LineChart(div_grafico);
         chart.draw(dados, configurarGrafico());
     }
-
 </script>

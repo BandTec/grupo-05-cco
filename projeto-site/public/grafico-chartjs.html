@@ -21,7 +21,7 @@
 
         <a href="tempo-real.html">Tempo Real</a>
     </div>
-    <div style="width:75%;">
+    <div style="width:100%;">
         <div id="div_aguarde">Dados sendo obtidos...</div>
         <canvas id="canvas_grafico"></canvas>
     </div>
@@ -29,7 +29,6 @@
 
 </html>
 <script>
-
     window.onload = obterDadosGrafico;
 
     verificar_autenticacao();
@@ -38,24 +37,21 @@
     // porque é o padrão do Chart.js
     var dados = {
         labels: [],
-        datasets: [
-            {
-                yAxisID: 'y-temperatura',
-                label: 'Temperatura',
-                borderColor: window.chartColors.red,
-                backgroundColor: window.chartColors.red,
-                fill: false,
-                data: []
-            },
-            {
-                yAxisID: 'y-umidade',
-                label: 'Umidade',
-                borderColor: window.chartColors.blue,
-                backgroundColor: window.chartColors.blue,
-                fill: false,
-                data: []
-            }
-        ]
+        datasets: [{
+            yAxisID: 'y-temperatura',
+            label: 'Temperatura',
+            borderColor: window.chartColors.red,
+            backgroundColor: window.chartColors.red,
+            fill: false,
+            data: []
+        }, {
+            yAxisID: 'y-umidade',
+            label: 'Umidade',
+            borderColor: window.chartColors.blue,
+            backgroundColor: window.chartColors.blue,
+            fill: false,
+            data: []
+        }]
     };
 
 
@@ -63,32 +59,34 @@
     // ou se souber o que está fazendo!
     function atualizarGrafico() {
 
-        fetch('/leituras/tempo-real', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
+        fetch('/leituras/tempo-real', {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(novoRegistro) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    
-                    // tirando e colocando valores no gráfico
-                    dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
-                    dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[1].data.shift();  // apagar o primeiro de umidade
-                    dados.datasets[0].data.push(novoRegistro.temperatura); // incluir uma nova leitura de temperatura
-                    dados.datasets[1].data.push(novoRegistro.umidade); // incluir uma nova leitura de umidade
-                    window.grafico_linha.update();
-                    
+                        console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
+                        dados.datasets[0].data.shift(); // apagar o primeiro de temperatura
+                        dados.datasets[1].data.shift(); // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro.temperatura); // incluir uma nova leitura de temperatura
+                        dados.datasets[1].data.push(novoRegistro.umidade); // incluir uma nova leitura de umidade
+                        window.grafico_linha.update();
+
+                        setTimeout(atualizarGrafico, 5000);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
                     setTimeout(atualizarGrafico, 5000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                setTimeout(atualizarGrafico, 5000);
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-        
+                }
+            })
+            .catch(function(error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
     }
 
     // altere aqui as configurações do gráfico
@@ -96,7 +94,9 @@
     function configurarGrafico() {
         var configuracoes = {
             responsive: true,
-            animation: {duration: 500},
+            animation: {
+                duration: 500
+            },
             hoverMode: 'index',
             stacked: false,
             title: {
@@ -130,39 +130,41 @@
     // e como são recuperados do BackEnd
     function obterDadosGrafico() {
 
-        fetch('/leituras/ultimas', { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+        fetch('/leituras/ultimas', {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    resposta.reverse();
+                        resposta.reverse();
 
-                    for (i = 0; i < resposta.length; i++) {
-                        var registro = resposta[i];
-                    
-                        // aqui, após 'registro.' use os nomes 
-                        // dos atributos que vem no JSON 
-                        // que gerou na consulta ao banco de dados
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
 
-                        dados.labels.push(registro.momento_grafico);
+                            // aqui, após 'registro.' use os nomes 
+                            // dos atributos que vem no JSON 
+                            // que gerou na consulta ao banco de dados
 
-                        dados.datasets[0].data.push(registro.temperatura);
-                        dados.datasets[1].data.push(registro.umidade);
-                    }
-                    console.log(JSON.stringify(dados));
+                            dados.labels.push(registro.momento_grafico);
 
-                    div_aguarde.style.display = 'none';
+                            dados.datasets[0].data.push(registro.temperatura);
+                            dados.datasets[1].data.push(registro.umidade);
+                        }
+                        console.log(JSON.stringify(dados));
 
-                    plotarGrafico(dados);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+                        div_aguarde.style.display = 'none';
+
+                        plotarGrafico(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
 
     }
 
@@ -178,5 +180,4 @@
 
         setTimeout(atualizarGrafico, 5000);
     }
-
 </script>
