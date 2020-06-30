@@ -8,7 +8,7 @@
 
 // se usar 'true' aqui, os dados serão gerados aleatórios e não recebidos da placa arduíno
 const gerar_dados_aleatorios = true;
-const intervalo_geracao_aleatoria_segundos = 5; // intervalo, em segundos, no qual os dados aleatórios serão gerados
+const intervalo_geracao_aleatoria_segundos = 3600; // intervalo, em segundos, no qual os dados aleatórios serão gerados
 
 // leitura dos dados do Arduino
 const porta_serial = require('serialport');
@@ -20,7 +20,7 @@ require('events').EventEmitter.defaultMaxListeners = 15;
 
 
 
-const registros_mantidos_tabela_leitura = 7;
+const registros_mantidos_tabela_leitura = 24;
 
 
 function iniciar_escuta() {
@@ -89,8 +89,8 @@ function registrar_leitura(temperatura, umidade) {
     banco.conectar().then(() => {
 
         return banco.sql.query(`
-        INSERT into eventos (temperatura, umidade, momento)
-        values (${temperatura}, ${umidade}, CONVERT(Datetime, '${agora()}', 120));
+        INSERT into eventos (fkSensor, temperatura, umidade, momento)
+        values (1, ${temperatura}, ${umidade}, CONVERT(Datetime, '${agora()}', 120));
         
         delete from eventos where idEvento not in 
         (select top ${registros_mantidos_tabela_leitura} idEvento from eventos order by idEvento desc);`);

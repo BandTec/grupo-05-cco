@@ -18,6 +18,26 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        rua: {
+            field: 'rua',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        cidade: {
+            field: 'cidade',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        estado: {
+            field: 'estado',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        ddn: {
+            field: 'ddn',
+            type: DataTypes.DATE,
+            allowNull: false
+        },
         login: {
             field: 'email',
             type: DataTypes.STRING,
@@ -26,6 +46,16 @@ module.exports = (sequelize, DataTypes) => {
         senha: {
             field: 'senha',
             type: DataTypes.STRING,
+            allowNull: false
+        },
+        preferenciaTemp: {
+            field: 'preferenciaTemp',
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        preferenciaUmid: {
+            field: 'preferenciaUmid',
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     }, {

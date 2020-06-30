@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" type="image/png" href="../site/images/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="../site/assets/images/icon.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humildificadores</title>
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">>
+    <script type="text/javascript" src="funcoes.js"></script>
     <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
 </head>
 
@@ -17,15 +18,16 @@
 
     <div class="header">
         <div class="container">
-            <div class="title-header">
-                <span class="highlight"><a href="index.html"><h1>Humildificadores</h1></a></span>
-            </div>
-            <div class="nav">
-                <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastre-se</a></li>
-                    <li><a href="calculadora.html">Calculadora</a></li>
-                </ul>
+            <div class="alinhar">
+                <div class="title-header">
+                    <span class="highlight"><a href="index.html"><h1>Humildificadores</h1></a></span>
+                </div>
+                <div class="nav">
+                    <ul id="lista">
+                        <li id="loginDashboard"><a href="login.html">Login</a></li>
+                        <li id="cadastroDashboard"><a href="cadastro.html">Cadastre-se</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -261,16 +263,21 @@
             </div>
         </div>
         <div class="seta">
-            <div class="start"><button id="btn_entrar"><a href="Cadastro.html">COMECE AGORA</a></button></div>
+            <div class="start" id="esconderStart"><button id="btn_entrar"><a href="Cadastro.html">COMECE AGORA</a></button></div>
         </div>
     </div>
 
     <div class="footer">
         <div class="container">
-            <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+            <div class="alinharCentro">
+                <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+            </div>
         </div>
     </div>
 
 </body>
 
 </html>
+<script>
+    verificar_autenticacao();
+</script>

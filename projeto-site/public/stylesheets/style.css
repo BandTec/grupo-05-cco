@@ -1,3 +1,20 @@
+::-webkit-scrollbar {
+    background: linear-gradient(90deg, #00F5A0 0%, #00D9F5 100%);
+}
+
+ ::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #00F5A0 0%, #00D9F5 100%);
+    border-radius: 25px;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #00F5A0 100%, #00D9F5 0%);
+}
+
 html {
     scroll-behavior: smooth;
     font-family: 'Roboto Mono', monospace;
@@ -58,6 +75,16 @@ input::-webkit-inner-spin-button {
     border-bottom: #06D08A 5px solid;
 }
 
+.alinhar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barra {
+    font-size: 25px;
+}
+
 .header a {
     color: #06D08A;
     text-decoration: none;
@@ -72,13 +99,10 @@ input::-webkit-inner-spin-button {
     padding-right: 20px;
 }
 
-.header .title-header {
-    float: left;
-}
-
-.nav {
-    float: right;
-    margin-top: 19px;
+#lista {
+    display: inline;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .main .container {
@@ -342,19 +366,21 @@ input::-webkit-inner-spin-button {
 
 .footer {
     margin-top: 90px;
-    width: 100%;
-    min-height: 100px;
     background: linear-gradient(90deg, rgba(0, 217, 245, .5) 0%, rgba(0, 245, 160, .5) 100%);
     color: white;
     border-top: white 5px solid;
+    width: 100%;
 }
 
 .footer h1 {
-    margin-top: 40px;
-    text-align: center;
+    font-size: 15px;
+}
+
+.alinharCentro {
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    min-height: 150px;
 }
 
 #braco {

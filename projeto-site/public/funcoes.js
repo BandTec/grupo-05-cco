@@ -10,9 +10,14 @@ function verificar_autenticacao() {
     nome_usuario = sessionStorage.nome_usuario_meuapp;
 
     if (login_usuario == undefined) {
-        redirecionar_login();
+        loginDashboard.style.display = 'inline';
+        cadastroDashboard.style.display = 'inline';
     } else {
+        loginDashboard.style.display = 'none';
+        cadastroDashboard.style.display = 'none';
+        lista.innerHTML = '<li><a href="dashboard.html">Dashboard</a></li> <li class="barra">|</li> <li><a href="#" id="b_usuario"></a></li> <li ><a href="#" onclick="logoff()">Sair</a></li>';
         b_usuario.innerHTML = nome_usuario;
+        esconderStart.style.display = 'none';
         validar_sessao();
     }
 
