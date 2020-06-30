@@ -685,6 +685,7 @@ input::-webkit-inner-spin-button {
     font-size: 45.3px;
     line-height: 56px;
     color: #06D08A;
+    margin-top: 0px;
 }
 
 .boxCalculadora {
@@ -696,6 +697,7 @@ input::-webkit-inner-spin-button {
     text-align: center;
     background-color: white;
     box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
 }
 
 .boxCalculadora h2,
