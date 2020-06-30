@@ -1,55 +1,115 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
+    <link rel="shortcut icon" type="image/png" href="../site/assets/images/icon.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Página com exemplo de Cadastro de usuário</title>
+    <title>Humildificadores | Cadastro</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <script src="js/sorteio.js"></script>
+    <!-- <script src="assets/js/validarCadastro.js"></script> -->
+    <script src="js/buscacep.js"></script>
 
 </head>
 
 <body>
 
-    <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
-        Nome: <input type="text" name="nome" required minlength="4">
-        <br>
-        Usuário: <input type="text" name="login" required minlength="4">
-        <br>
-        Senha: <input type="password" name="senha" required minlength="4">
-        <br>
-        <button id="btn_entrar">Cadastrar</button>
-    </form>
-    
-    <img src="aguarde2.gif" id="img_aguarde" style="display: none;" width="100px">
-    
-    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
-        Erro no cadastro
+    <div class="header">
+        <div class="container">
+            <div class="alinhar">
+                <div class="title-header">
+                    <span class="highlight"><a href="index.html"><h1>Humildificadores</h1></a></span>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="Cadastro.html">Cadastre-se</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cadastro">
+        <div class="boxCadastro">
+            <h1 id="h1Login">Cadastre-se </h1>
+
+            <form class="formCadastro" id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                <input type="text" id="nome" name="nome" placeholder="Nome">
+
+                <input type="text" id="ddn" name="ddn" placeholder="Data de nascimento">
+
+                <input type="email" id="email" name="login" placeholder="E-mail">
+
+                <input type="password" id="password" name="senha" placeholder="Senha">
+
+                <input type="text" id="cep" onblur="pesquisacep(this.value);" name="cep" placeholder="CEP" required>
+
+                <input type="text" id="rua" name="rua" placeholder="Rua">
+
+                <input type="text" id="cidade" name="cidade" placeholder="Cidade">
+
+                <input type="text" id="uf" id="uf" name="estado" placeholder="Estado">
+
+
+                <h2>Temperatura desejada</h2>
+                <div class="alinharCentro">
+                    <input id="selectTemp" name="preferenciaTemp" onchange="temperaturaTelaInput()" type="Number" min="18" max="30" value="24">
+                    <br>
+                    <input id="temperatura" onchange="temperaturaTelaSlide()" type="range" min="18" max="30" value="24">
+
+                    <h2>Umidade desejada</h2>
+                    <input id="selectUmi" name="preferenciaUmid" onchange="umidadeTelaInput()" type="Number" min="30" max="70" value="50">
+                    <br>
+                    <input id="umidade" onchange="umidadeTelaSlide()" type="range" min="30" max="70" value="50">
+
+                    <button class="btnCadastro" id="btn_entrar">Cadastrar</button>
+
+                    <p id="esqueciSenha"><a href="login.html">Tem conta? Clique aqui</a></p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="alinharCentro">
+                <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+            </div>
+        </div>
     </div>
 
 </body>
 
 </html>
-<script>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+<script>
     function cadastrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
         fetch("/usuarios/cadastrar", {
             method: "POST",
             body: formulario
-        }).then(function (response) {
-            
+        }).then(function(response) {
+
             if (response.ok) {
 
-                window.location.href='login.html';
+                window.location.href = 'login.html';
 
             } else {
 
                 console.log('Erro de cadastro!');
-                response.text().then(function (resposta) {
-                    div_erro.innerHTML = resposta;
-                });
+                response.text().then(function(resposta) {});
                 finalizar_aguardar();
             }
         });
@@ -59,14 +119,9 @@
 
     function aguardar() {
         btn_entrar.disabled = true;
-        img_aguarde.style.display='block';
-        div_erro.style.display='none';
     }
 
     function finalizar_aguardar() {
         btn_entrar.disabled = false;
-        img_aguarde.style.display='none';
-        div_erro.style.display='block';
     }
-
 </script>
