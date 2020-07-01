@@ -96,14 +96,7 @@ input::-webkit-inner-spin-button {
 
 .header li {
     display: inline;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#lista {
-    display: inline;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0px 10px;
 }
 
 .main .container {
@@ -832,19 +825,23 @@ h3 {
         width: 100%;
     }
     .title-header h1 {
-        font-size: 1.5em;
+        font-size: 1.8em;
         text-align: center;
+    }
+    .alinhar {
+        flex-direction: column;
+        margin: 0;
     }
     .header .nav {
         float: none;
         text-align: center;
-        margin: 0;
+        margin: 0px 0px 15px 0px;
     }
     .header .nav ul {
         padding: 0;
     }
     .header .nav ul li {
-        padding: 0 10px;
+        padding: 0 5px;
     }
     .header .nav ul li a {
         font-size: 16px;
@@ -1007,6 +1004,9 @@ h3 {
         content: '* Arraste para o lado para ver tudo';
         color: #c6c6c6;
     }
+    .alinharCentro {
+        text-align: center;
+    }
 }
 
 #temperatura {
@@ -1014,14 +1014,10 @@ h3 {
     width: 90%;
 }
 
-#temperatura::-webkit-slider-thumb {}
-
 #umidade {
     padding: 5px 10px;
     width: 90%;
 }
-
-#umidade::-webkit-slider-thumb {}
 
 #selectTemp {
     -webkit-appearance: none;
