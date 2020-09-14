@@ -1,0 +1,52 @@
+(Kaio) Introdução.
+
+(Kaio) O que é:
+ A Humildificadores te ajuda recomendando o parque de acordo com a temperatura e a umidade ambiente adequada ao seu perfil. Utilizamos sensores para informar qual é a temperatura e umidade atual de cada parque. Assim, você praticante de exercício físico não precisa se preocupar na hora de escolher o melhor lugar para ir praticar!
+
+(Kalil) Backlog 01:
+ Encontramos algumas melhorias na Dashboard da nossa plataforma WEB e iremos implementar um sistema de classificação funcional para listar cada parque.
+
+(Kalil) Melhorias na Governança de TI:
+ Desde o último módulo a Humildificadores teve um crescimento exponencial e mais parques vieram nos procurar para apoiar nosso projeto. Com isso decidimos passar mais credibilidade para os nossos futuros clientes através do Monitoramento das máquinas instaladas no parque que irão receber os dados dos sensores. Além de termos um Analista disponível, usaremos a automatização para enviar uma notificação caso detectado alguma irregularidade.
+
+(Curti) Proto-personas:
+ Jorge - Um usuário frequente do nosso serviço.
+ Cláudio - O nosso chefe de tecnologia, o cara que sempre vai receber as notificações caso venha ter algo de errado.
+ Augusto - O nosso Analista, o cara que tem que manter a nossa aplicação de monitoramento funcionando.
+
+(Douglas) User Storie-Cládio:
+ Ele pede uma aplicação que monitora as máquinas para manter os dados seguros e evitar futuros problemas, pede para ser notificado caso venha surgir anormalidades nas máquinas, e pede o monitoramento da CPU, Memória RAM, Disco e a Temperatura de cada máquina que recebe os dados dos sensores.
+
+(Douglas) User Storie-Augusto:
+ Pede um sistema de fácil uso e interpretação dos dados, quer utilizar a API do Slack para enviar as notificações de alerta automaticamente para o Cláudio.
+
+(Marcolino) Protótipo Dashboard Seleção dos parques:
+ Essa página é a que o usuário seleciona o parque, decidimos reconstruir para que suporte os futuros parques que fecharemos o contrato.
+ 
+(Marcolino) Protótipo Dashboard:
+ Reconstruimos a Dashboard para o melhor entendimento dos dados e dos alertas.
+
+(Marcolino) Backlog 02:
+ Listamos os requisitos em que detectamos nas User Stories e informamos sua prioridade.
+
+(Kalil) Implementação:
+ Linux - Vamos usar para que nosso sistema seja cross-plataform.
+ Python - Vamos usar para desenvolver nossa API que enviará os dados já discretizados e calculados para o Banco de Dados.
+ Java - Vamos usar para montar as telas do sistema de monitoramento.
+
+(José) API'S:
+ Slack - O Slack possui uma variedade de API'S.
+   API da Web - fornece uma coleção de método HTTP.
+   API de eventos - é uma maneira simplifida de criar aplicativos que respondem às atividades no Slack.
+   E mais algumas outras.
+ OSHI - Resgata as informações da máquina utilizando o java.
+ Telegram - Oferece dois tipos de API's para desenvolvedores.
+   Bot API - permite que você crie facilmente programas que usam mensagens do Telegram para uma interface.
+   API do Telegram e a TDLib - permitem que você crie seus próprios clientes Telegram personalizados.
+
+(Kaio) LLD:
+ A nossa API quando iniciada vai mandar as informações diretamente para o banco de dados e o sistema vai resgatar os logs para informar a saúde da máquina ao nosso Analista.
+
+(Douglas) Mostrar o ASANA.
+
+Agradecimentos.
