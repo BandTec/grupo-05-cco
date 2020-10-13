@@ -80,7 +80,7 @@ router.get('/parques', function(req, res, next) {
     console.log(`Recuperando a última leitura`);
 
     const instrucaoSql = `select idParque, nome, imgParque  
-						from parque`;
+						from parque order by idParque desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {

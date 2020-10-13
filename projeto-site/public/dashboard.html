@@ -207,13 +207,15 @@
 </html>
 
 <script>
-    verificar_autenticacao(1);
+    // verificar_autenticacao(1);
 
     function roll_right() {
         var slide = window.document.getElementsByClassName('slide-park');
         document.getElementsByClassName('slide-park').trans
     }
 
+    window.onload = adicionarParque;
+    var dados 
 
     function adicionarParque() {
 
@@ -227,18 +229,17 @@
 
                         resposta.reverse();
 
-                        for (i = 0; i < resposta.length; i++) {
-                            var registro = resposta[i];
+                        
+                            dados = resposta;
 
                             // aqui, após 'registro.' use os nomes 
                             // dos atributos que vem no JSON 
                             // que gerou na consulta ao banco de dados alo
 
-                            dados.labels.push(registro.momento_grafico);
+                            
 
-                            dados.datasets[0].data.push(registro.temperatura);
-                            dados.datasets[1].data.push(registro.umidade);
-                        }
+                            
+                        
                         console.log(JSON.stringify(dados));
 
                         div_aguarde.style.display = 'none';
