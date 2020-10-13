@@ -325,7 +325,7 @@ input::-webkit-inner-spin-button {
 }
 
 .footer {
-    margin-top: 100px;
+    margin-top: 50px;
     background: #ffffff;
     color: #06D08A;
     width: 100%;
@@ -1107,7 +1107,7 @@ body {
     z-index: 0 !important;
     padding-top: 20px;
     text-align: center;
-    min-height: 100%;
+    min-height: 750px;
     height: 100%;
     padding-bottom: 115px;
     overflow-x: hidden;
@@ -1123,6 +1123,8 @@ body {
 
 .slide-park {
     position: relative;
+    min-height: 500px;
+    max-height: 700px;
     height: 100%;
     display: flex;
     justify-content: space-around;
@@ -1140,7 +1142,6 @@ body {
     height: 100%;
     display: inline-block;
     overflow: hidden;
-    transition: 0.3s;
 }
 
 #park:hover {
@@ -1150,7 +1151,7 @@ body {
 
 #park img {
     width: 100%;
-    min-height: 190px;
+    height: 34%;
 }
 
 #park h3 {
@@ -1171,15 +1172,15 @@ body {
 }
 
 #title-selection-park {
-    font-size: 42px;
+    font-size: 3rem;
+    font-family: 'Roboto', sans serif;
+    color: #ffffff;
     text-align: center;
 }
 
 .body-park {
-    margin-top: 5%;
+    margin: 5% 0;
     width: 100%;
-    height: 800px;
-    margin-bottom: 3%;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -1187,7 +1188,6 @@ body {
     border-radius: 30px;
     width: 90%;
     background-color: rgba(255, 255, 255, 0.7);
-    height: 98%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 25% 75%;
@@ -1202,17 +1202,38 @@ body {
 
 .part-one .about-park {
     height: 40%;
-    width: 74%;
+    width: 80%;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 30px;
     text-align: center;
     margin-left: 6%;
     margin-top: 6%;
+    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
 }
 
-.part-one .about-park #img-park {
+.img-parque {
     width: 100%;
+    height: 40%;
     border-radius: 30px 30px 0px 0px;
+}
+
+.img-parque.chicomendes {
+    width: 100%;
+    height: 60%;
+    background-image: url('./../images/chicomendes.jpg');
+    background-size: 120%;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+.img-parque.juventude {
+    width: 100%;
+    height: 60%;
+    background-image: url('./../images/juventude.jpg');
+    background-size: 120%;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    /* background-position-x: center; */
 }
 
 .part-one .about-park h3 {
@@ -1230,6 +1251,7 @@ body {
     font-size: 15px;
     color: #fff;
     font-weight: lighter;
+    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
 }
 
 .part-one .temperatura {
@@ -1242,6 +1264,7 @@ body {
     color: #fff;
     font-size: 15px;
     font-weight: lighter;
+    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
 }
 
 .part-one #img-componentes {
@@ -1258,9 +1281,9 @@ body {
     height: 94%;
     width: 97%;
     background-color: rgba(255, 255, 255, 1);
-    margin-top: 3%;
-    margin-right: 6%;
+    margin: 3% 6% 3% 0;
     border-radius: 30px;
+    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
 }
 
 .part-two .container-part-two #title-history {
@@ -1315,6 +1338,10 @@ body {
     margin-left: 15.5%;
 }
 
+.part-two iframe {
+    margin: 50px 0;
+}
+
 
 /* carousel ------------------------
 
@@ -1350,23 +1377,6 @@ body {
     visibility: hidden;
     -webkit-transition: visibility 0s .6s;
     transition: visibility 0s .6s;
-}
-
-.cd-slider ul li::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 100%;
-    width: 88vh;
-    height: 88vh;
-    border: solid rgba(0, 0, 0, 0.2);
-    border-width: 0;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    -webkit-transition: border-width .4s .6s;
-    transition: border-width .4s .6s;
 }
 
 .content {
@@ -1493,3 +1503,5 @@ nav>div>span {
     -webkit-transition: width .6s, height .6s;
     transition: width .6s, height .6s;
 }
+
+back

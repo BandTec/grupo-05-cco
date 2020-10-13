@@ -122,7 +122,7 @@ if (gerar_dados_aleatorios) {
     setInterval(function() {
         console.log('Gerando valores aleatórios!');
         registrar_leitura(Math.min(Math.random() * 100, 60), Math.min(Math.random() * 200, 100))
-    }, intervalo_geracao_aleatoria_segundos * 1000);
+    }, intervalo_geracao_aleatoria_segundos * 1);
 } else {
     // iniciando a "escuta" de dispositivos Arduino.
     console.log('Iniciando obtenção de valores do Arduino!');
