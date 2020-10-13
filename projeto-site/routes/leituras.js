@@ -75,5 +75,22 @@ router.get('/estatisticas', function(req, res, next) {
 
 });
 
+router.get('/parques', function(req, res, next) {
+
+    console.log(`Recuperando a última leitura`);
+
+    const instrucaoSql = `select idParque, nome, imgParque  
+						from parque`;
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+        .then(resultado => {
+            res.json(resultado);
+        }).catch(erro => {
+            console.error(erro);
+            res.status(500).send(erro.message);
+        });
+
+});
+
 
 module.exports = router;
