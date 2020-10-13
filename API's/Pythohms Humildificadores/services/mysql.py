@@ -1,5 +1,5 @@
 import mysql.connector
-
+import pyodbc
 
 class Mysql:
     def __init__(self, user, password, host, database):
@@ -40,7 +40,3 @@ class Mysql:
     # Fechando conexão
     def close(self):
         self.mysql.close()
-
-        
-
-
