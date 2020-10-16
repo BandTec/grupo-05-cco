@@ -1,5 +1,4 @@
 import mysql.connector
-import pyodbc
 
 class Mysql:
     def __init__(self, user, password, host, database):

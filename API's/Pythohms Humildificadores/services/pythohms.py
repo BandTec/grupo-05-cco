@@ -4,7 +4,7 @@ import pdb
 
 class CrawlerOpenHardwareMonitor:
     def __init__(self):
-        self.url = 'http://172.17.226.65:8085/data.json'
+        self.url = 'http://localhost:8080/data.json'
         self.data = None
     
     def getJsonData(self):
@@ -104,6 +104,7 @@ class CrawlerOpenHardwareMonitor:
 
 
         data = (user_desktop, placa_mae, cpu_count, memory_load.replace("%","").replace(",","."), memory_use.replace("GB","").replace(",","."), memory_available.replace("GB","").replace(",","."), video_card)
+        print(data)
         return data
         
 
