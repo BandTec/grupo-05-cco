@@ -3,7 +3,7 @@ from services.pythohms import CrawlerOpenHardwareMonitor
 import time
 
 #Inserir user, password, host, database
-mysql = Mysql('ProjetoAPI','urubu100', 'localhost', 'PROJETOAPI')
+mysql = Mysql('root','bandtec', 'localhost', 'PROJETOAPI')
 
 mysql.connect()
 
@@ -12,4 +12,4 @@ while True:
     values = teste.getInfo()
     print(values)
     mysql.insert(values)
-    time.sleep(2)
+    time.sleep(5)
