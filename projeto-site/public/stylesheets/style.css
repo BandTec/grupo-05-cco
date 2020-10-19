@@ -1166,20 +1166,21 @@ body {
     font-size: 24px;
     color: #00D9F5;
     cursor: pointer;
-    border-top: 3px solid #00D9F5;
-    transition: 0.5s;
+    border-top: 5px solid #00D9F5;
 }
 #park .button:hover {
     background-color: #00D9F5;
     color: #fff;
-    transition: 0.5s;
+    border: 5px solid #fff;
+    border-radius: 0px 0px 20px 20px;
+    transition: 0.5s ;
     
 }
 #park .button:active {
     background-color: #00e699;
     border-top: 3px solid #00e699;
     color: #fff;
-    transition: 0s;
+    transition: 0.01s;
     
 }
 

@@ -95,18 +95,25 @@ class CrawlerOpenHardwareMonitor:
         memory_use = info["Memory"]["Use"]
         memory_available = info["Memory"]["Available"]
         video_card = info["VideoCard"]
+        soma_temperature = 0.0
+        soma_percent = 0.0
+        soma_clock = 0.0
 
         for i in info["CPU"]:
             cpu_name = i["Name"]
-            cpu_clock = i["Clock"]
-            cpu_temperature = i["Temperature"]
-            cpu_load = i["Load"]
+            cpu_clock = float(i["Clock"].replace(",",".").replace("MHz","").strip())
+            cpu_temperature = float(i["Temperature"].replace(",",".").replace("°C","").strip())
+            cpu_load = float(i["Load"].replace("%","").replace(",",".").strip())
+            soma_temperature += cpu_temperature
+            cpu_media_temperatura = soma_temperature / cpu_count
+            soma_percent += cpu_load
+            cpu_media_percent = soma_percent / cpu_count
+            soma_clock += cpu_clock
+            cpu_media_clock = soma_clock / cpu_count
 
+        data = (user_desktop, placa_mae, cpu_count, cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip(), video_card)
 
-        data = (user_desktop, placa_mae, cpu_count, memory_load.replace("%","").replace(",","."), memory_use.replace("GB","").replace(",","."), memory_available.replace("GB","").replace(",","."), video_card)
-        print(data)
         return data
-        
 
 if __name__ == "__main__":
     teste =  CrawlerOpenHardwareMonitor()

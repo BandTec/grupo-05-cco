@@ -79,8 +79,8 @@ router.get('/parques', function(req, res, next) {
 
     console.log(`Recuperando a última leitura`);
 
-    const instrucaoSql = `select idParque, nome, imgParque  
-						from parque order by idParque desc`;
+    const instrucaoSql = `select idParque, nome, imgParque, (avaliacao / quantidadeclassificacao) as estrelas 
+                            from parque order by idParque desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
