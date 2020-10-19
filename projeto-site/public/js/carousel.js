@@ -1,4 +1,4 @@
-(function() {
+function plotarParques() {
 
     var autoUpdate = false,
         timeTrans = 4000;
@@ -64,24 +64,24 @@
 
 
 
-    nav.querySelector(".next").addEventListener('click', function(event) {
+    nav.querySelector(".next").addEventListener('click', function (event) {
         event.preventDefault();
         nextSlide();
 
     });
 
-    nav.querySelector(".prev").addEventListener("click", function(event) {
+    nav.querySelector(".prev").addEventListener("click", function (event) {
         event.preventDefault();
         prevSlide();
 
     });
 
     //autoUpdate
-    setInterval(function() {
+    setInterval(function () {
         if (autoUpdate) {
             nextSlide();
 
         };
     }, timeTrans);
 
-})();
+}

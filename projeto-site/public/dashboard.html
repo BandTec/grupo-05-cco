@@ -58,7 +58,7 @@
 
                 <section class="cd-slider">
                     <ul id="parqueSlide">
-                        <li>
+                        <!-- <li>
                             <div class="content">
 
                                 <div id="park">
@@ -74,8 +74,11 @@
                                     </div>
                                 </div>
                                 <div id="park">
-                                    <img src="https://jundiai.sp.gov.br/noticias/wp-content/uploads/sites/32/2020/03/parque_da_cidade-26-1280x854.jpg" alt="">
-                                    <h3>Ibirapuera Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas corrupti tenetur impedit cum cupiditate! Blanditiis nisi in natus molestias, id doloribus officiis voluptate corrupti mollitia neque quibusdam
+                                    <img src="https://jundiai.sp.gov.br/noticias/wp-content/uploads/sites/32/2020/03/parque_da_cidade-26-1280x854.jpg"
+                                        alt="">
+                                    <h3>Ibirapuera Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
+                                        corrupti tenetur impedit cum cupiditate! Blanditiis nisi in natus molestias, id
+                                        doloribus officiis voluptate corrupti mollitia neque quibusdam
                                         aliquid obcaecati quas.
                                     </h3>
                                     <div class="button">
@@ -83,8 +86,11 @@
                                     </div>
                                 </div>
                                 <div id="park">
-                                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/12/74/0b/20/parque-del-alamillo.jpg" alt="">
-                                    <h3>Ibirapuera Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas corrupti tenetur impedit cum cupiditate! Blanditiis nisi in natus molestias, id doloribus officiis voluptate corrupti mollitia neque quibusdam
+                                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/12/74/0b/20/parque-del-alamillo.jpg"
+                                        alt="">
+                                    <h3>Ibirapuera Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
+                                        corrupti tenetur impedit cum cupiditate! Blanditiis nisi in natus molestias, id
+                                        doloribus officiis voluptate corrupti mollitia neque quibusdam
                                         aliquid obcaecati quas.
                                     </h3>
                                     <div class="button">
@@ -92,8 +98,11 @@
                                     </div>
                                 </div>
                                 <div id="park">
-                                    <img src="https://www.melhoresdestinos.com.br/wp-content/uploads/2019/02/passagens-aereas-sao-paulo-capa2019-04-820x430.jpg" alt="">
-                                    <h3>Ibirapuera Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas corrupti tenetur impedit cum cupiditate! Blanditiis nisi in natus molestias, id doloribus officiis voluptate corrupti mollitia neque quibusdam
+                                    <img src="https://www.melhoresdestinos.com.br/wp-content/uploads/2019/02/passagens-aereas-sao-paulo-capa2019-04-820x430.jpg"
+                                        alt="">
+                                    <h3>Ibirapuera Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
+                                        corrupti tenetur impedit cum cupiditate! Blanditiis nisi in natus molestias, id
+                                        doloribus officiis voluptate corrupti mollitia neque quibusdam
                                         aliquid obcaecati quas.
                                     </h3>
                                     <div class="button">
@@ -174,7 +183,7 @@
 
 
                             </div>
-                        </li>
+                        </li>  -->
                     </ul>
                     <nav>
                         <div>
@@ -232,69 +241,78 @@
     }
 
     window.onload = adicionarParque;
-    var dados 
+    var dados
 
     function adicionarParque() {
 
         fetch('/leituras/parques', {
-                cache: 'no-store'
-            }).then(function(response) {
-                if (response.ok) {
-                    response.json().then(function(resposta) {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                        resposta.reverse();
+                    resposta.reverse();
+
+                    dados = resposta;
+                    let contador = 0;
+                    for (let cont = 0; resposta.length / 3 >= cont; cont++) {
 
                         
-                            dados = resposta;
-
-                            // aqui, após 'registro.' use os nomes 
-                            // dos atributos que vem no JSON 
-                            // que gerou na consulta ao banco de dados alo
-
-                            
-
-                            
+                        let htmlPark = "";
                         
+    
+
+                        for (let cont2 = 0; cont2 < 3 && contador < resposta.length; cont2++) {
+
+                            htmlPark += `
+                            <div id="park">
+                                <img src="${dados[contador].imgParque}" >
+                                <h3>
+                                    ${dados[contador].nome}
+                                </h3>
+                                <div class="button" onclick="${dados[contador].idParque}">
+                                    ver Mais
+                                </div>
+                            </div>`;
+                            contador++;
+                        }
+                        document.getElementById(`parqueSlide`).innerHTML += `
+                        <li>
+                            <div class="content " id="slidepage">
+                                ${htmlPark}
+                            </div>
+                        </li>`;
+                        
+                    }
+
+                    
+
+                        // aqui, após 'registro.' use os nomes 
+                        // dos atributos que vem no JSON 
+                        // que gerou na consulta ao banco de dados alo
+
+
+
+
+
                         console.log(JSON.stringify(dados));
 
-                        div_aguarde.style.display = 'none';
+                        
 
                         console.log(dados);
+                        plotarParques()
                     });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function(error) {
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
-        for (let cont = 0; index < array.length; cont++) {
-
-            document.getElementById(`parqueSlide`) += `
-            <li>
-                <div class="content " id="slidepage${cont}">
-                </div>
-            </li>`;
 
 
-            for (let cont2 = 0; index < array.length; cont2++) {
-
-                document.getElementById(`slidepage${cont}`) += `
-                <div id="park">
-                    <img src="${img} >
-                    <h3>
-                        ${parque}
-                    </h3>
-                    <div class="button" onclick="${parque}">
-                        ver Mais
-                    </div>
-                </div>`
-
-            }
-            
-        }
     }
 </script>
