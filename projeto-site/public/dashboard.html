@@ -174,7 +174,7 @@
                                     ${dados[contador].nome}<br><br>
                                     ${estrelas}
                                 </h3>
-                                <div class="button" onclick="(${dados[contador].idParque})">
+                                <div class="button" onclick="VerParque(${dados[contador].idParque})">
                                     VER MAIS
                                 </div>
                             </div>`;
@@ -213,7 +213,10 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
+    
+    function VerParque(idParque){
 
+    }
 
 
     }
