@@ -91,6 +91,8 @@ class CrawlerOpenHardwareMonitor:
         user_desktop = info["Desktop"]
         placa_mae = info["MotherBoard"]
         cpu_count = len(info["CPU"]) 
+        clock_1 = float(info["CPU"][0]["Clock"].replace(",",".").replace("MHz","").strip())
+        clock_2 = float(info["CPU"][1]["Clock"].replace(",",".").replace("MHz","").strip())
         memory_load = info["Memory"]["Load"]
         memory_use = info["Memory"]["Use"]
         memory_available = info["Memory"]["Available"]
@@ -111,7 +113,7 @@ class CrawlerOpenHardwareMonitor:
             soma_clock += cpu_clock
             cpu_media_clock = soma_clock / cpu_count
 
-        data = (user_desktop, placa_mae, cpu_count, cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip(), video_card)
+        data = (user_desktop, placa_mae, cpu_count, round(clock_1, 2), round(clock_2, 2), cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip(), video_card)
 
         return data
 
