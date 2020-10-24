@@ -62,3 +62,4 @@ typings/
 
 .directory
 package-lock.json
+/nbproject/private/
