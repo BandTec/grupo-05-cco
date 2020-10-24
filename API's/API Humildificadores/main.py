@@ -4,7 +4,7 @@ from services.dataGenerator import alertaSlack
 import time
 
 #Inserir user, password, host, database
-mysql = Mysql('ProjetoAPI','urubu100', 'localhost', 'PROJETOAPI')
+mysql = Mysql('root', 'bandtec', 'localhost', 'PROJETOAPI')
 
 mysql.connect()
 

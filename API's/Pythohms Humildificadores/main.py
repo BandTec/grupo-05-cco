@@ -12,4 +12,4 @@ while True:
     values = teste.getInfo()
     print(values)
     mysql.insert(values)
-    time.sleep(1)
+    time.sleep(3)
