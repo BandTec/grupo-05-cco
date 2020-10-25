@@ -89,9 +89,9 @@ function registrar_leitura(temperatura, umidade) {
 
     efetuando_insert = true;
     let numero_aleatorio_parque = Math.trunc(Math.random() * (8 - 1) + 1);
-    console.log(`Inserindo no parque (fkSensor): ${numero_aleatorio_parque}`)
+    console.log(`Inserindo no parque (fkSensor): ${numero_aleatorio_parque}\n`)
     console.log(`temperatura: ${temperatura}`);
-    console.log(`umidade: ${umidade}`);
+    console.log(`umidade: ${umidade}\n`);
 
     banco.conectar().then(() => {
 
@@ -129,7 +129,7 @@ if (gerar_dados_aleatorios) {
 	setInterval(function() {
 		console.log('Gerando valores aleatórios!');
 		registrar_leitura(Math.random()*(34 - 16) + 16, Math.min(Math.random()*(80 - 20), + 80))
-	}, 1000);
+	}, 5000);
 } else {
 	// iniciando a "escuta" de dispositivos Arduino.
 	console.log('Iniciando obtenção de valores do Arduino!');

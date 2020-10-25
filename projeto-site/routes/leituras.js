@@ -106,7 +106,7 @@ router.get('/parques/:Parque', function(req, res, next) {
 
     console.log(`Recuperando a última leitura`);
 
-    const instrucaoSql = `select * 
+    const instrucaoSql = `select *, (avaliacao / quantidadeclassificacao) as estrelas
                             from parque
                             where idParque = ${Parque}`;
 

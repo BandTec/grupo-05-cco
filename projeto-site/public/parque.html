@@ -49,7 +49,7 @@
             <div class="part-one">
                 <div class="about-park">
                     <div class="img-parque chicomendes"></div>
-                    <h3 id="title-park">Chico mendes</h3>
+                    <h3 id="title-park"></h3>
                     <div id="classification">
 
                     </div>
@@ -67,14 +67,15 @@
                     <h2>Temperatura</h2>
                     <h2 id="temperaturas"></h2>
                     <img id="img-componentes" src="./images/dom.svg" alt="Temperatura icone">
+                    <div></div>
                 </div>
             </div>
             <div class="part-two">
                 <div class="container-part-two">
                     <br>
                     <h3 id="title-history">Histórico</h3>
-                    <div class="modal-body">
-                        <iframe src="grafico-chartjs.html" style="margin-left: 10%;" frameborder="0"></iframe>
+                    <div class="modal-body" style="height: 470px;">
+                        <iframe src="grafico-chartjs.html" style="margin-left: 10; width: 100%; height: 100%;"  frameborder="0"></iframe>
                     </div>
                     <h3 id="title-localization">Localização</h3>
                     <iframe
@@ -86,62 +87,6 @@
             </div>
         </div>
     </div>
-    <!--
-    </div>
-    <h1 id="h1Dashboard">Estado Atual</h1>
-    <div class="dashboard">
-        <div id="boxParque">
-            <img id="imagemClima" src="">
-            <h2>Chico Mendes</h2>
-            <div class="infoClima">
-                <h2 id="temperaturas"></h2>
-                <div class="barraMeio"></div>
-                <h2 id="umidades"></h2>
-            </div>
-            <h2 id="resultado"></h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117056.04588854393!2d-46.567930858940834!3d-23.532450834027248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce63f101a53a65%3A0xecf661da37d8a872!2sCECCO%20-%20Parque%20Ecol%C3%B3gico%20Chico%20Mendes!5e0!3m2!1spt-PT!2sbr!4v1588283407803!5m2!1spt-PT!2sbr"
-                width="600" height="300" frameborder="0" style="border:0; border-radius: 24px; margin: 10px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-            <div class="btn-saibamais"><button id="btn_entrar" data-toggle="modal" data-target="#exampleModal">Ver Histórico</button></div>
-
-        </div>
-    </div>
-    <!-- Button trigger modal -->
-
-
-
-
-    <!-- Modal -->
-    <!--
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header" align="center">
-                        <h3 class="modal-title" id="exampleModalLabel">Gráfico Chico Mendes</h3>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-                    </div>
-                    <div class="modal-body">
-
-                        <iframe src="grafico-chartjs.html" height="450px" width="100%" frameborder="0"></iframe>
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
-
-
-
-
-
     <div class="footer">
         <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6">
@@ -178,8 +123,9 @@
 </html>
 <script>
 
-    verificar_autenticacao(1);
+    //verificar_autenticacao(1);
     window.onload = mostrarInformacoes;
+    var dados;
 
     function mostrarInformacoes() {
 
@@ -196,13 +142,14 @@
                     dados = resposta;
                     let estrelas = "";
                     for (let cont3 = 0; cont3 < 5; cont3++) {
-                        if (cont3 < dados[contador].estrelas) {
-                            estrelas += '<img class="stars" src="/images/full-star.png">'
+                        if (cont3 < dados[0].estrelas) {
+                            estrelas += '<img class="stars" src="/images/full-star.png" style="height: 20px;">'
                         } else {
-                            estrelas += '<img class="stars" src="/images/stroke-star.png">'
+                            estrelas += '<img class="stars" src="/images/stroke-star.png" style="height: 20px;">'
                         }
                     }
                     document.getElementById(`classification`).innerHTML += estrelas;
+                    document.getElementById(`title-park`).innerHTML = sessionStorage.nome;
                     // aqui, após 'registro.' use os nomes 
                     // dos atributos que vem no JSON 
                     // que gerou na consulta ao banco de dados alo
