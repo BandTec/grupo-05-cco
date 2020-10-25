@@ -51,7 +51,7 @@
     // ou se souber o que está fazendo!
     function atualizarGrafico() {
 
-        fetch('/leituras/tempo-real', {
+        fetch(`/leituras/tempo-real/${sessionStorage.idParque}`, {
                 cache: 'no-store'
             }).then(function(response) {
                 if (response.ok) {
@@ -121,7 +121,7 @@
     // e como são recuperados do BackEnd
     function obterDadosGrafico() {
 
-        fetch('/leituras/ultimas', {
+        fetch(`/leituras/ultimas/${sessionStorage.idParque}`, {
                 cache: 'no-store'
             }).then(function(response) {
                 if (response.ok) {

@@ -4,7 +4,9 @@ var sequelize = require('../models').sequelize;
 var Leitura = require('../models').Leitura;
 
 /* Recuperar as últimas N leituras */
-router.get('/ultimas', function(req, res, next) {
+router.get('/ultimas/:Parque', function(req, res, next) {
+
+    const Parque = req.params.Parque;
 
     // quantas são as últimas leituras que quer? 8 está bom?
     const limite_linhas = 7;
@@ -16,7 +18,9 @@ router.get('/ultimas', function(req, res, next) {
 						umidade, 
 						momento,
 						FORMAT(momento,'HH:mm:ss') as momento_grafico 
-						from evento order by idEvento desc`;
+                        from evento, sensor
+                        where fkParque = ${Parque} and fkSensor = idSensor
+                        order by idEvento desc `;
 
     sequelize.query(instrucaoSql, {
             model: Leitura,
@@ -33,12 +37,16 @@ router.get('/ultimas', function(req, res, next) {
 
 
 // tempo real (último valor de cada leitura)
-router.get('/tempo-real', function(req, res, next) {
+router.get('/tempo-real/:Parque', function(req, res, next) {
+
+    const Parque = req.params.Parque;
 
     console.log(`Recuperando a última leitura`);
 
     const instrucaoSql = `select top 1 temperatura, umidade, FORMAT(momento,'HH:mm:ss') as momento_grafico  
-						from evento order by idEvento desc`;
+                        from evento, sensor
+                        where fkParque = ${Parque} and fkSensor = idSensor
+                        order by idEvento desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
@@ -81,6 +89,26 @@ router.get('/parques', function(req, res, next) {
 
     const instrucaoSql = `select idParque, nome, imgParque, (avaliacao / quantidadeclassificacao) as estrelas 
                             from parque order by idParque desc`;
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+        .then(resultado => {
+            res.json(resultado);
+        }).catch(erro => {
+            console.error(erro);
+            res.status(500).send(erro.message);
+        });
+
+});
+
+router.get('/parques/:Parque', function(req, res, next) {
+
+    const Parque = req.params.Parque;
+
+    console.log(`Recuperando a última leitura`);
+
+    const instrucaoSql = `select * 
+                            from parque
+                            where idParque = ${Parque}`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
