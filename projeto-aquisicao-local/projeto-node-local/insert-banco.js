@@ -19,6 +19,7 @@ require('events').EventEmitter.defaultMaxListeners = 15;
 
 const registros_mantidos_tabela_leitura = 24;
 
+
 function iniciar_escuta() {
 
     porta_serial.list().then(entradas_seriais => {
@@ -87,14 +88,15 @@ function registrar_leitura(temperatura, umidade) {
     }
 
     efetuando_insert = true;
-
+    let numero_aleatorio_parque = Math.trunc(Math.random() * (8 - 1) + 1);
+    console.log(`Inserindo no parque (fkSensor): ${numero_aleatorio_parque}`)
     console.log(`temperatura: ${temperatura}`);
     console.log(`umidade: ${umidade}`);
 
     banco.conectar().then(() => {
 
         return banco.sql.query(`INSERT into evento (fkSensor, momento, umidade, temperatura)
-                                values (1, CONVERT(Datetime, '${agora()}', 120), ${umidade}, ${temperatura})
+                                values (${numero_aleatorio_parque}, CONVERT(Datetime, '${agora()}', 120), ${umidade}, ${temperatura})
         
         delete from evento where idEvento not in 
         (select top ${registros_mantidos_tabela_leitura} idEvento from evento order by idEvento desc);`);
@@ -126,8 +128,8 @@ if (gerar_dados_aleatorios) {
 	// dados aleatórios
 	setInterval(function() {
 		console.log('Gerando valores aleatórios!');
-		registrar_leitura(Math.min(Math.random()*100, 60), Math.min(Math.random()*200, 100))
-	}, 5000);
+		registrar_leitura(Math.random()*(34 - 16) + 16, Math.min(Math.random()*(80 - 20), + 80))
+	}, 1000);
 } else {
 	// iniciando a "escuta" de dispositivos Arduino.
 	console.log('Iniciando obtenção de valores do Arduino!');
