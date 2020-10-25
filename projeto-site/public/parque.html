@@ -12,16 +12,12 @@
     <script src="js/grafico.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylesheets/bootstrap.css"
-        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <script type="text/javascript" src="funcoes.js"></script>
     <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'">
 </head>
 
 <body onload="sorteio()">
@@ -74,22 +70,18 @@
                 <div class="container-part-two">
                     <br>
                     <h3 id="title-history">Histórico</h3>
-                    <div class="modal-body" style="height: 470px;">
-                        <iframe src="grafico-chartjs.html" style="margin-left: 10; width: 100%; height: 100%;"  frameborder="0"></iframe>
+                    <div class="grafico-park">
+                        <iframe src="grafico-chartjs.html" frameborder="0"></iframe>
                     </div>
                     <h3 id="title-localization">Localização</h3>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117056.04588854393!2d-46.567930858940834!3d-23.532450834027248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce63f101a53a65%3A0xecf661da37d8a872!2sCECCO%20-%20Parque%20Ecol%C3%B3gico%20Chico%20Mendes!5e0!3m2!1spt-PT!2sbr!4v1588283407803!5m2!1spt-PT!2sbr"
-                        width="80%" height="280" frameborder="0"
-                        style="border:0; border-radius: 30px; margin-left: 10%;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117056.04588854393!2d-46.567930858940834!3d-23.532450834027248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce63f101a53a65%3A0xecf661da37d8a872!2sCECCO%20-%20Parque%20Ecol%C3%B3gico%20Chico%20Mendes!5e0!3m2!1spt-PT!2sbr!4v1588283407803!5m2!1spt-PT!2sbr"
+                        width="80%" height="280" frameborder="0" style="border:0; margin: 0 0 50px 0; border-radius: 30px; margin-left: 10%;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                 </div>
             </div>
         </div>
     </div>
     <div class="footer">
-        <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6">
+        <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6">
             <defs>
                 <style>
                     .cls-1 {
@@ -122,7 +114,6 @@
 
 </html>
 <script>
-
     //verificar_autenticacao(1);
     window.onload = mostrarInformacoes;
     var dados;
@@ -130,37 +121,37 @@
     function mostrarInformacoes() {
 
         fetch(`/leituras/parques/${sessionStorage.idParque}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    resposta.reverse();
+                        resposta.reverse();
 
-                    dados = resposta;
-                    let estrelas = "";
-                    for (let cont3 = 0; cont3 < 5; cont3++) {
-                        if (cont3 < dados[0].estrelas) {
-                            estrelas += '<img class="stars" src="/images/full-star.png" style="height: 20px;">'
-                        } else {
-                            estrelas += '<img class="stars" src="/images/stroke-star.png" style="height: 20px;">'
+                        dados = resposta;
+                        let estrelas = "";
+                        for (let cont3 = 0; cont3 < 5; cont3++) {
+                            if (cont3 < dados[0].estrelas) {
+                                estrelas += '<img class="stars" src="/images/full-star.png" style="height: 20px;">'
+                            } else {
+                                estrelas += '<img class="stars" src="/images/stroke-star.png" style="height: 20px;">'
+                            }
                         }
-                    }
-                    document.getElementById(`classification`).innerHTML += estrelas;
-                    document.getElementById(`title-park`).innerHTML = sessionStorage.nome;
-                    // aqui, após 'registro.' use os nomes 
-                    // dos atributos que vem no JSON 
-                    // que gerou na consulta ao banco de dados alo
-                    console.log(JSON.stringify(dados));
-                    console.log(dados);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
+                        document.getElementById(`classification`).innerHTML += estrelas;
+                        document.getElementById(`title-park`).innerHTML = sessionStorage.nome;
+                        // aqui, após 'registro.' use os nomes 
+                        // dos atributos que vem no JSON 
+                        // que gerou na consulta ao banco de dados alo
+                        console.log(JSON.stringify(dados));
+                        console.log(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }

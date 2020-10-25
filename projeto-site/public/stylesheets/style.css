@@ -1211,6 +1211,16 @@ body {
     text-align: center;
 }
 
+.grafico-park {
+    height: 66vh;
+    padding: 0 50px 50px 50px;
+}
+
+.grafico-park iframe {
+    height: 100%;
+    width: 100%;
+}
+
 .body-park {
     margin: 5% 0;
     width: 100%;
@@ -1369,10 +1379,6 @@ body {
     display: block;
     margin-top: -1.5%;
     margin-left: 15.5%;
-}
-
-.part-two iframe {
-    margin: 50px 0;
 }
 
 
