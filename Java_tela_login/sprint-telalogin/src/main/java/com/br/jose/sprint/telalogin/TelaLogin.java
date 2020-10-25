@@ -46,6 +46,7 @@ public class TelaLogin extends javax.swing.JFrame {
         tfCampoSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
 
         jLabel1.setText("E-mail");
 
