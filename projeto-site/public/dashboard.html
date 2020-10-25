@@ -191,10 +191,13 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
-        function VerParque(idParque) {
-
-        }
+        
 
 
+    }
+
+    function VerParque(idParque) {
+        sessionStorage.idParque = idParque;
+        window.location.href = 'chicomendes.html'
     }
 </script>
