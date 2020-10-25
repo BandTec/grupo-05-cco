@@ -4,24 +4,20 @@
  npm start
  talvez mostre uma mensagem de erro de placa arduino 
  mas depois vai começar a registrar os dados
-*/
+*/ 
 
 // se usar 'true' aqui, os dados serão gerados aleatórios e não recebidos da placa arduíno
-const gerar_dados_aleatorios = true;
-const intervalo_geracao_aleatoria_segundos = 60; // intervalo, em segundos, no qual os dados aleatórios serão gerados
+const gerar_dados_aleatorios = true; 
 
 // leitura dos dados do Arduino
-const porta_serial = require('serialport');
-const leitura_recebida = porta_serial.parsers.Readline;
-const banco = require(`./banco`);
+var porta_serial = require('serialport');
+var leitura_recebida = porta_serial.parsers.Readline;
+var banco = require(`./banco`);
 
 // prevenir problemas com muitos recebimentos de dados do Arduino
 require('events').EventEmitter.defaultMaxListeners = 15;
 
-
-
 const registros_mantidos_tabela_leitura = 24;
-
 
 function iniciar_escuta() {
 
@@ -29,8 +25,8 @@ function iniciar_escuta() {
 
         // este bloco trata a verificação de Arduino conectado (inicio)
 
-        const entradas_seriais_arduino = entradas_seriais.filter(entrada_serial => {
-            return entrada_serial.vendorId == 2341 && entrada_serial.productId == 43;
+        var entradas_seriais_arduino = entradas_seriais.filter(entrada_serial => {
+            return entrada_serial.vendorId == 2341 && entrada_serial.productId == 8037;
         });
 
         if (entradas_seriais_arduino.length != 1) {
@@ -50,11 +46,11 @@ function iniciar_escuta() {
 
         // o baudRate deve ser igual ao valor em
         // Serial.begin(xxx) do Arduino (ex: 9600 ou 115200)
-        const arduino = new porta_serial(arduinoCom, {
-            baudRate: 9600
+        var arduino = new porta_serial(arduinoCom, {
+            baudRate: 115200
         });
 
-        const parser = new leitura_recebida();
+        var parser = new leitura_recebida();
         arduino.pipe(parser);
 
         console.error('Iniciando escuta do Arduino');
@@ -66,7 +62,7 @@ function iniciar_escuta() {
             try {
                 // O Arduino deve enviar a temperatura e umidade de uma vez,
                 // separadas por ":" (temperatura : umidade)
-                const leitura = dados.split(':');
+                var leitura = dados.split(':');
                 registrar_leitura(Number(leitura[0]), Number(leitura[1]));
             } catch (e) {
                 throw new Error(`Erro ao tratar os dados recebidos do Arduino: ${e}`);
@@ -82,52 +78,60 @@ function iniciar_escuta() {
 // e faz um insert no banco de dados
 function registrar_leitura(temperatura, umidade) {
 
-    console.log('Iniciando inclusão de novo registro...');
+    if (efetuando_insert) {
+        console.log('Execução em curso. Aguardando 7s...');
+        setTimeout(() => {
+            registrar_leitura(temperatura, umidade);
+        }, 7000);
+        return;
+    }
+
+    efetuando_insert = true;
+
     console.log(`temperatura: ${temperatura}`);
     console.log(`umidade: ${umidade}`);
 
     banco.conectar().then(() => {
 
-        return banco.sql.query(`;
-        INSERT into evento (fkSensor, momento, umidade, temperatura)
-        values (1, CONVERT(Datetime, '${agora()}', 120, ${umidade}, ${temperatura}));
+        return banco.sql.query(`INSERT into evento (fkSensor, momento, umidade, temperatura)
+                                values (1, CONVERT(Datetime, '${agora()}', 120), ${umidade}, ${temperatura})
         
         delete from evento where idEvento not in 
-        (select top ${registros_mantidos_tabela_leitura} idEvento from evento order by idEvento desc);`
-        );
+        (select top ${registros_mantidos_tabela_leitura} idEvento from evento order by idEvento desc);`);
 
     }).catch(erro => {
 
         console.error(`Erro ao tentar registrar aquisição na base: ${erro}`);
 
     }).finally(() => {
-        console.log('Registro inserido com sucesso! \n');
+		console.log('Registro inserido com sucesso! \n');
         banco.sql.close();
+        efetuando_insert = false;
     });
 
 }
 
 // função que retorna data e hora atual no formato aaaa-mm-dd HH:mm:ss
 function agora() {
-    const momento_atual = new Date();
-    const retorno = `${momento_atual.toLocaleDateString()} ${momento_atual.toLocaleTimeString()}`;
-    console.log(`Data e hora atuais: ${retorno}`);
-    return retorno;
+	let momento_atual = new Date();
+	let retorno = `${momento_atual.toLocaleDateString()} ${momento_atual.toLocaleTimeString()}`;
+	console.log(`Data e hora atuais: ${retorno}`);
+	return retorno;
 }
 
-let efetuando_insert = false;
+var efetuando_insert = false;
 
 
 if (gerar_dados_aleatorios) {
-    // dados aleatórios
-    setInterval(function() {
-        console.log('Gerando valores aleatórios!');
-        registrar_leitura(Math.min(Math.random() * 100, 60), Math.min(Math.random() * 200, 100))
-    }, intervalo_geracao_aleatoria_segundos * 1);
+	// dados aleatórios
+	setInterval(function() {
+		console.log('Gerando valores aleatórios!');
+		registrar_leitura(Math.min(Math.random()*100, 60), Math.min(Math.random()*200, 100))
+	}, 5000);
 } else {
-    // iniciando a "escuta" de dispositivos Arduino.
-    console.log('Iniciando obtenção de valores do Arduino!');
-    iniciar_escuta();
+	// iniciando a "escuta" de dispositivos Arduino.
+	console.log('Iniciando obtenção de valores do Arduino!');
+	iniciar_escuta();
 }
 
 /*
@@ -137,3 +141,4 @@ if (gerar_dados_aleatorios) {
  talvez mostre uma mensagem de erro de placa arduino 
  mas depois vai começar a registrar os dados
 */
+
