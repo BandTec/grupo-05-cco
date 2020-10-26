@@ -11,6 +11,7 @@
     <script src="js/sorteio.js"></script>
     <script src="js/grafico.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="../routes/leituras.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/bootstrap.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -48,11 +49,9 @@
         <div class="container-dash">
             <div class="part-one">
                 <div class="about-park">
-                    <div class="img-parque chicomendes"></div>
-                    <h3 id="title-park"></h3>
-                    <div id="classification">
-
-                    </div>
+                    <div id="park-img"></div>
+                    <div id="sobre-park"></div>
+                    <div id="classification"></div>
                 </div>
                 <br>
                 <div class="umidade">
@@ -75,7 +74,8 @@
                     <br>
                     <h3 id="title-history">Histórico</h3>
                     <div class="modal-body" style="height: 470px;">
-                        <iframe src="grafico-chartjs.html" style="margin-left: 10; width: 100%; height: 100%;"  frameborder="0"></iframe>
+                        <iframe src="grafico-chartjs.html" style="margin-left: 10; width: 100%; height: 100%;"
+                            frameborder="0"></iframe>
                     </div>
                     <h3 id="title-localization">Localização</h3>
                     <iframe
@@ -134,10 +134,14 @@
         }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                     resposta.reverse();
+
+                    let nome_park;
+                    let img_park;
+                    let umidade_dado;
+                    let temperatura_dado;
 
                     dados = resposta;
                     let estrelas = "";
@@ -147,21 +151,37 @@
                         } else {
                             estrelas += '<img class="stars" src="/images/stroke-star.png" style="height: 20px;">'
                         }
+
+                        nome_park = `<h3>
+                            <br><br>${dados[0].nome}
+                            </h3>`;
+
+                        img_park = `<img id="img-classification" src="${dados[0].imgParque}" style="height: 100%; width:100%; border-radius:20px 20px 0px 0px;">`
+
+                        umidade_dado = `${dados[0].umidade}`;
+                        temperatura_dado = `${dados[0].temperatura}`;
                     }
+                    document.getElementById(`park-img`).innerHTML = img_park;
+                    document.getElementById(`sobre-park`).innerHTML = nome_park;
+                    // document.getElementById(`img-park`).innerHTML = img_park
                     document.getElementById(`classification`).innerHTML += estrelas;
-                    document.getElementById(`title-park`).innerHTML = sessionStorage.nome;
+                    document.getElementById(`umidades`).innerHTML = `${umidade_dado} °C`;
+                    document.getElementById(`temperaturas`).innerHTML = `${temperatura_dado} °C`;
+                    // document.getElementsByClassName(`about-park`).innerHTML = informacoes_parque;
                     // aqui, após 'registro.' use os nomes 
                     // dos atributos que vem no JSON 
                     // que gerou na consulta ao banco de dados alo
                     console.log(JSON.stringify(dados));
                     console.log(dados);
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                console.error(`Erro na obtenção dos dados p / gráfico: ${error.message}`);
             });
     }
+
 </script>

@@ -106,9 +106,8 @@ router.get('/parques/:Parque', function(req, res, next) {
 
     console.log(`Recuperando a última leitura`);
 
-    const instrucaoSql = `select *, (avaliacao / quantidadeclassificacao) as estrelas
-                            from parque
-                            where idParque = ${Parque}`;
+    const instrucaoSql = `select parque.*, (avaliacao / quantidadeclassificacao) as estrelas, temperatura, umidade from parque, sensor, evento
+    where idParque = ${Parque} and idParque = fkParque and idSensor = fkSensor`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
