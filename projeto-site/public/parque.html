@@ -11,6 +11,7 @@
     <script src="js/sorteio.js"></script>
     <script src="js/grafico.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="../routes/leituras.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
@@ -44,11 +45,9 @@
         <div class="container-dash">
             <div class="part-one">
                 <div class="about-park">
-                    <div class="img-parque chicomendes"></div>
-                    <h3 id="title-park"></h3>
-                    <div id="classification">
-
-                    </div>
+                    <div id="park-img"></div>
+                    <div id="sobre-park"></div>
+                    <div id="classification"></div>
                 </div>
                 <br>
                 <div class="umidade">
@@ -70,8 +69,14 @@
                 <div class="container-part-two">
                     <br>
                     <h3 id="title-history">Histórico</h3>
+<<<<<<< HEAD
                     <div class="grafico-park">
                         <iframe src="grafico-chartjs.html" frameborder="0"></iframe>
+=======
+                    <div class="modal-body" style="height: 470px;">
+                        <iframe src="grafico-chartjs.html" style="margin-left: 10; width: 100%; height: 100%;"
+                            frameborder="0"></iframe>
+>>>>>>> 34fa6bd7c5913e340728bb58bd059d17ebfebd74
                     </div>
                     <h3 id="title-localization">Localização</h3>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117056.04588854393!2d-46.567930858940834!3d-23.532450834027248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce63f101a53a65%3A0xecf661da37d8a872!2sCECCO%20-%20Parque%20Ecol%C3%B3gico%20Chico%20Mendes!5e0!3m2!1spt-PT!2sbr!4v1588283407803!5m2!1spt-PT!2sbr"
@@ -121,6 +126,7 @@
     function mostrarInformacoes() {
 
         fetch(`/leituras/parques/${sessionStorage.idParque}`, {
+<<<<<<< HEAD
                 cache: 'no-store'
             }).then(function(response) {
                 if (response.ok) {
@@ -153,6 +159,60 @@
             })
             .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+=======
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    resposta.reverse();
+
+                    let nome_park;
+                    let img_park;
+                    let umidade_dado;
+                    let temperatura_dado;
+
+                    dados = resposta;
+                    let estrelas = "";
+                    for (let cont3 = 0; cont3 < 5; cont3++) {
+                        if (cont3 < dados[0].estrelas) {
+                            estrelas += '<img class="stars" src="/images/full-star.png" style="height: 20px;">'
+                        } else {
+                            estrelas += '<img class="stars" src="/images/stroke-star.png" style="height: 20px;">'
+                        }
+
+                        nome_park = `<h3>
+                            <br><br>${dados[0].nome}
+                            </h3>`;
+
+                        img_park = `<img id="img-classification" src="${dados[0].imgParque}" style="height: 100%; width:100%; border-radius:20px 20px 0px 0px;">`
+
+                        umidade_dado = `${dados[0].umidade}`;
+                        temperatura_dado = `${dados[0].temperatura}`;
+                    }
+                    document.getElementById(`park-img`).innerHTML = img_park;
+                    document.getElementById(`sobre-park`).innerHTML = nome_park;
+                    // document.getElementById(`img-park`).innerHTML = img_park
+                    document.getElementById(`classification`).innerHTML += estrelas;
+                    document.getElementById(`umidades`).innerHTML = `${umidade_dado} °C`;
+                    document.getElementById(`temperaturas`).innerHTML = `${temperatura_dado} °C`;
+                    // document.getElementsByClassName(`about-park`).innerHTML = informacoes_parque;
+                    // aqui, após 'registro.' use os nomes 
+                    // dos atributos que vem no JSON 
+                    // que gerou na consulta ao banco de dados alo
+                    console.log(JSON.stringify(dados));
+                    console.log(dados);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p / gráfico: ${error.message}`);
+>>>>>>> 34fa6bd7c5913e340728bb58bd059d17ebfebd74
             });
     }
+
 </script>

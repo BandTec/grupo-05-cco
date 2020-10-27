@@ -25,6 +25,9 @@
 <script>
     window.onload = obterDadosGrafico;
 
+    let dadosComponente;
+
+
     // neste JSON tem que ser 'labels', 'datasets' etc, 
     // porque é o padrão do Chart.js
     var dados = {
@@ -59,7 +62,10 @@
 
                         console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
 
+<<<<<<< HEAD
                         div_aguarde.style.display = 'none';
+=======
+>>>>>>> 34fa6bd7c5913e340728bb58bd059d17ebfebd74
 
                         // tirando e colocando valores no gráfico
                         dados.labels.shift(); // apagar o primeiro
@@ -130,6 +136,8 @@
                     response.json().then(function(resposta) {
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        dadosComponente = resposta;
 
                         resposta.reverse();
 

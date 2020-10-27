@@ -1288,8 +1288,8 @@ body {
     margin-left: 5%;
     height: 17%;
     width: 80%;
-    background-color: rgba(255, 128, 128);
-    text-align: center;
+    text-align: center;    
+    background-color: rgba(131, 169, 255);
     border-radius: 30px;
     font-size: 15px;
     color: #fff;
@@ -1302,7 +1302,7 @@ body {
     border-radius: 30px;
     height: 17%;
     width: 80%;
-    background-color: rgba(131, 169, 255);
+    background-color: rgba(255, 128, 128);
     text-align: center;
     color: #fff;
     font-size: 15px;
@@ -1312,7 +1312,7 @@ body {
 
 .part-one #img-componentes {
     height: 88px;
-    margin-top: -31%;
+    margin-top: -26%;
     margin-left: 75%;
 }
 

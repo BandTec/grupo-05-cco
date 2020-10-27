@@ -97,9 +97,7 @@ function registrar_leitura(temperatura, umidade) {
 
         return banco.sql.query(`INSERT into evento (fkSensor, momento, umidade, temperatura)
                                 values (${numero_aleatorio_parque}, CONVERT(Datetime, '${agora()}', 120), ${umidade}, ${temperatura})
-        
-        delete from evento where idEvento not in 
-        (select top ${registros_mantidos_tabela_leitura} idEvento from evento order by idEvento desc);`);
+        `);
 
     }).catch(erro => {
 
