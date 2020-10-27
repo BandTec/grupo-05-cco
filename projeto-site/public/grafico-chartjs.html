@@ -15,7 +15,7 @@
 </head>
 
 <body onload="atualizarGrafico();">
-    <div style="width:100%;">
+    <div style="width:100%; height:100%;">
         <div id="div_aguarde">Dados sendo obtidos...</div>
         <canvas id="canvas_grafico"></canvas>
     </div>
@@ -62,6 +62,10 @@
 
                         console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
 
+<<<<<<< HEAD
+                        div_aguarde.style.display = 'none';
+=======
+>>>>>>> 34fa6bd7c5913e340728bb58bd059d17ebfebd74
 
                         // tirando e colocando valores no gráfico
                         dados.labels.shift(); // apagar o primeiro
@@ -72,11 +76,11 @@
                         dados.datasets[1].data.push(novoRegistro.umidade); // incluir uma nova leitura de umidade
                         window.grafico_linha.update();
 
-                        setTimeout(atualizarGrafico, 3600000);
+                        setTimeout(atualizarGrafico, 5000);
                     });
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
-                    setTimeout(atualizarGrafico, 3600000);
+                    setTimeout(atualizarGrafico, 5000);
                 }
             })
             .catch(function(error) {
@@ -175,6 +179,6 @@
             options: configurarGrafico()
         });
 
-        setTimeout(atualizarGrafico, 3600000);
+        setTimeout(atualizarGrafico, 5000);
     }
 </script>
