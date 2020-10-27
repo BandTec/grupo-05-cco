@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="eventos.css">
+  <title>Eventos</title>
+</head>
+<body>
+  <div class="main">
+    <h1 class="titulo">Eventos dos Parques</h1>
+  
+    <ul class="cards">
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="ibirapuera2.jpg.jpg"></div>
+          <div class="card_content">
+            <h2 class="card_title">Ibirapuera</h2>
+            <p class="card_text">Evento da 3º Idade</p>
+            <p class="card_text">Dia 30/10 12:00</p>
+            <button id="dados" class="btn card_btn">Participar</button>
+          </div>
+        </div>
+      </li>
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="ibirapuera2.jpg.jpg"></div>
+          <div class="card_content">
+            <h2 class="card_title">Carmo</h2>
+            <p class="card_text">Futebol de Quarta</p>
+            <p class="card_text">Dia 30/10 20:00</p>
+            <button id="dados" class="btn card_btn">Participar</button>
+          </div>
+        </div>
+      </li>
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="ibirapuera2.jpg.jpg"></div>
+          <div class="card_content">
+            <h2 class="card_title">Chico Mendes</h2>
+            <p class="card_text">Yoga</p>
+            <p class="card_text">Dia 01/11 16:00</p>
+            <button id="dados" class="btn card_btn">Participar</button>
+          </div>
+        </div>
+      </li>
+      <button class="btn card_btn">Adicionar Eventos</button>
+  </div>
+
+  <script>
+      const btn = document.querySelectorAll('#dados')
+
+btn.forEach(x => {
+    x.addEventListener('click', () => x.innerHTML = "Presença Confirmada")
+})
+  </script>
+
+</body>
+</html>
