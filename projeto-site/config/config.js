@@ -11,7 +11,7 @@ module.exports = {
         username: 'adminlocal',
         password: 'Safadinhos123@',
         database: 'bancohumildificadores',
-        host: 'humildificadores.database.windows.net',
+        host: 'serverhumildificadores.database.windows.net',
         dialect: 'mssql',
         xuse_env_variable: 'DATABASE_URL',
         dialectOptions: {

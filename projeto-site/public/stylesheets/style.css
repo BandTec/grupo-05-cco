@@ -1150,6 +1150,10 @@ body {
     width: 100%;
     height: 45%;
 }
+.about-park #park-img {
+    border-radius: 30px 30px 0px 0px;
+    width: 100%;
+}
 
 #park h3 {
     padding-top: 20px;
@@ -1189,6 +1193,27 @@ body {
 
 #stars {
     margin-bottom: 25px;
+}
+#eventoText {
+    margin-left: 10px;
+    text-align: left;
+    /* margin-bottom: 25px; */
+}
+#date-event {
+    text-align: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#card-eventos {
+    overflow-x: hidden;
+    border-radius: 20px;
+    background: #fff;
+    width: 27%;
+    height: 112%;
+    display: inline-flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: 0.5s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #stars img {
@@ -1312,7 +1337,7 @@ body {
 
 .part-one #img-componentes {
     height: 88px;
-    margin-top: -26%;
+    margin-top: -9%;
     margin-left: 75%;
 }
 

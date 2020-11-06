@@ -5,7 +5,7 @@
     <link rel="shortcut icon" type="image/png" href="images/icon.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humildificadores | Chico Mendes</title>
+    <title>Humildificadores | Parque</title>
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/reset.css">
     <script src="js/sorteio.js"></script>
@@ -69,14 +69,8 @@
                 <div class="container-part-two">
                     <br>
                     <h3 id="title-history">Histórico</h3>
-<<<<<<< HEAD
                     <div class="grafico-park">
                         <iframe src="grafico-chartjs.html" frameborder="0"></iframe>
-=======
-                    <div class="modal-body" style="height: 470px;">
-                        <iframe src="grafico-chartjs.html" style="margin-left: 10; width: 100%; height: 100%;"
-                            frameborder="0"></iframe>
->>>>>>> 34fa6bd7c5913e340728bb58bd059d17ebfebd74
                     </div>
                     <br><br>
                     <h3 id="title-localization">Localização</h3>
@@ -127,7 +121,6 @@
     function mostrarInformacoes() {
 
         fetch(`/leituras/parques/${sessionStorage.idParque}`, {
-<<<<<<< HEAD
                 cache: 'no-store'
             }).then(function(response) {
                 if (response.ok) {
@@ -145,8 +138,18 @@
                             } else {
                                 estrelas += '<img class="stars" src="/images/stroke-star.png" style="height: 20px;">'
                             }
+                            park_img = `<img id="park-img" src="${dados[0].imgParque}" >`
+                            nome_park = `<h3>
+                                    ${dados[0].nome}<br>
+                                </h3>`
+                            dados_temperatura = `${dados[0].temperatura} ºC`
+                            dados_umidade = `${dados[0].umidade} %`
                         }
+                        document.getElementById(`park-img`).innerHTML = park_img;
                         document.getElementById(`classification`).innerHTML += estrelas;
+                        document.getElementById(`sobre-park`).innerHTML = nome_park;
+                        document.getElementById(`umidades`).innerHTML = dados_umidade;
+                        document.getElementById(`temperaturas`).innerHTML = dados_temperatura;
                         document.getElementById(`title-park`).innerHTML = sessionStorage.nome;
                         // aqui, após 'registro.' use os nomes 
                         // dos atributos que vem no JSON 
@@ -160,59 +163,6 @@
             })
             .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-=======
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    resposta.reverse();
-
-                    let nome_park;
-                    let img_park;
-                    let umidade_dado;
-                    let temperatura_dado;
-
-                    dados = resposta;
-                    let estrelas = "";
-                    for (let cont3 = 0; cont3 < 5; cont3++) {
-                        if (cont3 < dados[0].estrelas) {
-                            estrelas += '<img class="stars" src="/images/full-star.png" style="height: 20px;">'
-                        } else {
-                            estrelas += '<img class="stars" src="/images/stroke-star.png" style="height: 20px;">'
-                        }
-
-                        nome_park = `<h3>
-                            <br><br>${dados[0].nome}
-                            </h3>`;
-
-                        img_park = `<img id="img-classification" src="${dados[0].imgParque}" style="height: 100%; width:100%; border-radius:20px 20px 0px 0px;">`
-
-                        umidade_dado = `${dados[0].umidade}`;
-                        temperatura_dado = `${dados[0].temperatura}`;
-                    }
-                    document.getElementById(`park-img`).innerHTML = img_park;
-                    document.getElementById(`sobre-park`).innerHTML = nome_park;
-                    // document.getElementById(`img-park`).innerHTML = img_park
-                    document.getElementById(`classification`).innerHTML += estrelas;
-                    document.getElementById(`umidades`).innerHTML = `${umidade_dado}%`;
-                    document.getElementById(`temperaturas`).innerHTML = `${temperatura_dado} °C`;
-                    // document.getElementsByClassName(`about-park`).innerHTML = informacoes_parque;
-                    // aqui, após 'registro.' use os nomes 
-                    // dos atributos que vem no JSON 
-                    // que gerou na consulta ao banco de dados alo
-                    console.log(JSON.stringify(dados));
-                    console.log(dados);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p / gráfico: ${error.message}`);
->>>>>>> 34fa6bd7c5913e340728bb58bd059d17ebfebd74
             });
     }
 

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humildificadores | Eventos</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <script src="js/sorteio.js"></script>
+    <script src="js/grafico.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+    <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
+
+
+
+</head>
+
+<body>
+
+
+    <div class="header">
+        <div class="container">
+            <div class="alinhar">
+                <div class="title-header">
+                    <span class="highlight"><a href="index.html">
+                            <h1>Humildificadores</h1>
+                        </a></span>
+                </div>
+                <div class="nav">
+                    <ul id="lista">
+                        <li><a href="index.html">Início</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- corpo da pagina -->
+    <div class="container-park">
+        <h1 id="title-selection-park">Eventos dos Parques</h1>
+        <!-- Slide para selecionar os parques -->
+        <div class="container-slide-park">
+
+            <div class="slide-park">
+
+                <section class="cd-slider">
+                    <ul id="parqueSlide">
+
+                    </ul>
+                    <nav>
+                        <div>
+                            <a class="prev" href="#"></a>
+                        </div>
+                        <div>
+                            <a class="next" href="#"></a>
+                        </div>
+                    </nav>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6">
+            <defs>
+                <style>
+                    .cls-1 {
+                        fill-rule: evenodd;
+                        fill: url(#Gradiente_sem_nome);
+                    }
+                </style>
+                <linearGradient id="Gradiente_sem_nome" y1="118.2" x2="1920" y2="118.2"
+                    gradientTransform="matrix(1, 0, 0, -1, 0, 164)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#00f5a0" />
+                    <stop offset="1" stop-color="#00d9f5" />
+                </linearGradient>
+            </defs>
+            <path class="cls-1" d="M0,0H1920V67.53C1270.2,168.94,649.8-93.13,0,67.53V0Z" />
+        </svg>
+        <div class="alinharCentro">
+            <h1><a href="calculadora.html">Seja um patrocinador!</a></h1>
+            <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+        </div>
+    </div>
+    <script src="js/carousel.js"></script>
+
+</body>
+
+</html>
+
+</html>
+
+<script>
+    // verificar_autenticacao(1);
+
+    function roll_right() {
+        var slide = window.document.getElementsByClassName('slide-park');
+        document.getElementsByClassName('slide-park').trans
+    }
+
+    window.onload = adicionarParque;
+    var dados
+
+    function adicionarParque() {
+
+        fetch('/leituras/parques', {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        resposta.reverse();
+
+                        dados = resposta;
+                        let contador = 0;
+                        for (let cont = 0; resposta.length / 3 >= cont; cont++) {
+
+                            let htmlPark = "";
+
+                            for (let cont2 = 0; cont2 < 3 && contador < resposta.length; cont2++) {
+
+                                htmlPark += `
+                            <div id="card-eventos">
+                                <img class="park-img" src="${dados[contador].imgParque}" >
+                                <div id="park-display">
+                                    <h3>
+                                        ${dados[contador].nome}<br><br>
+                                    </h3>
+                                    <div id="eventoText">
+                                        Evento: Natal
+                                    </div>    
+                                    <div id="date-event">
+                                      [01/11 - 16:00]
+                                      </div>
+                                    <div id="button-eventos" onclick="VerParque(${dados[contador].idParque})">
+                                      Participar
+                                    </div>
+                                </div>
+                            </div>`;
+                                contador++;
+                            }
+                            document.getElementById(`parqueSlide`).innerHTML += `
+                        <li>
+                            <div class="content " id="slidepage">
+                                ${htmlPark}
+                            </div>
+                        </li>`;
+
+                        }
+
+
+
+                        // aqui, após 'registro.' use os nomes 
+                        // dos atributos que vem no JSON 
+                        // que gerou na consulta ao banco de dados alo
+
+
+
+
+
+                        console.log(JSON.stringify(dados));
+
+
+
+                        console.log(dados);
+                        plotarParques()
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+        
+
+
+    }
+
+    function VerParque(idParque) {
+        sessionStorage.idParque = idParque;
+        window.location.href = 'parque.html'
+    }
+</script>
+
+
+<!--<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./stylesheets/eventos.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="stylesheets/reset.css">
+  <title>Eventos</title>
+</head>
+
+<body>
+  <div class="main">
+    <h1 class="titulo">Eventos dos Parques</h1>
+
+    <ul class="cards">
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="./images/ibirapuera2.jpg.jpg"></div>
+          <div class="card_content">
+            <h2 class="card_title">Ibirapuera</h2>
+            <p class="card_text">Evento da 3º Idade</p>
+            <p class="card_text">Dia 30/10 12:00</p>
+            <button id="dados" class="btn card_btn">Participar</button>
+          </div>
+        </div>
+      </li>
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="./images/ibirapuera2.jpg.jpg"></div>
+          <div class="card_content">
+            <h2 class="card_title">Carmo</h2>
+            <p class="card_text">Futebol de Quarta</p>
+            <p class="card_text">Dia 30/10 20:00</p>
+            <button id="dados" class="btn card_btn">Participar</button>
+          </div>
+        </div>
+      </li>
+      <li class="cards_item">
+        <div class="card">
+          <div class="card_image"><img src="./images/ibirapuera2.jpg.jpg"></div>
+          <div class="card_content">
+            <h2 class="card_title">Chico Mendes</h2>
+            <p class="card_text">Yoga</p>
+            <p class="card_text">Dia 01/11 16:00</p>
+            <button id="dados" class="btn card_btn">Participar</button>
+          </div>
+        </div>
+      </li>
+      <button class="btn card_btn">Adicionar Eventos</button>
+  </div>
+  <div class="footer">
+    <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6">
+        <defs>
+            <style>
+                .cls-1 {
+                    fill-rule: evenodd;
+                    fill: url(#Gradiente_sem_nome);
+                }
+            </style>
+            <linearGradient id="Gradiente_sem_nome" y1="118.2" x2="1920" y2="118.2"
+                gradientTransform="matrix(1, 0, 0, -1, 0, 164)" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#00f5a0" />
+                <stop offset="1" stop-color="#00d9f5" />
+            </linearGradient>
+        </defs>
+        <path class="cls-1" d="M0,0H1920V67.53C1270.2,168.94,649.8-93.13,0,67.53V0Z" />
+    </svg>
+    <div class="alinharCentro">
+        <h1><a href="calculadora.html">Seja um patrocinador!</a></h1>
+        <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+    </div>
+</div>
+  
+  <script>
+    const btn = document.querySelectorAll('#dados')
+
+    btn.forEach(x => {
+      x.addEventListener('click', () => x.innerHTML = "Presença Confirmada")
+    })
+  </script>
+
+</body>
+
+</html>

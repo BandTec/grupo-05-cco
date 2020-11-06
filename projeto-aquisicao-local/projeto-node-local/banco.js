@@ -1,6 +1,6 @@
 const configuracoes = {
     banco: {
-        server: "humildificadores.database.windows.net",
+        server: "serverhumildificadores.database.windows.net",
         user: "adminlocal",
         password: "Safadinhos123@",
         database: "bancohumildificadores",
