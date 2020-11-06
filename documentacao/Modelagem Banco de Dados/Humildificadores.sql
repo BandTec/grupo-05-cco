@@ -12,12 +12,17 @@ create table cliente (
 	senha varchar (15),
     preferenciaTemp decimal (4,2),
     preferenciaUmid decimal (5,2)
-)auto_increment = 1;
+);
 
 create table parque (
-	idParque int primary key,
-	localização varchar (30),
-	avaliação varchar (50)
+    idParque int primary key identity,
+    nome varchar(30),
+    cpfGerente char(11),
+    area int,
+    imgParque varchar(80),
+    avaliacao int,
+    localizacao varchar(80),
+    quantidadeclassificacao int
 );
 
 create table sensor (
@@ -26,55 +31,45 @@ create table sensor (
 	foreign key (fkParque) references parque(idParque)
 );
 
-create table eventos (
+create table evento(
+    idEvento int primary key identity,
 	fkSensor int,
 	foreign key (fkSensor) references sensor(idSensor),
-    idEvento int primary key identity,
 	momento datetime,
 	umidade decimal (5,2),
 	temperatura decimal (4,2)
 );
 
-insert into cliente values 
-(null, 'Kalil Bego', 'Rua Barreiro', 'Carapicuíba', 'São Paulo', '2020-12-20', 'Kalilmito@gmail.com', 'senha', '22.00°C', '50%'),
-(null, 'Kaio Katiau', 'Rua Camarelo', 'Osasco', 'São Paulo', '2002-02-01', 'Kaiosilva@gmail.com', 'katiau', '20.00°C', '20%'),
-(null, 'Eric Viezzer', 'Rua Jacinto Neves', 'Parati', 'Rio de Janeiro', '2010-10-03', 'Capivara@gmail.com', 'Capivara', '15.00°C', '70%'),
-(null, 'Victor Barbosa', 'Rua Bacalhau', 'Butão', 'Goiana', '2030-09-01', 'Victor@gmail.com', 'senha', '25.00°C', '50%'),
-(null, 'Gabriel Marcolino', 'Rua Nada', 'Piauzinho', 'Sergipe', '2005-03-15', 'Marcoli@gmail.com', 'senha', '30.00°C', '30%');
+create table maquinas(
+	idMaquina int primary key identity,
+	usuario varchar(45),
+	localizacaoMaquina varchar(45),
+	fkParque int,
+	foreign key (fkParque) references parque (idParque)
+);
 
-insert into parque values
-	(1, 'Rua Aviões do forró', 'Muito bom', 1),
-	(2, 'Rua Haikaiss', 'Incrível', 2),
-	(3, 'Rua Adl', 'Tooop', 3);
+create table componente(
+	idComponente int primary key identity,
+	nome varchar(45),
+	metrica varchar(45)
+);
 
-insert into sensor values
-	(1, 1),
-	(2, 1),
-	(3, 1);
+create table configuracao(
+	idConfiguracao int primary key,
+	fkMaquina int,
+	foreign key (fkMaquina) references maquinas (idMaquina),
+	fkComponente int,
+	foreign key (fkComponente) references componente (idComponente),
+	limiteAlerta decimal(5,2)
+);
 
-
-select * from cliente;-- Dados dos clientes
-select * from parque;-- Dados dos parques
-select * from sensor;-- Dados da tabela sensor
-select * from eventos;-- Dados dos eventos
-select * from parque,sensor where fkParque = idParque; -- Mostra os dados dos parques junto aos dados da tabela sensor
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+create table leituras(
+	idMetrica int primary key identity,
+	valor decimal(6,2),
+	momento datetime,
+	fkConfiguracao int,
+	foreign key (fkConfiguracao) references configuracao (idConfiguracao)
+);
 
 
 
