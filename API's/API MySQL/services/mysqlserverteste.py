@@ -7,6 +7,4 @@ mydb = mysql.connector.connect(
   database="projetoapi"
 )
 
-mycursor = mydb.cursor()
-
-mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
+print(mydb)
