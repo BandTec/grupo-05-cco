@@ -21,7 +21,7 @@ while True:
     select = meucursor.execute("SELECT column_name FROM information_schema.columns WHERE  table_name = 'pytohms' AND table_schema = 'projetoapi'")
     meuresultado = meucursor.fetchall()
     for x in meuresultado:
-        print(x)
+        print("[{}]".format(x[0]))
     
     a = input("O que você deseja monitorar?:\n")
 
