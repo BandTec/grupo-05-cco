@@ -112,7 +112,24 @@ create table leituras(
 	foreign key (fkConfiguracao) references configuracao (idConfiguracao)
 );
 
+create table parqueEventos(
+	idParqueEventos int primary key identity,
+	fkParque int,
+	img_parque varchar(60),
+	tituloEvento varchar(45),
+	descricao varchar(120),
+	nomeParque varchar(45),
+	dataEventos datetime,
+	foreign key (fkParque) references parque (idParque)
+);
 
+create table ClienteEventos(
+	idClienteEventos int primary key identity,
+	fkParqueEventos int,
+	fkClienteEventos int,
+	foreign key (fkParqueEventos) references parqueEventos (idParqueEventos),
+	foreign key (fkClienteEventos) references cliente (idCliente)
+);
 
 
 
