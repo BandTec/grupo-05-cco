@@ -39,6 +39,13 @@ while True:
         print(contador,"-", y[0])
         contador+= 1
 
+    # deseja_media = input("Você deseja trazer uma média? [S/N]\n")
+    # if deseja_media.upper() == "N":
+    #     break
+
+    # media = mydb.cursor()
+    # media.execute("select AVG({}) from dataset_comp2 limit {}".format(round(a,2),b))
+
 
 
     
