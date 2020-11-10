@@ -118,10 +118,16 @@ create table parqueEventos(
 	img_parque varchar(60),
 	tituloEvento varchar(45),
 	descricao varchar(120),
-	nomeParque varchar(45),
 	dataEventos datetime,
 	foreign key (fkParque) references parque (idParque)
 );
+
+insert into parqueEventos values
+	(1,'https://i.imgur.com/3A6MaPc.png','Pokémon Go','Evento de caça Pokémon LENDÁRIO! Venha se divertir nesta caçada surpreendente','2020-12-08T14:00:00'),
+	(2,'https://i.imgur.com/MURIjKw.png','Corrida da terceira idade','Venha participar da corrida da terceira idade! Os primeiros colocados receberão ótimos prêmios','2020-12-16T16:00:00'),
+	(3,'https://i.imgur.com/KI7LQnw.png','Show do 7 minutoz','Grande apresentação do grupo 7 minutoz, Rap do itachi, Rap do Mario, e muito mais!','2021-01-25T20:00:00'),
+	(4,'https://i.imgur.com/BWuWAwP.png','Natal comunitário','Encontro para para doações de roupas e mantimentos. Ajude as pessoas que mais precisam!','2020-12-23T08:30:00'),
+	(5,'https://i.imgur.com/OaJILRQ.png','Show do Alok','Um dos maiores DJs da atualidade, com músicas de arrepiar! Participações de Marshmello e Tiësto','2021-02-20T09:00:00');
 
 create table ClienteEventos(
 	idClienteEventos int primary key identity,
