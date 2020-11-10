@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Mono', monospace;
+}
+body {
+    background: #FAFAFA;
+}
+.header-create {
+    background-color: #fff;
+    width: 100%;
+    height: 60px;
+}
+.header-create .title {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.header-create .title h1 {
+    text-align: left;
+    margin-top: 0;
+    margin-left: 40px;
+    padding: 0;
+}
+.create {
+    background: #fff;
+    margin-top: 20px;
+}
+.create .container {
+    width: 98%;
+    margin: 0 auto;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+.create .container .content-create {
+    display: grid;
+    grid-template-rows: 1fr;
+}
+.create .container .introduction-create h1 {
+    font-size: 14px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humildificadores | Criar</title>
+    <link rel="stylesheet" href="stylesheets/create.css">
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <script src="js/sorteio.js"></script>
+    <script src="js/grafico.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="stylesheets/create.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+    <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
+</head>
+<body>
+    <div class="header-create">
+        <div class="title">
+            <br>
+            <h1>Criar Parque</h1>
+        </div>
+    </div>
+    <div class="create">
+        <div class="container">
+            <div class="introduction-create">
+                <h1>Teste</h1>
+            </div>
+            <div class="content-create">
+                <div class="part-one-create">
+                    Formulário <br>
+                    Email:  <input type="email" name="" id="inputEmail">
+                    Senha: <input type="password" name="" id="inputPassword">
+                    Nome: <input type="text" name="" id="inputNome">
+                    CPF: <input type="text" name="" id="inputCpf">
+                </div>
+                <div class="part-two-create">                    
+                    <input type="text" name="" id="inputArea">
+                    <input type="text" name="" id="inputImgParque">
+                    <input type="text" name="" id="inputLocalizacao">
+                    <button>Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+function cadastrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function(response) {
+
+            if (response.ok) {
+
+                window.location.href = 'login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function(resposta) {});
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+</script>

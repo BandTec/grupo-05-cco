@@ -114,7 +114,7 @@
 
     function adicionarParque() {
 
-        fetch('/leituras/parques', {
+        fetch('/leituras/eventos', {
                 cache: 'no-store'
             }).then(function(response) {
                 if (response.ok) {
@@ -134,17 +134,18 @@
 
                                 htmlPark += `
                             <div id="card-eventos">
-                                <img class="park-img" src="${dados[contador].imgParque}" >
+                                <img class="park-img" src="${dados[contador].img_parque}" >
                                 <div id="park-display">
                                     <h3>
                                         ${dados[contador].nome}<br><br>
                                     </h3>
                                     <div id="eventoText">
-                                        Evento: Natal
+                                        Evento:  ${dados[contador].tituloEvento}
                                     </div>    
                                     <hr class="hr">
                                     <div id="date-event">
-                                      [01/11 - 16:00]
+                                        ${dados[contador].data}<br>
+                                        ${dados[contador].hora}
                                       </div>
                                     <div id="button-eventos" onclick="VerParque(${dados[contador].idParque})">
                                       Participar
