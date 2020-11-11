@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
+var Eventos = require('../models').Eventos;
 var Parques = require('../models').Parques;
 
 let sessoes = [];
@@ -113,16 +114,35 @@ router.get('/', function(req, res, next) {
     });
 });
 
-/* Registrar Parque */
-router.post('/registrar', function(req, res, next) {
-    console.log('Criando um usuário');
+/* Registrar Evento */
+router.post('/registrar-evento', function(req, res, next) {
+    console.log('Registrando um evento');
 
-    Parques.create({
-        img_parque: req.body.inputimg,
+    Eventos.create({
+        img_evento: req.body.inputimg,
         tituloEvento: req.body.inputTituloEvento,
         descricao: req.body.inputDescricao,
-        dataEventos: req.body.inputDataEventos,
+        ParquesEventos: req.body.inputDataEventos,
         fkParque: req.body.inputfkParque
+    }).then(resultado => {
+        console.log(`Registro criado: ${resultado}`)
+        res.send(resultado);
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
+
+/* Registrar Parque */
+router.post('/registrar-parque', function(req, res, next) {
+    console.log('Registrando um parque');
+
+    Parques.create({
+        nome: req.body.inputNome,
+        cpf: req.body.inputCpf,
+        area: req.body.inputArea,
+        img_parque: req.body.inputImgParque,
+        localizacao: req.body.inputLocalizacao
     }).then(resultado => {
         console.log(`Registro criado: ${resultado}`)
         res.send(resultado);
