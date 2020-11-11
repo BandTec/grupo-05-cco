@@ -11,33 +11,33 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        fkParque: {
-            field: 'fkParque',
+        nome: {
+            field: 'nome',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        cpf: {
+            field: 'cpfGerente',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        area: {
+            field: 'area',
             type: DataTypes.INTEGER,
             allowNull: false
         },
         img_parque: {
-            field: 'img_parque',
+            field: 'imgParque',
             type: DataTypes.STRING,
             allowNull: false
         },
-        tituloEvento: {
-            field: 'tituloEvento',
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        descricao: {
-            field: 'descricao',
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        dataEventos: {
-            field: 'dataEventos',
+        localizacao: {
+            field: 'localizacao',
             type: DataTypes.STRING,
             allowNull: false
         }
     }, {
-        tableName: 'parqueEventos',
+        tableName: 'parque',
         freezeTableName: true,
         underscored: true,
         timestamps: false,
