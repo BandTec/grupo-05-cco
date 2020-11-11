@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <link rel="shortcut icon" type="image/png" href="images/icon.png" />
     <meta charset="UTF-8">
@@ -32,46 +32,59 @@
             </div>
             <div class="content-create">
                 <div class="part-one-create">
-                    Formulário <br>
-                    Email:  <input type="email" name="" id="inputEmail">
-                    Senha: <input type="password" name="" id="inputPassword">
-                    Nome: <input type="text" name="" id="inputNome">
-                    CPF: <input type="text" name="" id="inputCpf">
+                    <form action="" id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                        Formulário <br>
+                        Imagem De Evento:  <input type="url" name="inputimg" id="inputimg">
+                        Titulo: <input type="text" name="inputTituloEvento" id="inputTituloEvento">
+                        Descricao: <input type="text" name="inputDescricao" id="inputDescricao">
+                        Data: <input type="text" name="inputDataEventos" id="inputDataEventos">
+                        Parque ao qual está relacionando: <input type="text" name="inputfkParque" id="inputfkParque">
+                        <button id="btn_entrar">Criar</button>
+                    </form>
                 </div>
                 <div class="part-two-create">                    
                     <input type="text" name="" id="inputArea">
                     <input type="text" name="" id="inputImgParque">
                     <input type="text" name="" id="inputLocalizacao">
-                    <button>Criar</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 <script>
 
 function cadastrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
-        fetch("/usuarios/cadastrar", {
+        fetch("/usuarios/registrar", {
             method: "POST",
             body: formulario
         }).then(function(response) {
 
             if (response.ok) {
 
-                window.location.href = 'login.html';
+                window.location.href = 'eventos.html';
 
             } else {
 
-                console.log('Erro de cadastro!');
+                console.log('Erro de registro!');
                 response.text().then(function(resposta) {});
                 finalizar_aguardar();
             }
         });
 
         return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
     }
 
 </script>

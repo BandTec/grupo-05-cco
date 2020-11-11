@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
+var Parques = require('../models').Parques;
 
 let sessoes = [];
 
@@ -112,5 +113,23 @@ router.get('/', function(req, res, next) {
     });
 });
 
+/* Registrar Parque */
+router.post('/registrar', function(req, res, next) {
+    console.log('Criando um usuário');
+
+    Parques.create({
+        img_parque: req.body.inputimg,
+        tituloEvento: req.body.inputTituloEvento,
+        descricao: req.body.inputDescricao,
+        dataEventos: req.body.inputDataEventos,
+        fkParque: req.body.inputfkParque
+    }).then(resultado => {
+        console.log(`Registro criado: ${resultado}`)
+        res.send(resultado);
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
 
 module.exports = router;

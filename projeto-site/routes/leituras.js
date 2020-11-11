@@ -136,26 +136,5 @@ router.get('/eventos', function(req, res, next) {
 
 });
 
-router.post('/criar-parque', function(req, res, next) {
-    console.log('Criando um usuário');
-
-    Usuario.create({
-        nome: req.body.nome,
-        rua: req.body.rua,
-        cidade: req.body.cidade,
-        estado: req.body.estado,
-        ddn: req.body.ddn,
-        login: req.body.login,
-        senha: req.body.senha,
-        preferenciaTemp: req.body.preferenciaTemp,
-        preferenciaUmid: req.body.preferenciaUmid
-    }).then(resultado => {
-        console.log(`Registro criado: ${resultado}`)
-        res.send(resultado);
-    }).catch(erro => {
-        console.error(erro);
-        res.status(500).send(erro.message);
-    });
-});
 
 module.exports = router;
