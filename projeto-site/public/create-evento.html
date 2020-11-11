@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humildificadores | Registrar Evento</title>
+    <link rel="stylesheet" href="stylesheets/create.css">
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <script src="js/sorteio.js"></script>
+    <script src="js/grafico.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="stylesheets/create.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+</head>
+<body>
+    <div class="area"></div><nav class="main-menu">
+        <ul>
+            <li>
+                <a href="http://justinfarrow.com">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                        Dashboard
+                    </span>
+                </a>
+              
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-laptop fa-2x"></i>
+                    <span class="nav-text">
+                        Stars Components
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                   <i class="fa fa-list fa-2x"></i>
+                    <span class="nav-text">
+                        Forms
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                   <i class="fa fa-folder-open fa-2x"></i>
+                    <span class="nav-text">
+                        Pages
+                    </span>
+                </a>
+               
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-bar-chart-o fa-2x"></i>
+                    <span class="nav-text">
+                        Graphs and Statistics
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-font fa-2x"></i>
+                    <span class="nav-text">
+                       Quotes
+                    </span>
+                </a>
+            </li>
+            <li>
+               <a href="#">
+                   <i class="fa fa-table fa-2x"></i>
+                    <span class="nav-text">
+                        Tables
+                    </span>
+                </a>
+            </li>
+            <li>
+               <a href="#">
+                    <i class="fa fa-map-marker fa-2x"></i>
+                    <span class="nav-text">
+                        Maps
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                   <i class="fa fa-info fa-2x"></i>
+                    <span class="nav-text">
+                        Documentation
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="logout">
+            <li>
+               <a href="#">
+                     <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">
+                        Logout
+                    </span>
+                </a>
+            </li>  
+        </ul>
+    </nav>
+    <div class="header-create">
+        <div class="title">
+            <br>
+            <h1>Registrar Eventos</h1>
+        </div>
+    </div>
+    </div>
+    <div class="create">
+        <div class="container">
+            <div class="content-create">
+                <div class="part-create">
+                    <form action="" id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                        <br>
+                        Endereço para converter as imagens: <a href="https://imgur.com/upload">Imgur</a> <br> <br>
+                        Imagem De Evento:  <input type="url" name="inputimg" id="inputimg" placeholder="Insira o link aqui" onchange="img.src = inputimg.value" >
+                        Titulo: <input type="text" name="inputTituloEvento" id="inputTituloEvento" placeholder="Insira o título aqui"> <br>
+                        <img src="" id="img" style="height: 100px;"><br>
+                        Descrição: <br><textarea name="inputDescricao" id="inputDescricao" cols="104" rows="10" placeholder="(500 caracteres)"></textarea> <br> <br>
+                        Data: <input type="text" name="inputDataEventos" id="inputDataEventos" placeholder="aaaa-mm-ddThh:mm:ss">
+                        Parque ao qual está relacionando:
+                        <select name="inputfkParque" id="inputfkParque">
+                            <option value="1">Ibirapuera</option>
+                            <option value="2">Independencia</option>
+                            <option value="3">Carmo</option>
+                            <option value="4">Chico Mendes</option>
+                            <option value="5">Aclimação</option>
+                            <option value="6">Anhanguera</option>
+                            <option value="7">Piqueri</option>
+                        </select> <br>
+                        <span id="example-date">Exemplo: (2000-04-16T22:00:00)</span>
+                        <button id="btn_entrar">Salvar</button>
+                        <br> <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="create">
+        <div class="container">
+            <div class="introduction-create">
+                <h1>Registrar Parques</h1>
+            </div>
+            <div class="content-create">
+                <div class="part-create">
+                    <form action=""> <br>
+                        Nome: <input type="text" name="" id="" placeholder="Cláudio Santana">
+                        CPF: <input type="text" name="" id="" placeholder="000.000.000-0"> <br> <br>
+                        Localização: <input type="text" name="" id="" placeholder="Av. Avenida de Avenida">
+                        Area: <input type="text" name="" id="" placeholder="90000"> <span id="example-metros">em m2 (metros quadrados)</span> <br> <br>
+                        Imagem do Parque: <input type="text" name="" id="" placeholder="Insira o link aqui">
+                         Endereço para converter as imagens: <a href="https://imgur.com/upload">Imgur</a> <br> <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script>
+
+function cadastrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/registrar-evento", {
+            method: "POST",
+            body: formulario
+        }).then(function(response) {
+
+            if (response.ok) {
+
+                window.location.href = 'eventos.html';
+
+            } else {
+
+                console.log('Erro de registro!');
+                response.text().then(function(resposta) {});
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+    }
+
+</script>
