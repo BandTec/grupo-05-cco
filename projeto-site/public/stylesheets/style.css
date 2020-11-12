@@ -53,11 +53,25 @@ input::-webkit-inner-spin-button {
     font-style: italic;
 }
 
-.header {
+#header {
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all .2s;
+}
+
+.header-activate {
     background-color: white;
-    color: #06D08A;
+    color: #06D08A !important;
     min-height: 70px;
     border-bottom: #06D08A 5px solid;
+}
+
+main {
+    padding-top: 100px;
 }
 
 .alinhar {
@@ -70,15 +84,14 @@ input::-webkit-inner-spin-button {
     font-size: 25px;
 }
 
-.header a {
-    color: #06D08A;
+#header a {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 18px;
     font-weight: bold;
 }
 
-.header li {
+#header li {
     display: inline;
     padding: 0px 10px;
 }
@@ -129,7 +142,7 @@ input::-webkit-inner-spin-button {
 }
 
 .conteudo {
-    width: 500px;
+    max-width: 500px;
     margin: 50px;
 }
 
@@ -1150,6 +1163,7 @@ body {
     width: 100%;
     height: 45%;
 }
+
 .about-park #park-img {
     border-radius: 30px 30px 0px 0px;
     width: 100%;
@@ -1194,18 +1208,21 @@ body {
 #stars {
     margin-bottom: 25px;
 }
+
 #eventoText {
     margin-left: 10px;
     text-align: center;
     font-size: 18px;
     /* margin-bottom: 25px; */
 }
+
 #date-event {
     font-size: 18px;
     text-align: center;
     margin-left: 10px;
     margin-bottom: 10px;
 }
+
 #card-eventos {
     overflow-x: hidden;
     border-radius: 20px 20px 0px 0px;
@@ -1239,13 +1256,13 @@ body {
 }
 
 .grafico-park {
-    height: 66vh;
-    padding: 0 50px 50px 50px;
+    height: 60vh;
+    padding: 0 50px 50px 0;
 }
 
 .grafico-park iframe {
     height: 100%;
-    width: 100%;
+    width: 95%;
 }
 
 .body-park {
@@ -1271,14 +1288,13 @@ body {
 }
 
 .part-one .about-park {
-    height: 40%;
+    padding-bottom: 50px;
     width: 80%;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 30px;
     text-align: center;
     margin-left: 6%;
     margin-top: 6%;
-    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
 }
 
 .img-parque {
@@ -1313,35 +1329,32 @@ body {
 
 .part-one .umidade {
     margin-left: 5%;
-    height: 17%;
     width: 80%;
-    text-align: center;    
+    text-align: center;
     background-color: rgba(131, 169, 255);
     border-radius: 30px;
     font-size: 15px;
     color: #fff;
     font-weight: lighter;
-    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
 }
 
 .part-one .temperatura {
     margin-left: 5%;
     border-radius: 30px;
-    height: 17%;
     width: 80%;
     background-color: rgba(255, 128, 128);
     text-align: center;
     color: #fff;
     font-size: 15px;
     font-weight: lighter;
-    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
 }
 
 .part-one #img-componentes {
     height: 88px;
-    margin-top: -9%;
-    margin-left: 75%;
+    margin-top: -70px;
+    margin-left: 70%;
 }
+
 #button-eventos {
     border: 1px solid #000;
     padding: 10px 0px;
@@ -1351,15 +1364,18 @@ body {
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
+
 #button-eventos:hover {
     border: 1px solid #fff;
     background-color: #000;
     color: #fff;
 }
+
 hr.hr {
     border: 1px solid black;
     width: 100%;
 }
+
 .body-park .container-dash .part-one .about-park #classification #img-classification {
     height: 20px;
 }
@@ -1370,7 +1386,6 @@ hr.hr {
     background-color: rgba(255, 255, 255, 1);
     margin: 3% 6% 3% 0;
     border-radius: 30px;
-    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
 }
 
 .part-two .container-part-two #title-history {
@@ -1382,7 +1397,7 @@ hr.hr {
 .part-two .container-part-two #title-history::before {
     content: '';
     height: 4px;
-    width: 83px;
+    width: 10%;
     background: linear-gradient(90deg, #00F5A0 0%, #00D9F5 100%);
     display: block;
     margin-bottom: -1.7%;
@@ -1392,7 +1407,7 @@ hr.hr {
 .part-two .container-part-two #title-history::after {
     content: '';
     height: 4px;
-    width: 699px;
+    width: 88%;
     background: linear-gradient(90deg, #00F5A0 0%, #00D9F5 100%);
     display: block;
     margin-top: -1.5%;
@@ -1408,7 +1423,7 @@ hr.hr {
 .part-two .container-part-two #title-localization::before {
     content: '';
     height: 4px;
-    width: 83px;
+    width: 10%;
     background: linear-gradient(90deg, #00F5A0 0%, #00D9F5 100%);
     display: block;
     margin-bottom: -1.7%;
@@ -1418,34 +1433,18 @@ hr.hr {
 .part-two .container-part-two #title-localization::after {
     content: '';
     height: 4px;
-    width: 672px;
+    width: 84.5%;
     background: linear-gradient(90deg, #00F5A0 0%, #00D9F5 100%);
     display: block;
     margin-top: -1.5%;
     margin-left: 15.5%;
 }
 
-
-/* carousel ------------------------
-
-
-⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠛⠛⢻⡻⠿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣟⣫⡾⠛⠛⠛⠛⠛⠛⠿⣾⣽⡻⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⡟⣼⠏⠀⠀⠀⠀⠀⠀⣀⣀⡀⣙⣿⣎⢿⣿⣿⣿
-⣿⣿⣿⣿⣿⢹⡟⠀⠀⠀⣰⡾⠟⠛⠛⠛⠛⠛⠛⠿⣮⡻⣿⣿
-⣿⡿⢟⣻⣟⣽⠇⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⡹⣿
-⡟⣼⡟⠉⠉⣿⠀⠀⠀⠀⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢟⣿
-⣇⣿⠁⠀⠀⣿⠀⠀⠀⠀⠘⢿⣦⣄⣀⣀⣀⣀⣤⡴⣾⣏⣾⣿
-⡇⣿⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠈⠉⠛⠋⠉⠉⠀⠀⢻⣿⣿⣿
-⢃⣿⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⣿⣿
-⡻⣿⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣧⣿⣿
-⡇⣿⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⢹⣿⣿
-⣿⡸⢷⣤⣤⣿⡀⠀⠀⠀⠀⢠⣤⣄⣀⣀⣀⠀⠀⢠⣿⣿⣿⣿
-⣿⣿⣷⣿⣷⣿⡇⠀⠀⠀⠀⢸⡏⡍⣿⡏⠀⠀⠀⢸⡏⣿⣿⣿
-⣿⣿⣿⣿⣿⢼⡇⠀⠀⠀⠀⣸⡇⣷⣻⣆⣀⣀⣀⣼⣻⣿⣿⣿
-⣿⣿⣿⣿⣿⣜⠿⢦⣤⣤⡾⢟⣰⣿⣷⣭⣯⣭⣯⣥⣿⣿⣿⣿
-
-*/
+.container-part-two iframe {
+    margin: 0 0 50px 0;
+    border-radius: 30px;
+    margin-left: 5%;
+}
 
 .cd-slider.ie9 nav div span {
     display: none;
@@ -1589,25 +1588,30 @@ nav>div>span {
 .body-create {
     background: #FAFAFA;
 }
+
 .body-create .header-create {
     background-color: #fff;
     width: 100%;
     height: 60px;
 }
+
 .body-create .header-create .title {
     margin: 0;
     padding: 0;
     height: 100%;
 }
+
 .body-create .header-create .title h1 {
     text-align: left;
     margin-top: 0;
     margin-left: 40px;
     padding: 0;
 }
+
 .body-create .create {
     background: #fff;
 }
+
 .create .container-create {
     width: 98%;
     margin: 0 auto;
@@ -1617,6 +1621,7 @@ nav>div>span {
     display: grid;
     grid-template-columns: 30% 70%;
 }
+
 .create .container-create .introduction-create h1 {
     font-size: 14px;
 }

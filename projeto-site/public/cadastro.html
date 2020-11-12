@@ -18,7 +18,7 @@
 
 <body>
 
-    <div class="header">
+    <div id="header">
         <div class="container">
             <div class="alinhar">
                 <div class="title-header">
@@ -34,47 +34,49 @@
         </div>
     </div>
 
-    <div class="cadastro">
-        <div class="boxCadastro">
-            <h1 id="h1Login">CADASTRO</h1>
+    <main>
+        <div class="cadastro">
+            <div class="boxCadastro">
+                <h1 id="h1Login">CADASTRO</h1>
 
-            <form class="formCadastro" id="form_cadastro" method="post" onsubmit="return cadastrar()">
-                <input type="text" id="nome" name="nome" placeholder="Nome">
+                <form class="formCadastro" id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                    <input type="text" id="nome" name="nome" placeholder="Nome">
 
-                <input type="text" id="ddn" name="ddn" placeholder="Data de nascimento">
+                    <input type="text" id="ddn" name="ddn" placeholder="Data de nascimento">
 
-                <input type="email" id="email" name="login" placeholder="E-mail">
+                    <input type="email" id="email" name="login" placeholder="E-mail">
 
-                <input type="password" id="password" name="senha" placeholder="Senha">
+                    <input type="password" id="password" name="senha" placeholder="Senha">
 
-                <input type="text" id="cep" onblur="pesquisacep(this.value);" name="cep" placeholder="CEP" required>
+                    <input type="text" id="cep" onblur="pesquisacep(this.value);" name="cep" placeholder="CEP" required>
 
-                <input type="text" id="rua" name="rua" placeholder="Rua">
+                    <input type="text" id="rua" name="rua" placeholder="Rua">
 
-                <input type="text" id="cidade" name="cidade" placeholder="Cidade">
+                    <input type="text" id="cidade" name="cidade" placeholder="Cidade">
 
-                <input type="text" id="uf" id="uf" name="estado" placeholder="Estado">
+                    <input type="text" id="uf" id="uf" name="estado" placeholder="Estado">
 
 
-                <h2>Temperatura desejada</h2>
-                <div class="alinharCentro">
-                    <input id="selectTemp" name="preferenciaTemp" onchange="temperaturaTelaInput()" type="Number" min="18" max="30" value="24">
-                    <br>
-                    <input id="temperatura" onchange="temperaturaTelaSlide()" type="range" min="18" max="30" value="24">
+                    <h2>Temperatura desejada</h2>
+                    <div class="alinharCentro">
+                        <input id="selectTemp" name="preferenciaTemp" onchange="temperaturaTelaInput()" type="Number" min="18" max="30" value="24">
+                        <br>
+                        <input id="temperatura" onchange="temperaturaTelaSlide()" type="range" min="18" max="30" value="24">
 
-                    <h2>Umidade desejada</h2>
-                    <input id="selectUmi" name="preferenciaUmid" onchange="umidadeTelaInput()" type="Number" min="30" max="70" value="50">
-                    <br>
-                    <input id="umidade" onchange="umidadeTelaSlide()" type="range" min="30" max="70" value="50">
+                        <h2>Umidade desejada</h2>
+                        <input id="selectUmi" name="preferenciaUmid" onchange="umidadeTelaInput()" type="Number" min="30" max="70" value="50">
+                        <br>
+                        <input id="umidade" onchange="umidadeTelaSlide()" type="range" min="30" max="70" value="50">
 
-                    <button class="btnCadastro" id="btn_entrar">Cadastrar</button>
+                        <button class="btnCadastro" id="btn_entrar">Cadastrar</button>
 
-                    <p id="esqueciSenha"><a href="login.html">Tem conta? Clique aqui</a></p>
-                </div>
+                        <p id="esqueciSenha"><a href="login.html">Tem conta? Clique aqui</a></p>
+                    </div>
 
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+    </main>
 
     <div class="footer">
         <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6"><defs><style>.cls-1{fill-rule:evenodd;fill:url(#Gradiente_sem_nome);}</style><linearGradient id="Gradiente_sem_nome" y1="118.2" x2="1920" y2="118.2" gradientTransform="matrix(1, 0, 0, -1, 0, 164)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00f5a0"/><stop offset="1" stop-color="#00d9f5"/></linearGradient></defs><path class="cls-1" d="M0,0H1920V67.53C1270.2,168.94,649.8-93.13,0,67.53V0Z"/></svg>

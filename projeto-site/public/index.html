@@ -16,7 +16,7 @@
 
 <body>
 
-    <div class="header">
+    <div id="header">
         <div class="container">
             <div class="alinhar">
                 <div class="title-header">
@@ -32,11 +32,12 @@
         </div>
     </div>
 
-    <div class="container">
-        <section class="home">
-            <div class="format">
-                <div class="format-side">
-                    <svg width="600" height="500" viewBox="0 0 900 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <main>
+        <div class="container">
+            <section class="home">
+                <div class="format">
+                    <div class="format-side">
+                        <svg width="600" height="500" viewBox="0 0 900 500" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle id="sol" cx="816" cy="76" r="76" fill="#FCBD58"/>
                         <path id="nuvem2" d="M813.709 132.072C774.075 140.944 825.476 154.485 761.07 154.485H737.537C719.206 152.593 724.944 162.766 730.105 168.089C777.997 171.835 876.877 173.474 889.882 172.882C902.887 172.291 853.344 123.2 813.709 132.072Z" fill="#E6F7F4"/>
                         <path id="nuvem1" d="M729.244 57.8955C648.444 23.4955 621.655 10.8956 602.244 40.8955C591.244 57.8955 612.844 80.0956 583.244 76.8955C553.644 73.6955 562.91 90.8956 571.244 99.8956C648.577 106.229 859.244 110.896 880.244 109.896C901.244 108.896 797.244 26.8956 794.244 40.8955C791.244 54.8955 829.244 100.896 729.244 57.8955Z" fill="#90D4E2"/>
@@ -74,31 +75,31 @@
                         </clipPath>
                         </defs>
                     </svg>
-                    <div class="conteudoDireita">
-                        <div class="conteudo">
-                            <h1>Saiba em qual parque se exercitar</h1>
-                            <h3>Com nosso serviço você sempre tem em mãos onde e quando praticar suas atividades físicas ao ar livre.</h3>
-                            <div class="btn-saibamais"><button id="btn_entrar"><a href="#locais">SAIBA MAIS</a></button></div>
+                        <div class="conteudoDireita">
+                            <div class="conteudo">
+                                <h1>Saiba em qual parque se exercitar</h1>
+                                <h3>Com nosso serviço você sempre tem em mãos onde e quando praticar suas atividades físicas ao ar livre.</h3>
+                                <div class="btn-saibamais"><button id="btn_entrar"><a href="#locais">SAIBA MAIS</a></button></div>
+                            </div>
                         </div>
                     </div>
+                    <div class="seta">
+                        <a href="#locais"><img class="seta-animation" src="images/seta_branca.svg" alt="seta"></a>
+                    </div>
                 </div>
-                <div class="seta">
-                    <a href="#locais"><img class="seta-animation" src="images/seta_branca.svg" alt="seta"></a>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="home">
-            <a name="locais"></a>
-            <div class="format">
-                <div class="format-side">
-                    <div>
-                        <div class="conteudo">
-                            <h1>Listamos os melhores parques de São Paulo</h1>
-                            <h3>Medimos a Temperatura e a Umidade ambiente de cada parque e você decide em qual ir!</h3>
+            <section class="home">
+                <a name="locais"></a>
+                <div class="format">
+                    <div class="format-side">
+                        <div>
+                            <div class="conteudo">
+                                <h1>Listamos os melhores parques de São Paulo</h1>
+                                <h3>Medimos a Temperatura e a Umidade ambiente de cada parque e você decide em qual ir!</h3>
+                            </div>
                         </div>
-                    </div>
-                    <svg width="600" height="500" viewBox="0 0 900 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="600" height="500" viewBox="0 0 900 500" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="undraw_map_1r69 1">
                         <g clip-path="url(#clip0)">
                         <g id="shadows">
@@ -171,18 +172,18 @@
                         </clipPath>
                         </defs>
                     </svg>
+                    </div>
+                    <div class="seta">
+                        <a href="#park"><img class="seta-animation" src="images/seta_branca.svg" alt="seta"></a>
+                    </div>
                 </div>
-                <div class="seta">
-                    <a href="#park"><img class="seta-animation" src="images/seta_branca.svg" alt="seta"></a>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="home">
-            <a name="park"></a>
-            <div class="format">
-                <div class="format-side">
-                    <svg width="600" height="500" viewBox="-150 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <section class="home">
+                <a name="park"></a>
+                <div class="format">
+                    <div class="format-side">
+                        <svg width="600" height="500" viewBox="-150 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="undraw_push_notifications_im0o 1">
                         <g clip-path="url(#clip0)">
                         <g id="Group3">
@@ -241,19 +242,20 @@
                         </clipPath>
                         </defs>
                     </svg>
-                    <div>
-                        <div class="conteudo">
-                            <h1>Cuide da sua saúde</h1>
-                            <h3>Chega de ardor nos olhos, no nariz e na garganta enquanto pratica exercícios físicos.</h3>
+                        <div>
+                            <div class="conteudo">
+                                <h1>Cuide da sua saúde</h1>
+                                <h3>Chega de ardor nos olhos, no nariz e na garganta enquanto pratica exercícios físicos.</h3>
+                            </div>
                         </div>
                     </div>
+                    <div class="seta">
+                        <div class="start" id="esconderStart"><button id="btn_entrar"><a href="cadastro.html">COMECE AGORA</a></button></div>
+                    </div>
                 </div>
-                <div class="seta">
-                    <div class="start" id="esconderStart"><button id="btn_entrar"><a href="cadastro.html">COMECE AGORA</a></button></div>
-                </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
+    </main>
 
 
     <div class="footer">

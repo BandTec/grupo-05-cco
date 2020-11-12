@@ -14,14 +14,14 @@
     <script src="../routes/leituras.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
 
- <script type="text/javascript" src="funcoes.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
     <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'">
 </head>
 
 <body onload="sorteio()">
 
-    <div class="header">
+    <div id="header">
         <div class="container">
             <div class="alinhar">
                 <div class="title-header">
@@ -39,45 +39,48 @@
         </div>
     </div>
 
-    <div class="body-park">
-        <div class="container-dash">
-            <div class="part-one">
-                <div class="about-park">
-                    <div id="park-img"></div>
-                    <div id="sobre-park"></div>
-                    <div id="classification"></div>
-                </div>
-                <br>
-                <div class="umidade">
-                    <br>
-                    <h2>Umidade</h2>
-                    <h2 id="umidades"></h2>
-                    <img id="img-componentes" src="./images/humidity.png" alt="Umidade icone">
-                </div>
-                <br>
-                <div class="temperatura">
-                    <br>
-                    <h2>Temperatura</h2>
-                    <h2 id="temperaturas"></h2>
-                    <img id="img-componentes" src="./images/dom.svg" alt="Temperatura icone">
-                    <div></div>
-                </div>
-            </div>
-            <div class="part-two">
-                <div class="container-part-two">
-                    <br>
-                    <h3 id="title-history">Histórico</h3>
-                    <div class="grafico-park">
-                        <iframe src="grafico-chartjs.html" frameborder="0"></iframe>
+    <main>
+        <div class="body-park">
+            <div class="container-dash">
+                <div class="part-one">
+                    <div class="about-park">
+                        <div id="park-img"></div>
+                        <div id="sobre-park"></div>
+                        <div id="classification"></div>
                     </div>
-                    <br><br>
-                    <h3 id="title-localization">Localização</h3>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117056.04588854393!2d-46.567930858940834!3d-23.532450834027248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce63f101a53a65%3A0xecf661da37d8a872!2sCECCO%20-%20Parque%20Ecol%C3%B3gico%20Chico%20Mendes!5e0!3m2!1spt-PT!2sbr!4v1588283407803!5m2!1spt-PT!2sbr"
-                        width="80%" height="280" frameborder="0" style="border:0; margin: 0 0 50px 0; border-radius: 30px; margin-left: 10%;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    <br>
+                    <div class="umidade">
+                        <br>
+                        <h2>Umidade</h2>
+                        <h2 id="umidades"></h2>
+                        <img id="img-componentes" src="./images/humidity.png" alt="Umidade icone">
+                    </div>
+                    <br>
+                    <div class="temperatura">
+                        <br>
+                        <h2>Temperatura</h2>
+                        <h2 id="temperaturas"></h2>
+                        <img id="img-componentes" src="./images/dom.svg" alt="Temperatura icone">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="part-two">
+                    <div class="container-part-two">
+                        <br>
+                        <h3 id="title-history">Histórico</h3>
+                        <div class="grafico-park">
+                            <iframe src="grafico-chartjs.html" frameborder="0"></iframe>
+                        </div>
+                        <br><br>
+                        <h3 id="title-localization">Localização</h3>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117056.04588854393!2d-46.567930858940834!3d-23.532450834027248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce63f101a53a65%3A0xecf661da37d8a872!2sCECCO%20-%20Parque%20Ecol%C3%B3gico%20Chico%20Mendes!5e0!3m2!1spt-PT!2sbr!4v1588283407803!5m2!1spt-PT!2sbr"
+                            width="90%" height="500" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
     <div class="footer">
         <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6">
             <defs>
@@ -165,5 +168,4 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }
-
 </script>

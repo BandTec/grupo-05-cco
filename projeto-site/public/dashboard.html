@@ -25,7 +25,7 @@
 <body>
 
 
-    <div class="header">
+    <div id="header">
         <div class="container">
             <div class="alinhar">
                 <div class="title-header">
@@ -42,32 +42,33 @@
         </div>
     </div>
 
+    <main>
+        <!-- corpo da pagina -->
+        <div class="container-park">
+            <h1 id="title-selection-park">Agora selecione o parque que mais te interresou</h1>
+            <!-- Slide para selecionar os parques -->
+            <div class="container-slide-park">
 
-    <!-- corpo da pagina -->
-    <div class="container-park">
-        <h1 id="title-selection-park">Agora selecione o parque que mais te interresou</h1>
-        <!-- Slide para selecionar os parques -->
-        <div class="container-slide-park">
+                <div class="slide-park">
 
-            <div class="slide-park">
+                    <section class="cd-slider">
+                        <ul id="parqueSlide">
 
-                <section class="cd-slider">
-                    <ul id="parqueSlide">
+                        </ul>
+                        <nav>
+                            <div>
+                                <a class="prev" href="#"></a>
+                            </div>
+                            <div>
+                                <a class="next" href="#"></a>
+                            </div>
+                        </nav>
+                    </section>
+                </div>
 
-                    </ul>
-                    <nav>
-                        <div>
-                            <a class="prev" href="#"></a>
-                        </div>
-                        <div>
-                            <a class="next" href="#"></a>
-                        </div>
-                    </nav>
-                </section>
             </div>
-
         </div>
-    </div>
+    </main>
 
 
 
@@ -191,7 +192,7 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
-        
+
 
 
     }

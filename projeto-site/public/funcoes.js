@@ -44,3 +44,13 @@ function validar_sessao() {
 function finalizar_sessao() {
     fetch(`/usuarios/sair/${login_usuario}`, { cache: 'no-store' });
 }
+
+window.onscroll = function() { topo() };
+
+function topo() {
+    if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
+        document.getElementById('header').className = 'header-activate';
+    } else {
+        document.getElementById('header').className = '';
+    }
+}
