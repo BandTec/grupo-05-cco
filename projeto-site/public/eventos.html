@@ -125,32 +125,61 @@
 
                         dados = resposta;
                         let contador = 0;
-                        for (let cont = 0; resposta.length / 3 >= cont; cont++) {
+                        for (let cont = 0; resposta.length > cont; cont++) {
 
                             let htmlPark = "";
 
-                            for (let cont2 = 0; cont2 < 3 && contador < resposta.length; cont2++) {
+                            for (let cont2 = 0; cont2 < 1 && contador < resposta.length; cont2++) {
 
                                 htmlPark += `
-                            <div id="card-eventos">
-                                <img class="park-img" src="${dados[contador].img_parque}" >
-                                <div id="park-display">
-                                    <h3>
-                                        ${dados[contador].nome}<br><br>
-                                    </h3>
-                                    <div id="eventoText">
-                                        Evento:  ${dados[contador].tituloEvento}
-                                    </div>    
-                                    <hr class="hr">
-                                    <div id="date-event">
-                                        ${dados[contador].data}<br>
-                                        ${dados[contador].hora}
-                                      </div>
-                                    <div id="button-eventos" onclick="VerParque(${dados[contador].idParque})">
-                                      Participar
+                            <div class="container-evento">
+                                <img class="img-evento" src="${dados[contador].img_parque}">
+                                <div class="box-evento">
+                                    <div class="descricao-evento">
+                                        <H3>${dados[contador].tituloEvento}</H3>
+                                        <p>${dados[contador].descricao}</p>
+                                        <div class="local-evento">
+                                            Local: ${dados[contador].nome}
+                                        </div>
+                                        <div class="dataHora-evento">
+                                            <div class="hora-evento">
+                                                ${dados[contador].hora}
+                                            </div>
+                                            <div class="data-evento">
+                                                ${dados[contador].data}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="participacao-evento">
+                                        <div class="confirmacoes-evento">
+                                            <span>Pessoas confirmadas:</span><b>0</b>
+                                        </div>
+                                        <button class="confirmar-evento" onclick="VerParque(${dados[contador].idParque})">
+                                            Confirmar presença
+                                        </button>
                                     </div>
                                 </div>
-                            </div>`;
+                            </div>`
+                            // <div id="card-eventos">
+                            //     <img class="park-img" src="${dados[contador].img_parque}" >
+                            //     <div id="park-display">
+                            //         <h3>
+                            //             ${dados[contador].nome}<br><br>
+                            //         </h3>
+                            //         <div id="eventoText">
+                            //             Evento:  ${dados[contador].tituloEvento}
+                            //         </div>    
+                            //         <hr class="hr">
+                            //         <div id="date-event">
+                            //             ${dados[contador].data}<br>
+                            //             ${dados[contador].hora}
+                            //           </div>
+                            //         <div id="button-eventos" onclick="VerParque(${dados[contador].idParque})">
+                            //           Participar
+                            //         </div>
+                            //     </div>
+                            // </div>
+                            ;
                                 contador++;
                             }
                             document.getElementById(`parqueSlide`).innerHTML += `
@@ -166,7 +195,7 @@
 
                         // aqui, após 'registro.' use os nomes 
                         // dos atributos que vem no JSON 
-                        // que gerou na consulta ao banco de dados alo
+                        // que gerou na consulta ao banco de dados
 
 
 
