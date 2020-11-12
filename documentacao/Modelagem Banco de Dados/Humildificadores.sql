@@ -14,9 +14,9 @@ create table cliente (
     preferenciaUmid decimal (5,2)
 );
 insert into cliente (nome,rua,cidade,estado,ddn,email,senha,preferenciaTemp,preferenciaUmid) values
-    ('admin','admin','admin','admin','2002-09-07T00:00:00.0000000','admin','admin',25,50),
-    ('Kalil', 'Rua Desembargador Rocha Portela', 'São Paulo', 'SP', '2001-12-10T00:00:00.0000000', 'kalil.rocha@bandtec.com.br', 'admin', 25, 70),
-	('Eric', 'Rua Mário Totta', 'São Paulo', 'SP', '2002-12-15T00:00:00.0000000', 'eric.lessa@bandtec.com.br', 'admin', 20, 65),
+    ('admin','admin','admin','admin','2002-09-07T00:00:00.0000000','admin','admin',20,65),
+    ('Kalil', 'Rua Desembargador Rocha Portela', 'São Paulo', 'SP', '2001-12-10T00:00:00.0000000''kalil.rocha@bandtec.com.br','admin',27,55),
+	('Eric', 'Rua Mário Totta', 'São Paulo', 'SP', '2002-12-15T00:00:00.0000000', 'eric.lessa@bandtec.com.br', 'admin', 30, 35),
 	('Victor', 'Rua Antônio Fortunato', 'São Paulo', 'SP', '2002-04-06T00:00:00.0000000', 'victor.barbosa@bandtec.com.br', 'admin', 27, 30),
 	('Kaio', 'Rua Gaspar Coelho', 'São Paulo', 'SP', '2002-09-07T00:00:00.0000000', 'kaio.jesus@bandtec.com.br', 'admin', 23, 62),
 	('Gabriel', 'Rua Professora Ernestina Loureiro de Miranda', 'São Paulo', 'SP', '2002-01-12T00:00:00.0000000', 'gabriel.marcolino@bandtec.com.br', 'admin', 21, 62),
@@ -35,6 +35,22 @@ insert into cliente (nome,rua,cidade,estado,ddn,email,senha,preferenciaTemp,pref
 	('alaks', 'Rua Desembargador Rocha Portela', 'São Paulo', 'SP', '2002-01-12T00:00:00.0000000', 'kalil@kalil.com', '123456', 24, 50),
 	('Thiago Emídio', 'Avenida Barro Branco', 'São Paulo','SP','2006-11-27T00:00:00.0000000','thiago.emidio.rr@gmail.com','thiago123', 25, 50);
 
+create table administracao (
+	idAdministracao int primary key identity,
+    nome varchar(50)
+);
+
+create table login (
+	idLogin int primary key identity,
+    email varchar(45),
+    senha varchar(45),
+    fkAdministracao int,
+    fkCliente int,
+    fkParque int,
+    foreign key (fkAdministracao) references administracao (idAdministracao),
+    foreign key (fkCliente) references cliente (idCliente),
+    foreign key (fkParque) references parque (idParque)
+);
 
 create table parque (
     idParque int primary key identity,
@@ -117,7 +133,7 @@ create table parqueEventos(
 	fkParque int,
 	img_parque varchar(60),
 	tituloEvento varchar(45),
-	descricao varchar(120),
+	descricao varchar(500),
 	dataEventos datetime,
 	foreign key (fkParque) references parque (idParque)
 );
@@ -127,14 +143,17 @@ insert into parqueEventos values
 	(2,'https://i.imgur.com/MURIjKw.png','Corrida da terceira idade','Venha participar da corrida da terceira idade! Os primeiros colocados receberão ótimos prêmios','2020-12-16T16:00:00'),
 	(3,'https://i.imgur.com/KI7LQnw.png','Show do 7 minutoz','Grande apresentação do grupo 7 minutoz, Rap do itachi, Rap do Mario, e muito mais!','2021-01-25T20:00:00'),
 	(4,'https://i.imgur.com/BWuWAwP.png','Natal comunitário','Encontro para para doações de roupas e mantimentos. Ajude as pessoas que mais precisam!','2020-12-23T08:30:00'),
-	(5,'https://i.imgur.com/OaJILRQ.png','Show do Alok','Um dos maiores DJs da atualidade, com músicas de arrepiar! Participações de Marshmello e Tiësto','2021-02-20T09:00:00');
+	(5,'https://i.imgur.com/OaJILRQ.png','Show do Alok','Um dos maiores DJs da atualidade, com músicas de arrepiar! Participações de Marshmello e Tiësto','2021-02-20T09:00:00'),
+    (6,'https://i.imgur.com/xP7GzV2.jpg','Evento 7 de setembro','Venha comemorar o dia de nossa independencia! Traga a família e venha comemorar essa data maravavilhosa','2021-09-07T15:00:00'),
+    (7,'https://i.imgur.com/B0XthAy.png','Futebol','Futebol é legal','2020-11-10T22:00:00'),
+    (1,'https://i.imgur.com/apEnMlz.png','Brasil Game Show','Venha particiar do maior evento de Games da américa Latina!','2021-03-10T08:30:00');
 
-create table ClienteEventos(
+create table clienteEventos(
 	idClienteEventos int primary key identity,
 	fkParqueEventos int,
-	fkClienteEventos int,
+	fkCliente int,
 	foreign key (fkParqueEventos) references parqueEventos (idParqueEventos),
-	foreign key (fkClienteEventos) references cliente (idCliente)
+	foreign key (fkCliente) references cliente (idCliente)
 );
 
 
