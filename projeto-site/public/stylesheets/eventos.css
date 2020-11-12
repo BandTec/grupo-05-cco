@@ -12,7 +12,8 @@ html {
 
 }
 * {
-  font-family: 'Roboto';
+  font-family: 'Roboto Mono';
+  padding: 0;
 }
 body {
   background: linear-gradient(90deg, #00F5A0 0%, #00D9F5 100%);;
@@ -115,4 +116,84 @@ img {
   margin-bottom: 1.25rem;    
   font-weight: 800;
 }
-
+.content-evento {
+  width: 100%;
+  height: 100%;
+}
+.content-evento #card-evento {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.content-evento #card-evento #cards-eventos #container-cards-eventos {
+}
+#container-card-eventos {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  background-color: white;
+  width: 98%;
+  height: 90%;
+  padding: 4px 4px;  
+  border-radius: 20px;
+  margin: 2% 0;
+}
+#part-two-card-eventos {
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+}
+#evento-img {
+  width: 300px;
+  border-radius: 20px;
+}
+#title-evento {
+  margin: 0;
+  color: #000000;
+  font-size: 32px;
+  font-weight: bold;
+}
+#desc-evento {
+  font-size: 18px;
+  color: #18C139;
+}
+#parque-evento {
+  font-size: 20px;
+  font-family: 'Roboto';
+}
+#evento-hora {
+  float: right;
+}
+#data_e_hora {
+  width: 95%;
+}
+#data_e_hora span{
+  float: right;
+  margin-right: 2%;
+}
+#btn-confirme-presenca {
+  margin-top: 3%;
+  padding: 3% 0;
+  width: 95%;
+  border-radius: 24px;
+  border: none;
+  text-transform: uppercase;
+  background-color: black;
+  color: white;
+  transition: 0.4s ease-in-out;
+}
+#btn-confirme-presenca:hover {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+#pessoas-confirmadas {
+  width: 95%;
+  text-indent: 10px;
+  background-color: #C4C4C4;
+  padding: 2% 0;
+}
+#pessoas-confirmadas span {
+  float: right;
+  margin-right: 3%;
+}
