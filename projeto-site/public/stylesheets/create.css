@@ -166,7 +166,7 @@ height: 100%;
 }
 
  body {
-    background: #FAFAFA;
+    background: #F3F3F3;
     padding-left: 60px;
 }
 .header-create {
@@ -178,20 +178,26 @@ height: 100%;
     margin: 0;
     padding: 0;
     height: 100%;
+    border-bottom: 1px solid #d0d0d0;
 }
 .header-create .title h1 {
     text-align: left;
     margin-top: 0;
     margin-left: 36px;
     padding: 0;
+    
 }
 .create {
-    background: #fff;
+    
     margin-top: 20px;
 }
 .create .container {
+    background: #fff;
     width: 94%;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
+    padding: 0  20px 0 20px;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
 }
 .create .container .content-create {
     display: grid; 
@@ -223,16 +229,24 @@ height: 100%;
 #example-metros {
     font-size: 12px;
 }
-
-input{
+textarea{
     border-radius: 5px;
-    border: 2px solid #666;
+    margin: 1% 1% 4% 1%;
+    border: none;
+    background-color: #F3F3F3;
+}
+input, select{
+    border-radius: 5px;
     margin: 1% 1% 4% 1%;
     background-color: #F3F3F3;
     border: none;
     width: 250px;
     height: 26px;
     text-indent: 10px;
+}
+a{
+    text-decoration: none;
+    color: #00D9F5;
 }
 
 
