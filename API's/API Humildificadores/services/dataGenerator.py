@@ -1,14 +1,20 @@
 import psutil
 import requests
 
+def getUser():
+    user_name = psutil.Process().as_dict(attrs=['username'])["username"]
+    # print(user_name)
+
+    return user_name
+
 def getData():
     cpu_info = {
     'cpu': 0,
     'cpu_count': 0,
     'memory': 0,
     'memory_percent': 0,
-    'disk': 0,
-    'user_name': 0
+    'disk': 0
+    # 'user_name': 0
     }
     cpu = psutil.cpu_percent(interval=1, percpu=True)
     cpu_media = sum(cpu)/len(cpu)
@@ -16,14 +22,14 @@ def getData():
     memory = (psutil.virtual_memory().used >> 30)
     memory_percent = (psutil.virtual_memory().percent)
     disk = psutil.disk_usage('/').percent
-    user_name = psutil.Process().as_dict(attrs=['username'])["username"]
+    # user_name = psutil.Process().as_dict(attrs=['username'])["username"]
 
     cpu_info['cpu'] = round(cpu_media)
     cpu_info['cpu_count'] = cpu_count
     cpu_info['memory'] = memory
     cpu_info['memory_percent'] = memory_percent
     cpu_info['disk'] = disk
-    cpu_info['user_name'] = user_name
+    # cpu_info['user_name'] = user_name
 
     #Objeto para visualização só
     print(cpu_info)

@@ -22,12 +22,16 @@ class Mysql:
             print(err)
             raise
 
-    
+    # select's usados na API's
 
-    def select(self):
+    def select_usuarios(self):
         try:
-            print('Printando Valores')
-            select = self.cursor.execute("select * from dataset_comp2")
+            print('Usuários na cadastrados')
+            select = self.cursor.execute(
+                "select * from maquinas"
+                "where usuario = %s",usuario
+            )
+
             meuresultado = self.cursor.fetchall()
             for x in meuresultado:
                 print(x)
@@ -37,8 +41,9 @@ class Mysql:
             self.mysql.rollback()
             self.close()
 
+    # Insert's usados nas API's
 
-    def insert(self, data):
+    def insert_usuarios(self, data):
         query = (
             "INSERT INTO dataset_comp2(cpu, cpu_count, ram, ram_percent, disk, user_name)"
             "VALUES (%s, %s, %s, %s, %s, %s)"

@@ -2,7 +2,7 @@ create database humildificadores;
 use humildificadores;
 
 create table cliente (
-	idCliente int primary key identity,
+	idCliente int primary key auto_increment,
 	nome varchar (60),
 	rua varchar (80),
 	cidade varchar (20),
@@ -36,12 +36,12 @@ insert into cliente (nome,rua,cidade,estado,ddn,email,senha,preferenciaTemp,pref
 	('Thiago Emídio', 'Avenida Barro Branco', 'São Paulo','SP','2006-11-27T00:00:00.0000000','thiago.emidio.rr@gmail.com','thiago123', 25, 50);
 
 create table administracao (
-	idAdministracao int primary key identity,
+	idAdministracao int primary key auto_increment,
     nome varchar(50)
 );
 
 create table login (
-	idLogin int primary key identity,
+	idLogin int primary key auto_increment,
     email varchar(45),
     senha varchar(45),
     fkAdministracao int,
@@ -53,7 +53,7 @@ create table login (
 );
 
 create table parque (
-    idParque int primary key identity,
+    idParque int primary key auto_increment,
     nome varchar(30),
     cpfGerente char(11),
     area int,
@@ -89,7 +89,7 @@ insert into sensor values
     (7,7);
 
 create table evento(
-    idEvento int primary key identity,
+    idEvento int primary key auto_increment,
 	fkSensor int,
 	foreign key (fkSensor) references sensor(idSensor),
 	momento datetime,
@@ -98,7 +98,7 @@ create table evento(
 );
 
 create table maquinas(
-	idMaquina int primary key identity,
+	idMaquina int primary key auto_increment,
 	usuario varchar(45),
 	localizacaoMaquina varchar(45),
 	fkParque int,
@@ -106,7 +106,7 @@ create table maquinas(
 );
 
 create table componente(
-	idComponente int primary key identity,
+	idComponente int primary key auto_increment,
 	nome varchar(45),
 	metrica varchar(45)
 );
@@ -121,7 +121,7 @@ create table configuracao(
 );
 
 create table leituras(
-	idMetrica int primary key identity,
+	idMetrica int primary key auto_increment,
 	valor decimal(6,2),
 	momento datetime,
 	fkConfiguracao int,
@@ -129,7 +129,7 @@ create table leituras(
 );
 
 create table parqueEventos(
-	idParqueEventos int primary key identity,
+	idParqueEventos int primary key auto_increment,
 	fkParque int,
 	img_parque varchar(60),
 	tituloEvento varchar(45),
@@ -149,7 +149,7 @@ insert into parqueEventos values
     (1,'https://i.imgur.com/apEnMlz.png','Brasil Game Show','Venha particiar do maior evento de Games da américa Latina!','2021-03-10T08:30:00');
 
 create table clienteEventos(
-	idClienteEventos int primary key identity,
+	idClienteEventos int primary key auto_increment,
 	fkParqueEventos int,
 	fkCliente int,
 	foreign key (fkParqueEventos) references parqueEventos (idParqueEventos),
