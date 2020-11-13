@@ -156,6 +156,8 @@ img {
 #desc-evento {
   font-size: 18px;
   color: #18C139;
+  font-family: 'Roboto';
+  font-weight: bold;
 }
 #parque-evento {
   font-size: 20px;
@@ -180,11 +182,15 @@ img {
   text-transform: uppercase;
   background-color: black;
   color: white;
-  transition: 0.4s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
-#btn-confirme-presenca:hover {
-  background-color: white;
+#btn-confirme-presenca:focus {
   border: 1px solid black;
+  background-color: white;
+  color: black;
+}
+#btn-confirme-presenca:checked {
+  background-color: white;
   color: black;
 }
 #pessoas-confirmadas {

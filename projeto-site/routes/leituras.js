@@ -136,5 +136,21 @@ router.get('/eventos', function(req, res, next) {
 
 });
 
+router.get('/create', function(req, res, next) {
+
+    console.log(`Recuperando a última leitura`);
+
+    const instrucaoSql = `select * from parque order by idParque desc`;
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+        .then(resultado => {
+            res.json(resultado);
+        }).catch(erro => {
+            console.error(erro);
+            res.status(500).send(erro.message);
+        });
+
+});
+
 
 module.exports = router;
