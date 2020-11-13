@@ -122,7 +122,7 @@ router.post('/registrar-evento', function(req, res, next) {
         img_evento: req.body.inputimg,
         tituloEvento: req.body.inputTituloEvento,
         descricao: req.body.inputDescricao,
-        ParquesEventos: req.body.inputDataEventos,
+        dataEventos: req.body.inputDataEventos,
         fkParque: req.body.inputfkParque
     }).then(resultado => {
         console.log(`Registro criado: ${resultado}`)

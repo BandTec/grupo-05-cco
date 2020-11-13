@@ -180,28 +180,6 @@
     window.onload = adicionarEvento
     var dados
 
-    function cadastrar() {
-        aguardar();
-        var formulario = new URLSearchParams(new FormData(form_cadastro));
-        fetch("/usuarios/registrar-evento", {
-            method: "POST",
-            body: formulario
-        }).then(function (response) {
-
-            if (response.ok) {
-
-                window.location.href = 'eventos.html';
-
-            } else {
-
-                console.log('Erro de registro!');
-                response.text().then(function (resposta) { });
-                finalizar_aguardar();
-            }
-        });
-
-        return false;
-    }
 
     function aguardar() {
         btn_entrar.disabled = true;
@@ -232,11 +210,9 @@
                     let contador = 0;
                     let adicionarparque;
                     for (let cont = 0; resposta.length >= cont; cont++) {
-                        adicionarparque += `
-                            <option value="${dados[contador].idParque}">${dados[contador].nome}</option>
-                            `;
+                        adicionarparque += `<option value="${dados[contador].idParque}">${dados[contador].nome}</option>`;
                         contador++
-                        document.getElementById(`inputfkParque`).innerHTML = adicionarparque;
+                        document.getElementById('inputfkParque').innerHTML = adicionarparque;
                     }
                 });
             } else {
@@ -246,6 +222,29 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
+    }
+
+    function cadastrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/registrar-evento", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+
+            if (response.ok) {
+
+                window.location.href = 'eventos.html';
+
+            } else {
+
+                console.log('Erro de registro!');
+                response.text().then(function (resposta) { });
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
     }
 
 </script>
