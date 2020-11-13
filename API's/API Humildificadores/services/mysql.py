@@ -22,6 +22,22 @@ class Mysql:
             print(err)
             raise
 
+    
+
+    def select(self):
+        try:
+            print('Printando Valores')
+            select = self.cursor.execute("select * from dataset_comp2")
+            meuresultado = self.cursor.fetchall()
+            for x in meuresultado:
+                print(x)
+            # self.mysql.commit()
+        except Exception as err:
+            print(err)
+            self.mysql.rollback()
+            self.close()
+
+
     def insert(self, data):
         query = (
             "INSERT INTO dataset_comp2(cpu, cpu_count, ram, ram_percent, disk, user_name)"

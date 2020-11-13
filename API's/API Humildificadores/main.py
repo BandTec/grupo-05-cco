@@ -8,7 +8,12 @@ mysql = Mysql('root', 'bandtec', 'localhost', 'PROJETOAPI')
 
 mysql.connect()
 
+
+
 while True:
+    # select = mysql.select()
+    # print(select)
+    # select = mysql.select()
     values = getData()
     mysql.insert(values)
     Slack = alertaSlack(values)
