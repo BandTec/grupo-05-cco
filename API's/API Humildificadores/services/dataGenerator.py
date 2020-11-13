@@ -31,7 +31,7 @@ def getData():
     data = (round(cpu_media), cpu_count, memory, memory_percent, disk, user_name)
 
     print(data)
-
+        
     return data
 
 def alertaSlack(valores):

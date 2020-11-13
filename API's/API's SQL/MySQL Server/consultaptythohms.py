@@ -17,8 +17,8 @@ while True:
     if opcao_desejada.upper() == 'N':
         break
 
-    meucursor = mydb.cursor()
-    select = meucursor.execute("SELECT column_name FROM information_schema.columns WHERE  table_name = 'pytohms' AND table_schema = 'projetoapi'")
+    meucursor = mydb.cursor() #self.cursor
+    select = meucursor.execute("SELECT column_name FROM information_schema.columns WHERE  table_name = 'pytohms' AND table_schema = 'projetoapi'") #self.cursor.execute
     meuresultado = meucursor.fetchall()
     for x in meuresultado:
         print("[{}]".format(x[0]))
