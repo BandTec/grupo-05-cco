@@ -111,21 +111,23 @@
                             <div id="cards-eventos">
                                 <div id="container-card-eventos">
                                     <div id="part-one-card-eventos">
-                                        <img id="evento-img" src="${dados[contador].img_parque}">
+                                        <div id="div-img" style="background-image: url(${dados[contador].img_parque})"></div>
                                     </div>
                                     <div id="part-two-card-eventos">
                                         <h3 id="title-evento">${dados[contador].tituloEvento}</h3> <br>
                                         <span id="desc-evento">${dados[contador].descricao}</span> <br>
-                                        <b id="parque-evento">Local: Parque ${dados[contador].nome}</b> <br>
-                                        <div id="data_e_hora">
-                                            ${dados[contador].hora}
-                                            <span>${dados[contador].data}</span>
-                                        </div><br>
-                                        <div id="pessoas-confirmadas">
-                                            Pessoas confirmadas:
-                                            <span>12</span>
+                                        <div id="info-eventos">
+                                            <b id="parque-evento">Local: Parque ${dados[contador].nome}</b> <br>
+                                            <div id="data_e_hora">
+                                                ${dados[contador].hora}
+                                                <span>${dados[contador].data}</span>
+                                            </div><br>
+                                            <div id="pessoas-confirmadas">
+                                                Pessoas confirmadas:
+                                                <span>12</span>
+                                            </div>
+                                            <button id="btn-confirme-presenca">confirmar presença</button>
                                         </div>
-                                        <button id="btn-confirme-presenca">confirmar presença</button>
                                     </div>
                                 </div>
                             </div>

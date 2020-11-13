@@ -137,11 +137,12 @@ img {
   padding: 4px 4px;  
   border-radius: 20px;
   margin: 2% 0;
+  padding: 2%;
 }
 #part-two-card-eventos {
+  margin-left: 4%;
   display: flex;
   flex-direction:column;
-  justify-content: center;
 }
 #evento-img {
   width: 300px;
@@ -202,4 +203,15 @@ img {
 #pessoas-confirmadas span {
   float: right;
   margin-right: 3%;
+}
+#div-img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  border-radius: 20px;
+}
+#info-eventos {
+  display: grid;
+  align-content: end;
 }
