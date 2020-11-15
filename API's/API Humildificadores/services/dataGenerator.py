@@ -2,9 +2,8 @@ import psutil
 import requests
 
 def getUser():
-    user_name = psutil.Process().as_dict(attrs=['username'])["username"]
+    user_name = (psutil.Process().as_dict(attrs=['username'])["username"])
     # print(user_name)
-
     return user_name
 
 def getData():
@@ -58,6 +57,7 @@ def alertaSlack(valores):
         return alerta
     else:
         return "tranquilinho"
+
 
 
 

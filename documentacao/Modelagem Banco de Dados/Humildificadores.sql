@@ -105,6 +105,10 @@ create table maquinas(
 	foreign key (fkParque) references parque (idParque)
 );
 
+insert into maquinas values 
+(null, 'HSL017\Aluno', 'Parque Ibirapuera', 1);
+update  maquinas set usuario = 'HSL017
+
 create table componente(
 	idComponente int primary key auto_increment,
 	nome varchar(45),
