@@ -6,9 +6,9 @@
 .fa-2x {
 font-size: 2em;
 }
-.fa {
+.fa, .fas, .fab {
 position: relative;
-display: table-cell;
+display: table-cell !important;
 width: 60px;
 height: 36px;
 text-align: center;
