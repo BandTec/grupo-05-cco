@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="funcoes.js"></script>
-    <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
-
-
+    <script type="text/javascript" src="funcoes.js">
+    
+    </script>
+    <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script> 
+    
 
 </head>
 
@@ -103,14 +104,15 @@
 </html>
 
 <script>
-    // verificar_autenticacao(1);
-
+    
+    verificar_autenticacao();
+    window.onload = adicionarParque;
+    
     function roll_right() {
         var slide = window.document.getElementsByClassName('slide-park');
         document.getElementsByClassName('slide-park').trans
     }
-
-    window.onload = adicionarParque;
+    
     var dados
 
     function adicionarParque() {

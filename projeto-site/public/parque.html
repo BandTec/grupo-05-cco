@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'">
 </head>
 
-<body onload="sorteio()">
+<body>
 
     <div id="header">
         <div class="container">
@@ -29,7 +29,7 @@
                             <h1>Humildificadores</h1>
                         </a></span>
                 </div>
-                <div class="nav">
+                <div id="lista">
                     <ul>
                         <li><a href="index.html">Início</a></li>
                         <li><a href="dashboard.html">Dashboard</a></li>
@@ -115,7 +115,7 @@
 
 </html>
 <script>
-    //verificar_autenticacao(1);
+    verificar_autenticacao();
     window.onload = mostrarInformacoes;
     var dados;
 

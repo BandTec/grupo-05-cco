@@ -125,7 +125,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 <script>
-
+verificar_autenticacaoAdmin();
 function cadastrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
@@ -149,12 +149,6 @@ function cadastrar() {
         return false;
     }
 
-    function aguardar() {
-        btn_entrar.disabled = true;
-    }
-
-    function finalizar_aguardar() {
-        btn_entrar.disabled = false;
-    }
+    
 
 </script>

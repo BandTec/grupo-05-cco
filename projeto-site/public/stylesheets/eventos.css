@@ -240,6 +240,7 @@ main .main .container-login-admins .formulario {
   text-indent: 20px;
   padding: 2% 0;
   width: 100%;
+  color: black;
 }
 .main .container-login-admins .formulario button {
   padding: 3% 42%;

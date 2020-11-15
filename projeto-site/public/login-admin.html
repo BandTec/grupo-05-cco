@@ -34,10 +34,15 @@
             <br>
             <h2>Login de Administrador</h2>
             <div class="formulario">
-                <form action="">
-                    Email: <br><br><input type="text" placeholder="usuario@dominio.com"> <br> <br>
-                    Senha: <br><br><input type="text" placeholder="*********"> <br> <br> <br><br>
-                    <center><button>ENTRAR</button></center>
+                <form id="form_login" method="post" onsubmit="return entrar()">
+                    Email: <br><br><input type="email" id="usuario" name="login" placeholder="usuario@dominio.com" required> <br> <br>
+                    Senha: <br><br><input type="password" id="senha" name="senha" placeholder="***************" required> <br> <br> <br><br>
+                    <div align="center">
+                        <img src="images/aguarde.gif" id="img_aguarde" style="display: none; height: 80px;">
+                    </div>
+                    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+                    </div>
+                    <center><button id="btn_entrar_admin">ENTRAR</button></center>
                     <br>
                 </form>
             </div>  
@@ -46,3 +51,49 @@
 </main>
 </body>
 </html>
+<script>
+    function entrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/admin", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_admin_meuapp = json.email;
+                    sessionStorage.nome_admin_meuapp = json.nome;
+
+                    window.location.href = 'select-parque.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                response.text().then(texto => {
+                    console.error(texto);
+                    finalizar_aguardar(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar_admin.disabled = true;   
+        img_aguarde.style.display = 'block';
+        div_erro.style.display = 'none';
+    }
+
+    function finalizar_aguardar(resposta) {
+        btn_entrar_admin.disabled = false;
+        img_aguarde.style.display = 'none';
+        div_erro.style.display = 'block';
+        div_erro.innerHTML = resposta;
+    }
+</script>

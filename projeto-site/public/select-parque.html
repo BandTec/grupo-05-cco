@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="stylesheets/reset.css">
     <script src="js/sorteio.js"></script>
     <script src="js/grafico.js"></script>
+    <script src="funcoes.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/937e6470ee.js" crossorigin="anonymous"></script>
@@ -74,8 +75,8 @@
             </li>
             
         </ul>
-
         <ul class="logout">
+            <li id="b_usuario"></li>
             <li>
                 <a href="#">
                     <i class="fa fa-power-off fa-2x"></i>
@@ -117,7 +118,7 @@
     crossorigin="anonymous"></script>
 
 <script>
-
+    verificar_autenticacaoAdmin();
     window.onload = obterDadosDaTabela
     var dados
     
@@ -161,7 +162,6 @@
 
                     customers.innerHTML += tabela
 
-                    plotarGrafico(dados);
 
                 });
             } else {
