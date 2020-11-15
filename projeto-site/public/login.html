@@ -8,8 +8,8 @@
     <title>Humildificadores | Login</title>
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/style.css">
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="funcoes.js"></script>
     <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
 </head>
 
@@ -41,10 +41,6 @@
                     <br>
                     <input type="password" id="senha" placeholder="Senha " name="senha">
 
-                    <div align="center">
-                        <img src="images/aguarde.gif" id="img_aguarde" style="display: none; height: 80px;">
-                    </div>
-
                     <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
 
                     </div>
@@ -61,9 +57,11 @@
             </div>
         </div>
     </main>
+    <div id="login_aguarde" align="center">
+        <img src="images/aguarde.gif" id="img_aguarde" style="display: none; height: 100px;">
+    </div>
 
     <div class="footer">
-        <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6"><defs><style>.cls-1{fill-rule:evenodd;fill:url(#Gradiente_sem_nome);}</style><linearGradient id="Gradiente_sem_nome" y1="118.2" x2="1920" y2="118.2" gradientTransform="matrix(1, 0, 0, -1, 0, 164)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00f5a0"/><stop offset="1" stop-color="#00d9f5"/></linearGradient></defs><path class="cls-1" d="M0,0H1920V67.53C1270.2,168.94,649.8-93.13,0,67.53V0Z"/></svg>
         <div class="alinharCentro">
             <h1><a href="calculadora.html">Seja um patrocinador!</a></h1>
             <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
@@ -110,6 +108,7 @@
         btn_entrar.disabled = true;
         img_aguarde.style.display = 'block';
         div_erro.style.display = 'none';
+        login_aguarde.style.display = 'flex';
     }
 
     function finalizar_aguardar(resposta) {
@@ -117,5 +116,6 @@
         img_aguarde.style.display = 'none';
         div_erro.style.display = 'block';
         div_erro.innerHTML = resposta;
+        login_aguarde.style.display = 'none';
     }
 </script>
