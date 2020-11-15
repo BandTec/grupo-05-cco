@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="stylesheets/reset.css">
     <script src="js/sorteio.js"></script>
     <script src="js/grafico.js"></script>
+    <script src="funcoes.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -119,12 +120,8 @@
 </body>
 
 </html>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-
 <script>
-    verificar_autenticacaoAdmin();
+
     window.onload = obterDadosDaTabela
     var dados
     
@@ -144,12 +141,9 @@
                     var tabela = ""
                     dados = resposta
                     for (i = 0; i < resposta.length; i++) {
-                        
-
                         // aqui, após 'registro.' use os nomes 
                         // dos atributos que vem no JSON 
                         // que gerou na consulta ao banco de dados
-
                         tabela += `
                                     <tr>
                                         <td>${dados[i].idCliente}</td>
@@ -163,15 +157,9 @@
                                         <td>${dados[i].preferenciaTemp}</td>
                                         <td>${dados[i].preferenciaUmid}</td>
                                     </tr>`
-
-                        
                     }
                     console.log(JSON.stringify(dados));
-
                     customers.innerHTML += tabela
-
-                    plotarGrafico(dados);
-
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
