@@ -24,22 +24,26 @@ class Mysql:
 
     # select's usados na API's
 
-    def select_usuarios(self):
-        try:
-            print('Usuários na cadastrados')
-            select = self.cursor.execute(
-                "select * from maquinas"
-                "where usuario = %s",usuario
-            )
 
+    global z
+    def select_usuarios(self, usuario_maquina):
+        try:
+            print('Usuários não cadastrados')
+            select_userName = "select * from maquinas where usuario = %s"
+            self.cursor.execute(select_userName, usuario_maquina)
+                # "select * from maquinas"
+                # "where usuario = %s" % (user_name)
             meuresultado = self.cursor.fetchall()
             for x in meuresultado:
-                print(x)
+                z = x[1]
+                print(z)
             # self.mysql.commit()
         except Exception as err:
             print(err)
             self.mysql.rollback()
             self.close()
+        
+        return z
 
     # Insert's usados nas API's
 

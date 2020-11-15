@@ -9,17 +9,20 @@ mysql = Mysql('root', 'bandtec', 'localhost', 'humildificadores')
 
 mysql.connect()
 
-usuario = getUser();
+usuario = getUser()
 
+maquina_user = usuario
+
+values = z
+
+selectUsuario = mysql.select_usuarios(values)
 print("\nSeja bem vindo",usuario,"!")
-
-selectUsuario = mysql.select_usuarios()
 
 if selectUsuario:
     print("\nTá dentro pô")
 else:
     print("\nTá não mano")
-    parque = int(input("\nQual parque você está? \n1-Ibirapuera \n2-Chico Mendes"))
+    parque = int(input("\nQual parque você está? \n1-Ibirapuera \n2-Chico Mendes\n"))
     insertUsuario = mysql.insert_usuarios()
 
 # print(selectUsuario)
