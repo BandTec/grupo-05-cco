@@ -96,14 +96,14 @@
                     <form action="" id="form_cadastro" method="post" onsubmit="return cadastrar()">
                         <br>
                         Endereço para converter as imagens: <a href="https://imgur.com/upload">Imgur</a> <br> <br>
-                        Imagem De Evento: <input type="url" name="inputimg" id="inputimg"
+                        Imagem De Evento: <input type="url" required name="inputimg" id="inputimg"
                             placeholder="Insira o link aqui" onchange="img.src = inputimg.value">
-                        Titulo: <input type="text" name="inputTituloEvento" id="inputTituloEvento"
+                        Titulo: <input type="text" required name="inputTituloEvento" id="inputTituloEvento"
                             placeholder="Insira o título aqui"> <br>
                         <img src="" id="img" style="height: 100px;"><br>
-                        Descrição: <br><textarea name="inputDescricao" id="inputDescricao" cols="104" rows="10"
+                        Descrição: <br><textarea name="inputDescricao"  required id="inputDescricao" cols="104" rows="10"
                             placeholder="(500 caracteres)"></textarea> <br> <br>
-                        Data: <input type="text" name="inputDataEventos" id="inputDataEventos"
+                        Data: <input type="text" name="inputDataEventos" required id="inputDataEventos"
                             placeholder="aaaa-mm-ddThh:mm:ss">
                         <span id="example-date">Exemplo: (2000-04-16T22:00:00)</span><br>
                         Parque ao qual está relacionando:
