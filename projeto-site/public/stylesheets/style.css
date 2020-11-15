@@ -1625,3 +1625,80 @@ nav>div>span {
 .create .container-create .introduction-create h1 {
     font-size: 14px;
 }
+
+/* -----Página de eventos----- */
+
+.container-evento {
+    min-height: 400px;
+    width: 70%;
+
+    margin: 0 auto;
+    margin-top: 80px;
+    padding: 12px;
+
+    display: flex;
+    justify-content: space-between;
+
+    background-color: white;
+    
+    border-radius: 60px;
+}
+
+.container-evento .img-evento {
+    width: 45%;
+
+    border-radius: 60px;
+}
+.container-evento .box-evento {
+    height: 100%;
+    width: 50%;
+    margin-right: 3%;
+
+    font-size: 20px;
+}
+
+.container-evento .box-evento .descricao-evento p {
+    color: chartreuse;
+}
+
+.container-evento .box-evento .descricao-evento .dataHora-evento {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 0 0;
+    margin-top: 4%;
+}
+
+.container-evento .box-evento .participacao-evento .confirmacoes-evento {
+    height: 40px;
+
+    padding: 0 15px;
+    margin-top: 4%;
+
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+
+    border-radius: 7px;
+
+    background-color: gray;
+}
+
+.container-evento .box-evento .participacao-evento .confirmar-evento {
+    height: 60px;
+    width: 100%;
+
+    margin-top: 6%;
+
+    border-radius: 60px;
+
+    font-size: 25px;
+
+    background-color: black;
+    color: white;
+
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+/* -----Fim página de eventos----- */

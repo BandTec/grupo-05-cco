@@ -136,5 +136,52 @@ router.get('/eventos', function(req, res, next) {
 
 });
 
+router.get('/todosParques', function(req, res, next) {
+
+   
+
+    const instrucaoSql = `select * from parque order by idParque desc`;
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+        .then(resultado => {
+            res.json(resultado);
+        }).catch(erro => {
+            console.error(erro);
+            res.status(500).send(erro.message);
+        });
+
+});
+router.get('/todosClientes', function(req, res, next) {
+
+   
+
+    const instrucaoSql = `select * from cliente order by idCliente desc`;
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+        .then(resultado => {
+            res.json(resultado);
+        }).catch(erro => {
+            console.error(erro);
+            res.status(500).send(erro.message);
+        });
+
+});
+
+router.get('/create', function(req, res, next) {
+
+    console.log(`Recuperando a última leitura`);
+
+    const instrucaoSql = `select * from parque order by idParque desc`;
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+        .then(resultado => {
+            res.json(resultado);
+        }).catch(erro => {
+            console.error(erro);
+            res.status(500).send(erro.message);
+        });
+
+});
+
 
 module.exports = router;

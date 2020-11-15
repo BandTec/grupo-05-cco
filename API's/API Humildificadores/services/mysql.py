@@ -22,7 +22,28 @@ class Mysql:
             print(err)
             raise
 
-    def insert(self, data):
+    # select's usados na API's
+
+    def select_usuarios(self):
+        try:
+            print('Usuários na cadastrados')
+            select = self.cursor.execute(
+                "select * from maquinas"
+                "where usuario = %s",usuario
+            )
+
+            meuresultado = self.cursor.fetchall()
+            for x in meuresultado:
+                print(x)
+            # self.mysql.commit()
+        except Exception as err:
+            print(err)
+            self.mysql.rollback()
+            self.close()
+
+    # Insert's usados nas API's
+
+    def insert_usuarios(self, data):
         query = (
             "INSERT INTO dataset_comp2(cpu, cpu_count, ram, ram_percent, disk, user_name)"
             "VALUES (%s, %s, %s, %s, %s, %s)"

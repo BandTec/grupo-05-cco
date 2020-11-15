@@ -8,9 +8,9 @@
     <title>Humildificadores | Eventos</title>
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/reset.css">
-    <script src="js/sorteio.js"></script>
-    <script src="js/grafico.js"></script>
+    <link rel="stylesheet" href="stylesheets/eventos.css">
     <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/sorteio.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
@@ -40,36 +40,14 @@
             </div>
         </div>
     </div>
-
+    <br> <br> <br>
     <main>
-        <!-- corpo da pagina -->
-        <div class="container-park">
-            <h1 id="title-selection-park">Eventos dos Parques</h1>
-            <!-- Slide para selecionar os parques -->
-            <div class="container-slide-park">
-
-                <div class="slide-park">
-
-                    <section class="cd-slider">
-                        <ul id="parqueSlide">
-
-                        </ul>
-                        <nav>
-                            <div>
-                                <a class="prev" href="#"></a>
-                            </div>
-                            <div>
-                                <a class="next" href="#"></a>
-                            </div>
-                        </nav>
-                    </section>
-                </div>
+        <div class="content-evento">
+            <div id="card-evento">
 
             </div>
         </div>
     </main>
-
-
     <div class="footer">
         <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 91.6">
             <defs>
@@ -92,8 +70,6 @@
             <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
         </div>
     </div>
-    <script src="js/carousel.js"></script>
-
 </body>
 
 </html>
@@ -125,59 +101,46 @@
 
                         dados = resposta;
                         let contador = 0;
-                        for (let cont = 0; resposta.length / 3 >= cont; cont++) {
+                        for (let cont = 0; resposta.length > cont; cont++) {
 
                             let htmlPark = "";
 
-                            for (let cont2 = 0; cont2 < 3 && contador < resposta.length; cont2++) {
+                            for (let cont2 = 0; cont2 < 1 && contador < resposta.length; cont2++) {
 
                                 htmlPark += `
-                            <div id="card-eventos">
-                                <img class="park-img" src="${dados[contador].img_parque}" >
-                                <div id="park-display">
-                                    <h3>
-                                        ${dados[contador].nome}<br><br>
-                                    </h3>
-                                    <div id="eventoText">
-                                        Evento:  ${dados[contador].tituloEvento}
-                                    </div>    
-                                    <hr class="hr">
-                                    <div id="date-event">
-                                        ${dados[contador].data}<br>
-                                        ${dados[contador].hora}
-                                      </div>
-                                    <div id="button-eventos" onclick="VerParque(${dados[contador].idParque})">
-                                      Participar
+                            <div id="cards-eventos">
+                                <div id="container-card-eventos">
+                                    <div id="part-one-card-eventos">
+                                        <div id="div-img" style="background-image: url(${dados[contador].img_parque})"></div>
+                                    </div>
+                                    <div id="part-two-card-eventos">
+                                        <h3 id="title-evento">${dados[contador].tituloEvento}</h3> <br>
+                                        <span id="desc-evento">${dados[contador].descricao}</span> <br>
+                                        <div id="info-eventos">
+                                            <b id="parque-evento">Local: Parque ${dados[contador].nome}</b> <br>
+                                            <div id="data_e_hora">
+                                                ${dados[contador].hora}
+                                                <span>${dados[contador].data}</span>
+                                            </div><br>
+                                            <div id="pessoas-confirmadas">
+                                                Pessoas confirmadas:
+                                                <span>12</span>
+                                            </div>
+                                            <button id="btn-confirme-presenca">confirmar presença</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>`;
-                                contador++;
-                            }
-                            document.getElementById(`parqueSlide`).innerHTML += `
-                        <li>
-                            <div class="content " id="slidepage">
-                                ${htmlPark}
                             </div>
-                        </li>`;
-
+                            `;
+                                contador++;
+                                document.getElementById(`card-evento`).innerHTML += htmlPark;
+                            }
                         }
-
-
-
                         // aqui, após 'registro.' use os nomes 
                         // dos atributos que vem no JSON 
-                        // que gerou na consulta ao banco de dados alo
-
-
-
-
-
+                        // que gerou na consulta ao banco de dados
                         console.log(JSON.stringify(dados));
-
-
-
                         console.log(dados);
-                        plotarParques()
                     });
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');

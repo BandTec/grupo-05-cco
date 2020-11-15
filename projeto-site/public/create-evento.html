@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <link rel="shortcut icon" type="image/png" href="images/icon.png" />
     <meta charset="UTF-8">
@@ -14,9 +15,11 @@
     <!-- <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css"> -->
     <link rel="stylesheet" href="stylesheets/create.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="funcoes.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <nav class="main-menu">
         <ul>
@@ -27,7 +30,7 @@
                         Home - Inicio
                     </span>
                 </a>
-              
+
             </li>
             <li class="has-subnav">
                 <a href="create-parque.html">
@@ -36,7 +39,7 @@
                         inserir Parque
                     </span>
                 </a>
-                
+
             </li>
             <li class="has-subnav">
                 <a href="create-evento.html">
@@ -45,16 +48,16 @@
                         Inserir Evento
                     </span>
                 </a>
-                
+
             </li>
             <li class="has-subnav">
                 <a href="#">
-                   <i class="fa fa-folder-open fa-2x"></i>
+                    <i class="fa fa-folder-open fa-2x"></i>
                     <span class="nav-text">
                         Pages
                     </span>
                 </a>
-               
+
             </li>
             <li>
                 <a href="">
@@ -68,20 +71,20 @@
                 <a href="create-evento.html">
                     <i class="fa fa-font fa-2x"></i>
                     <span class="nav-text">
-                       Quotes
+                        Quotes
                     </span>
                 </a>
             </li>
             <li>
-               <a href="#">
-                   <i class="fa fa-table fa-2x"></i>
+                <a href="#">
+                    <i class="fa fa-table fa-2x"></i>
                     <span class="nav-text">
                         Tables
                     </span>
                 </a>
             </li>
             <li>
-               <a href="#">
+                <a href="#">
                     <i class="fa fa-map-marker fa-2x"></i>
                     <span class="nav-text">
                         Maps
@@ -90,7 +93,7 @@
             </li>
             <li>
                 <a href="#">
-                   <i class="fa fa-info fa-2x"></i>
+                    <i class="fa fa-info fa-2x"></i>
                     <span class="nav-text">
                         Documentation
                     </span>
@@ -100,13 +103,13 @@
 
         <ul class="logout">
             <li>
-               <a href="#">
-                     <i class="fa fa-power-off fa-2x"></i>
+                <a href="#">
+                    <i class="fa fa-power-off fa-2x"></i>
                     <span class="nav-text">
                         Logout
                     </span>
                 </a>
-            </li>  
+            </li>
         </ul>
     </nav>
     <div class="header-create">
@@ -123,23 +126,21 @@
                     <form action="" id="form_cadastro" method="post" onsubmit="return cadastrar()">
                         <br>
                         Endereço para converter as imagens: <a href="https://imgur.com/upload">Imgur</a> <br> <br>
-                        Imagem De Evento:  <input type="url" name="inputimg" id="inputimg" placeholder="Insira o link aqui" onchange="img.src = inputimg.value" >
-                        Titulo: <input type="text" name="inputTituloEvento" id="inputTituloEvento" placeholder="Insira o título aqui"> <br>
+                        Imagem De Evento: <input type="url" name="inputimg" id="inputimg"
+                            placeholder="Insira o link aqui" onchange="img.src = inputimg.value">
+                        Titulo: <input type="text" name="inputTituloEvento" id="inputTituloEvento"
+                            placeholder="Insira o título aqui"> <br>
                         <img src="" id="img" style="height: 100px;"><br>
-                        Descrição: <br><textarea name="inputDescricao" id="inputDescricao" cols="104" rows="10" placeholder="(500 caracteres)"></textarea> <br> <br>
-                        Data: <input type="text" name="inputDataEventos" id="inputDataEventos" placeholder="aaaa-mm-ddThh:mm:ss">
+                        Descrição: <br><textarea name="inputDescricao" id="inputDescricao" cols="104" rows="10"
+                            placeholder="(500 caracteres)"></textarea> <br> <br>
+                        Data: <input type="text" name="inputDataEventos" id="inputDataEventos"
+                            placeholder="aaaa-mm-ddThh:mm:ss">
                         <span id="example-date">Exemplo: (2000-04-16T22:00:00)</span><br>
                         Parque ao qual está relacionando:
                         <select name="inputfkParque" id="inputfkParque">
-                            <option value="1">Ibirapuera</option>
-                            <option value="2">Independencia</option>
-                            <option value="3">Carmo</option>
-                            <option value="4">Chico Mendes</option>
-                            <option value="5">Aclimação</option>
-                            <option value="6">Anhanguera</option>
-                            <option value="7">Piqueri</option>
+
                         </select> <br>
-                        
+
                         <center><button id="btn_entrar">Salvar</button></center>
                         <br> <br>
                     </form>
@@ -167,18 +168,68 @@
         </div>
     </div> -->
 </body>
+
 </html>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
 
 <script>
 
-function cadastrar() {
+    window.onload = adicionarEvento
+    var dados
+
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+    }
+
+    function adicionarEvento() {
+
+        fetch('/leituras/create', {
+            cache: 'no-store'   
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    resposta.reverse();
+
+                    dados = resposta;
+                    // aqui, após 'registro.' use os nomes 
+                    // dos atributos que vem no JSON 
+                    // que gerou na consulta ao banco de dados
+                    console.log(JSON.stringify(dados));
+                    console.log(dados);
+                    let contador = 0;
+                    let adicionarparque;
+                    for (let cont = 0; resposta.length >= cont; cont++) {
+                        adicionarparque += `<option value="${dados[contador].idParque}">${dados[contador].nome}</option>`;
+                        contador++
+                        document.getElementById('inputfkParque').innerHTML = adicionarparque;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function cadastrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
         fetch("/usuarios/registrar-evento", {
             method: "POST",
             body: formulario
-        }).then(function(response) {
+        }).then(function (response) {
 
             if (response.ok) {
 
@@ -187,20 +238,12 @@ function cadastrar() {
             } else {
 
                 console.log('Erro de registro!');
-                response.text().then(function(resposta) {});
+                response.text().then(function (resposta) { });
                 finalizar_aguardar();
             }
         });
 
         return false;
-    }
-
-    function aguardar() {
-        btn_entrar.disabled = true;
-    }
-
-    function finalizar_aguardar() {
-        btn_entrar.disabled = false;
     }
 
 </script>
