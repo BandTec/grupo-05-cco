@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="stylesheets/reset.css">
     <script src="js/sorteio.js"></script>
     <script src="js/grafico.js"></script>
+    <script src="funcoes.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/create.css">
@@ -77,7 +78,15 @@
 
         <ul class="logout">
             <li>
-                <a href="#">
+                <a href="">
+                    <i class="fas fa-user-alt"></i>
+                    <span class="nav-text" id="b_usuario">
+
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="logoffAdmin()">
                     <i class="fa fa-power-off fa-2x"></i>
                     <span class="nav-text">
                         Logout

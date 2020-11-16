@@ -19,7 +19,7 @@
 <body>
     <nav class="main-menu">
         <ul>
-            
+
             <li>
                 <a href="index.html">
                     <i class="fas fa-home"></i>
@@ -39,7 +39,7 @@
 
             </li>
             <li class="has-subnav">
-                <a href="create-evento.html"> 
+                <a href="create-evento.html">
                     <i class="fas fa-calendar-plus fa-2x"></i>
                     <span class="nav-text">
                         Inserir Evento
@@ -65,7 +65,7 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a href="create-evento.html"> 
+                <a href="create-evento.html">
                     <i class="fas fa-calendar-day fa-2x"></i>
                     <span class="nav-text">
                         Inserir Evento
@@ -73,12 +73,19 @@
                 </a>
 
             </li>
-            
+
         </ul>
         <ul class="logout">
-            <li id="b_usuario"></li>
             <li>
-                <a href="#">
+                <a href="">
+                    <i class="fas fa-user-alt"></i>
+                    <span class="nav-text" id="b_usuario">
+
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="logoffAdmin()">
                     <i class="fa fa-power-off fa-2x"></i>
                     <span class="nav-text">
                         Logout
@@ -98,7 +105,7 @@
             <table id="customers">
                 <tr>
                     <th>Id</th>
-                    <th>Nome      </th>
+                    <th>Nome </th>
                     <th>Cpf</th>
                     <th>Area</th>
                     <th>Imagem</th>
@@ -106,7 +113,7 @@
                     <th>locallização</th>
                     <th>QtAvaliações</th>
                 </tr>
-                
+
             </table>
         </div>
     </div>
@@ -119,10 +126,10 @@
 
 <script>
     verificar_autenticacaoAdmin();
-    
+
     window.onload = obterDadosDaTabela
     var dados
-    
+
     function obterDadosDaTabela() {
 
         fetch(`/leituras/todosParques`, {
@@ -139,7 +146,7 @@
                     var tabela = ""
                     dados = resposta
                     for (i = 0; i < resposta.length; i++) {
-                        
+
 
                         // aqui, após 'registro.' use os nomes 
                         // dos atributos que vem no JSON 
@@ -157,7 +164,7 @@
                                         <td>${dados[i].quantidadeclassificacao}</td>
                                     </tr>`
 
-                        
+
                     }
                     console.log(JSON.stringify(dados));
 
