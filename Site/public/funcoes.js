@@ -89,7 +89,7 @@ function logoffAdmin() {
 }
 
 function validar_sessaoAdmin() {
-    fetch(`/usuarios/sessaoAdmin/${login_admin}`, { cache: 'no-store' })
+    fetch(`/admin/sessao/${login_admin}`, { cache: 'no-store' })
         .then(resposta => {
             if (resposta.ok) {
                 resposta.text().then(texto => {
@@ -103,7 +103,7 @@ function validar_sessaoAdmin() {
 }
 
 function finalizar_sessaoAdmin() {
-    fetch(`/usuarios/sair/${login_admin}`, { cache: 'no-store' });
+    fetch(`/admin/sair/${login_admin}`, { cache: 'no-store' });
 }
 
 window.onscroll = function() { topo() };

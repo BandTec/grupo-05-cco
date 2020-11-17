@@ -54,7 +54,7 @@
     function entrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_login));
-        fetch("/usuarios/admin", {
+        fetch("/admin/admin", {
             method: "POST",
             body: formulario
         }).then(resposta => {
