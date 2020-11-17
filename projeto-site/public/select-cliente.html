@@ -8,23 +8,15 @@
     <title>Humildificadores | Registrar Evento</title>
     <link rel="stylesheet" href="stylesheets/create.css">
     <link rel="stylesheet" href="stylesheets/reset.css">
-    <script src="js/sorteio.js"></script>
-    <script src="js/grafico.js"></script>
     <script src="funcoes.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css"> -->
-    
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <nav class="main-menu">
         <ul>
-            
+
             <li>
                 <a href="index.html">
                     <i class="fas fa-home"></i>
@@ -44,7 +36,7 @@
 
             </li>
             <li class="has-subnav">
-                <a href="create-evento.html"> 
+                <a href="create-evento.html">
                     <i class="fas fa-calendar-plus fa-2x"></i>
                     <span class="nav-text">
                         Inserir Evento
@@ -70,7 +62,7 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a href="create-evento.html"> 
+                <a href="create-evento.html">
                     <i class="fas fa-calendar-day fa-2x"></i>
                     <span class="nav-text">
                         Inserir Evento
@@ -78,7 +70,7 @@
                 </a>
 
             </li>
-            
+
         </ul>
 
         <ul class="logout">
@@ -117,11 +109,11 @@
                     <th>Estado</th>
                     <th>DtNascimento</th>
                     <th>eMail</th>
-                    
+
                     <th>preferenciaTemp</th>
                     <th>preferenciaUmid</th>
                 </tr>
-                
+
             </table>
         </div>
     </div>
@@ -132,27 +124,27 @@
     verificar_autenticacaoAdmin();
     window.onload = obterDadosDaTabela
     var dados
-    
+
     function obterDadosDaTabela() {
 
         fetch(`/leituras/todosClientes`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    dadosComponente = resposta;
+                        dadosComponente = resposta;
 
-                    resposta.reverse();
-                    var tabela = ""
-                    dados = resposta
-                    for (i = 0; i < resposta.length; i++) {
-                        // aqui, após 'registro.' use os nomes 
-                        // dos atributos que vem no JSON 
-                        // que gerou na consulta ao banco de dados
-                        tabela += `
+                        resposta.reverse();
+                        var tabela = ""
+                        dados = resposta
+                        for (i = 0; i < resposta.length; i++) {
+                            // aqui, após 'registro.' use os nomes 
+                            // dos atributos que vem no JSON 
+                            // que gerou na consulta ao banco de dados
+                            tabela += `
                                     <tr>
                                         <td>${dados[i].idCliente}</td>
                                         <td>${dados[i].nome}</td>
@@ -165,20 +157,17 @@
                                         <td>${dados[i].preferenciaTemp}</td>
                                         <td>${dados[i].preferenciaUmid}</td>
                                     </tr>`
-                    }
-                    console.log(JSON.stringify(dados));
-                    customers.innerHTML += tabela
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
+                        }
+                        console.log(JSON.stringify(dados));
+                        customers.innerHTML += tabela
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
     }
-
-
-
 </script>
