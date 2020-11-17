@@ -4,7 +4,7 @@
 
 
 .fa-2x {
-font-size: 2em;
+font-size: 2em !important;
 }
 .fa, .fas, .fab {
 position: relative;
