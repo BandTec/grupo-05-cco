@@ -89,7 +89,7 @@ function logoffAdmin() {
 }
 
 function validar_sessaoAdmin() {
-    fetch(`/usuarios/sessao/${login_admin}`, { cache: 'no-store' })
+    fetch(`/usuarios/sessaoAdmin/${login_admin}`, { cache: 'no-store' })
         .then(resposta => {
             if (resposta.ok) {
                 resposta.text().then(texto => {

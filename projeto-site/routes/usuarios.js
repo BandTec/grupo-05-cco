@@ -120,8 +120,8 @@ router.get('/sessao/:login', function(req, res, next) {
 
     /* verificacao do admin */
 
-router.get('/sessao/:login-admin', function(req, res, next) {
-    let login = req.params.login;
+router.get('/sessaoAdmin/:login_admin', function(req, res, next) {
+    let login = req.params.login_admin;
     console.log(`Verificando se o usuário ${login} tem sessão`);
 
     let tem_sessao = false;
