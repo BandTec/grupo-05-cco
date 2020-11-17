@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <link rel="shortcut icon" type="image/png" href="images/icon.png" />
     <meta charset="UTF-8">
@@ -9,12 +10,10 @@
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/eventos.css">
     <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/sorteio.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
 </head>
+
 <body>
     <div id="header">
         <div class="container">
@@ -27,29 +26,29 @@
             </div>
         </div>
     </div>
-<main>
-    <br><br><br><br><br>
-    <div class="main">
-        <div class="container-login-admins">
-            <br>
-            <h2>Login de Administrador</h2>
-            <div class="formulario">
-                <form id="form_login" method="post" onsubmit="return entrar()">
-                    Email: <br><br><input type="email" id="usuario" name="login" placeholder="usuario@dominio.com" required> <br> <br>
-                    Senha: <br><br><input type="password" id="senha" name="senha" placeholder="***************" required> <br> <br> <br><br>
-                    <div align="center">
-                        <img src="images/aguarde.gif" id="img_aguarde" style="display: none; height: 80px;">
-                    </div>
-                    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
-                    </div>
-                    <center><button id="btn_entrar_admin">ENTRAR</button></center>
-                    <br>
-                </form>
-            </div>  
+    <main>
+        <br><br><br><br><br>
+        <div class="main">
+            <div class="container-login-admins">
+                <br>
+                <h2>Login de Administrador</h2>
+                <div class="formulario">
+                    <form id="form_login" method="post" onsubmit="return entrar()">
+                        Email: <br><br><input type="email" id="usuario" name="login" placeholder="usuario@dominio.com" required> <br> <br> Senha: <br><br><input type="password" id="senha" name="senha" placeholder="***************" required> <br> <br>                        <br><br>
+                        <div align="center">
+                            <img src="images/aguarde.gif" id="img_aguarde" style="display: none; height: 80px;">
+                        </div>
+                        <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+                        </div>
+                        <center><button id="btn_entrar_admin">ENTRAR</button></center>
+                        <br>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 </body>
+
 </html>
 <script>
     function entrar() {
@@ -85,7 +84,7 @@
     }
 
     function aguardar() {
-        btn_entrar_admin.disabled = true;   
+        btn_entrar_admin.disabled = true;
         img_aguarde.style.display = 'block';
         div_erro.style.display = 'none';
     }
