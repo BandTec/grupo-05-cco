@@ -29,8 +29,8 @@ public class TelaUsuario extends javax.swing.JFrame {
         dataSource.setUrl(
         "jdbc:mysql://localhost:3306/projetoapi?useTimezone=true&serverTimezone=UTC");
         // exemplo para MySql: "jdbc:mysql://localhost:3306/meubanco"
-        dataSource.setUsername("root");
-        dataSource.setPassword("bandtec");
+        dataSource.setUsername("ProjetoAPI");
+        dataSource.setPassword("urubu100");
 
         jdbcTemplateLocal = new JdbcTemplate(dataSource);
 
