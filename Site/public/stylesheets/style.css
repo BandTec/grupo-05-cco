@@ -105,6 +105,11 @@ main {
     font-weight: bold;
 }
 
+#header ul {
+    display: inline-flex;
+    align-items: center;
+}
+
 #header li {
     display: inline;
     padding: 0px 10px;
@@ -181,27 +186,45 @@ main {
 #btn_entrar {
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
-    width: 300px;
+    width: 220px;
     height: 50px;
     background-color: #ffffff;
     border-radius: 30px;
-    border: none;
+    border: 1px solid #06D08A;
     color: #06D08A;
     font-size: 18px;
     font-weight: bold;
-    transition: all .3s ease;
-    box-shadow: 0px 2px 5px rgba(120, 120, 120, 0.5);
+    transition: all .1s ease;
+    box-shadow: 0px 2px 0px #06D08A;
+    text-transform: uppercase;
 }
 
 #btn_entrar:hover {
     cursor: pointer;
     background-color: #06D08A;
     color: #ffffff;
-    transition: all .3s ease;
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+#btn_entrar:active {
+    background-color: #00d9f5;
+}
+
+#btn_seguinte {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login {
     margin-top: 50px;
+}
+
+#div_erro {
+    color: red;
+    margin: 5px;
+    font-family: 'Roboto', sans-serif;
 }
 
 #login_aguarde {
@@ -235,7 +258,7 @@ main {
 .boxCadastro {
     margin: auto;
     font-size: 15px;
-    width: 900px;
+    width: 500px;
     padding: 40px;
     margin-bottom: 24px;
     text-align: center;
@@ -249,9 +272,50 @@ main {
     font-family: 'Roboto', sans-serif;
 }
 
-.formCadastro form {
+#containerPosition {
+    position: relative;
+    width: 334px;
+    height: 248px;
+    overflow: hidden;
+}
+
+#containerCadastro {
+    width: 334px;
+    height: 248px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: absolute;
+    transition: .2s all cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.formCadastro {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    margin: auto;
+}
+
+.formCadastro ul {
+    margin: 5;
+    padding: 0;
+    display: inline-flex;
+}
+
+.formCadastro li {
+    margin: 0px 3px;
+    padding: 2px;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.formCadastro li:nth-child(2) {
+    opacity: .3;
 }
 
 #form_login {
@@ -271,6 +335,7 @@ main {
     height: 40px;
     text-indent: 10px;
     padding-left: 10px;
+    letter-spacing: 1px;
 }
 
 #form_login input {
@@ -282,6 +347,7 @@ main {
     height: 40px;
     text-indent: 10px;
     padding-left: 10px;
+    letter-spacing: 1px;
 }
 
 .formCadastro input::placeholder {
@@ -299,23 +365,27 @@ main {
 }
 
 .btnCadastro {
-    width: 300px;
-    height: 50px;
     font-family: 'Roboto', sans-serif;
-    background: #06D08A;
-    border-radius: 22px;
-    border: none;
-    color: white;
-    font-size: 18px;
-    margin-top: 35px;
     cursor: pointer;
-    font-weight: 700;
-    transition: .2s ease-in-out;
+    width: 220px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: 1px solid #06D08A;
+    color: #06D08A;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all .1s ease;
+    box-shadow: 0px 2px 0px #06D08A;
+    text-transform: uppercase;
 }
 
 .btnCadastro:hover {
-    background-color: #00D9F5;
-    box-shadow: 0px 1px 5px rgba(120, 120, 120, 0.5);
+    cursor: pointer;
+    background-color: #06D08A;
+    color: #ffffff;
+    box-shadow: none;
+    transform: translateY(2px);
 }
 
 #h1Login {
@@ -1171,6 +1241,7 @@ body {
 }
 
 #park {
+    cursor: pointer;
     overflow-x: hidden;
     border-radius: 20px;
     background: #fff;
@@ -1179,11 +1250,7 @@ body {
     display: inline-flex;
     flex-direction: column;
     overflow: hidden;
-    transition: 0.5s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#park:hover {
-    transform: scale(1.04);
+    transition: 1s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .park-img {
@@ -1196,44 +1263,85 @@ body {
     width: 100%;
 }
 
-#park h3 {
-    padding-top: 20px;
-    margin: 0;
-    font-size: 1.6rem;
-    color: #303030;
-}
-
-#park-button {
-    text-align: center;
-    width: inherit;
-    padding: 30px 0;
-    font-size: 24px;
-    color: #00D9F5;
-    cursor: pointer;
-    border-top: 3px solid #00D9F5;
-    user-select: none;
-}
-
-#park-button:hover {
-    background-color: #00D9F5;
-    color: #fff;
-    border: 5px solid #fff;
-    border-radius: 0px 0px 20px 20px;
-    transition: 0.5s;
-}
-
-#park-button:active {
-    background-color: #00e699;
-    color: #fff;
-    transition: 0.01s;
+#park:hover #stars {
+    opacity: 1;
 }
 
 #park:hover #park-button {
-    width: -webkit-fill-available;
+    opacity: 1;
+    transition: 1s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#park:hover {
+    background-size: 500%;
+    box-shadow: 0 0 50px 25px rgba(0, 0, 0, 0.3) inset;
+    transition: 1s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#park:hover .stars:nth-child(1) {
+    animation: starAnimation .5s;
+}
+
+#park:hover .stars:nth-child(2) {
+    animation: starAnimation .6s;
+}
+
+#park:hover .stars:nth-child(3) {
+    animation: starAnimation .7s;
+}
+
+#park:hover .stars:nth-child(4) {
+    animation: starAnimation .8s;
+}
+
+#park:hover .stars:nth-child(5) {
+    animation: starAnimation .9s;
+}
+
+@keyframes starAnimation {
+    0% {
+        transform: translateY(100px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+#park h3 {
+    width: 80%;
+    padding-top: 20px;
+    margin: 0;
+    font-size: 1.6rem;
+    color: #01B979;
+    background: #FFF;
+    border-radius: 0 0 20px 20px;
+}
+
+#park-button {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0;
+    transition: 1s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#park-button:hover {
+    opacity: 1;
 }
 
 #stars {
-    margin-bottom: 25px;
+    width: 100%;
+    transition: 1s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    padding: 25px 0 25px 0;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5));
 }
 
 #eventoText {
@@ -1259,7 +1367,7 @@ body {
     display: inline-flex;
     flex-direction: column;
     overflow: hidden;
-    transition: 0.5s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: .2s all ease;
 }
 
 #stars img {
@@ -1269,9 +1377,10 @@ body {
 }
 
 #park-display {
-    height: 55%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -1293,9 +1402,25 @@ body {
 }
 
 .body-park {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 5% 0;
     width: 100%;
     font-family: 'Roboto', sans-serif;
+}
+
+#containerAlerta {
+    width: 80%;
+    border-radius: 20px 20px 0 0;
+    height: 70px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: rgb(250 107 107);
 }
 
 .body-park .container-dash {
@@ -1543,8 +1668,8 @@ nav div:last-of-type {
     height: 100%;
     display: block;
     border-radius: 100%;
-    -webkit-transition: box-shadow .3s;
-    transition: box-shadow .3s;
+    -webkit-transition: box-shadow .2s;
+    transition: box-shadow .2s;
 }
 
 .prev::before,

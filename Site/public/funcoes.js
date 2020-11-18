@@ -4,24 +4,38 @@ let nome_usuario;
 function redirecionar_login() {
     window.location.href = 'login.html';
 }
-function verificar_autenticacao() {
+
+function verificar_autenticacao(event) {
     login_usuario = sessionStorage.login_usuario_meuapp;
     nome_usuario = sessionStorage.nome_usuario_meuapp;
 
-    if (login_usuario == undefined) {
-        // loginDashboard.style.display = 'inline';
-        // cadastroDashboard.style.display = 'inline';
-        redirecionar_login()
-    } else {
-        lista.innerHTML = `<li><a href="index.html">Início</a></li> 
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="eventos.html">Eventos</a></li>
-        <li class="barra">|</li>
-        <li><a href="#" id="b_usuario"></a></li>
-        <li ><a href="#" onclick="logoff()">Sair</a></li>`;
-        b_usuario.innerHTML = nome_usuario;
-        // esconderStart.style.display = 'none';
-        validar_sessao();
+    if (event == 2) {
+        if (login_usuario == undefined) {
+            redirecionar_login();
+        } else {
+            lista.innerHTML = `<li><a href="index.html">Início</a></li> 
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li class="barra">|</li>
+            <li><a href="#" id="b_usuario"></a></li>
+            <li ><a href="#" onclick="logoff()">Sair</a></li>`;
+            b_usuario.innerHTML = nome_usuario;
+
+            validar_sessao();
+        }
+    }
+
+    if (event == 1) {
+        if (login_usuario == undefined) {} else {
+            esconderStart.style.display = 'none';
+            lista.innerHTML = `<li><a href="index.html">Início</a></li> 
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li class="barra">|</li>
+            <li><a href="#" id="b_usuario"></a></li>
+            <li ><a href="#" onclick="logoff()">Sair</a></li>`;
+            b_usuario.innerHTML = nome_usuario;
+        }
     }
 
 }
@@ -29,7 +43,7 @@ function verificar_autenticacao() {
 function logoff() {
     finalizar_sessao();
     sessionStorage.clear();
-    redirecionar_login();
+    window.location.href = 'index.html';
 }
 
 function validar_sessao() {
@@ -66,6 +80,7 @@ let nome_admin;
 function redirecionar_loginAdmin() {
     window.location.href = 'login-admin.html';
 }
+
 function verificar_autenticacaoAdmin() {
     login_admin = sessionStorage.login_admin_meuapp;
     nome_admin = sessionStorage.nome_admin_meuapp;

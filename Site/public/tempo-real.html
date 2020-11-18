@@ -10,16 +10,16 @@
     <!-- script do google charts -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="funcoes.js"></script>
-    
+
     <style>
         /* Classes CSS para exemplos de alertas */
-
+        
         .normal {
             background-color: white;
         }
-
+        
         .alerta {
-            background-color:tomato;
+            background-color: tomato;
         }
     </style>
 
@@ -27,12 +27,12 @@
 
 <body onload="atualizarGrafico()">
     <div>
-        Olá, <b id="b_usuario"></b>  
+        Olá, <b id="b_usuario"></b>
         <a href="#" onclick="logoff()" style="color:maroon">[Sair]</a>
 
         <a href="grafico-chartjs.html">Gráfico de histórico recente</a>
     </div>
-    
+
     <div id="div_alerta" class="alerta"></div>
 
     <div style="width:75%;">
@@ -43,7 +43,6 @@
 
 </html>
 <script>
-
     let usuario;
 
     verificar_autenticacao();
@@ -53,7 +52,7 @@
     //google.load('current', {'packages':['gauge']});
     //google.charts.setOnLoadCallback(obterDadosGrafico);
     google.load('visualization', '1', {
-        packages: ['corechart','gauge'],
+        packages: ['corechart', 'gauge'],
         callback: obterDadosGrafico
     });
     // Não mexa nessas 2 linhas! 
@@ -72,23 +71,23 @@
         // podem vir de um outro EndPoint
         var configuracoes = {
             temperatura: {
-                width: 400, 
+                width: 400,
                 height: 120,
-                yellowFrom:00, 
-                yellowTo: 20,                
+                yellowFrom: 00,
+                yellowTo: 20,
                 yellowColor: 'cyan',
-                redFrom: 40, 
+                redFrom: 40,
                 redTo: 60,
                 max: 60,
                 minorTicks: 5
             },
             umidade: {
-                width: 400, 
+                width: 400,
                 height: 120,
-                yellowFrom: 00, 
-                yellowTo: 50,                
-                yellowColor: 'cyan',               
-                redFrom: 85, 
+                yellowFrom: 00,
+                yellowTo: 50,
+                yellowColor: 'cyan',
+                redFrom: 85,
                 redTo: 100,
                 max: 100,
                 minorTicks: 5
@@ -103,66 +102,68 @@
     function obterDadosGrafico() {
         var dados;
 
-        fetch('/leituras/tempo-real', {cache:'no-store'}).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    
-                    console.log(`Dados recebidos: ${JSON.stringify(dados)}`);
+        fetch('/leituras/tempo-real', {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    // aqui, após registro. use os nomes 
-                    // dos atributos que vem no JSON 
-                    // que gerou na consulta ao banco de dados
-                    dadosTemperatura = google.visualization.arrayToDataTable([
-                        ['Label', 'Value'],
-                        ['Temperatura', resposta.temperatura]
-                    ]);
+                        console.log(`Dados recebidos: ${JSON.stringify(dados)}`);
 
-                    dadosUmidade = google.visualization.arrayToDataTable([
-                        ['Label', 'Value'],
-                        ['Umidade', resposta.umidade]
-                    ]);
+                        // aqui, após registro. use os nomes 
+                        // dos atributos que vem no JSON 
+                        // que gerou na consulta ao banco de dados
+                        dadosTemperatura = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Temperatura', resposta.temperatura]
+                        ]);
 
-                    var dados = {
-                        temperatura: dadosTemperatura,
-                        umidade: dadosUmidade
-                    }
-                    
-                    alertar(resposta.temperatura, resposta.umidade);
-                    plotarGrafico(dados);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+                        dadosUmidade = google.visualization.arrayToDataTable([
+                            ['Label', 'Value'],
+                            ['Umidade', resposta.umidade]
+                        ]);
+
+                        var dados = {
+                            temperatura: dadosTemperatura,
+                            umidade: dadosUmidade
+                        }
+
+                        alertar(resposta.temperatura, resposta.umidade);
+                        plotarGrafico(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
 
     }
 
     function alertar(temperatura, umidade) {
         // ideal que venham de algum EndPoint
-        var limites = { 
+        var limites = {
             max_temperatura: 40,
             min_temperatura: 20,
             max_umidade: 80,
-            min_umidade: 50,            
+            min_umidade: 50,
         };
 
         var mensagem = '';
         if (temperatura > limites.max_temperatura) {
             mensagem += '* Temperatura alta demais! <br>';
-        } 
+        }
         if (umidade > limites.max_umidade) {
             mensagem += '* Umidade alta demais! <br>';
-        } 
+        }
         if (temperatura < limites.min_temperatura) {
             mensagem = '* Temperatura baixa demais! <br>';
-        } 
+        }
         if (umidade < limites.min_umidade) {
             mensagem = '* Umidade baixa demais! <br>';
         }
-                
+
         div_alerta.innerHTML = mensagem;
     }
 

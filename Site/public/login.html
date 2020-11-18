@@ -34,26 +34,16 @@
     <main>
         <div class="login">
             <div class="boxLogin">
-                <h1 id="h1Login">ENTRAR</h1>
+                <h1 id="h1Login">LOGIN</h1>
 
                 <form id="form_login" method="post" onsubmit="return entrar()">
-                    <input type="email" id="usuario" placeholder="E-mail " name="login">
-                    <br>
-                    <input type="password" id="senha" placeholder="Senha " name="senha">
-
-                    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
-
-                    </div>
-
-                    <br>
-                    <br>
-
+                    <input type="email" id="usuario" placeholder="E-mail " name="login" required>
+                    <input type="password" id="senha" placeholder="Senha " name="senha" required>
+                    <div id="div_erro"><br></div>
                     <button id="btn_entrar">Entrar</button>
-
                     <p id="esqueciSenha"><a href="cadastro.html ">Não tem conta? Cadastre-se</a></p>
-
-
                 </form>
+
             </div>
         </div>
     </main>
@@ -93,10 +83,12 @@
             } else {
 
                 console.log('Erro de login!');
+                login_aguarde.style.display = 'none';
+                div_erro.style.display = 'block';
+                div_erro.innerHTML = 'E-mail e/ou senha incorretos';
 
                 response.text().then(texto => {
                     console.error(texto);
-                    finalizar_aguardar(texto);
                 });
             }
         });
@@ -105,17 +97,16 @@
     }
 
     function aguardar() {
-        btn_entrar.disabled = true;
         img_aguarde.style.display = 'block';
         div_erro.style.display = 'none';
         login_aguarde.style.display = 'flex';
     }
 
-    function finalizar_aguardar(resposta) {
-        btn_entrar.disabled = false;
-        img_aguarde.style.display = 'none';
-        div_erro.style.display = 'block';
-        div_erro.innerHTML = resposta;
-        login_aguarde.style.display = 'none';
-    }
+    // function finalizar_aguardar(resposta) {
+    //     btn_entrar.disabled = false;
+    //     img_aguarde.style.display = 'none';
+    //     div_erro.style.display = 'block';
+    //     div_erro.innerHTML = resposta;
+    //     login_aguarde.style.display = 'none';
+    // }
 </script>

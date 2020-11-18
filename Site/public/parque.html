@@ -29,18 +29,21 @@
                             <h1>Humildificadores</h1>
                         </a></span>
                 </div>
-                <div id="lista">
-                    <ul>
+                <div class="nav">
+                    <ul id="lista">
                         <li><a href="index.html">Início</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
+
     <main>
         <div class="body-park">
+            <div id="containerAlerta">
+                <p id="exibirAlertas"></p>
+            </div>
             <div class="container-dash">
                 <div class="part-one">
                     <div class="about-park">
@@ -99,9 +102,11 @@
 
 </html>
 <script>
-    verificar_autenticacao();
+    verificar_autenticacao(2);
     window.onload = mostrarInformacoes;
     var dados;
+
+    let alertas = [];
 
     function mostrarInformacoes() {
 
@@ -132,6 +137,39 @@
                             dados_temperatura = `${dados[0].temperatura} ºC`
                             dados_umidade = `${dados[0].umidade} %`
                         }
+
+                        let cor;
+
+                        if (dados[0].umidade > 70) {
+                            alertas.push('o tempo está muito umido.');
+                        } else if (dados[0].umidade < 30) {
+                            alertas.push('o tempo está muito seco.');
+                        }
+
+                        if (dados[0].temperatura > 30) {
+                            alertas.push('a temperatura está elevada demais.');
+                        } else if (dados[0].temperatura < 18) {
+                            alertas.push('a temperatura está baixa demais.');
+                        }
+
+                        if (dados[0].umidade > 70 && dados[0].temperatura > 30) {
+                            alertas.push('o tempo está muito umido e com a temperatura elevada demais.');
+                        }
+                        if (dados[0].umidade < 30 && dados[0].temperatura < 18) {
+                            alertas.push('o tempo está muito seco e com a temperatura baixa demais.');
+                        }
+                        if (dados[0].umidade > 70 && dados[0].temperatura < 18) {
+                            alertas.push('o tempo está muito umido e com a temperatura baixa demais.')
+                        }
+                        if (dados[0].umidade < 30 && dados[0].temperatura > 30) {
+                            alertas.push('o tempo está muito seco e com a temperatura elevada demais.')
+                        }
+
+                        if (alertas.length > 0) {
+                            containerAlerta.style.display = 'flex';
+                            exibirAlertas.innerHTML = `Cuidado, ${alertas[alertas.length - 1]}`;
+                        }
+
                         document.getElementById(`park-img`).innerHTML = park_img;
                         document.getElementById(`classification`).innerHTML += estrelas;
                         document.getElementById(`sobre-park`).innerHTML = nome_park;

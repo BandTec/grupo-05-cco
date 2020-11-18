@@ -8,15 +8,9 @@
     <title>Humildificadores | Dashboard</title>
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/reset.css">
-    <script src="js/sorteio.js"></script>
-    <script src="js/grafico.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="funcoes.js">
-    </script>
+    <script type="text/javascript" src="funcoes.js"></script>
     <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
 
 
@@ -44,8 +38,8 @@
 
     <main>
         <!-- corpo da pagina -->
+        <h1 id="title-selection-park">Selecione um parque abaixo</h1>
         <div class="container-park">
-            <h1 id="title-selection-park">Agora selecione o parque que mais te interresou</h1>
             <!-- Slide para selecionar os parques -->
             <div class="container-slide-park">
 
@@ -87,7 +81,7 @@
 </html>
 
 <script>
-    verificar_autenticacao();
+    verificar_autenticacao(2);
     window.onload = adicionarParque;
 
     function roll_right() {
@@ -126,18 +120,17 @@
                                 }
 
                                 htmlPark += `
-                            <div id="park">
-                                <img class="park-img" src="${dados[contador].imgParque}" >
+                            <div id="park" style="background-image: url('${dados[contador].imgParque}');background-repeat: no-repeat;background-position: center;background-size: 300%;">
                                 <div id="park-display">
                                     <h3>
                                         ${dados[contador].nome}<br><br>
                                     </h3>
+                                    <div id="park-button" onclick="VerParque(${dados[contador].idParque})">
+                                        VER MAIS
+                                    </div> 
                                     <div id="stars">
                                         ${estrelas}
                                     </div>    
-                                    <div id="park-button" onclick="VerParque(${dados[contador].idParque})">
-                                        VER MAIS
-                                    </div>
                                 </div>
                             </div>`;
                                 contador++;
