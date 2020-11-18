@@ -8,19 +8,13 @@
     <title>Humildificadores | Registrar Parque</title>
     <link rel="stylesheet" href="stylesheets/create.css">
     <link rel="stylesheet" href="stylesheets/reset.css">
-    <script src="js/sorteio.js"></script>
-    <script src="js/grafico.js"></script>
-    <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css"> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <script type="text/javascript" src="funcoes.js"></script>
     <script src="https://kit.fontawesome.com/937e6470ee.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-     
+
     <nav class="main-menu">
         <ul>
 
@@ -107,42 +101,36 @@
     </div>
     <div class="create">
         <div class="container">
-            
+
             <div class="content-create">
                 <div class="part-create">
-                    <form action="" id="form_cadastro" method="post" onsubmit="return cadastrar()"><br>
-                        Endereço para converter as imagens: <a href="https://imgur.com/upload">Imgur</a> <br><br>
-                        Nome do Parque: <input type="text" name="inputNome" id="inputNome" required placeholder="Insira aqui">
-                        CPF: <input type="text" name="inputCpf" id="inputCpf" required placeholder="1234567890"> <br> 
-                        Area: <input type="text" name="inputArea" id="inputArea" required placeholder="90000"> <span id="example-metros">em m2 (metros quadrados)</span> <br>
-                        
-                        <img src="" id="img" style="height: 200px;"><br>
-                        Imagem do Parque: <input type="url" name="inputImgParque" required id="inputImgParque" onchange="img.src = inputImgParque.value" placeholder="Insira o link aqui"><br>
-                        
-                         
-                        Localização: <input type="text" name="inputLocalizacao" required id="inputLocalizacao" placeholder="Av. Avenida de Avenida">
-                         <center><button id="btn_entrar">Salvar</button></center> 
-                         <br> <br>
+                    <form action="" id="form_cadastro" method="post" onsubmit="return cadastrar()"><br> Endereço para converter as imagens: <a href="https://imgur.com/upload">Imgur</a> <br><br> Nome do Parque: <input type="text" name="inputNome" id="inputNome" required placeholder="Insira aqui"> Telefone: <input type="text" name="inputTelefone"
+                            id="inputTelefone" required placeholder="(11)12345678)"> <br><br>
+
+                        <img src="" id="img" style="height: 200px;"><br> Imagem do Parque: <input type="url" name="inputImgParque" required id="inputImgParque" onchange="img.src = inputImgParque.value" placeholder="Insira o link aqui"><br> Localização:
+                        <input type="text" name="inputLocalizacao" required id="inputLocalizacao" placeholder="Av. Avenida de Avenida">
+                        <center><button id="btn_entrar">Salvar</button></center>
+                        <br> <br>
                     </form>
                 </div>
             </div>
-            
-        </div>
-    
-</body>
-</html>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
+        </div>
+
+</body>
+
+</html>
 <script>
-verificar_autenticacaoAdmin();
-function cadastrar() {
+    verificar_autenticacaoAdmin();
+
+    function cadastrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
         fetch("/usuarios/registrar-parque", {
             method: "POST",
             body: formulario
         }).then(function(response) {
-            
+
             if (response.ok) {
 
                 window.location.href = 'dashboard.html';
@@ -157,7 +145,4 @@ function cadastrar() {
 
         return false;
     }
-
-    
-
 </script>

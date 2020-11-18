@@ -16,14 +16,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        cpf: {
-            field: 'cpfGerente',
+        telefone: {
+            field: 'telefone',
             type: DataTypes.STRING,
-            allowNull: false
-        },
-        area: {
-            field: 'area',
-            type: DataTypes.INTEGER,
             allowNull: false
         },
         img_parque: {

@@ -8,8 +8,6 @@
     <title>Humildificadores | Select Parque</title>
     <link rel="stylesheet" href="stylesheets/create.css">
     <link rel="stylesheet" href="stylesheets/reset.css">
-    <script src="js/sorteio.js"></script>
-    <script src="js/grafico.js"></script>
     <script src="funcoes.js"></script>
     <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
@@ -121,9 +119,7 @@
 </body>
 
 </html>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 <script>
     verificar_autenticacaoAdmin();
@@ -134,26 +130,26 @@
     function obterDadosDaTabela() {
 
         fetch(`/leituras/todosParques`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    dadosComponente = resposta;
+                        dadosComponente = resposta;
 
-                    resposta.reverse();
-                    var tabela = ""
-                    dados = resposta
-                    for (i = 0; i < resposta.length; i++) {
+                        resposta.reverse();
+                        var tabela = ""
+                        dados = resposta
+                        for (i = 0; i < resposta.length; i++) {
 
 
-                        // aqui, após 'registro.' use os nomes 
-                        // dos atributos que vem no JSON 
-                        // que gerou na consulta ao banco de dados
+                            // aqui, após 'registro.' use os nomes 
+                            // dos atributos que vem no JSON 
+                            // que gerou na consulta ao banco de dados
 
-                        tabela += `
+                            tabela += `
                                     <tr>
                                         <td>${dados[i].idParque}</td>
                                         <td>${dados[i].nome}</td>
@@ -166,21 +162,20 @@
                                     </tr>`
 
 
-                    }
-                    console.log(JSON.stringify(dados));
+                        }
+                        console.log(JSON.stringify(dados));
 
-                    customers.innerHTML += tabela
+                        customers.innerHTML += tabela
 
 
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
     }
-
 </script>

@@ -8,13 +8,7 @@
     <title>Humildificadores | Registrar Evento</title>
     <link rel="stylesheet" href="stylesheets/create.css">
     <link rel="stylesheet" href="stylesheets/reset.css">
-    <script src="js/sorteio.js"></script>
-    <script src="js/grafico.js"></script>
-    <script src="js/jquery-1.11.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="stylesheets/bootstrap.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css"> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <script type="text/javascript" src="funcoes.js"></script>
     <script src="https://kit.fontawesome.com/937e6470ee.js" crossorigin="anonymous"></script>
 </head>
@@ -110,19 +104,10 @@
             <div class="content-create">
                 <div class="part-create">
                     <form action="" id="form_cadastro" method="post" onsubmit="return cadastrar()">
-                        <br>
-                        Endereço para converter as imagens: <a href="https://imgur.com/upload">Imgur</a> <br> <br>
-                        Imagem De Evento: <input type="url" required name="inputimg" id="inputimg"
-                            placeholder="Insira o link aqui" onchange="img.src = inputimg.value">
-                        Titulo: <input type="text" required name="inputTituloEvento" id="inputTituloEvento"
-                            placeholder="Insira o título aqui"> <br>
-                        <img src="" id="img" style="height: 100px;"><br>
-                        Descrição: <br><textarea name="inputDescricao"  required id="inputDescricao" cols="104" rows="10"
-                            placeholder="(500 caracteres)"></textarea> <br> <br>
-                        Data: <input type="text" name="inputDataEventos" required id="inputDataEventos"
-                            placeholder="aaaa-mm-ddThh:mm:ss">
-                        <span id="example-date">Exemplo: (2000-04-16T22:00:00)</span><br>
-                        Parque ao qual está relacionando:
+                        <br> Endereço para converter as imagens: <a href="https://imgur.com/upload">Imgur</a> <br> <br> Imagem De Evento: <input type="url" required name="inputimg" id="inputimg" placeholder="Insira o link aqui" onchange="img.src = inputimg.value">                        Titulo: <input type="text" required name="inputTituloEvento" id="inputTituloEvento" placeholder="Insira o título aqui"> <br>
+                        <img src="" id="img" style="height: 100px;"><br> Descrição: <br><textarea name="inputDescricao" required id="inputDescricao" cols="104" rows="10" placeholder="(500 caracteres)"></textarea> <br> <br> Data: <input type="text" name="inputDataEventos"
+                            required id="inputDataEventos" placeholder="aaaa-mm-ddThh:mm:ss">
+                        <span id="example-date">Exemplo: (2000-04-16T22:00:00)</span><br> Parque ao qual está relacionando:
                         <select name="inputfkParque" id="inputfkParque">
 
                         </select> <br>
@@ -156,49 +141,45 @@
 </body>
 
 </html>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-
 <script>
     verificar_autenticacaoAdmin();
     window.onload = adicionarEvento
     var dados
 
 
-    
+
 
     function adicionarEvento() {
 
         fetch('/leituras/create', {
-            cache: 'no-store'   
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    resposta.reverse();
+                        resposta.reverse();
 
-                    dados = resposta;
-                    // aqui, após 'registro.' use os nomes 
-                    // dos atributos que vem no JSON 
-                    // que gerou na consulta ao banco de dados
-                    console.log(JSON.stringify(dados));
-                    console.log(dados);
-                    let contador = 0;
-                    let adicionarparque;
-                    for (let cont = 0; resposta.length >= cont; cont++) {
-                        adicionarparque += `<option value="${dados[contador].idParque}">${dados[contador].nome}</option>`;
-                        contador++
-                        document.getElementById('inputfkParque').innerHTML = adicionarparque;
-                    }
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
+                        dados = resposta;
+                        // aqui, após 'registro.' use os nomes 
+                        // dos atributos que vem no JSON 
+                        // que gerou na consulta ao banco de dados
+                        console.log(JSON.stringify(dados));
+                        console.log(dados);
+                        let contador = 0;
+                        let adicionarparque;
+                        for (let cont = 0; resposta.length >= cont; cont++) {
+                            adicionarparque += `<option value="${dados[contador].idParque}">${dados[contador].nome}</option>`;
+                            contador++
+                            document.getElementById('inputfkParque').innerHTML = adicionarparque;
+                        }
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }
@@ -209,7 +190,7 @@
         fetch("/usuarios/registrar-evento", {
             method: "POST",
             body: formulario
-        }).then(function (response) {
+        }).then(function(response) {
 
             if (response.ok) {
 
@@ -218,12 +199,11 @@
             } else {
 
                 console.log('Erro de registro!');
-                response.text().then(function (resposta) { });
+                response.text().then(function(resposta) {});
                 finalizar_aguardar();
             }
         });
 
         return false;
     }
-
 </script>

@@ -50,11 +50,8 @@ router.post('/cadastrar', function(req, res, next) {
         rua: req.body.rua,
         cidade: req.body.cidade,
         estado: req.body.estado,
-        ddn: req.body.ddn,
         login: req.body.login,
-        senha: req.body.senha,
-        preferenciaTemp: req.body.preferenciaTemp,
-        preferenciaUmid: req.body.preferenciaUmid
+        senha: req.body.senha
     }).then(resultado => {
         console.log(`Registro criado: ${resultado}`)
         res.send(resultado);
@@ -148,8 +145,7 @@ router.post('/registrar-parque', function(req, res, next) {
 
     Parques.create({
         nome: req.body.inputNome,
-        cpf: req.body.inputCpf,
-        area: req.body.inputArea,
+        telefone: req.body.inputTelefone,
         img_parque: req.body.inputImgParque,
         localizacao: req.body.inputLocalizacao
     }).then(resultado => {
