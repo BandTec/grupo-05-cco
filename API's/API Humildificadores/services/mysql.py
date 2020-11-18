@@ -22,39 +22,38 @@ class Mysql:
             print(err)
             raise
 
-    # select's usados na API's
+    # select's usados na API
 
-
-    global z
-    def select_usuarios(self, usuario_maquina):
+    def select_usuarios(self,usuario):
+        query = "SELECT usuario FROM maquinas"
         try:
-            print('Usuários não cadastrados')
-            select_userName = "select * from maquinas where usuario = %s"
-            self.cursor.execute(select_userName, usuario_maquina)
-                # "select * from maquinas"
-                # "where usuario = %s" % (user_name)
+            print('\nVerificando cadastro')
+            self.cursor.execute(query)
             meuresultado = self.cursor.fetchall()
             for x in meuresultado:
-                z = x[1]
-                print(z)
-            # self.mysql.commit()
+                # print("Procurando você...")
+                if x[0]==usuario:
+                    # print("Aqui está:",x[0])
+                    meuresultado=x[0]
+                    break
+                # print("olha: {}".format(x[0]))
+            # print("\nEsse é o meuresultado:",meuresultado)
+            return meuresultado
         except Exception as err:
             print(err)
             self.mysql.rollback()
             self.close()
-        
-        return z
 
-    # Insert's usados nas API's
+    # Insert's usados na API
 
-    def insert_usuarios(self, data):
+    def insert_usuarios(self, user_info):
         query = (
-            "INSERT INTO dataset_comp2(cpu, cpu_count, ram, ram_percent, disk, user_name)"
-            "VALUES (%s, %s, %s, %s, %s, %s)"
+            "INSERT INTO maquinas (usuario,localizacaoMaquina,fkParque)"
+            "VALUES (%s, %s, %s)"
         )
-        values = data
+        values = user_info
         try:
-            print('Inserindo Valores')
+            print('Inserindo Novo Usuário')
             self.cursor.execute(query,values)
             self.mysql.commit()
         except Exception as err:

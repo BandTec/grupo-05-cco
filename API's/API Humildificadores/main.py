@@ -9,21 +9,30 @@ mysql = Mysql('root', 'bandtec', 'localhost', 'humildificadores')
 
 mysql.connect()
 
+# Resgatando usuário
 usuario = getUser()
+userSelect = mysql.select_usuarios(usuario)
 
-maquina_user = usuario
+# print("\nuserSelect esse: ",userSelect)
 
-values = z
+print("\nSeja bem vindo",userSelect,"!")
 
-selectUsuario = mysql.select_usuarios(values)
-print("\nSeja bem vindo",usuario,"!")
+# print("Esse é o user_select:",userSelect)
 
-if selectUsuario:
-    print("\nTá dentro pô")
-else:
-    print("\nTá não mano")
-    parque = int(input("\nQual parque você está? \n1-Ibirapuera \n2-Chico Mendes\n"))
-    insertUsuario = mysql.insert_usuarios()
+# if userSelect:
+#     print("\nVocê está cadastrado")
+# else:
+#     print("\nVi que você é um novo usuário, por favor, informe as informações abaixo")
+    # parqueUsuario = int(input("\nQual parque você está trabalhando? \n1-Ibirapuera \n2-Chico Mendes \n"))
+
+    # localParque = str(input("Informe a área do parque que você está: (ex: Área-7b) \n"))
+
+    # # Lista de cadastro de usuário
+    # user_info = (usuario,localParque,parqueUsuario)
+
+    # values = user_info
+
+    # mysql.insert_usuarios(values)
 
 # print(selectUsuario)
 

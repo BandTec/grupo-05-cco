@@ -2,7 +2,8 @@ import psutil
 import requests
 
 def getUser():
-    user_name = (psutil.Process().as_dict(attrs=['username'])["username"])
+    # user_name = str(psutil.Process().as_dict(attrs=['username'])["username"])
+    user_name = str(psutil.users()[0].name)
     # print(user_name)
     return user_name
 
@@ -33,9 +34,9 @@ def getData():
     #Objeto para visualização só
     print(cpu_info)
     #lista para envio no banco
-    data = (round(cpu_media), cpu_count, memory, memory_percent, disk, user_name)
+    data = (round(cpu_media), cpu_count, memory, memory_percent, disk)#, user_name)
 
-    print(data)
+    # print(data)
         
     return data
 
