@@ -98,3 +98,12 @@ create table clienteEventos(
 	foreign key (fkParqueEventos) references parqueEventos (idParqueEventos),
 	foreign key (fkCliente) references cliente (idCliente)
 );
+
+create table avaliacaoParque(
+	idAvaliacaoParque int primary key auto_increment,
+    fkCliente int,
+    fkParque int,
+    Avaliacao int,
+    foreign key (fkCliente) references cliente (idCliente),
+    foreign key (fkParque) references parque (idParque)
+);
