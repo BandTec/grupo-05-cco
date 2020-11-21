@@ -22,34 +22,32 @@ class Mysql:
             print(err)
             raise
 
-    # select's usados na API
+    # select usados na API
 
     def select_usuarios(self,usuario):
-        query = "SELECT usuario FROM maquinas"
+        query=(
+            "select usuario from maquinas where usuario = %s",
+        )
+        where = usuario
         try:
             print('\nVerificando cadastro')
-            self.cursor.execute(query)
+            self.cursor.execute(query,where)
             meuresultado = self.cursor.fetchall()
-            for x in meuresultado:
-                # print("Procurando você...")
-                if x[0]==usuario:
-                    # print("Aqui está:",x[0])
-                    meuresultado=x[0]
-                    break
-                # print("olha: {}".format(x[0]))
-            # print("\nEsse é o meuresultado:",meuresultado)
-            return meuresultado
+            self.mysql.commit()
         except Exception as err:
             print(err)
+            meuresultado=None
             self.mysql.rollback()
             self.close()
 
-    # Insert's usados na API
+        return meuresultado
+
+    # Insert usados na API
 
     def insert_usuarios(self, user_info):
         query = (
-            "INSERT INTO maquinas (usuario,localizacaoMaquina,fkParque)"
-            "VALUES (%s, %s, %s)"
+            "INSERT INTO maquinas (usuario,fkParque)"
+            "VALUES (%s, %s)"
         )
         values = user_info
         try:

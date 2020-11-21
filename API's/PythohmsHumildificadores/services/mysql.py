@@ -42,8 +42,8 @@ class Mysql:
     # Inserção na tabela
     def insert(self, data):
         query = (
-            "INSERT INTO pytohms (user_desktop, placa_mae, cpu_count, clock_1, clock_2, cpu_media_temperatura, cpu_media_percent, cpu_media_clock, memory_load, memory_use, memory_available, video_card)"
-            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            "INSERT INTO pytohms (placa_mae, cpu_count, cpu_media_temperatura, cpu_media_percent, cpu_media_clock, memory_load, memory_use, memory_available, video_card)"
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
         )
         values = data
         try:
