@@ -8,7 +8,7 @@ class Dado:
     def inseriRegistro(self, mysql):
         query = ( "INSERT INTO leituras VALUES "
             "(null, %s, %s, %s)" )
-        print("inseriRegistro")
+        print("inserindo Registro")
 
         values = (self.valor, self.fkConfiguracao,
             self.momento)
