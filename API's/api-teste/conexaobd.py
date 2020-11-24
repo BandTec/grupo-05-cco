@@ -84,8 +84,10 @@ class Mysql:
             select_maquina = "select nome from componentes"
             self.cursor.execute(select_maquina)
             meuresultado = self.cursor.fetchall()
+            contador = 0
             for x in meuresultado:
-                print('[{}]'.format(x[0]))
+                contador+=1
+                print(contador,'-','[{}]'.format(x[0]))
         except Exception as err:
             print(err)
             self.mysql.rollback()
