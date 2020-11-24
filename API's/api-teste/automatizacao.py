@@ -1,9 +1,8 @@
 import time
-import keyboard
 from conexaobd import Mysql
 from pythohms import CrawlerOpenHardwareMonitor
 
-mysql = Mysql('root', 'bandtec', 'localhost', 'humildificadores')
+mysql = Mysql('Kaio', 'bandtec', '127.0.0.1', 'humildificadores')
 crawler = CrawlerOpenHardwareMonitor()
 mysql.connect()
 crawler.getInfo()
@@ -20,7 +19,7 @@ class Automatizando:
             lista_componentes = [] 
             while True: 
                 z = str(input())
-                if keyboard.read_key() == "q":
+                if z == "q":
                     break
                 lista_componentes.append(z) 
                 print("Adicionando itens...")
