@@ -88,7 +88,7 @@ class CrawlerOpenHardwareMonitor:
                     "Load": loads[index]
                 }
                 info['CPU'].append(cpu)
-            #print(info)
+            print(info)
             return info
     
     def getData(self):
@@ -110,13 +110,14 @@ class CrawlerOpenHardwareMonitor:
             somaProcessamento += float(core)
             somaLoadProcessamento += float(self.getNumber(cores[i]['Load']))
             somaTemp += float(self.getNumber(cores[i]['Temperature']))
+        # data['Placa Mãe'] != ''
         data['Frequencia'] = somaProcessamento/nCores
         data['CPU'] = somaLoadProcessamento/nCores
         data['Temperatura'] = somaTemp/nCores
         data['RAM'] = self.getNumber(info['Memory']['Load'])
         data['Disco'] = self.getNumber(info['Disk'])
 
-        print("this is data in getData():",data)
+        print("data no pythohms-getData():",data)
         return data
     
     def getNumber(self, value):
@@ -125,7 +126,7 @@ class CrawlerOpenHardwareMonitor:
 
     def getValor(self, componente):
         data = self.getData()
-        print("This data from the getValor",data)
+        print("Esse é o data no pythohms-getValor():",data)
         if componente.find('CPU') >= 0:
             return data['CPU']
         elif componente.find('RAM') >= 0:
@@ -136,3 +137,5 @@ class CrawlerOpenHardwareMonitor:
             return data['Disco']
         elif componente.find('Frequencia') >=0:
             return data['Frequencia']
+        # elif componente.find('Placa Mãe') != '':
+        #     return data['Placa Mãe']

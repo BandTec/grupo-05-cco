@@ -113,8 +113,43 @@ class CrawlerOpenHardwareMonitor:
             soma_clock += cpu_clock
             cpu_media_clock = soma_clock / cpu_count
 
-        data = (user_desktop, placa_mae, cpu_count, round(clock_1, 2), round(clock_2, 2), cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip(), video_card)
+        data = (user_desktop, placa_mae, cpu_count, cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip(), video_card)
 
+        return data
+
+    def getData(self):
+        info = self.getInfo()
+        data = {
+            'Usuario': None,
+            'Placa Mãe': None,
+            'Quantidade CPU': None,
+            'CPU': None,
+            'RAM': None,
+            'Disco': None,
+            'Temperatura': None,
+            'Frequencia': None,
+            'Memória Usada'
+            'Memória disponível': None,
+            'Placa de Video': None
+        }
+        cores = info['CPU']
+        nCores = len(cores)
+        somaProcessamento = 0.0
+        somaLoadProcessamento = 0.0
+        somaTemp = 0.0
+        for i in range(nCores):
+            core = self.getNumber(cores[i]['Clock'])
+            somaProcessamento += float(core)
+            somaLoadProcessamento += float(self.getNumber(cores[i]['Load']))
+            somaTemp += float(self.getNumber(cores[i]['Temperature']))
+        # data['Placa Mãe'] != ''
+        data['Frequencia'] = somaProcessamento/nCores
+        data['CPU'] = somaLoadProcessamento/nCores
+        data['Temperatura'] = somaTemp/nCores
+        data['RAM'] = self.getNumber(info['Memory']['Load'])
+        data['Disco'] = self.getNumber(info['Disk'])
+
+        print("data no pythohms-getData():",data)
         return data
 
 if __name__ == "__main__":

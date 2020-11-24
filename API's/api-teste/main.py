@@ -1,6 +1,6 @@
 from pythohms import CrawlerOpenHardwareMonitor
-from bdmysql import Mysql
-from maquina import Maquina
+from conexaobd import Mysql
+from maquinas import Maquina
 import time
 
 mysql = Mysql('Kaio', 'bandtec', '127.0.0.1', 'humildificadores')

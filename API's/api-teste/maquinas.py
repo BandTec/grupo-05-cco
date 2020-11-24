@@ -1,4 +1,5 @@
 from configuracao import Configuracao
+
 class Maquina:
     def __init__(self, idMaquina, usuario, fkParque):
         self.idMaquina = idMaquina
@@ -13,7 +14,6 @@ class Maquina:
         print("\ngetConfiguracoes em maquina.py - result:",result)
         configuracoes = []
         for i in result:
-
             configuracoes.append(Configuracao(
                 i[0], i[1], i[2], i[3]
             ))

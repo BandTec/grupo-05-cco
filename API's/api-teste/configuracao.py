@@ -1,7 +1,7 @@
 import datetime
-from bdmysql import Mysql
+from conexaobd import Mysql
 from pythohms import CrawlerOpenHardwareMonitor
-from dado import Dado
+from leituras import Leitura
 
 class Configuracao:
     def __init__(self, idConfiguracao, fkMaquina, fkComponente, limiteAlerta):
@@ -13,9 +13,9 @@ class Configuracao:
     def gerarDado(self, mysql):
         query = ( "SELECT * FROM componentes "
         "WHERE idComponente = {}".format(self.fkComponente) )
-        print("\ngerarDado")
+        print("\ngerarDado em configuracao.py",query)
 
         componente = mysql.select(query)[0]
         crawler = CrawlerOpenHardwareMonitor()
 
-        return Dado(1,'null', crawler.getValor(componente[1]), self.idConfiguracao)
+        return Leitura(1,'null', crawler.getValor(componente[1]), self.idConfiguracao)

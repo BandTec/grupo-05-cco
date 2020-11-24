@@ -1,4 +1,4 @@
-class Dado:
+class Leitura:
     def __init__(self, idMetrica, valor, momento, fkConfiguracao):
         self.idMetrica = idMetrica
         self.valor = valor
