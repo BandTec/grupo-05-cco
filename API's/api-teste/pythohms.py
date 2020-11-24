@@ -1,14 +1,15 @@
 import requests
 import json
+import pdb
 
 class CrawlerOpenHardwareMonitor:
     def __init__(self):
-        self.url = 'http://localhost:8085/data.json' # NÃO ESQUECE DE ARRUMAR O IP E A PORTA!
+        self.url = 'http://localhost:8080/data.json'
         self.data = None
     
     def getJsonData(self):
         response = requests.get(self.url)
-        data = response.json()
+        data = json_data = response.json()
         self.data = data
     
     def getInfo(self):
@@ -23,8 +24,7 @@ class CrawlerOpenHardwareMonitor:
                 'Available': None
             },
             "VideoCard": None,
-            "AllDevices": [],
-            "Disk": None
+            "AllDevices": []
         }
 
         clocks = []
@@ -73,32 +73,65 @@ class CrawlerOpenHardwareMonitor:
                                     info['Memory']['Use'] = memory['Value']
                                 if memory['Text'] == 'Available Memory':
                                     info['Memory']['Available'] = memory['Value']
-                #Disk
-                if desktop['Text'].find(info['AllDevices'][-1]) >= 0:
-                    for hd in desktop['Children']:
-                        if hd['Text'].find('Load') >=0:
-                            for load in hd['Children']:
-                                info['Disk'] = load['Value']
 
-            for index in range(len(clocks)):
+            for index, itens in enumerate(clocks):
+                if index >= len(temperatures):
+                    temp = "---"
+                else:
+                    temp = temperatures[index]
                 cpu = {
                     'Name': f'Core {index + 1}',
                     "Clock": clocks[index],
-                    "Temperature": temperatures[index],
+                    "Temperature": temp,
                     "Load": loads[index]
                 }
                 info['CPU'].append(cpu)
-            print(info)
-            return info
-    
+            # return info
+
+        user_desktop = info["Desktop"]
+        placa_mae = info["MotherBoard"]
+        cpu_count = len(info["CPU"]) 
+        clock_1 = float(info["CPU"][0]["Clock"].replace(",",".").replace("MHz","").strip())
+        clock_2 = float(info["CPU"][1]["Clock"].replace(",",".").replace("MHz","").strip())
+        memory_load = info["Memory"]["Load"]
+        memory_use = info["Memory"]["Use"]
+        memory_available = info["Memory"]["Available"]
+        video_card = info["VideoCard"]
+        soma_temperature = 0.0
+        soma_percent = 0.0
+        soma_clock = 0.0
+
+        for i in info["CPU"]:
+            cpu_name = i["Name"]
+            cpu_clock = float(i["Clock"].replace(",",".").replace("MHz","").strip())
+            cpu_temperature = float(i["Temperature"].replace(",",".").replace("°C","").strip())
+            cpu_load = float(i["Load"].replace("%","").replace(",",".").strip())
+            soma_temperature += cpu_temperature
+            cpu_media_temperatura = soma_temperature / cpu_count
+            soma_percent += cpu_load
+            cpu_media_percent = soma_percent / cpu_count
+            soma_clock += cpu_clock
+            cpu_media_clock = soma_clock / cpu_count
+
+        data = (user_desktop, placa_mae, cpu_count, cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip(), video_card)
+        
+        return user_desktop
+        # return data
+
     def getData(self):
         info = self.getInfo()
         data = {
+            'Usuario': None,
+            'Placa Mãe': None,
+            'Quantidade CPU': None,
             'CPU': None,
             'RAM': None,
             'Disco': None,
             'Temperatura': None,
-            'Frequencia': None
+            'Frequencia': None,
+            'Memória Usada'
+            'Memória disponível': None,
+            'Placa de Video': None
         }
         cores = info['CPU']
         nCores = len(cores)
@@ -119,23 +152,7 @@ class CrawlerOpenHardwareMonitor:
 
         print("data no pythohms-getData():",data)
         return data
-    
-    def getNumber(self, value):
-        aux = value.split(' ')[0]
-        return aux.replace(',','.')
 
-    def getValor(self, componente):
-        data = self.getData()
-        print("Esse é o data no pythohms-getValor():",data)
-        if componente.find('CPU') >= 0:
-            return data['CPU']
-        elif componente.find('RAM') >= 0:
-            return data['RAM']
-        elif componente.find('Temperatura') >= 0:
-            return data['Temperatura']
-        elif componente.find('Disco') >=0:
-            return data['Disco']
-        elif componente.find('Frequencia') >=0:
-            return data['Frequencia']
-        # elif componente.find('Placa Mãe') != '':
-        #     return data['Placa Mãe']
+if __name__ == "__main__":
+    teste =  CrawlerOpenHardwareMonitor()
+    teste.getInfo()
