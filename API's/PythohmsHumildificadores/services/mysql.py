@@ -23,27 +23,27 @@ class Mysql:
 
 
     # select usuario
-    def select_usuarios(self, usuario_maquina):
-        try:
-            print('Usuários não cadastrados')
-            select_userName = "select * from maquinas where usuario = %s"
-            self.cursor.execute(select_userName, usuario_maquina)
-                # "select * from maquinas"
-                # "where usuario = %s" % (user_name)
-            meuresultado = self.cursor.fetchall()
-            for x in meuresultado:
-                print(x)
-            # self.mysql.commit()
-        except Exception as err:
-            print(err)
-            self.mysql.rollback()
-            self.close()
+    # def select_usuarios(self, usuario_maquina):
+    #     try:
+    #         print('Usuários não cadastrados')
+    #         select_userName = "select * from maquinas where usuario = %s"
+    #         self.cursor.execute(select_userName, usuario_maquina)
+    #             # "select * from maquinas"
+    #             # "where usuario = %s" % (user_name)
+    #         meuresultado = self.cursor.fetchall()
+    #         for x in meuresultado:
+    #             print(x)
+    #         # self.mysql.commit()
+    #     except Exception as err:
+    #         print(err)
+    #         self.mysql.rollback()
+    #         self.close()
 
     # Inserção na tabela
     def insert(self, data):
         query = (
-            "INSERT INTO pytohms (placa_mae, cpu_count, cpu_media_temperatura, cpu_media_percent, cpu_media_clock, memory_load, memory_use, memory_available, video_card)"
-            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            "INSERT INTO pytohms2 (user_desktop, placa_mae, cpu_count, cpu_media_temperatura, cpu_media_percent, cpu_media_clock, memory_load, memory_use, memory_available, video_card)"
+            "VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)"
         )
         values = data
         try:

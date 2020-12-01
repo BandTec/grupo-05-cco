@@ -76,7 +76,7 @@ class CrawlerOpenHardwareMonitor:
 
             for index, itens in enumerate(clocks):
                 if index >= len(temperatures):
-                    temp = "---"
+                    temp = 0
                 else:
                     temp = temperatures[index]
                 cpu = {
