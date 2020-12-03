@@ -131,6 +131,10 @@ create table avaliacaoParque(
     foreign key (fkParque) references parque (idParque)
 );
 
+<<<<<<< HEAD
+
+select * from maquinas;
+=======
 create table pytohms2 (
 	id int primary key auto_increment,
 	user_desktop varchar(50),
@@ -146,3 +150,4 @@ create table pytohms2 (
 );
 
 select * from pytohms2 order by id desc;
+>>>>>>> a9f087cd48301efde9857dff14a5ed09089223c0
