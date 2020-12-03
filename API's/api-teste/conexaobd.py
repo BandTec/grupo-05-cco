@@ -59,7 +59,7 @@ class Mysql:
                 print(x)
             
             if len(meuresultado) >= 1:
-                print("Busca bem sucedida. Máquina encontrada")
+                print("Busca bem sucedida. Máquina encontrada. Seja bem vindo!")
             else:
                 print("Busca mal sucedida, não encontramos sua máquina. Vamos criar uma para você")
                 try:
@@ -92,6 +92,48 @@ class Mysql:
             print(err)
             self.mysql.rollback()
             self.mysql.close()
+
+
+    def insertComponentes(self, lista_componentes):
+        # try:
+            print('Inserindo componentes:',end=' ')
+            for row in lista_componentes:
+                print(row ,end=',')
+
+            for row in lista_componentes:
+                insert_componente = "INSERT INTO componentes VALUES (null, '{}', '°C')".format(row)
+                self.cursor.execute(insert_componente)
+                self.cursor.commit(True)
+                time.sleep(0.5)
+            print("Componentes inseridos com sucesso")
+        # except Exception as err:
+        #     print("\nErro ao inserir")
+        #     print(err)
+        #     self.mysql.rollback()
+        #     self.mysql.close()
+        # try:
+        #     print("Inserindo componentes", lista_componentes)
+        #     time.sleep(1)
+        #     for x in lista_componentes:
+        #         print(x)
+        #         # self.cursor.execute("insert into componentes values (null, '{}', '.')".format(x))
+        #         # self.mysql.commit()
+        # except Exception as err:
+        #     print(err)
+        #     self.mysql.rollback()
+        #     self.mysql.close()
+        # try:
+        #     print("Inserindo componentes", lista_componentes)
+        #     for x in range(lista_componentes):
+        #         self.cursor.execute("insert into componentes values (null, '{}', '.')".format(x))
+        #         self.mysql.commit()
+        #     print("Componentes inseridos com sucesso")
+        # except Exception as err:
+        #     print("Erro ao inserir componente")
+        #     print(err)
+        #     self.mysql.rollback()
+        #     self.mysql.close()
+
 
     # Fechando conexão
     def close(self):

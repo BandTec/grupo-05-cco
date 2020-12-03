@@ -8,8 +8,8 @@ import time
 mysql = Mysql('root', 'bandtec', 'localhost', 'humildificadores')
 automatizacao = Automatizando()
 
-
-automatizacao.AutomatizandoScript()
+componente = automatizacao.AutomatizandoScript()
+comp = mysql.insertComponentes(componente)
 
 
 

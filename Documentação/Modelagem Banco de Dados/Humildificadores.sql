@@ -130,3 +130,6 @@ create table avaliacaoParque(
     foreign key (fkCliente) references cliente (idCliente),
     foreign key (fkParque) references parque (idParque)
 );
+
+
+select * from maquinas;
