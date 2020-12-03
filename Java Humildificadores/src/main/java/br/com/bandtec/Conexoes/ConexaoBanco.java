@@ -9,9 +9,9 @@ public class ConexaoBanco {
     public static BasicDataSource dataSource;
 
     public final static String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public final static String URL = "jdbc:mysql://localhost/projetoapi?useTimezone=true&serverTimezone=UTC";
-    public final static String USERNAME = "root";
-    public final static String PASSWORD = "bandtec";
+    public final static String URL = "jdbc:mysql://localhost/humildificadores?useTimezone=true&serverTimezone=UTC";
+    public final static String USERNAME = "ProjetoAPI";
+    public final static String PASSWORD = "urubu100";
 
     public ConexaoBanco() {
         Conectar();
