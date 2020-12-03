@@ -122,17 +122,20 @@
                         let dados_umidade;
                         for (let cont3 = 0; cont3 < 5; cont3++) {
                             if (cont3 < dados[0].estrelas) {
-                                estrelas += '<img class="stars" src="/images/full-star.png" style="height: 20px;">'
+                                estrelas += `<img class="stars" src="/images/full-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px;">`
                             } else {
-                                estrelas += '<img class="stars" src="/images/stroke-star.png" style="height: 20px;">'
+                                estrelas += `<img class="stars" src="/images/stroke-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px;">`
                             }
-                            park_img = `<img id="park-img" src="${dados[0].imgParque}" >`
-                            nome_park = `<h3>
-                                    ${dados[0].nome}<br>
-                                </h3>`
-                            dados_temperatura = `${dados[0].temperatura} ºC`
-                            dados_umidade = `${dados[0].umidade} %`
+                            
                         }
+
+                        park_img = `<img id="park-img" src="${dados[0].imgParque}" >`
+                        nome_park = `
+                        <h3>
+                            ${dados[0].nome}<br>
+                        </h3>`
+                        dados_temperatura = `${dados[0].temperatura} ºC`
+                        dados_umidade = `${dados[0].umidade} %`
 
                         let cor;
 
@@ -185,5 +188,17 @@
             .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
+    }
+    function darEstrelas(stars){
+        document.getElementById(`classification`).innerHTML = "";
+        var estrelas = ""
+        for (let cont = 0; cont < 5; cont++) {
+            if (cont < stars) {
+                estrelas += `<img class="stars" src="/images/full-star.png" onclick="darEstrelas(${cont + 1})" style="height: 20px;">`
+            } else {
+                estrelas += `<img class="stars" src="/images/stroke-star.png" onclick="darEstrelas(${cont + 1})" style="height: 20px;">`
+            }
+        }
+        document.getElementById(`classification`).innerHTML += estrelas;
     }
 </script>
