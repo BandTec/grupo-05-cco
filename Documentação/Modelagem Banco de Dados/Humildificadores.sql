@@ -61,8 +61,6 @@ create table maquinas(
 insert into maquinas values
 	(null, 'kaiob', 1);
 
-select * from maquinas;
-
 create table componentes(
 	idComponente int primary key auto_increment,
 	nome varchar(45),
@@ -70,18 +68,13 @@ create table componentes(
 );
 
 insert into componentes values 
-	(null,'placa_mae','String'),
     (null,'cpu_count','Integer'),
     (null,'cpu_media_temperatura','ºC'),
     (null,'cpu_media_percent','%'),
     (null,'cpu_media_clock','MHz'),
     (null,'memory_load','%'),
     (null,'memory_use','%'),
-    (null,'memory_available','%'),
-    (null,'video_card','String');
-    
-    
-select * from componentes;
+    (null,'memory_available','%');
 
 create table configuracao(
 	idConfiguracao int primary key auto_increment,
@@ -91,20 +84,7 @@ create table configuracao(
 	foreign key (fkMaquina) references maquinas (idMaquina),
 	foreign key (fkComponente) references componentes (idComponente)
 );
-select * from configuracao;
-select * from configuracao ,maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina;
-select * from componentes, configuracao where fkComponente = idComponente;
-select * from componentes, configuracao, leituras where fkConfiguracao = idConfiguracao;
-select * from configuracao;
-insert into configuracao values
-	(null, 5, 6, '75.00');
-    
-select * from configuracao;
-insert into leituras values (null, '85','2020-12-04 13:23:47', 3);
-    
-select * from configuracao;
-select * from leituras, configuracao, componentes where fkConfiguracao = idConfiguracao and fkComponente = idComponente order by idMetrica desc;
-select * from leituras;
+
 create table leituras(
 	idMetrica int primary key auto_increment,
 	valor varchar(10),
@@ -112,11 +92,6 @@ create table leituras(
 	fkConfiguracao int,
 	foreign key (fkConfiguracao) references configuracao (idConfiguracao)
 );
-
-select fkMaquina from maquinas, configuracao where usuario = 'HSL017';
-select fkMaquina,usuario from maquinas m, configuracao c where  c.fkMaquina = m.idMaquina and usuario = 'HSL017';
-
-truncate leituras;
 
 create table parqueEventos(
 	idParqueEventos int primary key auto_increment,
@@ -145,8 +120,6 @@ create table avaliacaoParque(
     foreign key (fkParque) references parque (idParque)
 );
 
-
-select * from maquinas;
 create table pytohms2 (
 	id int primary key auto_increment,
 	user_desktop varchar(50),
@@ -161,4 +134,28 @@ create table pytohms2 (
 	video_card varchar(50)
 );
 
+select idMaquina from maquinas where usuario = 'DSK-PCSSD0001';
+
+select fkMaquina from maquinas, configuracao where usuario = 'HSL017';
+select fkMaquina,usuario from maquinas m, configuracao c where  c.fkMaquina = m.idMaquina and usuario = 'DSK-PCSSD0001';
+
 select * from pytohms2 order by id desc;
+
+select nome from parque;
+select * from configuracao ,maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina;
+select * from componentes, configuracao where fkComponente = idComponente;
+select * from componentes, configuracao, leituras where fkConfiguracao = idConfiguracao;
+insert into configuracao values
+	(null, 1, 3, '80.00');
+    
+select * from leituras, configuracao, componentes where fkConfiguracao = idConfiguracao and fkComponente = idComponente order by idMetrica desc;
+
+select * from maquinas;
+select * from componentes;
+select * from configuracao;
+select * from leituras l, configuracao c where l.fkConfiguracao = c.idConfiguracao order by idMetrica desc;
+
+select * from maquinas maq, componentes com, configuracao con, leituras l where maq.idMaquina = con.fkMaquina and maq.idMaquina = con.fkMaquina and com.idComponente = con.fkComponente and con.idConfiguracao = l.fkConfiguracao;
+
+drop database humildificadores;
+
