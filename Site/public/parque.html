@@ -125,9 +125,9 @@
                     let dados_umidade;
                     for (let cont3 = 0; cont3 < 5; cont3++) {
                         if (cont3 < dados[0].estrelas) {
-                            estrelas += `<img class="stars" src="/images/full-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px;">`
+                            estrelas += `<img class="stars" src="/images/full-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px; cursor: pointer;">`
                         } else {
-                            estrelas += `<img class="stars" src="/images/stroke-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px;">`
+                            estrelas += `<img class="stars" src="/images/stroke-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px; cursor: pointer;">`
                         }
 
                     }
@@ -197,9 +197,9 @@
         var estrelas = ""
         for (let cont = 0; cont < 5; cont++) {
             if (cont < stars) {
-                estrelas += `<img class="stars" src="/images/full-star.png" onclick="darEstrelas(${cont + 1})" style="height: 20px;">`
+                estrelas += `<img class="stars" src="/images/full-star.png" onclick="darEstrelas(${cont + 1})" style="height: 20px; cursor: pointer;">`
             } else {
-                estrelas += `<img class="stars" src="/images/stroke-star.png" onclick="darEstrelas(${cont + 1})" style="height: 20px;">`
+                estrelas += `<img class="stars" src="/images/stroke-star.png" onclick="darEstrelas(${cont + 1})" style="height: 20px; cursor: pointer;">`
             }
         }
         document.getElementById(`classification`).innerHTML += estrelas;
@@ -211,7 +211,7 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    console.log("foi dado as estrelas")
+                    alert("foi dado as estrelas")
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
