@@ -84,7 +84,7 @@ insert into componentes values
 select * from componentes;
 
 create table configuracao(
-	idConfiguracao int primary key auto_increment,
+	int primary key auto_increment,
 	fkMaquina int,
 	fkComponente int,
 	limiteAlerta float(5,2),
