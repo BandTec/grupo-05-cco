@@ -1,6 +1,7 @@
 let login_usuario;
 let nome_usuario;
 
+
 function redirecionar_login() {
     window.location.href = 'login.html';
 }
@@ -8,6 +9,7 @@ function redirecionar_login() {
 function verificar_autenticacao(event) {
     login_usuario = sessionStorage.login_usuario_meuapp;
     nome_usuario = sessionStorage.nome_usuario_meuapp;
+    
 
     if (event == 2) {
         if (login_usuario == undefined) {

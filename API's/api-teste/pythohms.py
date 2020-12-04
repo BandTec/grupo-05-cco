@@ -4,7 +4,7 @@ import pdb
 
 class CrawlerOpenHardwareMonitor:
     def __init__(self):
-        self.url = 'http://localhost:8080/data.json'
+        self.url = 'http://localhost:8085/data.json'
         self.data = None
     
     def getJsonData(self):
@@ -86,7 +86,7 @@ class CrawlerOpenHardwareMonitor:
 
             for index, itens in enumerate(clocks):
                 if index >= len(temperatures):
-                    temp = 0
+                    temp = temperatures[0]
                 else:
                     temp = temperatures[index]
                 cpu = {
@@ -99,14 +99,12 @@ class CrawlerOpenHardwareMonitor:
             # return info
 
         user_desktop = info["Desktop"]
-        placa_mae = info["MotherBoard"]
         cpu_count = len(info["CPU"]) 
         clock_1 = float(info["CPU"][0]["Clock"].replace(",",".").replace("MHz","").strip())
         clock_2 = float(info["CPU"][1]["Clock"].replace(",",".").replace("MHz","").strip())
         memory_load = info["Memory"]["Load"]
         memory_use = info["Memory"]["Use"]
         memory_available = info["Memory"]["Available"]
-        video_card = info["VideoCard"]
         soma_temperature = 0.0
         soma_percent = 0.0
         soma_clock = 0.0
@@ -123,7 +121,7 @@ class CrawlerOpenHardwareMonitor:
             soma_clock += cpu_clock
             cpu_media_clock = soma_clock / cpu_count
 
-        data = (user_desktop, placa_mae, cpu_count, cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip(), video_card)
+        data = (user_desktop, cpu_count, cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip())
         # print(user_desktop)
         # print(data[0])
         # print(data[3])

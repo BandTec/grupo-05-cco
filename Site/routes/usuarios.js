@@ -4,9 +4,10 @@ var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
 var Eventos = require('../models').Eventos;
 var Parques = require('../models').Parques;
+var Estrelas = require('../models').Estrelas;
 
 let sessoes = [];
-let sessoes_admin = [];
+
 
 /* Recuperar usuário por login e senha */
 router.post('/autenticar', function(req, res, next) {
@@ -38,7 +39,54 @@ router.post('/autenticar', function(req, res, next) {
         res.status(500).send(erro.message);
     });
 });
+router.get('/:idparque/:idusuario/:idestrelas', function(req, res, next) {
 
+    let idestrelas = req.params.idestrelas;
+    let idparque = req.params.idparque;
+    let idusuario = req.params.idusuario;
+    console.log('dando estrelinhas');	
+    let instrucaoSql = `select * from avaliacaoParque where fkcliente= ${idusuario} and fkParque = ${idparque}`;
+    console.log(instrucaoSql);
+
+    sequelize.query(instrucaoSql, {
+        model: Usuario
+    }).then(resultado => {
+        console.log(`Encontrados: ${resultado.length}`);
+
+        if (resultado.length == 1) {
+
+            Estrelas.update({
+                avaliacao: idestrelas
+            },{
+                where: { cliente: idusuario, parque: idparque },
+                returning: true,
+                plain: true
+            }).then(resultado => {
+                console.log(`Dados mudados: ${resultado}`)
+                res.send(resultado);
+            }).catch(erro => {
+                console.error(erro);
+                res.status(500).send(erro.message);
+            });
+        } else if (resultado.length == 0) {
+            Estrelas.create({
+                cliente: idusuario,
+                parque: idparque,
+                avaliacao: idestrelas
+            }).then(resultado => {
+                console.log(`Registro criado: ${resultado}`)
+                res.send(resultado);
+            }).catch(erro => {
+                console.error(erro);
+                res.status(500).send(erro.message);
+            });
+        }
+
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
 
 
 /* Cadastrar usuário */
