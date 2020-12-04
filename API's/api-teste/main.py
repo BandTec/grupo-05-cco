@@ -6,12 +6,10 @@ import time
 
 
 mysql = Mysql('root', 'bandtec', 'localhost', 'humildificadores')
+
+
 automatizacao = Automatizando()
-
-componente = automatizacao.AutomatizandoScript()
-comp = mysql.insertComponentes(componente)
-
-
+automatizacao.AutomatizandoScript()
 
 
 # maquina = Maquina(1,'kaiob', 1)

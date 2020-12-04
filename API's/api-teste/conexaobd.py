@@ -1,5 +1,6 @@
 import mysql.connector
 import time
+from datetime import datetime
 
 class Mysql:
     def __init__(self, user, password, host, database):
@@ -51,15 +52,15 @@ class Mysql:
         try:
             print('\nRealizando busca de sua máquina')
             time.sleep(1)
-            select_maquina = "select * from maquinas where usuario ='{}';".format(usuario_maquina)
+            select_maquina = "select fkMaquina,usuario from maquinas m, configuracao c where  c.fkMaquina = m.idMaquina and usuario = '{}';".format(usuario_maquina)
             self.cursor.execute(select_maquina)
             meuresultado = self.cursor.fetchall()
 
-            for x in meuresultado:
-                print(x)
+            # for row in meuresultado:
+            #     print(row[0])
             
             if len(meuresultado) >= 1:
-                print("Busca bem sucedida. Máquina encontrada. Seja bem vindo!")
+                print("Busca bem sucedida. Máquina encontrada. Seja bem vindo!")                
             else:
                 print("Busca mal sucedida, não encontramos sua máquina. Vamos criar uma para você")
                 try:
@@ -67,7 +68,35 @@ class Mysql:
                     insert_maquina = "insert into maquinas values (null,'{}','{}')".format(usuario_maquina, 1)
                     self.cursor.execute(insert_maquina)
                     self.mysql.commit()
-                    print("Maquina criada com sucesso")
+                    try:
+                        print('Mostrando componentes para escolha')
+                        time.sleep(1)
+                        select_maquina = "select nome from componentes"
+                        self.cursor.execute(select_maquina)
+                        meuresultado = self.cursor.fetchall()
+                        contador = 0
+                        for x in meuresultado:
+                            contador+=1
+                            print(contador,'-','[{}]'.format(x[0]))
+                        print("Maquina criada com sucesso\n")
+                        x = str(input("Quais componentes você deseja monitorar?\n"))
+                        x.lower()
+                        lista_componentes = [x]
+                        while True: 
+                            print("Digite [Q] para sair\n")
+                            z = str(input("Digite aqui: "))
+                            if z.lower() == "q" or x.lower() == "q":
+                                break
+                            lista_componentes.append(z)
+                        time.sleep(1) 
+                        print("\nAdicionando itens: ",end=' ')
+                        for row in lista_componentes:
+                            print(row, end=',')
+                        print(lista_componentes)
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
                 except Exception as err:
                     print(err)
                     self.mysql.rollback()
@@ -76,63 +105,57 @@ class Mysql:
             print(err)
             self.mysql.rollback()
             self.mysql.close()
+        return usuario_maquina      
 
-    def selectComponentes(self):
+
+
+    def inserindoValores(self, valor, usuario_maquina):
         try:
-            print('Mostrando componentes para escolha')
-            time.sleep(1)
-            select_maquina = "select nome from componentes"
-            self.cursor.execute(select_maquina)
-            meuresultado = self.cursor.fetchall()
-            contador = 0
-            for x in meuresultado:
-                contador+=1
-                print(contador,'-','[{}]'.format(x[0]))
+            select = "select nome from configuracao ,maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina;"
+            self.cursor.execute(select)
+            result = self.cursor.fetchall()
+            self.mysql.commit()
+            now = datetime.now()
+            data_formatada = now.strftime('%Y-%m-%d %H:%M:%S')
+            for row in result:
+                print(row[0])
+                if row[0] == 'cpu_media_temperatura':
+                    try:
+                        print("Inserindo Media de Tempertura da CPU")
+                        insertando = "insert into leituras values (null, '{}','{}', 1)".format(valor[3], data_formatada)
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+                if row[0] == 'memory_use':
+                    try:
+                        print("Inserindo Uso de Memoria")
+                        insertando = "insert into leituras values (null, '{}','{}', 3)".format(valor[7], data_formatada)
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+                if row[0] == 'cpu_media_percent':
+                    try:
+                        print("Inserindo Media de Percentual da CPU")
+                        insertando = "insert into leituras values (null, '{}','{}', 2)".format(valor[4], data_formatada)
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+            
+            print(insertando)
+            print("Valor inserido com sucesso")
         except Exception as err:
             print(err)
             self.mysql.rollback()
             self.mysql.close()
-
-
-    def insertComponentes(self, lista_componentes):
-        # try:
-            print('Inserindo componentes:',end=' ')
-            for row in lista_componentes:
-                print(row ,end=',')
-
-            for row in lista_componentes:
-                insert_componente = "INSERT INTO componentes VALUES (null, '{}', '°C')".format(row)
-                self.cursor.execute(insert_componente)
-                self.cursor.commit(True)
-                time.sleep(0.5)
-            print("Componentes inseridos com sucesso")
-        # except Exception as err:
-        #     print("\nErro ao inserir")
-        #     print(err)
-        #     self.mysql.rollback()
-        #     self.mysql.close()
-        # try:
-        #     print("Inserindo componentes", lista_componentes)
-        #     time.sleep(1)
-        #     for x in lista_componentes:
-        #         print(x)
-        #         # self.cursor.execute("insert into componentes values (null, '{}', '.')".format(x))
-        #         # self.mysql.commit()
-        # except Exception as err:
-        #     print(err)
-        #     self.mysql.rollback()
-        #     self.mysql.close()
-        # try:
-        #     print("Inserindo componentes", lista_componentes)
-        #     for x in range(lista_componentes):
-        #         self.cursor.execute("insert into componentes values (null, '{}', '.')".format(x))
-        #         self.mysql.commit()
-        #     print("Componentes inseridos com sucesso")
-        # except Exception as err:
-        #     print("Erro ao inserir componente")
-        #     print(err)
-        #     self.mysql.rollback()
-        #     self.mysql.close()
 
 
     # Fechando conexão

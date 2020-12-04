@@ -12,6 +12,16 @@ class CrawlerOpenHardwareMonitor:
         data = json_data = response.json()
         self.data = data
     
+    def getUser(self):
+        self.getJsonData()
+        info = {
+            "Desktop": None
+        }
+
+        # print(info["Desktop"])
+        # print(user_desktop)
+        # return usuario
+
     def getInfo(self):
         self.getJsonData()
         info = {
@@ -114,8 +124,11 @@ class CrawlerOpenHardwareMonitor:
             cpu_media_clock = soma_clock / cpu_count
 
         data = (user_desktop, placa_mae, cpu_count, cpu_media_temperatura, round(cpu_media_percent,2), round(cpu_media_clock,2), memory_load.replace("%","").replace(",",".").strip(), memory_use.replace("GB","").replace(",",".").strip(), memory_available.replace("GB","").replace(",",".").strip(), video_card)
-        
-        return user_desktop
+        # print(user_desktop)
+        # print(data[0])
+        # print(data[3])
+        # return user_desktop
+        return data
         # return data
 
     def getData(self):
@@ -156,3 +169,5 @@ class CrawlerOpenHardwareMonitor:
 if __name__ == "__main__":
     teste =  CrawlerOpenHardwareMonitor()
     teste.getInfo()
+
+

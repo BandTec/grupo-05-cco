@@ -80,29 +80,43 @@ insert into componentes values
     (null,'memory_available','%'),
     (null,'video_card','String');
     
+    
 select * from componentes;
 
 create table configuracao(
-	idConfiguracao int primary key,
+	idConfiguracao int primary key auto_increment,
 	fkMaquina int,
 	fkComponente int,
 	limiteAlerta float(5,2),
 	foreign key (fkMaquina) references maquinas (idMaquina),
 	foreign key (fkComponente) references componentes (idComponente)
 );
-
+select * from configuracao;
+select * from configuracao ,maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina;
+select * from componentes, configuracao where fkComponente = idComponente;
+select * from componentes, configuracao, leituras where fkConfiguracao = idConfiguracao;
+select * from configuracao;
 insert into configuracao values
-	(1, 1, 1, '55.00');
+	(null, 5, 6, '75.00');
     
 select * from configuracao;
-
+insert into leituras values (null, '85','2020-12-04 13:23:47', 3);
+    
+select * from configuracao;
+select * from leituras, configuracao, componentes where fkConfiguracao = idConfiguracao and fkComponente = idComponente order by idMetrica desc;
+select * from leituras;
 create table leituras(
 	idMetrica int primary key auto_increment,
-	valor float(6,2),
+	valor varchar(10),
 	momento datetime,
 	fkConfiguracao int,
 	foreign key (fkConfiguracao) references configuracao (idConfiguracao)
 );
+
+select fkMaquina from maquinas, configuracao where usuario = 'HSL017';
+select fkMaquina,usuario from maquinas m, configuracao c where  c.fkMaquina = m.idMaquina and usuario = 'HSL017';
+
+truncate leituras;
 
 create table parqueEventos(
 	idParqueEventos int primary key auto_increment,
@@ -131,10 +145,8 @@ create table avaliacaoParque(
     foreign key (fkParque) references parque (idParque)
 );
 
-<<<<<<< HEAD
 
 select * from maquinas;
-=======
 create table pytohms2 (
 	id int primary key auto_increment,
 	user_desktop varchar(50),
@@ -150,4 +162,3 @@ create table pytohms2 (
 );
 
 select * from pytohms2 order by id desc;
->>>>>>> a9f087cd48301efde9857dff14a5ed09089223c0
