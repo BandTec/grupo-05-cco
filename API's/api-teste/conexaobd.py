@@ -2,6 +2,9 @@ import mysql.connector
 import time
 from datetime import datetime
 
+
+idMaquina = 0
+
 class Mysql:
     def __init__(self, user, password, host, database):
         self.user = user
@@ -75,7 +78,6 @@ class Mysql:
                             lista_componentes.append(z)
                         time.sleep(1) 
                         print("\nAdicionando itens: ",end=' ')
-                        idMaquina = 0
                         try:
                             select_fkMaquina = "select idMaquina from maquinas where usuario = '{}';".format(usuario_maquina)
                             self.cursor.execute(select_fkMaquina)
@@ -189,14 +191,26 @@ class Mysql:
             self.cursor.execute(select)
             result = self.cursor.fetchall()
             self.mysql.commit()
+            try:
+                select_fkMaquina = "select idMaquina from maquinas where usuario = '{}';".format(usuario_maquina)
+                self.cursor.execute(select_fkMaquina)
+                meuresultado = self.cursor.fetchall()
+                for x in meuresultado:
+                    idMaquina = x[0]
+            except Exception as err:
+                print(err)
+                self.mysql.rollback()
+                self.mysql.close()
+
             now = datetime.now()
             data_formatada = now.strftime('%Y-%m-%d %H:%M:%S')
 
             for row in result:
                 if row[0] == 'cpu_count':
                     try:
+                        print(idMaquina)
                         print("\nInserindo Contagem da CPU")
-                        insertando = "insert into leituras values (null, '{}','{}', 1)".format(valor[1], data_formatada)
+                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[1], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -207,8 +221,8 @@ class Mysql:
 
                 if row[0] == 'cpu_media_temperatura':
                     try:
-                        print("\nInserindo Media de Tempertura da CPU")
-                        insertando = "insert into leituras values (null, '{}','{}', 1)".format(valor[2], data_formatada)
+                        print("\nInserindo Media de Temperatura da CPU")
+                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[2], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -220,7 +234,7 @@ class Mysql:
                 if row[0] == 'cpu_media_percent':
                     try:
                         print("\nInserindo Media de Percentual da CPU")
-                        insertando = "insert into leituras values (null, '{}','{}', 1)".format(valor[3], data_formatada)
+                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[3], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -232,7 +246,7 @@ class Mysql:
                 if row[0] == 'cpu_media_clock':
                     try:
                         print("\nInserindo Media de Clock da CPU")
-                        insertando = "insert into leituras values (null, '{}','{}', 1)".format(valor[4], data_formatada)
+                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[4], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -244,7 +258,7 @@ class Mysql:
                 if row[0] == 'memory_load':
                     try:
                         print("\nInserindo Percentual de uso da Memória")
-                        insertando = "insert into leituras values (null, '{}','{}', 1)".format(valor[5], data_formatada)
+                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[5], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -256,7 +270,7 @@ class Mysql:
                 if row[0] == 'memory_use':
                     try:
                         print("\nInserindo Uso de Memoria")
-                        insertando = "insert into leituras values (null, '{}','{}', 1)".format(valor[6], data_formatada)
+                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[6], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -268,7 +282,7 @@ class Mysql:
                 if row[0] == 'memory_available':
                     try:
                         print("\nInserindo Quantidade de Memória Disponível")
-                        insertando = "insert into leituras values (null, '{}','{}', 1)".format(valor[7], data_formatada)
+                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[7], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)

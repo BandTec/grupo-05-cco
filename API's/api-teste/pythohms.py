@@ -4,7 +4,7 @@ import pdb
 
 class CrawlerOpenHardwareMonitor:
     def __init__(self):
-        self.url = 'http://localhost:8085/data.json'
+        self.url = 'http://localhost:8080/data.json'
         self.data = None
     
     def getJsonData(self):
