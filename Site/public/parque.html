@@ -177,7 +177,7 @@
                     document.getElementById(`sobre-park`).innerHTML = nome_park;
                     document.getElementById(`umidades`).innerHTML = dados_umidade;
                     document.getElementById(`temperaturas`).innerHTML = dados_temperatura;
-                    document.getElementById(`title-park`).innerHTML = sessionStorage.nome;
+
                     // aqui, após 'registro.' use os nomes 
                     // dos atributos que vem no JSON 
                     // que gerou na consulta ao banco de dados alo
@@ -210,8 +210,6 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    resposta.reverse();
 
                     console.log("foi dado as estrelas")
                 });
