@@ -61,8 +61,6 @@ create table maquinas(
 insert into maquinas values
 	(null, 'kaiob', 1);
 
-select * from maquinas;
-
 create table componentes(
 	idComponente int primary key auto_increment,
 	nome varchar(45),
@@ -70,20 +68,16 @@ create table componentes(
 );
 
 insert into componentes values 
-	(null,'placa_mae','String'),
     (null,'cpu_count','Integer'),
     (null,'cpu_media_temperatura','ºC'),
     (null,'cpu_media_percent','%'),
     (null,'cpu_media_clock','MHz'),
     (null,'memory_load','%'),
     (null,'memory_use','%'),
-    (null,'memory_available','%'),
-    (null,'video_card','String');
-    
-select * from componentes;
+    (null,'memory_available','%');
 
 create table configuracao(
-	idConfiguracao int primary key,
+	int primary key auto_increment,
 	fkMaquina int,
 	fkComponente int,
 	limiteAlerta float(5,2),
@@ -91,14 +85,9 @@ create table configuracao(
 	foreign key (fkComponente) references componentes (idComponente)
 );
 
-insert into configuracao values
-	(1, 1, 1, '55.00');
-    
-select * from configuracao;
-
 create table leituras(
 	idMetrica int primary key auto_increment,
-	valor float(6,2),
+	valor varchar(10),
 	momento datetime,
 	fkConfiguracao int,
 	foreign key (fkConfiguracao) references configuracao (idConfiguracao)
@@ -130,3 +119,43 @@ create table avaliacaoParque(
     foreign key (fkCliente) references cliente (idCliente),
     foreign key (fkParque) references parque (idParque)
 );
+
+create table pytohms2 (
+	id int primary key auto_increment,
+	user_desktop varchar(50),
+	placa_mae varchar(50),
+	cpu_count int,
+	cpu_media_temperatura varchar(10),
+	cpu_media_percent varchar(10),
+	cpu_media_clock varchar(10),
+	memory_load varchar(10),
+	memory_use varchar(10),
+	memory_available varchar(10),
+	video_card varchar(50)
+);
+
+select idMaquina from maquinas where usuario = 'DSK-PCSSD0001';
+
+select fkMaquina from maquinas, configuracao where usuario = 'HSL017';
+select fkMaquina,usuario from maquinas m, configuracao c where  c.fkMaquina = m.idMaquina and usuario = 'DSK-PCSSD0001';
+
+select * from pytohms2 order by id desc;
+
+select nome from parque;
+select * from configuracao ,maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina;
+select * from componentes, configuracao where fkComponente = idComponente;
+select * from componentes, configuracao, leituras where fkConfiguracao = idConfiguracao;
+insert into configuracao values
+	(null, 1, 3, '80.00');
+    
+select * from leituras, configuracao, componentes where fkConfiguracao = idConfiguracao and fkComponente = idComponente order by idMetrica desc;
+
+select * from maquinas;
+select * from componentes;
+select * from configuracao;
+select * from leituras l, configuracao c where l.fkConfiguracao = c.idConfiguracao order by idMetrica desc;
+
+select * from maquinas maq, componentes com, configuracao con, leituras l where maq.idMaquina = con.fkMaquina and maq.idMaquina = con.fkMaquina and com.idComponente = con.fkComponente and con.idConfiguracao = l.fkConfiguracao;
+
+drop database humildificadores;
+

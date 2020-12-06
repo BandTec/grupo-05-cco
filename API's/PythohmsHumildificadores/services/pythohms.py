@@ -76,7 +76,7 @@ class CrawlerOpenHardwareMonitor:
 
             for index, itens in enumerate(clocks):
                 if index >= len(temperatures):
-                    temp = "---"
+                    temp = temperatures[0]
                 else:
                     temp = temperatures[index]
                 cpu = {
@@ -117,41 +117,41 @@ class CrawlerOpenHardwareMonitor:
 
         return data
 
-    def getData(self):
-        info = self.getInfo()
-        data = {
-            'Usuario': None,
-            'Placa Mãe': None,
-            'Quantidade CPU': None,
-            'CPU': None,
-            'RAM': None,
-            'Disco': None,
-            'Temperatura': None,
-            'Frequencia': None,
-            'Memória Usada'
-            'Memória disponível': None,
-            'Placa de Video': None
-        }
-        cores = info['CPU']
-        nCores = len(cores)
-        somaProcessamento = 0.0
-        somaLoadProcessamento = 0.0
-        somaTemp = 0.0
-        for i in range(nCores):
-            core = self.getNumber(cores[i]['Clock'])
-            somaProcessamento += float(core)
-            somaLoadProcessamento += float(self.getNumber(cores[i]['Load']))
-            somaTemp += float(self.getNumber(cores[i]['Temperature']))
-        # data['Placa Mãe'] != ''
-        data['Frequencia'] = somaProcessamento/nCores
-        data['CPU'] = somaLoadProcessamento/nCores
-        data['Temperatura'] = somaTemp/nCores
-        data['RAM'] = self.getNumber(info['Memory']['Load'])
-        data['Disco'] = self.getNumber(info['Disk'])
+#     def getData(self):
+#         info = self.getInfo()
+#         data = {
+#             'Usuario': None,
+#             'Placa Mãe': None,
+#             'Quantidade CPU': None,
+#             'CPU': None,
+#             'RAM': None,
+#             'Disco': None,
+#             'Temperatura': None,
+#             'Frequencia': None,
+#             'Memória Usada'
+#             'Memória disponível': None,
+#             'Placa de Video': None
+#         }
+#         cores = info['CPU']
+#         nCores = len(cores)
+#         somaProcessamento = 0.0
+#         somaLoadProcessamento = 0.0
+#         somaTemp = 0.0
+#         for i in range(nCores):
+#             core = self.getNumber(cores[i]['Clock'])
+#             somaProcessamento += float(core)
+#             somaLoadProcessamento += float(self.getNumber(cores[i]['Load']))
+#             somaTemp += float(self.getNumber(cores[i]['Temperature']))
+#         # data['Placa Mãe'] != ''
+#         data['Frequencia'] = somaProcessamento/nCores
+#         data['CPU'] = somaLoadProcessamento/nCores
+#         data['Temperatura'] = somaTemp/nCores
+#         data['RAM'] = self.getNumber(info['Memory']['Load'])
+#         data['Disco'] = self.getNumber(info['Disk'])
 
-        print("data no pythohms-getData():",data)
-        return data
+#         print("data no pythohms-getData():",data)
+#         return data
 
-if __name__ == "__main__":
-    teste =  CrawlerOpenHardwareMonitor()
-    teste.getInfo()
+# if __name__ == "__main__":
+#     teste =  CrawlerOpenHardwareMonitor()
+#     teste.getInfo()

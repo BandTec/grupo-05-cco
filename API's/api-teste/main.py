@@ -5,13 +5,11 @@ from automatizacao import Automatizando
 import time
 
 
-mysql = Mysql('root', 'bandtec', 'localhost', 'humildificadores')
+
+
+
 automatizacao = Automatizando()
-
-
 automatizacao.AutomatizandoScript()
-
-
 
 
 # maquina = Maquina(1,'kaiob', 1)

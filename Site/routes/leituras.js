@@ -87,8 +87,14 @@ router.get('/parques', function(req, res, next) {
 
     console.log(`Recuperando a última leitura`);
 
-    const instrucaoSql = `select idParque, nome, imgParque, (avaliacao / quantidadeclassificacao) as estrelas 
-                            from parque order by idParque desc`;
+    const instrucaoSql = `
+    select idParque, nome, imgParque, estrelas, fkparque   
+        from parque
+        LEFT OUTER JOIN (
+            select fkParque ,AVG(Avaliacao) as estrelas 
+                from avaliacaoParque ap 
+                group by fkParque) as avalia ON (idParque = fkparque)
+	order by idParque desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
@@ -106,8 +112,17 @@ router.get('/parques/:Parque', function(req, res, next) {
 
     console.log(`Recuperando a última leitura`);
 
-    const instrucaoSql = `select parque.*, (avaliacao / quantidadeclassificacao) as estrelas, temperatura, umidade from parque, sensor, evento
-    where idParque = ${Parque} and idParque = fkParque and idSensor = fkSensor`;
+    const instrucaoSql = `
+    select temperatura, umidade, avalia.estrelas, parque.*
+        from   parque
+        inner JOIN sensor s ON parque.idParque=s.fkParque
+        left outer JOIN evento e ON s.idSensor = e.fkSensor 
+        left outer JOIN (
+            select fkParque ,AVG(Avaliacao) as estrelas 
+                from avaliacaoParque ap where fkParque = ${Parque}
+                group by fkParque) as avalia ON (idParque = avalia.fkparque)
+    where parque.idParque = ${Parque} 
+    `;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
