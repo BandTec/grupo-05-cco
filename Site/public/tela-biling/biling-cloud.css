@@ -1,0 +1,28 @@
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#content {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#content #box {
+    display: flex;
+}
+
+#box {
+    width: 100%;
+    justify-content: space-between;
+    /* border: 5px solid red; */
+}
+
+#box #box-mini, #box-services {
+    width: 50%;
+}
+
+#timeseries {
+    margin-top: 5px;
+}
