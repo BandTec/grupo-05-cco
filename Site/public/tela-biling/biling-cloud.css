@@ -5,7 +5,8 @@ canvas {
 }
 
 #content {
-    width: 70%;
+    padding-top: 2%;
+    width: 90%;
     margin: 0 auto;
 }
 
