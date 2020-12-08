@@ -1,9 +1,10 @@
+require('dotenv').config();
 const puppeteer = require('puppeteer');
 const delay = require('delay');
 
 (async() => {
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
     });
 
     console.log('Aguarde...');
@@ -11,8 +12,8 @@ const delay = require('delay');
     const page = await browser.newPage();
     await page.goto('https://www.awseducate.com/signin/SiteLogin');
 
-    await page.type('[name="loginPage:siteLogin:loginComponent:loginForm:username"]', 'email');
-    await page.type('[name="loginPage:siteLogin:loginComponent:loginForm:password"]', 'senha');
+    await page.type('[name="loginPage:siteLogin:loginComponent:loginForm:username"]', process.env.USERAWS);
+    await page.type('[name="loginPage:siteLogin:loginComponent:loginForm:password"]', process.env.PASSAWS);
 
     await page.click('.loginText');
 
