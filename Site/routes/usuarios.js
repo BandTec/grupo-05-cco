@@ -5,6 +5,7 @@ var Usuario = require('../models').Usuario;
 var Eventos = require('../models').Eventos;
 var Parques = require('../models').Parques;
 var Estrelas = require('../models').Estrelas;
+var Participar = require('../models').Participar;
 
 let sessoes = [];
 
@@ -39,7 +40,7 @@ router.post('/autenticar', function(req, res, next) {
         res.status(500).send(erro.message);
     });
 });
-router.get('/:idparque/:idusuario/:idestrelas', function(req, res, next) {
+router.get('/estrelas/:idparque/:idusuario/:idestrelas', function(req, res, next) {
 
     let idestrelas = req.params.idestrelas;
     let idparque = req.params.idparque;
@@ -73,6 +74,52 @@ router.get('/:idparque/:idusuario/:idestrelas', function(req, res, next) {
                 cliente: idusuario,
                 parque: idparque,
                 avaliacao: idestrelas
+            }).then(resultado => {
+                console.log(`Registro criado: ${resultado}`)
+                res.send(resultado);
+            }).catch(erro => {
+                console.error(erro);
+                res.status(500).send(erro.message);
+            });
+        }
+
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
+
+router.get('/participar/:idParqueEvento/:idusuario', function(req, res, next) {
+
+    let idparqueevento = req.params.idParqueEvento;
+    let idusuario = req.params.idusuario;
+    console.log('participando');	
+    let instrucaoSql = `select * from clienteEventos where fkcliente= ${idusuario} and fkParqueEventos = ${idparqueevento}`;
+    console.log(instrucaoSql);
+
+    sequelize.query(instrucaoSql, {
+        model: Participar
+    }).then(resultado => {
+        console.log(`Encontrados: ${resultado.length}`);
+
+        if (resultado.length == 1) {
+
+            Participar.destroy({
+                where: {
+                  cliente: idusuario,
+                  parqueEvento: idparqueevento
+                }
+              }).then(resultado => {
+                console.log(`Dados mudados: ${resultado}`)
+                res.send(resultado);
+            }).catch(erro => {
+                console.error(erro);
+                res.status(500).send(erro.message);
+            });
+        } else if (resultado.length == 0) {
+            Participar.create({
+                cliente: idusuario,
+                parqueEvento: idparqueevento
             }).then(resultado => {
                 console.log(`Registro criado: ${resultado}`)
                 res.send(resultado);

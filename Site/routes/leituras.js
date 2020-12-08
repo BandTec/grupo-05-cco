@@ -134,12 +134,19 @@ router.get('/parques/:Parque', function(req, res, next) {
 
 });
 
-router.get('/eventos', function(req, res, next) {
+router.get('/eventos/:Cliente', function(req, res, next) {
 
-    console.log(`Recuperando a última leitura`);
+    const Cliente = req.params.Cliente;
 
-    const instrucaoSql = `select parqueEventos.*,  FORMAT(dataEventos,'dd/MM/yyyy ') as data, FORMAT(dataEventos,'HH:mm') as hora , parque.nome
-                            from parqueEventos, parque where fkParque = idParque order by dataEventos  desc`;
+    console.log(`Recuperando os eventos dos parques`);
+
+    const instrucaoSql = `select parqueEventos.*, CECOUNT.quantidade ,   FORMAT(dataEventos,'dd/MM/yyyy ') as data, FORMAT(dataEventos,'HH:mm') as hora , parque.nome, CE.fkCliente 
+	    from parqueEventos
+	    inner  join parque on fkParque = idParque
+	    LEFT OUTER JOIN (select COUNT(fkParqueEventos ) as quantidade, fkParqueEventos from clienteEventos group by fkparqueEventos) CECOUNT on CECOUNT.fkParqueEventos = idParqueEventos 
+	    LEFT OUTER JOIN (select fkcliente, fkParqueEventos from clienteEventos where fkcliente = ${Cliente}) CE on CE.fkParqueEventos = idParqueEventos 
+	    where dataEventos >= GETDATE ( ) 
+	    order by dataEventos  desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
