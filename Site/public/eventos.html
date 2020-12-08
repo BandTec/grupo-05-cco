@@ -67,24 +67,24 @@
     function adicionarParque() {
 
         fetch(`/leituras/eventos/${sessionStorage.Id_usuario_meuapp}`, {
-                cache: 'no-store'
-            }).then(function(response) {
-                if (response.ok) {
-                    response.json().then(function(resposta) {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                        resposta.reverse();
+                    resposta.reverse();
 
-                        dados = resposta;
-                        let contador = 0;
-                        for (let cont = 0; resposta.length > cont; cont++) {
+                    dados = resposta;
+                    let contador = 0;
+                    let htmlPark = "";
 
-                            let htmlPark = "";
+                    for (let cont = 0; resposta.length > cont; cont++) {
 
-                            for (let cont2 = 0; cont2 < 1 && contador < resposta.length; cont2++) {
+                        for (let cont2 = 0; cont2 < 1 && contador < resposta.length; cont2++) {
 
-                                htmlPark += `
+                            htmlPark += `
                             <div id="cards-eventos">
                                 <div id="container-card-eventos">
                                     <div id="part-one-card-eventos">
@@ -101,30 +101,29 @@
                                             </div><br>
                                             <div id="pessoas-confirmadas">
                                                 Pessoas confirmadas:
-                                                <span>12</span>
+                                                <span>${dados[contador].quantidade == null ? 0 : dados[contador].quantidade}</span>
                                             </div>
-                                            <button id="btn-confirme-presenca" onclick="participar(${dados[contador].idParqueEvento})">confirmar presença</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            `;
-                                contador++;
-                                document.getElementById(`card-evento`).innerHTML += htmlPark;
-                            }
+                                            <button id="btn-confirme-presenca" onclick="participar(${dados[contador].idParqueEventos})">${dados[contador].fkCliente == null ? 'Confirmar presença' : 'Excluir presença'}</button >
+                                        </div >
+                                    </div >
+                                </div >
+                            </div >`;                            
+                            contador++;
                         }
-                        // aqui, após 'registro.' use os nomes 
-                        // dos atributos que vem no JSON 
-                        // que gerou na consulta ao banco de dados
-                        console.log(JSON.stringify(dados));
-                        console.log(dados);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function(error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                    }
+                    document.getElementById(`card-evento`).innerHTML = htmlPark;
+                    // aqui, após 'registro.' use os nomes 
+                    // dos atributos que vem no JSON 
+                    // que gerou na consulta ao banco de dados
+                    console.log(JSON.stringify(dados));
+                    console.log(dados);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p / gráfico: ${ error.message }`);
             });
 
 
@@ -132,9 +131,24 @@
 
     }
 
-    function VerParque(idParque) {
-        sessionStorage.idParque = idParque;
-        window.location.href = 'parque.html'
+    function participar(idParqueEvento) {
+        fetch(`/usuarios/participar/${idParqueEvento}/${sessionStorage.Id_usuario_meuapp}`, {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    console.log("Confirmar");
+                    adicionarParque();
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro: ${error.message}`);
+        });
     }
 </script>
 
