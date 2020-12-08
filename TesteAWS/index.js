@@ -31,7 +31,8 @@ const delay = require('delay');
         console.log(error)
     }
 
-    await page.waitForTimeout(6000);
+    await page.waitForTimeout(8000);
+    console.log("Aguarde só mais um pouquinho.")
 
     page.goto('https://labs.vocareum.com/main/main.php?m=editor&nav=1&asnid=265109&stepid=265110');
 
