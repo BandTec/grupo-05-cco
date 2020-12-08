@@ -11,8 +11,8 @@ const delay = require('delay');
     const page = await browser.newPage();
     await page.goto('https://www.awseducate.com/signin/SiteLogin');
 
-    await page.type('[name="loginPage:siteLogin:loginComponent:loginForm:username"]', 'jose.silva@bandtec.com.br');
-    await page.type('[name="loginPage:siteLogin:loginComponent:loginForm:password"]', '@Joka0810');
+    await page.type('[name="loginPage:siteLogin:loginComponent:loginForm:username"]', 'email');
+    await page.type('[name="loginPage:siteLogin:loginComponent:loginForm:password"]', 'senha');
 
     await page.click('.loginText');
 
