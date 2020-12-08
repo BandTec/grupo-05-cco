@@ -68,3 +68,5 @@ package-lock.json
 /projeto-site/config/config.js
 
 /projeto-site/node_modules/
+
+/TesteAWS/node_modules/
