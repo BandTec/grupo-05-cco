@@ -48,11 +48,12 @@ public class LineChart extends JFrame {
         ConexaoBanco conexao = new ConexaoBanco();
         
         List<Temperatura> consultaTemperaturas = conexao.jdbcTemplate.query(
-                "select * from pytohms order by id asc limit 20", new BeanPropertyRowMapper(Temperatura.class));
+                "select * from leituras order by idMetrica asc limit 20", new BeanPropertyRowMapper(Temperatura.class));
         
         for (Temperatura listaTemp : consultaTemperaturas) {
             for (int i = 0; i < consultaTemperaturas.size(); i++) {
-                dataset.addValue(Double.parseDouble(listaTemp.getCpu_media_temperatura()),
+                Double temp = listaTemp.getCpu_media_temperatura();
+                dataset.addValue(temp,
                 "Temperatura",
                 listaTemp.getId());
                 System.out.println(

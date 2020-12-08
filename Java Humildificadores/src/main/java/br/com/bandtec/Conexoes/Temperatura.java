@@ -17,7 +17,7 @@ public class Temperatura {
     public Integer cpu_count;
     public String clock_1;
     public String clock_2;
-    public String cpu_media_temperatura;
+    public Double cpu_media_temperatura;
     public String cpu_media_percent;
     public String cpu_media_clock;
     public String memory_load;
@@ -73,11 +73,11 @@ public class Temperatura {
         this.clock_2 = clock_2;
     }
 
-    public String getCpu_media_temperatura() {
+    public Double getCpu_media_temperatura() {
         return cpu_media_temperatura;
     }
 
-    public void setCpu_media_temperatura(String cpu_media_temperatura) {
+    public void setCpu_media_temperatura(Double cpu_media_temperatura) {
         this.cpu_media_temperatura = cpu_media_temperatura;
     }
 

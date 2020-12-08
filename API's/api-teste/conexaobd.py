@@ -210,7 +210,7 @@ class Mysql:
                     try:
                         print(idMaquina)
                         print("\nInserindo Contagem da CPU")
-                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[1], data_formatada, idMaquina)
+                        insertando = "insert into leituras values (null, {},'{}', {})".format(valor[1], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -222,7 +222,7 @@ class Mysql:
                 if row[0] == 'cpu_media_temperatura':
                     try:
                         print("\nInserindo Media de Temperatura da CPU")
-                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[2], data_formatada, idMaquina)
+                        insertando = "insert into leituras values (null, {},'{}', {})".format(valor[2], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -234,7 +234,7 @@ class Mysql:
                 if row[0] == 'cpu_media_percent':
                     try:
                         print("\nInserindo Media de Percentual da CPU")
-                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[3], data_formatada, idMaquina)
+                        insertando = "insert into leituras values (null, {},'{}', {})".format(valor[3], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -246,7 +246,7 @@ class Mysql:
                 if row[0] == 'cpu_media_clock':
                     try:
                         print("\nInserindo Media de Clock da CPU")
-                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[4], data_formatada, idMaquina)
+                        insertando = "insert into leituras values (null, {},'{}', {})".format(valor[4], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -258,7 +258,7 @@ class Mysql:
                 if row[0] == 'memory_load':
                     try:
                         print("\nInserindo Percentual de uso da Memória")
-                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[5], data_formatada, idMaquina)
+                        insertando = "insert into leituras values (null, {},'{}', {})".format(valor[5], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -270,7 +270,7 @@ class Mysql:
                 if row[0] == 'memory_use':
                     try:
                         print("\nInserindo Uso de Memoria")
-                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[6], data_formatada, idMaquina)
+                        insertando = "insert into leituras values (null, {},'{}', {})".format(valor[6], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)
@@ -282,7 +282,7 @@ class Mysql:
                 if row[0] == 'memory_available':
                     try:
                         print("\nInserindo Quantidade de Memória Disponível")
-                        insertando = "insert into leituras values (null, '{}','{}', {})".format(valor[7], data_formatada, idMaquina)
+                        insertando = "insert into leituras values (null, {},'{}', {})".format(valor[7], data_formatada, idMaquina)
                         self.cursor.execute(insertando)
                         self.mysql.commit()
                         print(insertando)

@@ -153,9 +153,14 @@ select * from leituras, configuracao, componentes where fkConfiguracao = idConfi
 select * from maquinas;
 select * from componentes;
 select * from configuracao;
+insert into configuracao values(null,1,2,75.00);
+select * from componentes, configuracao, leituras where idComponente = fkComponente and nome = 'cpu_media_temperatura' and idComponente = fkConfiguracao;
 select * from leituras l, configuracao c where l.fkConfiguracao = c.idConfiguracao order by idMetrica desc;
-
+select * from leituras, configuracao, componentes where idComponente = fkComponente and fkMaquina = 2;
+select * from leituras;
+select nome, valor from componentes com, leituras lei, configuracao con where idComponente = 2 and lei.fkConfiguracao = con.idConfiguracao and con.fkComponente = com.idComponente;
 select * from maquinas maq, componentes com, configuracao con, leituras l where maq.idMaquina = con.fkMaquina and maq.idMaquina = con.fkMaquina and com.idComponente = con.fkComponente and con.idConfiguracao = l.fkConfiguracao;
 
 drop database humildificadores;
 
+select * from configuracao, leituras where fkConfiguracao = idConfiguracao and configuracao.fkComponente = 2 and fkConfiguracao = 4;

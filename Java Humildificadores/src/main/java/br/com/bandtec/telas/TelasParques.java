@@ -10,6 +10,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -21,44 +23,49 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 public class TelasParques extends JFrame {
 
     ConexaoBancoAzure conexao = new ConexaoBancoAzure();
+    // TelasParques tela = new TelaDashboard();
 
     public TelasParques() {
-        
-        setLayout(new GridLayout(3,2,10,10));
-        
+
+        setLayout(new GridLayout(3, 2, 10, 10));
+
         setTitle("Parques");
         setSize(1200, 900);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         List<DadosParques> lista
                 = conexao.jdbcTemplate.query(
-                        "select nome from parque", new BeanPropertyRowMapper(DadosParques.class));
-        
-        for (int i = 0; i < lista.size(); i++) {
-            for (DadosParques dados : lista) {
-                
-                JPanel painel = new JPanel();
-                painel.setBackground(Color.decode("#303030"));
-                painel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-                
-                JLabel label = new JLabel("label1");
-                label.setText(dados.getNome());
-                label.setForeground(Color.decode("#f1f1f1"));
-                
-                JButton botao = new JButton("Visualizar Dados");
-                botao.setSize(40, 40);
-                
-                System.out.println(dados.getNome());
-                painel.add(label);
-                painel.add(botao, BorderLayout.SOUTH);
-                painel.setLayout(new GridLayout(4,1));
-                add(painel);
-                
-                
-            }
-            break;
+                        "select nome, idParque from parque", new BeanPropertyRowMapper(DadosParques.class));
+
+//        for (int i = 0; i < lista.size(); i++) {
+        for (DadosParques dados : lista) {
+
+            JPanel painel = new JPanel();
+            painel.setBackground(Color.decode("#303030"));
+            painel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+            JLabel label = new JLabel("label1");
+            label.setText(dados.getNome());
+            label.setForeground(Color.decode("#f1f1f1"));
+
+            JButton botao = new JButton(String.format("%d", dados.getIdParque()));
+            botao.setSize(40, 40);
+            botao.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) { // aqui vai a ação 
+                        TelaDashboard tela = new TelaDashboard(dados.getNome());
+                        tela.setVisible(true);
+                    }
+                });
+
+            System.out.println(dados.getNome());
+            painel.add(label);
+            painel.add(botao, BorderLayout.SOUTH);
+            painel.setLayout(new GridLayout(4, 1));
+            add(painel);
         }
+//            break;
+//        }
     }
 
     public static void main(String[] args) {

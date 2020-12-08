@@ -25,6 +25,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public TelaLogin() {
         initComponents();
+        TelasParques parques = new TelasParques();
+        parques.setVisible(true);
     }
 
     /**
@@ -124,16 +126,16 @@ public class TelaLogin extends javax.swing.JFrame {
                 "select * from administracao where email = ? and senha = ?",
                 new BeanPropertyRowMapper(DadosAdmin.class),
                 user, pass);
-
+        
         if (consulta.isEmpty()) {
             lbAlerta.setText("Email e/ou senha inválidos, tente novamente.");
             lbAlerta.setForeground(Color.red);
         } else {
-            TelasParques parques = new TelasParques();
-            parques.setVisible(true);
-            dispose();
+//            TelasParques parques = new TelasParques();
+//            parques.setVisible(true);
+//            dispose();
         }
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
