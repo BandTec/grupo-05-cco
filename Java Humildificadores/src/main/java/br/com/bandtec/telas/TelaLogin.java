@@ -5,11 +5,9 @@
  */
 package br.com.bandtec.telas;
 
-import br.com.bandtec.Conexoes.ConexaoBanco;
 import br.com.bandtec.Conexoes.ConexaoBancoAzure;
 import java.awt.Color;
 import java.util.List;
-import javax.swing.JFrame;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 /**
@@ -132,6 +130,7 @@ public class TelaLogin extends javax.swing.JFrame {
             lbAlerta.setForeground(Color.red);
         } else {
 //            TelasParques parques = new TelasParques();
+            
 //            parques.setVisible(true);
 //            dispose();
         }

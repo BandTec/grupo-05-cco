@@ -3,7 +3,7 @@ from conexaobd import Mysql
 from pythohms import CrawlerOpenHardwareMonitor
 import time
 
-mysql = Mysql('root', 'urubu100', '54.174.148.168', 'humildificadores')
+mysql = Mysql('root', 'urubu100', '18.207.236.86', 'humildificadores')
 crawler = CrawlerOpenHardwareMonitor()
 mysql.connect()
 crawler.getInfo()

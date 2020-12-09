@@ -77,7 +77,7 @@ insert into componentes values
     (null,'memory_available','%');
 
 create table configuracao(
-	int primary key auto_increment,
+	idConfiguracao int primary key auto_increment,
 	fkMaquina int,
 	fkComponente int,
 	limiteAlerta float(5,2),
@@ -90,7 +90,9 @@ create table leituras(
 	valor varchar(10),
 	momento datetime,
 	fkConfiguracao int,
-	foreign key (fkConfiguracao) references configuracao (idConfiguracao)
+	foreign key (fkConfiguracao) references configuracao (idConfiguracao),
+    fkComponente int,
+    foreign key (fkComponente) references componentes (idComponente)
 );
 
 create table parqueEventos(
@@ -149,18 +151,28 @@ insert into configuracao values
 	(null, 1, 3, '80.00');
     
 select * from leituras, configuracao, componentes where fkConfiguracao = idConfiguracao and fkComponente = idComponente order by idMetrica desc;
-
+select * from leituras;
+select * from maquinas, configuracao where idMaquina = fkMaquina;
+select * from configuracao, componentes where idComponente = fkComponente;
+select * from configuracao, leituras where idConfiguracao = fkConfiguracao;
+select * from leituras, configuracao where fkConfiguracao = idConfiguracao;
+select * from leituras ,maquinas, configuracao con
+where idMaquina = fkMaquina and idMaquina = 2 and idConfiguracao = fkConfiguracao;
+select idMetrica, valor from leituras, componentes where fkComponente = idComponente and nome = 'cpu_media_temperatura';
 select * from maquinas;
 select * from componentes;
 select * from configuracao;
+desc configuracao;
 insert into configuracao values(null,1,2,75.00);
 select * from componentes, configuracao, leituras where idComponente = fkComponente and nome = 'cpu_media_temperatura' and idComponente = fkConfiguracao;
 select * from leituras l, configuracao c where l.fkConfiguracao = c.idConfiguracao order by idMetrica desc;
 select * from leituras, configuracao, componentes where idComponente = fkComponente and fkMaquina = 2;
+select * from leituras, configuracao where idConfiguracao = fkConfiguracao;
+select * from configuracao;
 select * from leituras;
 select nome, valor from componentes com, leituras lei, configuracao con where idComponente = 2 and lei.fkConfiguracao = con.idConfiguracao and con.fkComponente = com.idComponente;
 select * from maquinas maq, componentes com, configuracao con, leituras l where maq.idMaquina = con.fkMaquina and maq.idMaquina = con.fkMaquina and com.idComponente = con.fkComponente and con.idConfiguracao = l.fkConfiguracao;
 
 drop database humildificadores;
 
-select * from configuracao, leituras where fkConfiguracao = idConfiguracao and configuracao.fkComponente = 2 and fkConfiguracao = 4;
+select * from configuracao, leituras where fkConfiguracao = idConfiguracao  and fkmaquina = 2;

@@ -6,7 +6,7 @@ const { Connection, Request } = require("tedious");
 // codigo do bot puppeteer
 (async() => {
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
     });
 
     console.log('Aguarde...');
@@ -46,7 +46,7 @@ const { Connection, Request } = require("tedious");
 
     console.log(data)
 
-    await browser.close();
+    // await browser.close();
 })();
 
 // // Create connection to database

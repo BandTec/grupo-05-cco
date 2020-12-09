@@ -6,9 +6,9 @@
 package br.com.bandtec.telas;
 
 import br.com.bandtec.Conexoes.ConexaoBancoAzure;
+import br.com.bandtec.TesteJChart.LineChart;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +36,7 @@ public class TelasParques extends JFrame {
 
         List<DadosParques> lista
                 = conexao.jdbcTemplate.query(
-                        "select nome, idParque from parque", new BeanPropertyRowMapper(DadosParques.class));
+                "select nome, idParque from parque", new BeanPropertyRowMapper(DadosParques.class));
 
 //        for (int i = 0; i < lista.size(); i++) {
         for (DadosParques dados : lista) {
@@ -49,12 +49,13 @@ public class TelasParques extends JFrame {
             label.setText(dados.getNome());
             label.setForeground(Color.decode("#f1f1f1"));
 
-            JButton botao = new JButton(String.format("%d", dados.getIdParque()));
+            JButton botao = new JButton("Visualizar Dados");
             botao.setSize(40, 40);
             botao.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) { // aqui vai a ação 
-                        TelaDashboard tela = new TelaDashboard(dados.getNome());
-                        tela.setVisible(true);
+                    public void actionPerformed(ActionEvent e) {
+                        // aqui vai a ação 
+                        LineChart chart = new LineChart(dados.getNome(), "Temperatura CPU "+dados.getNome());
+                        chart.setVisible(true);
                     }
                 });
 
