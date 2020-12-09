@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
-var Usuario = require('../models').Usuario;
-var Eventos = require('../models').Eventos;
-var Parques = require('../models').Parques;
+var Admin = require('../models').Admin;
+
 
 
 let sessoes_admin = [];
@@ -12,16 +11,16 @@ let sessoes_admin = [];
 
 /* Recuperar dados dos Admins (login e senha)*/
 router.post('/admin', function(req, res, next) {
-    console.log('Recuperando usuário por login e senha dos admins');
+    console.log('Recuperando Admin por login e senha dos admins');
 
     var login = req.body.login; // depois de .body, use o nome (name) do campo em seu formulário de login
     var senha = req.body.senha; // depois de .body, use o nome (name) do campo em seu formulário de login	
 
-    let instrucaoSql = `select * from cliente where email='${login}' and senha='${senha}'`;
+    let instrucaoSql = `select * from administracao where email='${login}' and senha='${senha}'`;
     console.log(instrucaoSql);
 
     sequelize.query(instrucaoSql, {
-        model: Usuario
+        model: Admin
     }).then(resultado => {
         console.log(`Encontrados: ${resultado.length}`);
 
@@ -32,7 +31,7 @@ router.post('/admin', function(req, res, next) {
         } else if (resultado.length == 0) {
             res.status(403).send('Login e/ou senha inválido(s)');
         } else {
-            res.status(403).send('Mais de um usuário com o mesmo login e senha!');
+            res.status(403).send('Mais de um Admin com o mesmo login e senha!');
         }
 
     }).catch(erro => {
@@ -42,14 +41,14 @@ router.post('/admin', function(req, res, next) {
 });
 
 
-/* Cadastrar usuário */
+/* Cadastrar Admin */
 
 
     /* verificacao do admin */
 
 router.get('/sessao/:login_admin', function(req, res, next) {
     let login = req.params.login_admin;
-    console.log(`Verificando se o usuário ${login} tem sessão`);
+    console.log(`Verificando se o Admin ${login} tem sessão`);
 
     let tem_sessao = false;
     for (let u = 0; u < sessoes_admin.length; u++) {
@@ -60,7 +59,7 @@ router.get('/sessao/:login_admin', function(req, res, next) {
     }
 
     if (tem_sessao) {
-        let mensagem = `Usuário ${login} possui sessão ativa!`;
+        let mensagem = `Admin ${login} possui sessão ativa!`;
         console.log(mensagem);
         res.send(mensagem);
     } else {
@@ -72,7 +71,7 @@ router.get('/sessao/:login_admin', function(req, res, next) {
 /* Logoff do admin */
 router.get('/sair/:login-admin', function(req, res, next) {
     let login = req.params.login;
-    console.log(`Finalizando a sessão do usuário ${login}`);
+    console.log(`Finalizando a sessão do Admin ${login}`);
     let nova_sessoes = []
     for (let u = 0; u < sessoes_admin.length; u++) {
         if (sessoes_admin[u] != login) {
@@ -80,7 +79,7 @@ router.get('/sair/:login-admin', function(req, res, next) {
         }
     }
     sessoes_admin = nova_sessoes;
-    res.send(`Sessão do usuário ${login} finalizada com sucesso!`);
+    res.send(`Sessão do Admin ${login} finalizada com sucesso!`);
 });
 
 module.exports = router;

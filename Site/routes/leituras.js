@@ -185,7 +185,7 @@ router.get('/todosClientes', function(req, res, next) {
 });
 
 router.get('/todosEventos', function(req, res, next) {
-    const instrucaoSql = `select * from parqueEventos order by idParqueEventos desc`;
+    const instrucaoSql = `select idParqueEventos, nome, img_parque, tituloEvento, descricao, FORMAT(dataEventos,'dd/MM/yyyy HH:mm') as dataHora from parqueEventos, parque where fkParque = idParque order by dataEventos desc;`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
@@ -196,7 +196,7 @@ router.get('/todosEventos', function(req, res, next) {
         });
 
 });
-
+ 
 router.get('/create', function(req, res, next) {
 
     console.log(`Recuperando a última leitura`);
