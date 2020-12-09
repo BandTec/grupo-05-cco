@@ -185,7 +185,7 @@ router.get('/todosClientes', function(req, res, next) {
 });
 
 router.get('/todosEventos', function(req, res, next) {
-    const instrucaoSql = `select * from parqueEventos order by idParqueEventos desc`;
+    const instrucaoSql = `select *, FORMAT(dataEventos,'dd/MM/yyyy - HH:mm') as dataHora from parqueEventos order by dataEventos desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
