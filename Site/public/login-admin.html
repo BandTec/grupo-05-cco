@@ -35,7 +35,7 @@
                 <div class="formulario">
                     <form id="form_login" method="post" onsubmit="return entrar()">
                         Email: <br><br><input type="email" id="usuario" name="login" placeholder="usuario@dominio.com" required> <br> <br> Senha: <br><br><input type="password" id="senha" name="senha" placeholder="***************" required> <br> <br>                        <br><br>
-                        <div align="center">
+                        <div id="login_aguarde" align="center">
                             <img src="images/aguarde.gif" id="img_aguarde" style="display: none; height: 80px;">
                         </div>
                         <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
@@ -72,6 +72,9 @@
             } else {
 
                 console.log('Erro de login!');
+                login_aguarde.style.display = 'none';
+                div_erro.style.display = 'block';
+                div_erro.innerHTML = 'E-mail e/ou senha incorretos';
 
                 response.text().then(texto => {
                     console.error(texto);
