@@ -109,8 +109,8 @@ router.get('/participar/:idParqueEvento/:idusuario', function(req, res, next) {
                   cliente: idusuario,
                   parqueEvento: idparqueevento
                 }
-              }).then(resultado => {
-                console.log(`Dados mudados: ${resultado}`)
+              }).then(resultado2 => {
+                console.log(`Excluido`)
                 res.send(resultado);
             }).catch(erro => {
                 console.error(erro);
