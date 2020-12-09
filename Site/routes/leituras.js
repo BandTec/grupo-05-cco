@@ -159,9 +159,6 @@ router.get('/eventos/:Cliente', function(req, res, next) {
 });
 
 router.get('/todosParques', function(req, res, next) {
-
-   
-
     const instrucaoSql = `select * from parque order by idParque desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
@@ -173,11 +170,22 @@ router.get('/todosParques', function(req, res, next) {
         });
 
 });
+
 router.get('/todosClientes', function(req, res, next) {
-
-   
-
     const instrucaoSql = `select * from cliente order by idCliente desc`;
+
+    sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+        .then(resultado => {
+            res.json(resultado);
+        }).catch(erro => {
+            console.error(erro);
+            res.status(500).send(erro.message);
+        });
+
+});
+
+router.get('/todosEventos', function(req, res, next) {
+    const instrucaoSql = `select * from parqueEventos order by idParqueEventos desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {

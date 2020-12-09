@@ -82,13 +82,4 @@ router.get('/sair/:login-admin', function(req, res, next) {
     res.send(`Sessão do Admin ${login} finalizada com sucesso!`);
 });
 
-
-
-
-
-
-
-
-
-
 module.exports = router;

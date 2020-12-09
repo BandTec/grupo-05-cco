@@ -105,21 +105,19 @@
     <div class="header-create">
         <div class="title">
             <br>
-            <h1>Parques</h1>
+            <h1>Eventos</h1>
         </div>
     </div>
     <div class="create">
         <div class="container">
             <table id="customers">
                 <tr>
-                    <th>Id</th>
-                    <th>Nome </th>
-                    <!-- <th>Cpf</th>
-                    <th>Area</th> -->
+                    <th>idParqueEventos</th>
+                    <th>fkParque</th>
                     <th>Imagem</th>
-                    <!-- <th>Avaliacao</th> -->
-                    <th>locallização</th>
-                    <!-- <th>QtAvaliações</th> -->
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
                 </tr>
 
             </table>
@@ -138,7 +136,7 @@
 
     function obterDadosDaTabela() {
 
-        fetch(`/leituras/todosParques`, {
+        fetch(`/leituras/todosEventos`, {
                 cache: 'no-store'
             }).then(function(response) {
                 if (response.ok) {
@@ -160,10 +158,12 @@
 
                             tabela += `
                                     <tr>
-                                        <td>${dados[i].idParque}</td>
-                                        <td>${dados[i].nome}</td>
-                                        <td>${dados[i].imgParque}</td>
-                                        <td>${dados[i].localizacao}</td>
+                                        <td>${dados[i].idParqueEventos}</td>
+                                        <td>${dados[i].fkParque}</td>
+                                        <td>${dados[i].img_parque}</td>
+                                        <td>${dados[i].titulo_Evento}</td>
+                                        <td>${dados[i].descricao}</td>
+                                        <td>${dados[i].dataEventos}</td>
                                     </tr>`
 
 
