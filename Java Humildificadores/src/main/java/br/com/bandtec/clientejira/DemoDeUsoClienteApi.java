@@ -1,7 +1,7 @@
 package br.com.bandtec.clientejira;
 
 import br.com.bandtec.Conexoes.ConexaoBanco;
-import br.com.bandtec.Conexoes.Temperatura;
+import br.com.bandtec.Conexoes.Monitoramento;
 import br.com.bandtec.clientejira.modelo.Issue;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,11 +36,10 @@ public class DemoDeUsoClienteApi {
         Double temperatura = 0.0;
         Integer contador = 0;
         while (true) {
-            List<Temperatura> consulta
-                    = conexao.jdbcTemplate.query(
-                            "select valor from leituras, componentes where fkComponente = idComponente and nome = 'cpu_media_temperatura'",
-                            new BeanPropertyRowMapper(Temperatura.class));
-            for (Temperatura consultinha : consulta) {
+            List<Monitoramento> consulta
+                    = conexao.jdbcTemplate.query("select valor from leituras, componentes where fkComponente = idComponente and nome = 'cpu_media_temperatura'",
+                            new BeanPropertyRowMapper(Monitoramento.class));
+            for (Monitoramento consultinha : consulta) {
                 if (lastId < consultinha.getIdMetrica()) {
                     lastId = consultinha.getIdMetrica();
                     System.out.println(

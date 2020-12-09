@@ -5,16 +5,18 @@
  */
 package br.com.bandtec.Conexoes;
 
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Aluno
  */
-public class Temperatura {
+public class Monitoramento {
     
     public Integer idMetrica;
     public String valor;
     public String momento;
-
+    public String fkParque;
     
     public Integer getIdMetrica() {
         return idMetrica;
@@ -38,6 +40,10 @@ public class Temperatura {
 
     public void setMomento(String momento) {
         this.momento = momento;
+    }
+
+    public Comparable getMomento(SimpleDateFormat simpleDateFormat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

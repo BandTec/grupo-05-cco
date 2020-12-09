@@ -9,6 +9,7 @@ import br.com.bandtec.Conexoes.ConexaoBancoAzure;
 import br.com.bandtec.TesteJChart.LineChart;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +31,7 @@ public class TelasParques extends JFrame {
         setLayout(new GridLayout(3, 2, 10, 10));
 
         setTitle("Parques");
-        setSize(1200, 900);
+        setSize(1200, 700);
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -41,12 +42,17 @@ public class TelasParques extends JFrame {
 //        for (int i = 0; i < lista.size(); i++) {
         for (DadosParques dados : lista) {
 
-            JPanel painel = new JPanel();
+            JPanel painel = new JPanel();  
+            painel.setLayout(new FlowLayout());
             painel.setBackground(Color.decode("#303030"));
             painel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
             JLabel label = new JLabel("label1");
             label.setText(dados.getNome());
+            label.setForeground(Color.decode("#f1f1f1"));
+            
+            JLabel label1 = new JLabel();
+            label.setText("Chamados abertos: ");
             label.setForeground(Color.decode("#f1f1f1"));
 
             JButton botao = new JButton("Visualizar Dados");
@@ -54,13 +60,14 @@ public class TelasParques extends JFrame {
             botao.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         // aqui vai a ação 
-                        LineChart chart = new LineChart(dados.getNome(), "Temperatura CPU "+dados.getNome());
+                        LineChart chart = new LineChart(dados.getNome(), "Temperatura CPU "+dados.getNome(), dados.getIdParque());
                         chart.setVisible(true);
                     }
                 });
 
             System.out.println(dados.getNome());
             painel.add(label);
+            painel.add(label1);
             painel.add(botao, BorderLayout.SOUTH);
             painel.setLayout(new GridLayout(4, 1));
             add(painel);

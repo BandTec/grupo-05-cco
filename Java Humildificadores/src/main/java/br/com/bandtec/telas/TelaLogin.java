@@ -129,8 +129,9 @@ public class TelaLogin extends javax.swing.JFrame {
             lbAlerta.setText("Email e/ou senha inválidos, tente novamente.");
             lbAlerta.setForeground(Color.red);
         } else {
+            TelasParques parques = new TelasParques();
+            parques.setVisible(true);
 //            TelasParques parques = new TelasParques();
-            
 //            parques.setVisible(true);
 //            dispose();
         }
