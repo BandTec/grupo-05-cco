@@ -5,7 +5,7 @@ from automatizacao import Automatizando
 import time
 
 
-mysql = Mysql('root', 'bandtec', 'localhost', 'humildificadores')
+
 
 
 automatizacao = Automatizando()

@@ -9,7 +9,6 @@ import br.com.bandtec.Conexoes.Temperatura;
 import br.com.bandtec.Conexoes.ConexaoBanco;
 import java.util.List;
 import javax.swing.JFrame;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -25,7 +24,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class LineChart extends JFrame {
 
-    private JdbcTemplate jdbcTemplate;
     
     public LineChart(String applicationTitle, String chartTitle) {
         super(applicationTitle);
@@ -39,6 +37,8 @@ public class LineChart extends JFrame {
         ChartPanel chartPanel = new ChartPanel(lineChart);
         chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
         setContentPane(chartPanel);
+        setSize(850, 500);
+        setLocationRelativeTo(null);
     }
 
     private DefaultCategoryDataset createDataset() {
@@ -48,18 +48,29 @@ public class LineChart extends JFrame {
         ConexaoBanco conexao = new ConexaoBanco();
         
         List<Temperatura> consultaTemperaturas = conexao.jdbcTemplate.query(
-                "select * from pytohms order by id asc limit 20", new BeanPropertyRowMapper(Temperatura.class));
+                "select idMetrica, valor, momento from leituras, componentes where fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica asc limit 20"
+                , new BeanPropertyRowMapper(Temperatura.class));
         
+        Double temperatura;
+        Integer lastId = 0;
         for (Temperatura listaTemp : consultaTemperaturas) {
             for (int i = 0; i < consultaTemperaturas.size(); i++) {
-                dataset.addValue(Double.parseDouble(listaTemp.getCpu_media_temperatura()),
-                "Temperatura",
-                listaTemp.getId());
-                System.out.println(
-                        "Id: "+listaTemp.getId()+", Media Temperatura: "+listaTemp.getCpu_media_temperatura());
+                if (lastId < listaTemp.getIdMetrica()) {
+                    lastId = listaTemp.getIdMetrica();
+                    System.out.println(
+                            "Id: " + lastId + ", Media Temperatura: " + listaTemp.getValor());
+                    temperatura = Double.parseDouble(listaTemp.getValor());
+                    dataset.addValue(temperatura,
+                            "Temperatura",
+                            listaTemp.getIdMetrica());
+//                temperatura = Double.parseDouble(listaTemp.getCpu_media_temperatura());
+//                dataset.addValue(temperatura,
+//                "Temperatura",
+//                listaTemp.getIdMetrica());
 //                dataset.addValue(listaTemp.getId(),
 //                    "Temperatura",
 //                    listaTemp.getId());
+                }
             }
         }
         return dataset;

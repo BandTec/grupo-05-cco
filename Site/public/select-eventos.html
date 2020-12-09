@@ -63,10 +63,19 @@
                 </a>
             </li>
             <li class="has-subnav">
-                <a href="select-evento.html">
+                <a href="select-eventos.html">
                     <i class="fas fa-calendar-day fa-2x"></i>
                     <span class="nav-text">
                         Select Evento
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="biling.html">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span class="nav-text">
+                        Billing
                     </span>
                 </a>
 
@@ -105,12 +114,12 @@
                 <tr>
                     <th>Id</th>
                     <th>Nome </th>
-                    <th>Cpf</th>
-                    <th>Area</th>
+                    <!-- <th>Cpf</th>
+                    <th>Area</th> -->
                     <th>Imagem</th>
-                    <th>Avaliacao</th>
+                    <!-- <th>Avaliacao</th> -->
                     <th>locallização</th>
-                    <th>QtAvaliações</th>
+                    <!-- <th>QtAvaliações</th> -->
                 </tr>
 
             </table>
@@ -153,12 +162,8 @@
                                     <tr>
                                         <td>${dados[i].idParque}</td>
                                         <td>${dados[i].nome}</td>
-                                        <td>${dados[i].cpfGerente}</td>
-                                        <td>${dados[i].area}</td>
                                         <td>${dados[i].imgParque}</td>
-                                        <td>${dados[i].avaliacao}</td>
                                         <td>${dados[i].localizacao}</td>
-                                        <td>${dados[i].quantidadeclassificacao}</td>
                                     </tr>`
 
 

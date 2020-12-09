@@ -38,13 +38,14 @@ public class DemoDeUsoClienteApi {
         while (true) {
             List<Temperatura> consulta
                     = conexao.jdbcTemplate.query(
-                            "select * from pytohms2 order by id desc;", new BeanPropertyRowMapper(Temperatura.class));
+                            "select valor from leituras, componentes where fkComponente = idComponente and nome = 'cpu_media_temperatura'",
+                            new BeanPropertyRowMapper(Temperatura.class));
             for (Temperatura consultinha : consulta) {
-                if (lastId < consultinha.getId()) {
-                    lastId = consultinha.getId();
+                if (lastId < consultinha.getIdMetrica()) {
+                    lastId = consultinha.getIdMetrica();
                     System.out.println(
-                            "Id: " + lastId + ", Media Temperatura: " + consultinha.getCpu_media_temperatura());
-                    temperatura = Double.parseDouble(consultinha.getCpu_media_temperatura());
+                            "Id: " + lastId + ", Media Temperatura: " + consultinha.getValor());
+                    temperatura = Double.parseDouble(consultinha.getValor());
                     if (temperatura >= 76.0) {
                         if (contador == 0) {
                             novaIssue.setProjectKey("TES");
