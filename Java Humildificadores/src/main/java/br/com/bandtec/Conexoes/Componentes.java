@@ -14,7 +14,7 @@ public class Componentes {
     public Integer idComponente;
     public String nome;
     public Integer fkMaquina;
-
+    
     public Integer getIdComponente() {
         return idComponente;
     }

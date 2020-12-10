@@ -12,6 +12,8 @@ package br.com.bandtec.telas;
 public class DadosParques {
     protected Integer idParque;
     protected String nome;
+    protected String usuario;
+    protected String fkParque;
 
     public Integer getIdParque() {
         return idParque;
@@ -28,5 +30,23 @@ public class DadosParques {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getFkParque() {
+        return fkParque;
+    }
+
+    public void setFkParque(String fkParque) {
+        this.fkParque = fkParque;
+    }
+
+    
     
 }

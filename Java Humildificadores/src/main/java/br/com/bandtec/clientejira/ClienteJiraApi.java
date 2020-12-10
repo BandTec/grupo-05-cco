@@ -12,6 +12,7 @@ public class ClienteJiraApi {
     private String urlBaseJira;
     private String usuario;
     private String token;
+    private Integer fkParque;
 
     /**
      * Cria uma nova instância de {@link ClienteJiraApi}.
@@ -21,10 +22,11 @@ public class ClienteJiraApi {
      *              Pode ser gerado em <a href='https://id.atlassian.com/manage-profile/security/api-tokens'>
      *              https://id.atlassian.com/manage-profile/security/api-tokens</a>
      */
-    public ClienteJiraApi(String urlBaseJira, String usuario, String token) {
+    public ClienteJiraApi(String urlBaseJira, String usuario, String token, Integer fkParque) {
         this.urlBaseJira = urlBaseJira.startsWith("https://")?urlBaseJira:"https://"+urlBaseJira;
         this.usuario = usuario;
         this.token = token;
+        this.fkParque = fkParque;
     }
 
     /**
