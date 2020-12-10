@@ -23,7 +23,7 @@ function aleatorio() {
 };
 
 var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-var VALORES = [60, 68, 85, 45, 57, 95, 60, 90, 50, 70, 83, 81];
+var VALORES = [60, 68, 85, 45, 57, 95, 60, 90, 50, 80];
 var miniBarMonths = [MONTHS[8], MONTHS[9], MONTHS[10]];
 var jurosMonths = [MONTHS[9], MONTHS[10], MONTHS[11]]
 
@@ -130,7 +130,7 @@ var barChartData = {
 };
 
 
-window.onload = function() {
+function plotarGraficos() {
     var ctx = document.getElementById('timeseries').getContext('2d');
     window.myBar = new Chart(ctx, {
         type: 'bar',
