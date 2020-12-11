@@ -131,7 +131,8 @@
 </html>
 <script>
     verificar_autenticacaoAdmin();
-    if ((window.location == 'biling.html') && (sessionStorage.login_admin_meuapp != 'augusto@humildificadores.com.br')) {
+    console.log("Verificando acesso à página Biling")
+    if (sessionStorage.login_admin_meuapp != 'augusto@humildificadores.com.br') {
         window.location.href = 'select-cliente.html';
     }
 </script>

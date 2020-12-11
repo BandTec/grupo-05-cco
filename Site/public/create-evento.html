@@ -176,11 +176,9 @@
                         // que gerou na consulta ao banco de dados
                         console.log(JSON.stringify(dados));
                         console.log(dados);
-                        let contador = 0;
                         let adicionarparque;
                         for (let cont = 0; resposta.length >= cont; cont++) {
-                            adicionarparque += `<option value="${dados[contador].idParque}">${dados[contador].nome}</option>`;
-                            contador++
+                            adicionarparque += `<option value="${dados[cont].idParque}">${dados[cont].nome}</option>`;
                             document.getElementById('inputfkParque').innerHTML = adicionarparque;
                         }
                     });

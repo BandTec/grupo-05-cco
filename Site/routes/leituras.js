@@ -201,7 +201,7 @@ router.get('/create', function(req, res, next) {
 
     console.log(`Recuperando a última leitura`);
 
-    const instrucaoSql = `select * from parque order by idParque desc`;
+    const instrucaoSql = `select idParque, nome from parque order by idParque desc`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
