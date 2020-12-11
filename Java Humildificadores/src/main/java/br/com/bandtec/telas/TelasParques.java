@@ -46,22 +46,24 @@ public class TelasParques extends JFrame {
                 = conexao.jdbcTemplate.query(
                         "select nome, idParque from parque",
                         new BeanPropertyRowMapper(DadosParques.class));
-//        ClienteJiraApi jira = new ClienteJiraApi(
-//                "humildifica.atlassian.net",
-//                "201grupo4c@bandtec.com.br",
-//                "ElJVjLEk4h8vJ1N7FfisD5F0", 0);
-//
-//        Issue novaIssue = new Issue();
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//
-//        ConexaoBanco conexao = new ConexaoBanco();
-//        Issue issue = null;
-//        try {
-//            issue = jira.getIssue("TES-84");
-//        } catch (IOException ex) {
-//            System.out.println("Deu ruim ao resgatar o ISSUE: " + ex.getMessage());
-//        }
-//        System.out.println("Issue recuperada: " + gson.toJson(issue));
+        
+        ClienteJiraApi jira = new ClienteJiraApi(
+                "humildifica.atlassian.net",
+                "201grupo4c@bandtec.com.br",
+                "ElJVjLEk4h8vJ1N7FfisD5F0", 0);
+
+        Issue novaIssue = new Issue();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        ConexaoBanco conexao = new ConexaoBanco();
+        Issue issue = null;
+        try {
+            issue = jira.getIssue("TES-84");
+        } catch (IOException ex) {
+            System.out.println("Deu ruim ao resgatar o ISSUE: " + ex.getMessage());
+        }
+        System.out.println("Issue recuperada: " + gson.toJson(issue.getKey()));
+        
 //        for (int i = 0; i < lista.size(); i++) {
         for (DadosParques dados : lista) {
 
@@ -80,10 +82,11 @@ public class TelasParques extends JFrame {
 
             JButton botao = new JButton("Visualizar Dados");
             botao.setSize(40, 40);
+            
+            
             botao.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    // aqui vai a ação 
-                    LineChart chart = new LineChart(dados.getNome(), dados.getNome(), dados.getIdParque());
+                    LineChart chart = new LineChart(dados.getUsuario(), dados.getNome(), dados.getIdParque());
                     chart.setVisible(true);
                 }
             });

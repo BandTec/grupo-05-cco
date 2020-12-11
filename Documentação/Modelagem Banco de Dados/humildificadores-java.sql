@@ -1,7 +1,7 @@
 use humildificadores;
 select nome from maquinas, componentes where idMaquina = fkMaquina;
 select * from maquinas, componentes, configuracao;
-select * from maquinas;
+select * from maquinas;select * from leituras limit 30;
 select * from configuracao;
 select * from configuracao, maquinas, componentes where fkMaquina = idMaquina and fkMaquina = 3;
 select idMetrica, valor, momento, fkParque from leituras,
@@ -14,4 +14,7 @@ select idMetrica, valor, momento, fkParque from leituras,
  componentes, maquinas where fkParque = 1 and fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica asc limit 20;
  desc configuracao;
  select limiteAlerta, maquinas.usuario, componentes.nome from parque, maquinas, configuracao, componentes where idParque = fkParque and idParque = 1 and idMaquina = fkMaquina and idComponente = fkComponente;
- select nome, idParque from parque, maquinas;
+ select nome, idParque, usuario from parque, maquinas where fkParque = idParque;
+ 
+ select idMetrica, valor, momento, fkParque from leituras, componentes, maquinas where fkParque = 1 and fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica desc limit 30;
+ select idMetrica, valor, momento, fkParque, componentes.nome from leituras, componentes, maquinas where fkParque = 1 and fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica desc limit 10;
