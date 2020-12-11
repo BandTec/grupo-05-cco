@@ -1,4 +1,3 @@
-import time
 from conexaobd import Mysql
 from pythohms import CrawlerOpenHardwareMonitor
 import time
