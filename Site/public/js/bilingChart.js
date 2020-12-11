@@ -136,6 +136,13 @@ function plotarGraficos() {
         type: 'bar',
         data: barChartData,
         options: {
+            legend: {
+                label:'Poura menó',
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            },
             responsive: true,
             legend: {
                 position: 'top',
