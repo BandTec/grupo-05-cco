@@ -14,56 +14,37 @@ function alterar(botao) {
     }
 }
 
-function aleatorio() {
-    var dados = parseInt(Math.random() * 101);
-    if (dados < 20) {
-        dados = 30;
-    };
-    return dados;
-};
-
-var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-var VALORES = [60, 68, 85, 45, 57, 95, 60, 90, 50, 80];
-var miniBarMonths = [MONTHS[8], MONTHS[9], MONTHS[10]];
-var jurosMonths = [MONTHS[9], MONTHS[10], MONTHS[11]]
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var valores = [];
+console.log("valores: ",valores)
+var miniBarMonths = [months[8], months[9], months[10]];
+var jurosMonths = [months[9], months[10], months[11]];
 
 var jurosBarChartData = {
     labels: jurosMonths,
     datasets: [{
         label: 'Simulação de juros',
         backgroundColor: [
-            'lightblue',
-            'lightblue',
-            'blue'
+            'lightblue'
         ],
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
-        data: [
-            VALORES[8],
-            VALORES[9],
-            VALORES[10]
-        ]
+        data: valores
     }]
 };
 
 var forecastBarChartData = {
-    labels: miniBarMonths,
+    labels: [],
     datasets: [{
         label: 'Forecast',
         backgroundColor: [
             'lightgreen',
-            'lightgreen',
-            'green'
         ],
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
-        data: [
-            VALORES[9],
-            VALORES[10],
-            VALORES[11]
-        ]
+        data: valores
     }]
 };
 
@@ -105,27 +86,14 @@ var config = {
 };
 
 var barChartData = {
-    labels: MONTHS,
+    labels: months,
     datasets: [{
         label: 'Linha Temporal',
-        backgroundColor: [
-            'red', 
-            'red', 
-            'red', 
-            'red', 
-            'red', 
-            'red', 
-            'red', 
-            'red', 
-            'red', 
-            'red', 
-            'lightgreen', 
-            'lightgreen' 
-        ],
+        backgroundColor: 'red',
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
-        data: VALORES
+        data: valores
     }]
 };
 
@@ -133,7 +101,7 @@ var barChartData = {
 function plotarGraficos() {
     var ctx = document.getElementById('timeseries').getContext('2d');
     window.myBar = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: barChartData,
         options: {
             legend: {

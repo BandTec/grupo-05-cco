@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="stylesheets/create.css">
         <link rel="stylesheet" href="stylesheets/reset.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-        <script type="text/javascript" src="funcoes.js"></script>
+        <script type="text/javascript" src="funcoesAdmin.js"></script>
         <script src="https://kit.fontawesome.com/937e6470ee.js" crossorigin="anonymous"></script>
         <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
         <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
@@ -131,7 +131,6 @@
 </html>
 <script>
     verificar_autenticacaoAdmin();
-    console.log("Verificando acesso à página Biling")
     if (sessionStorage.login_admin_meuapp != 'augusto@humildificadores.com.br') {
         window.location.href = 'select-cliente.html';
     }
@@ -147,15 +146,21 @@
 
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    dadosComponente = resposta;
-
                     resposta.reverse();
                     dados = resposta;
                     console.log(JSON.stringify(dados));
+                    valores.shift();
+                    valores.shift();
+                    
                     for (let cont = 0; cont < dados.length; cont++) {
-                        console.log("dados: ",dados[cont]["credito"])
-                        
+                        console.log("dados: ",dados[cont]["credito"]);
+                        valores.push(dados[cont]["credito"]);
+
+                        forecastBarChartData.labels.push(months[cont]);
+
                     }
+                    calculoForecast();
+                    plotarGraficos();
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
