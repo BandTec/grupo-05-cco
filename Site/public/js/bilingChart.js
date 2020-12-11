@@ -133,11 +133,11 @@ var barChartData = {
 function plotarGraficos() {
     var ctx = document.getElementById('timeseries').getContext('2d');
     window.myBar = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: barChartData,
         options: {
             legend: {
-                label:'Poura menó',
+                label:'Testando valores',
                 display: true,
                 labels: {
                     fontColor: 'rgb(255, 99, 132)'
