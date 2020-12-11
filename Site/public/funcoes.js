@@ -91,7 +91,7 @@ function verificar_autenticacaoAdmin() {
         redirecionar_loginAdmin()
     } else {
         if (login_admin != 'augusto@humildificadores.com.br') {
-            biling.style.display = 'none';
+            biling_nav.style.display = 'none';
         }
         b_usuario.innerHTML = nome_admin;
         validar_sessaoAdmin();
