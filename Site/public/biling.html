@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="./stylesheets/biling-cloud.css">
     </head>
 
-    <body onload="plotarGraficos()">
+    <body>
         <nav class="main-menu">
             <ul>
 
@@ -134,5 +134,36 @@
     console.log("Verificando acesso à página Biling")
     if (sessionStorage.login_admin_meuapp != 'augusto@humildificadores.com.br') {
         window.location.href = 'select-cliente.html';
+    }
+    window.onload = obterDadosDaTabela();
+    window.onload = plotarGraficos();
+
+    function obterDadosDaTabela() {
+        fetch(`/leituras/custo`, {
+            cache: 'no-store'
+        }).then(function(response) {
+            if (response.ok) {
+                response.json().then(function(resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    dadosComponente = resposta;
+
+                    resposta.reverse();
+                    dados = resposta;
+                    console.log(JSON.stringify(dados));
+                    for (let cont = 0; cont < dados.length; cont++) {
+                        console.log("dados: ",dados[cont]["credito"])
+                        
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function(error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
     }
 </script>
