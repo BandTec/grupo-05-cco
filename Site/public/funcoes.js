@@ -88,12 +88,12 @@ function verificar_autenticacaoAdmin() {
     nome_admin = sessionStorage.nome_admin_meuapp;
 
     if (login_admin == undefined) {
-        // loginDashboard.style.display = 'inline';
-        // cadastroDashboard.style.display = 'inline';
         redirecionar_loginAdmin()
     } else {
+        if (login_admin != 'augusto@humildificadores.com.br') {
+            biling.style.display = 'none';
+        }
         b_usuario.innerHTML = nome_admin;
-        // esconderStart.style.display = 'none';
         validar_sessaoAdmin();
     }
 
