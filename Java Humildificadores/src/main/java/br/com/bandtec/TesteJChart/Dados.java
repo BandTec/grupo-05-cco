@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package br.com.bandtec.TesteJChart;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 /**
  *
  * @author Aluno

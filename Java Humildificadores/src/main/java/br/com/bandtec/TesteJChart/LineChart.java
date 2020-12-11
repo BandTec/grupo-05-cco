@@ -1,104 +1,101 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.bandtec.TesteJChart;
 
 import br.com.bandtec.Conexoes.Componentes;
-import br.com.bandtec.Conexoes.Monitoramento;
 import br.com.bandtec.Conexoes.ConexaoBanco;
+import br.com.bandtec.Conexoes.Monitoramento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.RefineryUtilities;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
-/**
- *
- * @author Aluno
- */
-public class LineChart extends JFrame {
+public class LineChart extends ApplicationFrame {
 
     ConexaoBanco conexao = new ConexaoBanco();
-    JComboBox combo = new JComboBox();
-    String selectCombo;
+    String comboSelecionado;
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
     public LineChart(String applicationTitle, String chartTitle, Integer fkParque) {
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(
                 chartTitle,
-                "Valor", "Componente",
+                "Valor", chartTitle,
                 createDataset(fkParque),
                 PlotOrientation.VERTICAL,
                 true, true, false);
-
-        ChartPanel chartPanel = new ChartPanel(lineChart);
-
-        JPanel painel = new JPanel();
-        painel.setSize(560, 30);
-        chartPanel.setPreferredSize(new java.awt.Dimension(560, 300));
-//        setContentPane(chartPanel);
-        setSize(580, 375);
-        setLocationRelativeTo(null);
+        setTitle(chartTitle);
         List<Componentes> listaComponentes = conexao.jdbcTemplate.query("select fkMaquina, componentes.nome from parque, maquinas, configuracao, componentes where"
                 + " idParque = fkParque and idParque = ? and idMaquina = fkMaquina and idComponente = fkComponente;", new BeanPropertyRowMapper(Componentes.class), fkParque);
+        JComboBox combo = new JComboBox();
         for (Componentes lista : listaComponentes) {
             combo.addItem(lista.getNome());
             System.out.println("ID: " + lista.getFkMaquina() + " - Nome: " + lista.getNome());
         }
-        combo.setSize(100, 30);
+
+        ChartPanel chartPanel = new ChartPanel(lineChart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(1000, 530));
+        setSize(1020, 600);
+        JPanel painel = new JPanel();
+        painel.setSize(getWidth(), getWidth());
+        setLocationRelativeTo(null);
         add(painel);
         painel.add(combo);
         painel.add(chartPanel);
+
+        combo.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                comboSelecionado = combo.getSelectedItem().toString();
+                List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
+                        + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
+                        new BeanPropertyRowMapper(Monitoramento.class), fkParque, comboSelecionado);
+                dataset.clear();
+                for (Monitoramento consultaTemperatura : consultaTemperaturas) {
+                    System.out.println("[ ID :" + consultaTemperatura.getIdMetrica() + "] [Valor: " + consultaTemperatura.getValor() + "]");
+                    dataset.addValue(Double.parseDouble(consultaTemperatura.getValor()),
+                            "Leituras",
+                            consultaTemperatura.getIdMetrica());
+                }
+
+            }
+        }
+        );
+
     }
 
     private DefaultCategoryDataset createDataset(Integer id) {
 
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        comboSelecionado = "cpu_media_temperatura";
+        List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
+                + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
+                new BeanPropertyRowMapper(Monitoramento.class
+                ), id, comboSelecionado);
 
-        combo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // aqui vai a ação 
-                selectCombo = combo.getSelectedItem().toString();
-                System.out.println(selectCombo);
+        dataset.clear();
+        for (Monitoramento consultaTemperatura : consultaTemperaturas) {
+            System.out.println("[ ID :" + consultaTemperatura.getIdMetrica() + "] [Valor: " + consultaTemperatura.getValor() + "]");
+            dataset.addValue(Double.parseDouble(consultaTemperatura.getValor()),
+                    "Leituras",
+                    consultaTemperatura.getIdMetrica());
+        }
 
-                List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
-                        + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica asc limit 20;",
-                        new BeanPropertyRowMapper(Monitoramento.class), id, selectCombo);
-
-                Double valor;
-                Integer lastId = 0;
-                for (Monitoramento listaTemp : consultaTemperaturas) {
-                    for (int i = 0; i < consultaTemperaturas.size(); i++) {
-                        if (lastId < listaTemp.getIdMetrica()) {
-                            lastId = listaTemp.getIdMetrica();
-                            System.out.println(
-                                    "Id: " + lastId + ", Media Temperatura: " + listaTemp.getValor());
-                            valor = Double.parseDouble(listaTemp.getValor());
-                            dataset.addValue(valor,
-                                    "",
-                                    listaTemp.getMomento());
-                        }
-                    }
-                }
-            }
-        });
         return dataset;
     }
 
     public static void main(String[] args) {
         LineChart chart = new LineChart(
-                "Grafico Monitoramento",
-                "Componente",
+                "Monitoramento",
+                "ala",
                 0);
 
         chart.pack();

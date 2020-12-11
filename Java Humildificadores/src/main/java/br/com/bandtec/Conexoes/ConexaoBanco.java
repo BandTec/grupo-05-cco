@@ -9,7 +9,7 @@ public class ConexaoBanco {
     public static BasicDataSource dataSource;
 
     public static String DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static String URL = "jdbc:mysql://54.160.126.198/humildificadores?useTimezone=true&serverTimezone=UTC";
+    public static String URL = "jdbc:mysql://54.236.25.105/humildificadores?useTimezone=true&serverTimezone=UTC";
     public static String USERNAME = "root";
     public static String PASSWORD = "urubu100";
 

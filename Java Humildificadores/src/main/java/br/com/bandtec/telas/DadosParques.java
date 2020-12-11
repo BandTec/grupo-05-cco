@@ -13,7 +13,7 @@ public class DadosParques {
     protected Integer idParque;
     protected String nome;
     protected String usuario;
-    protected String fkParque;
+    protected Integer fkParque;
 
     public Integer getIdParque() {
         return idParque;
@@ -39,11 +39,11 @@ public class DadosParques {
         this.usuario = usuario;
     }
 
-    public String getFkParque() {
+    public Integer getFkParque() {
         return fkParque;
     }
 
-    public void setFkParque(String fkParque) {
+    public void setFkParque(Integer fkParque) {
         this.fkParque = fkParque;
     }
 
