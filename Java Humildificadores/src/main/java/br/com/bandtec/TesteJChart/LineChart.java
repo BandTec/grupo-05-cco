@@ -5,6 +5,8 @@ import br.com.bandtec.Conexoes.ConexaoBanco;
 import br.com.bandtec.Conexoes.Monitoramento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -50,6 +52,8 @@ public class LineChart extends ApplicationFrame {
         painel.add(combo);
         painel.add(chartPanel);
 
+        ArrayList<Integer> listaId = new ArrayList<>();
+        ArrayList<Double> listaValores = new ArrayList<>();
         combo.addActionListener(new ActionListener() {
 
             @Override
@@ -60,11 +64,19 @@ public class LineChart extends ApplicationFrame {
                         + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
                         new BeanPropertyRowMapper(Monitoramento.class), fkParque, comboSelecionado);
                 dataset.clear();
-                for (Monitoramento consultaTemperatura : consultaTemperaturas) {
-                    System.out.println("[ ID :" + consultaTemperatura.getIdMetrica() + "] [Valor: " + consultaTemperatura.getValor() + "]");
-                    dataset.addValue(Double.parseDouble(consultaTemperatura.getValor()),
-                            "Leituras",
-                            consultaTemperatura.getIdMetrica());
+                listaId.clear();
+
+                for (Monitoramento componente : consultaTemperaturas) {
+                    
+                    listaId.add(componente.getIdMetrica());
+                    listaValores.add(Double.parseDouble(componente.getValor()));
+                    
+                }
+                Collections.reverse(listaId);
+                Collections.reverse(listaValores);
+                System.out.println(listaId);
+                for (int i = 0; i < listaId.size(); i++) {
+                    dataset.addValue(listaValores.get(i), "Leituras", listaId.get(i));
                 }
 
             }
@@ -74,21 +86,27 @@ public class LineChart extends ApplicationFrame {
     }
 
     private DefaultCategoryDataset createDataset(Integer id) {
-
+        ArrayList<Integer> listaId = new ArrayList<>();
+        ArrayList<Double> listaValores = new ArrayList<>();
         comboSelecionado = "cpu_media_temperatura";
         List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
-                + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
-                new BeanPropertyRowMapper(Monitoramento.class
-                ), id, comboSelecionado);
+                        + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
+                        new BeanPropertyRowMapper(Monitoramento.class), id, comboSelecionado);
+                dataset.clear();
+                listaId.clear();
 
-        dataset.clear();
-        for (Monitoramento consultaTemperatura : consultaTemperaturas) {
-            System.out.println("[ ID :" + consultaTemperatura.getIdMetrica() + "] [Valor: " + consultaTemperatura.getValor() + "]");
-            dataset.addValue(Double.parseDouble(consultaTemperatura.getValor()),
-                    "Leituras",
-                    consultaTemperatura.getIdMetrica());
-        }
-
+                for (Monitoramento componente : consultaTemperaturas) {
+                    
+                    listaId.add(componente.getIdMetrica());
+                    listaValores.add(Double.parseDouble(componente.getValor()));
+                    
+                }
+                Collections.reverse(listaId);
+                Collections.reverse(listaValores);
+                System.out.println(listaId);
+                for (int i = 0; i < listaId.size(); i++) {
+                    dataset.addValue(listaValores.get(i), "Leituras", listaId.get(i));
+                }
         return dataset;
     }
 

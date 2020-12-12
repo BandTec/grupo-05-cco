@@ -32,34 +32,37 @@ public class DemoDeUsoClienteApi {
         ConexaoBanco conexao = new ConexaoBanco();
         Integer lastId = 0;
         Double valorComponente = 0.0;
-        Integer contador = 0;
+        
         while (true) {
             
             List<Monitoramento> consulta
-            = conexao.jdbcTemplate.query("select limiteAlerta,"
-                    + " maquinas.usuario, componentes.nome from parque, maquinas, configuracao, "
-                    + "componentes where idParque = fkParque and idParque = ? "
-                    + "and idMaquina = fkMaquina and idComponente = fkComponente;",
+            = conexao.jdbcTemplate.query(" select idMetrica, valor, momento, nome, limiteAlerta, usuario, fkParque from leituras l, componentes, maquinas, configuracao c\n" +
+"where fkParque = 1 and l.fkComponente = idComponente and c.fkComponente = idComponente order by idMetrica",
                     
                 new BeanPropertyRowMapper(Monitoramento.class));
+            Integer contador = 0;
             for (Monitoramento consultinha : consulta) {
-                if (lastId < consultinha.getIdMetrica()) {
-                    lastId = consultinha.getIdMetrica();
-                    System.out.println(
-                            "Id: " + lastId + ", Media Temperatura: " + consultinha.getValor());
-                    valorComponente = Double.parseDouble(consultinha.getValor());
-                    if (valorComponente >= consultinha.getLimiteAlerta()) {
-                        if (contador == 0) {
-                            novaIssue.setProjectKey("TES");
-                            novaIssue.setSummary("Problema na maquina "+consultinha.getUsuario());
-                            novaIssue.setDescription("O seu componente excedeu o limite registrado, confira e repare. "+consultinha.getNome());
-                            novaIssue.setLabels("alerta-"+consultinha.getNome());
-                            clienteJiraApi.criarIssue(novaIssue);
-                            System.out.println("Issue criada: " + gson.toJson(novaIssue));
-                            contador++;
+                if (consultinha.getNome().equals(consultinha.getNome())) {
+                    for (Monitoramento componente : consulta) {
+                        if (lastId < componente.getIdMetrica()) {
+                            lastId = componente.getIdMetrica();
+                            System.out.println(
+                                    "Nome Componentes: "+componente.getNome()+" Id: " + lastId + ", " + componente.getValor());
+                            valorComponente = Double.parseDouble(componente.getValor());
+                            if (valorComponente >= consultinha.getLimiteAlerta()) {
+                                if (contador == 0) {
+                                    novaIssue.setProjectKey("TES");
+                                    novaIssue.setSummary("Problema na maquina " + componente.getUsuario());
+                                    novaIssue.setDescription("O seu componente "+consultinha.getNome()+" excedeu o limite registrado, confira e repare. " );
+                                    novaIssue.setLabels("alerta-" + componente.getNome());
+                                    clienteJiraApi.criarIssue(novaIssue);
+                                    System.out.println("Issue criada: " + gson.toJson(novaIssue));
+                                    contador++;
+                                }
+                            }
                         }
                     }
-                }
+                }           
             }
         }
     }
