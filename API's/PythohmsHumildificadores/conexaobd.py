@@ -187,7 +187,7 @@ class Mysql:
 
     def inserindoValores(self, valor, usuario_maquina):
         try:
-            select = "select nome from configuracao, maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina;"
+            select = "select nome from configuracao, maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina and usuario = '{}';".format(usuario_maquina)
             self.cursor.execute(select)
             result = self.cursor.fetchall()
             self.mysql.commit()
@@ -208,7 +208,6 @@ class Mysql:
             for row in result:
                 if row[0] == 'cpu_count':
                     try:
-                        print(idMaquina)
                         print("\nInserindo Contagem da CPU")
                         insertando = "insert into leituras values (null, {},'{}', {}, 1)".format(valor[1], data_formatada, idMaquina)
                         self.cursor.execute(insertando)

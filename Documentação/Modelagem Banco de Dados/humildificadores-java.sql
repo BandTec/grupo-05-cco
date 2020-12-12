@@ -16,5 +16,32 @@ select idMetrica, valor, momento, fkParque from leituras,
  select limiteAlerta, maquinas.usuario, componentes.nome from parque, maquinas, configuracao, componentes where idParque = fkParque and idParque = 1 and idMaquina = fkMaquina and idComponente = fkComponente;
  select nome, idParque, usuario from parque, maquinas where fkParque = idParque;
  
- select idMetrica, valor, momento, fkParque from leituras, componentes, maquinas where fkParque = 1 and fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica desc limit 30;
+ select idMetrica, valor, momento, fkParque from leituras, componentes, maquinas where fkParque = 1 and fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica desc limit 10;
  select idMetrica, valor, momento, fkParque, componentes.nome from leituras, componentes, maquinas where fkParque = 1 and fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica desc limit 10;
+ 
+ select * from leituras;
+ select limiteAlerta, maquinas.usuario, idMetrica, componentes.nome, valor
+ from parque, maquinas, configuracao c, componentes, leituras l
+ where idParque = fkParque
+ and idParque = 1
+ and idMaquina = fkMaquina
+ and l.fkComponente = c.fkComponente
+ and componentes.nome = 'cpu_media_temperatura';
+ 
+ select * from leituras;
+ select * from componentes;
+ select * from maquinas;
+ select * from configuracao;
+ select idMetrica, valor, momento, limiteAlerta, fkParque from leituras l, componentes, maquinas, configuracao c
+ where fkParque = 1 and l.fkComponente = idComponente and c.fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica;
+ select * from configuracao c, maquinas, componentes, leituras where idComponente = c.fkComponente and fkMaquina = idMaquina and idConfiguracao = fkConfiguracao;
+ 
+ select nome from configuracao, maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina and usuario = 'HSL017';
+select idMetrica, valor, momento, nome, limiteAlerta, usuario, fkParque from leituras l, componentes, maquinas, configuracao c
+where fkParque = 1 and l.fkComponente = idComponente and c.fkComponente = idComponente order by idMetrica;
+
+select nome, idParque, usuario from parque, maquinas where idParque = fkParque;
+select nome, idParque from parque;
+ 
+ 
+ 
