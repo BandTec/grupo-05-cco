@@ -25,7 +25,7 @@ function media(x) {
 
 function calculoForecast() {
     var x = [];
-    for (let cont = 0; cont <= valores; cont++) {
+    for (let cont = 1; cont <= valores.length; cont++) {
         console.log(cont);
         x.push(cont);
     }

@@ -17,8 +17,10 @@ function alterar(botao) {
 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var valores = [];
 console.log("valores: ",valores)
-var miniBarMonths = [months[8], months[9], months[10]];
-var jurosMonths = [months[9], months[10], months[11]];
+let dataAtual = new Date;
+let mesAtual = dataAtual.getMonth();
+var miniBarMonths = [(mesAtual - 1), mesAtual, (mesAtual + 1)];
+var jurosMonths = [];
 
 var jurosBarChartData = {
     labels: jurosMonths,

@@ -198,7 +198,7 @@ router.get('/todosEventos', function(req, res, next) {
 });
 
 router.get('/custo', function(req, res, next) {
-    const instrucaoSql = `SELECT MIN(valorMes) as credito, FORMAT(dataRegistro ,'MM/y') as mesAno FROM biling group by  FORMAT(dataRegistro ,'MM/y');`;
+    const instrucaoSql = `SELECT MIN(valorMes) as credito, FORMAT(dataRegistro ,'MM/y') as mesAno FROM biling group by FORMAT(dataRegistro ,'MM/y');`;
 
     sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
         .then(resultado => {
