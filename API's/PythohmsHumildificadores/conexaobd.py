@@ -195,6 +195,7 @@ class Mysql:
             self.mysql.commit()
             try:
                 select_fkMaquina = "SELECT idConfiguracao FROM configuracao con, maquinas m2 where m2.idMaquina = con.fkMaquina and m2.usuario = '{}';".format(usuario_maquina)
+                
                 self.cursor.execute(select_fkMaquina)
                 meuresultado = self.cursor.fetchall()
                 for x in meuresultado:
