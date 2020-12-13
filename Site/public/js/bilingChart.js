@@ -19,21 +19,6 @@ var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'A
 var monthsTime = [];
 var valores = [];
 
-var dataAtual = new Date;
-var mesAtual = dataAtual.getMonth();
-
-var mesSeguinte;
-if (mesAtual + 1 > 11) {
-    mesSeguinte = 0;
-} else {
-    mesSeguinte = mesAtual + 1;
-} 
-
-var miniBarMonths = [
-    months[(mesAtual - 1)], 
-    months[mesAtual], 
-    months[mesSeguinte]
-];
 
 var jurosMonths = [];
 
@@ -49,6 +34,8 @@ var jurosBarChartData = {
     }]
 };
 
+var miniBarMonths = [];
+
 var forecastBarChartData = {
     labels: miniBarMonths,
     datasets: [{
@@ -57,7 +44,7 @@ var forecastBarChartData = {
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
-        data: valores
+        data: []
     }]
 };
 

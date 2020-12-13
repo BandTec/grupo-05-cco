@@ -156,25 +156,29 @@
                     dadosDoughnut.push((doug * 0.62).toFixed(2));
                     dadosDoughnut.push((doug * 0.21).toFixed(2));
                     dadosDoughnut.push((doug * 0.17).toFixed(2));
-
                     
                     let dadosRecebidos = [];
+
                     for (let cont = 0; cont < dados.length; cont++) {
-                        dadosRecebidos.push(dados[cont].credito);
+                        
+                        let valorAnterior = 0;
+                        let valorAtual = 0;
+                        
+                        valorAtual = dados[cont].credito;
+                        
+                        
+                        if (cont == 0) {
+                            valorAnterior = 100 - valorAtual;
+                        } else {
+                            valorAnterior = dados[cont - 1].credito;
+                            valorAnterior = valorAnterior - valorAtual;
+                        }
+                        dadosRecebidos.push(parseFloat(valorAnterior.toFixed(2)));
                     }
 
-                    let valorAnterior = 0
-                    for (let cont = dados.length - 10; cont < dados.length; cont++) {
-                        valorAnterior = (dados[cont].credito)
 
-                        let valorAtual = 0;
-                        if (cont == dados.length - 10) {
-                            valorAtual = valorAnterior - 50;
-                        } else {
-                            valorAtual = valorAnterior - valorAtual;
-                        }
-
-                        valores.push(valorAtual);
+                    for (let cont = dadosRecebidos.length - 10; cont < dadosRecebidos.length; cont++) {
+                        valores.push(dadosRecebidos[cont]);
                         monthsTime.push(parseInt(dados[cont].mesAno.replace("2019/","").replace("2020/","").replace("2021/","")));
                     }
 
@@ -182,7 +186,14 @@
 
                     for (let cont = 0; cont < monthsTime.length; cont++) {
                         barChartData.labels.push(months[monthsTime[cont] - 1]);
+
                     }
+                    
+                    for (let cont = 4; cont > 1; cont--) {
+                        miniBarMonths.push(months[monthsTime[monthsTime.length - cont] - 1]);
+                        forecastBarChartData.datasets[0].data.push(valores[valores.length - cont]);
+                        console.log("cont: ",cont,"Valores:  ",valores[valores.length - cont]);
+                    }                    
 
                     plotarGraficos();
                 });
