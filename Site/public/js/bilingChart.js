@@ -60,7 +60,7 @@ var config = {
         ]
     }],
     labels: [
-        'EBS' ,
+        'EBS',
         'S3',
         'EC2',
     ]
@@ -69,7 +69,7 @@ var config = {
 var barChartData = {
     labels: [],
     datasets: [{
-        label: 'Linha Temporal',
+        label: 'Mês',
         backgroundColor: [
             'red',
             'red',
@@ -99,9 +99,10 @@ function plotarGraficos() {
         data: barChartData,
         options: {
             legend: {
-                label:'Testando valores',
+                label: 'Testando valores',
                 display: true,
                 labels: {
+                    yLabel: 'Valores',
                     fontColor: 'rgb(255, 99, 132)'
                 }
             },
@@ -110,11 +111,15 @@ function plotarGraficos() {
                 position: 'top',
             },
             title: {
-                display: true,
+                display: false,
                 text: 'Time series'
             },
             scales: {
                 yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Crédito utilizado'
+                    },
                     ticks: {
                         beginAtZero: true
                     }
@@ -132,11 +137,15 @@ function plotarGraficos() {
                 position: 'top',
             },
             title: {
-                display: true,
+                display: false,
                 text: 'mini'
             },
             scales: {
                 yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Valor a ser pago',
+                    },
                     ticks: {
                         beginAtZero: true
                     }
@@ -154,11 +163,15 @@ function plotarGraficos() {
                 position: 'top',
             },
             title: {
-                display: true,
+                display: false,
                 text: 'mini'
             },
             scales: {
                 yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Previsão de custo',
+                    },
                     ticks: {
                         beginAtZero: true
                     }
@@ -177,7 +190,7 @@ function plotarGraficos() {
             },
             title: {
                 display: true,
-                text: 'Custo de Serviços de Cloud'
+                text: ''
             },
             animation: {
                 animateScale: true,

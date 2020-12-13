@@ -20,10 +20,50 @@ canvas {
     /* border: 5px solid red; */
 }
 
-#box #box-mini, #box-services {
+#box #box-mini,
+#box-services {
     width: 50%;
 }
 
 #timeseries {
     margin-top: 5px;
+}
+
+#box-services {
+    position: relative;
+}
+
+#services {
+    position: absolute;
+}
+
+#saldo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -175%);
+    letter-spacing: -2.1px;
+    font-size: 1.5rem;
+    cursor: default;
+    user-select: none;
+}
+
+#bJuros,
+#bForecast {
+    padding: 10px 20px;
+    background-color: #06D08A;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    margin: 15px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#bJuros:active,
+#bForecast:active {
+    padding: 10px 20px;
+    background-color: #06D08A;
+    outline: none;
+    border-radius: 25px;
 }

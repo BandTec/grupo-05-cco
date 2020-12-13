@@ -164,7 +164,7 @@ class Mysql:
                                     
                             if row == 'memory_available':
                                 try:
-                                    insert_config = "insert into configuracao values (null, {}, 7, null)".format(idMaquina)
+                                    insert_config = "insert into configuracao values (null, {}, 7, 'null')".format(idMaquina)
                                     print(insert_config)
                                     self.cursor.execute(insert_config)
                                     self.mysql.commit()

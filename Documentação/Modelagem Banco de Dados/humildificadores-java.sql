@@ -38,7 +38,10 @@ select idMetrica, valor, momento, fkParque from leituras,
  
  select nome from configuracao, maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina and usuario = 'HSL017';
 select idMetrica, valor, momento, nome, limiteAlerta, usuario, fkParque from leituras l, componentes, maquinas, configuracao c
-where fkParque = 1 and l.fkComponente = idComponente and c.fkComponente = idComponente order by idMetrica;
+where l.fkComponente = idComponente and c.fkComponente = idComponente order by idMetrica;
+
+select idMetrica, valor, usuario, nome, limiteAlerta from leituras lei, configuracao con, maquinas, componentes where fkConfiguracao = idConfiguracao and idMaquina = fkMaquina and con.fkComponente = idComponente and fkMaquina = 2 order by idMetrica;
+idMetrica, valor, usuario
 
 select nome, idParque, usuario from parque, maquinas where idParque = fkParque;
 select nome, idParque from parque;
