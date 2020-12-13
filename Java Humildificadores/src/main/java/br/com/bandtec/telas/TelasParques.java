@@ -17,6 +17,7 @@ import com.google.gson.GsonBuilder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,12 +64,13 @@ public class TelasParques extends JFrame {
             painel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
             JLabel label = new JLabel("label1");
+            Font myFont = new Font("Sans Serif", Font.BOLD, 25);
+            label.setFont(myFont);
             label.setText(dados.getNome());
             label.setForeground(Color.decode("#f1f1f1"));
-
-            JLabel label1 = new JLabel();
-            label1.setText("Chamados abertos: ");
-            label1.setForeground(Color.decode("#f1f1f1"));
+            
+            JLabel labelzinha = new JLabel("");
+            labelzinha.setText("");
 
             JButton botao = new JButton("Visualizar Dados");
             botao.setSize(40, 40);
@@ -83,7 +85,7 @@ public class TelasParques extends JFrame {
 
             System.out.println(dados.getNome());
             painel.add(label);
-            painel.add(label1);
+            painel.add(labelzinha);
             painel.add(botao, BorderLayout.SOUTH);
             painel.setLayout(new GridLayout(3, 1));
             add(painel);

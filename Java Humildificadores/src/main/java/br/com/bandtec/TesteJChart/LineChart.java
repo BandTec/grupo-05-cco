@@ -8,11 +8,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -24,10 +22,10 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 public class LineChart extends ApplicationFrame {
 
-    org.netbeans.examples.lib.timerbean.Timer timer = new org.netbeans.examples.lib.timerbean.Timer();
     ConexaoBanco conexao = new ConexaoBanco();
     String comboSelecionado;
     DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    JComboBox combo = new JComboBox();
 
     public LineChart(String applicationTitle, String chartTitle, Integer fkParque) {
         super(applicationTitle);
@@ -40,7 +38,6 @@ public class LineChart extends ApplicationFrame {
         setTitle(chartTitle);
         List<Componentes> listaComponentes = conexao.jdbcTemplate.query("select fkMaquina, componentes.nome from parque, maquinas, configuracao, componentes where"
                 + " idParque = fkParque and idParque = ? and idMaquina = fkMaquina and idComponente = fkComponente;", new BeanPropertyRowMapper(Componentes.class), fkParque);
-        JComboBox combo = new JComboBox();
         for (Componentes lista : listaComponentes) {
             combo.addItem(lista.getNome());
             System.out.println("ID: " + lista.getFkMaquina() + " - Nome: " + lista.getNome());
@@ -54,39 +51,54 @@ public class LineChart extends ApplicationFrame {
         setDefaultCloseOperation(NORMAL);
         setLocationRelativeTo(null);
         add(painel);
+        JButton refresh = new JButton("RECARREGAR");
+        painel.add(refresh);
         painel.add(combo);
         painel.add(chartPanel);
 
-        ArrayList<Integer> listaId = new ArrayList<>();
-        ArrayList<Double> listaValores = new ArrayList<>();
+        refresh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                plotarGrafico(fkParque);
+            }
+        });
+        // Plotar graficos de acordo com a combo
+
         combo.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                comboSelecionado = combo.getSelectedItem().toString();
-                List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
-                        + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
-                        new BeanPropertyRowMapper(Monitoramento.class), fkParque, comboSelecionado);
-                dataset.clear();
-                listaId.clear();
-
-                for (Monitoramento componente : consultaTemperaturas) {
-
-                    listaId.add(componente.getIdMetrica());
-                    listaValores.add(Double.parseDouble(componente.getValor()));
-
-                }
-                Collections.reverse(listaId);
-                Collections.reverse(listaValores);
-                System.out.println(listaId);
-                for (int i = 0; i < listaId.size(); i++) {
-                    dataset.addValue(listaValores.get(i), "Leituras", listaId.get(i));
-                }
+                plotarGrafico(fkParque);
 
             }
         }
         );
+    }
+    
+    ArrayList<Integer> listaId = new ArrayList<>();
+    ArrayList<Double> listaValores = new ArrayList<>();
+
+    public void plotarGrafico(Integer fkParque) {
+        comboSelecionado = combo.getSelectedItem().toString();
+        List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
+                + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
+                new BeanPropertyRowMapper(Monitoramento.class), fkParque, comboSelecionado);
+        dataset.clear();
+        listaId.clear();
+
+        for (Monitoramento componente : consultaTemperaturas) {
+
+            listaId.add(componente.getIdMetrica());
+            listaValores.add(Double.parseDouble(componente.getValor()));
+
+        }
+        Collections.reverse(listaId);
+        Collections.reverse(listaValores);
+        System.out.println(listaId);
+        for (int i = 0; i < listaId.size(); i++) {
+            dataset.addValue(listaValores.get(i), "Leituras", listaId.get(i));
+        }
     }
 
     private DefaultCategoryDataset createDataset(Integer id) {
