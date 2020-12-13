@@ -50,9 +50,11 @@ public class DemoDeUsoClienteApi extends JFrame {
 
             for (DadosParques dadosParques : lista) {
                 List<Monitoramento> consulta = conexao.jdbcTemplate.query(
-                        "select idMetrica, valor, momento, nome, limiteAlerta, usuario, fkParque \n" +
-"from leituras lei, componentes com, configuracao con, maquinas \n" +
-"where lei.fkConfiguracao = ? and lei.fkComponente = idComponente and idConfiguracao = lei.fkConfiguracao and idMaquina = fkMaquina order by idMetrica asc;",
+                        "select idMetrica, valor, momento, nome, limiteAlerta, usuario, fkParque \n"
+                        + "from leituras lei, componentes com, configuracao con, maquinas \n"
+                        + "where lei.fkConfiguracao = ? and lei.fkComponente = idComponente"
+                        + " and idConfiguracao = lei.fkConfiguracao and idMaquina = fkMaquina"
+                        + " order by idMetrica asc;",
                         new BeanPropertyRowMapper(Monitoramento.class), dadosParques.getIdParque());
 
                 //if (consultinha.getNome().equals(consultinha.getNome())) {
