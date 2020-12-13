@@ -8,8 +8,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -21,6 +24,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 public class LineChart extends ApplicationFrame {
 
+    org.netbeans.examples.lib.timerbean.Timer timer = new org.netbeans.examples.lib.timerbean.Timer();
     ConexaoBanco conexao = new ConexaoBanco();
     String comboSelecionado;
     DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -28,8 +32,8 @@ public class LineChart extends ApplicationFrame {
     public LineChart(String applicationTitle, String chartTitle, Integer fkParque) {
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(
-                chartTitle,
-                "Valor", chartTitle,
+                "",
+                "Id", "Leituras",
                 createDataset(fkParque),
                 PlotOrientation.VERTICAL,
                 true, true, false);
@@ -47,6 +51,7 @@ public class LineChart extends ApplicationFrame {
         setSize(1020, 600);
         JPanel painel = new JPanel();
         painel.setSize(getWidth(), getWidth());
+        setDefaultCloseOperation(NORMAL);
         setLocationRelativeTo(null);
         add(painel);
         painel.add(combo);
@@ -67,10 +72,10 @@ public class LineChart extends ApplicationFrame {
                 listaId.clear();
 
                 for (Monitoramento componente : consultaTemperaturas) {
-                    
+
                     listaId.add(componente.getIdMetrica());
                     listaValores.add(Double.parseDouble(componente.getValor()));
-                    
+
                 }
                 Collections.reverse(listaId);
                 Collections.reverse(listaValores);
@@ -82,32 +87,35 @@ public class LineChart extends ApplicationFrame {
             }
         }
         );
-
     }
 
     private DefaultCategoryDataset createDataset(Integer id) {
-        ArrayList<Integer> listaId = new ArrayList<>();
-        ArrayList<Double> listaValores = new ArrayList<>();
-        comboSelecionado = "cpu_media_temperatura";
-        List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
-                        + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
-                        new BeanPropertyRowMapper(Monitoramento.class), id, comboSelecionado);
-                dataset.clear();
-                listaId.clear();
+        Integer contador = 0;
+        while (true) {
+            ArrayList<Integer> listaId = new ArrayList<>();
+            ArrayList<Double> listaValores = new ArrayList<>();
+            comboSelecionado = "cpu_media_temperatura";
+            List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
+                    + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
+                    new BeanPropertyRowMapper(Monitoramento.class), id, comboSelecionado);
+            dataset.clear();
+            listaId.clear();
+            for (Monitoramento componente : consultaTemperaturas) {
+                listaId.add(componente.getIdMetrica());
+                listaValores.add(Double.parseDouble(componente.getValor()));
 
-                for (Monitoramento componente : consultaTemperaturas) {
-                    
-                    listaId.add(componente.getIdMetrica());
-                    listaValores.add(Double.parseDouble(componente.getValor()));
-                    
-                }
-                Collections.reverse(listaId);
-                Collections.reverse(listaValores);
-                System.out.println(listaId);
-                for (int i = 0; i < listaId.size(); i++) {
-                    dataset.addValue(listaValores.get(i), "Leituras", listaId.get(i));
-                }
-        return dataset;
+            }
+            Collections.reverse(listaId);
+            Collections.reverse(listaValores);
+            System.out.println(listaId);
+            for (int i = 0; i < listaId.size(); i++) {
+                dataset.addValue(listaValores.get(i), "Leituras", listaId.get(i));
+            }
+            if (contador == contador) {
+                contador++;
+                return dataset;
+            }
+        }
     }
 
     public static void main(String[] args) {

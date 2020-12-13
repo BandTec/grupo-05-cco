@@ -8,7 +8,7 @@ let data;
 // codigo do bot puppeteer
 (async() => {
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
     });
 
     console.log('Aguarde...');

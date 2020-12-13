@@ -53,9 +53,6 @@ class Mysql:
                         self.mysql.close()
 
                     parque = int(input("Digite o número o parque: "))
-                    insert_maquina = "insert into maquinas values (null, '{}', {})".format(usuario_maquina, parque)
-                    self.cursor.execute(insert_maquina)
-                    self.mysql.commit()
                     try:
                         print('Mostrando componentes para escolha')
                         time.sleep(1)
@@ -78,6 +75,10 @@ class Mysql:
                             lista_componentes.append(z)
                         time.sleep(1) 
                         print("\nAdicionando itens: ",end=' ')
+
+                        insert_maquina = "insert into maquinas values (null, '{}', {})".format(usuario_maquina, parque)
+                        self.cursor.execute(insert_maquina)
+                        self.mysql.commit()
                         try:
                             select_fkMaquina = "select idMaquina from maquinas where usuario = '{}';".format(usuario_maquina)
                             self.cursor.execute(select_fkMaquina)
