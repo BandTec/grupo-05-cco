@@ -273,3 +273,38 @@ main .main .container-login-admins .formulario {
     background-color: white;
     color: #06D08A;
 }
+
+@media screen and (max-width: 768px) {
+    #eventos {
+        padding-top: 170px;
+    }
+    #card-evento {
+        display: block !important;
+    }
+    #container-card-eventos {
+        display: flex;
+        flex-direction: column;
+        margin: 15px 0;
+    }
+    #div-img {
+        width: 100%;
+    }
+    #part-two-card-eventos {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #title-evento {
+        margin-top: 10px;
+    }
+    #info-eventos {
+        width: 85%;
+        margin: 10px 0;
+    }
+    #data_e_hora,
+    #pessoas-confirmadas,
+    #btn-confirme-presenca {
+        width: 100%;
+    }
+}

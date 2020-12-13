@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <script type="text/javascript" src="funcoes.js"></script>
     <script src="//code.jivosite.com/widget/p2JCwJhfbs" async></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'">
 </head>
 
 <body>
@@ -36,7 +35,7 @@
     </div>
 
 
-    <main>
+    <main id="parques">
         <div class="body-park">
             <div id="containerAlerta">
                 <p id="exibirAlertas"></p>
@@ -73,9 +72,7 @@
                         </div>
                         <br><br>
                         <h3 id="title-localization">Localização</h3>
-                        <iframe id="localizacao_parque"
-                            width="90%" height="500" frameborder="0" allowfullscreen="" aria-hidden="false"
-                            tabindex="0"></iframe>
+                        <iframe id="localizacao_parque" width="90%" height="500" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </div>
             </div>
@@ -85,7 +82,7 @@
     <div class="footer">
         <div class="alinharCentro">
             <h1><a href="calculadora.html">Seja um patrocinador!</a></h1>
-            <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+            <h1><a href="login-admin.html">&COPY</a> 2020 Humildificadores. Todos os Direitos Reservados.</h1>
         </div>
     </div>
 
@@ -109,91 +106,92 @@
     function mostrarInformacoes() {
 
         fetch(`/leituras/parques/${sessionStorage.idParque}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    resposta.reverse();
+                        resposta.reverse();
 
-                    dados = resposta;
-                    let estrelas = "";
-                    let dados_temperatura;
-                    let dados_umidade;
-                    for (let cont3 = 0; cont3 < 5; cont3++) {
-                        if (cont3 < dados[0].estrelas) {
-                            estrelas += `<img class="stars" src="/images/full-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px; cursor: pointer;">`
-                        } else {
-                            estrelas += `<img class="stars" src="/images/stroke-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px; cursor: pointer;">`
+                        dados = resposta;
+                        let estrelas = "";
+                        let dados_temperatura;
+                        let dados_umidade;
+                        for (let cont3 = 0; cont3 < 5; cont3++) {
+                            if (cont3 < dados[0].estrelas) {
+                                estrelas += `<img class="stars" src="/images/full-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px; cursor: pointer;">`
+                            } else {
+                                estrelas += `<img class="stars" src="/images/stroke-star.png" onclick="darEstrelas(${cont3 + 1})" style="height: 20px; cursor: pointer;">`
+                            }
+
                         }
 
-                    }
-
-                    park_img = `<img id="park-img" src="${dados[0].imgParque}" >`
-                    localizacaoparque = `${dados[0].localizacao}`
-                    nome_park = `
+                        park_img = `<img id="park-img" src="${dados[0].imgParque}" >`
+                        localizacaoparque = `${dados[0].localizacao}`
+                        nome_park = `
                         <h3>
                             ${dados[0].nome}<br>
                         </h3>`
-                    dados_temperatura = `${dados[0].temperatura} ºC`
-                    dados_umidade = `${dados[0].umidade} %`
+                        dados_temperatura = `${dados[0].temperatura} ºC`
+                        dados_umidade = `${dados[0].umidade} %`
 
-                    let cor;
+                        let cor;
 
-                    if (dados[0].umidade > 70) {
-                        alertas.push('o tempo está muito umido.');
-                    } else if (dados[0].umidade < 30) {
-                        alertas.push('o tempo está muito seco.');
-                    }
+                        if (dados[0].umidade > 70) {
+                            alertas.push('o tempo está muito umido.');
+                        } else if (dados[0].umidade < 30) {
+                            alertas.push('o tempo está muito seco.');
+                        }
 
-                    if (dados[0].temperatura > 30) {
-                        alertas.push('a temperatura está elevada demais.');
-                    } else if (dados[0].temperatura < 18) {
-                        alertas.push('a temperatura está baixa demais.');
-                    }
+                        if (dados[0].temperatura > 30) {
+                            alertas.push('a temperatura está elevada demais.');
+                        } else if (dados[0].temperatura < 18) {
+                            alertas.push('a temperatura está baixa demais.');
+                        }
 
-                    if (dados[0].umidade > 70 && dados[0].temperatura > 30) {
-                        alertas.push('o tempo está muito umido e com a temperatura elevada demais.');
-                    }
-                    if (dados[0].umidade < 30 && dados[0].temperatura < 18) {
-                        alertas.push('o tempo está muito seco e com a temperatura baixa demais.');
-                    }
-                    if (dados[0].umidade > 70 && dados[0].temperatura < 18) {
-                        alertas.push('o tempo está muito umido e com a temperatura baixa demais.')
-                    }
-                    if (dados[0].umidade < 30 && dados[0].temperatura > 30) {
-                        alertas.push('o tempo está muito seco e com a temperatura elevada demais.')
-                    }
+                        if (dados[0].umidade > 70 && dados[0].temperatura > 30) {
+                            alertas.push('o tempo está muito umido e com a temperatura elevada demais.');
+                        }
+                        if (dados[0].umidade < 30 && dados[0].temperatura < 18) {
+                            alertas.push('o tempo está muito seco e com a temperatura baixa demais.');
+                        }
+                        if (dados[0].umidade > 70 && dados[0].temperatura < 18) {
+                            alertas.push('o tempo está muito umido e com a temperatura baixa demais.')
+                        }
+                        if (dados[0].umidade < 30 && dados[0].temperatura > 30) {
+                            alertas.push('o tempo está muito seco e com a temperatura elevada demais.')
+                        }
 
-                    if (alertas.length > 0) {
-                        containerAlerta.style.display = 'flex';
-                        exibirAlertas.innerHTML = `Cuidado, ${alertas[alertas.length - 1]}`;
-                    }
+                        if (alertas.length > 0) {
+                            containerAlerta.style.display = 'flex';
+                            exibirAlertas.innerHTML = `Cuidado, ${alertas[alertas.length - 1]}`;
+                        }
 
-                    document.getElementById(`park-img`).innerHTML = park_img;
-                    document.getElementById(`classification`).innerHTML += estrelas;
-                    document.getElementById(`sobre-park`).innerHTML = nome_park;
-                    document.getElementById(`umidades`).innerHTML = dados_umidade;
-                    document.getElementById(`temperaturas`).innerHTML = dados_temperatura;
-                    document.getElementById(`localizacao_parque`).src = localizacaoparque;
-                    console.log(dados[0].localizacao);
+                        document.getElementById(`park-img`).innerHTML = park_img;
+                        document.getElementById(`classification`).innerHTML += estrelas;
+                        document.getElementById(`sobre-park`).innerHTML = nome_park;
+                        document.getElementById(`umidades`).innerHTML = dados_umidade;
+                        document.getElementById(`temperaturas`).innerHTML = dados_temperatura;
+                        document.getElementById(`localizacao_parque`).src = localizacaoparque;
+                        console.log(dados[0].localizacao);
 
-                    // aqui, após 'registro.' use os nomes 
-                    // dos atributos que vem no JSON 
-                    // que gerou na consulta ao banco de dados alo
-                    console.log(JSON.stringify(dados));
-                    console.log(dados);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
+                        // aqui, após 'registro.' use os nomes 
+                        // dos atributos que vem no JSON 
+                        // que gerou na consulta ao banco de dados alo
+                        console.log(JSON.stringify(dados));
+                        console.log(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }
+
     function darEstrelas(stars) {
         document.getElementById(`classification`).innerHTML = "";
         var estrelas = ""
@@ -207,22 +205,22 @@
         document.getElementById(`classification`).innerHTML += estrelas;
 
         fetch(`/usuarios/estrelas/${sessionStorage.idParque}/${sessionStorage.Id_usuario_meuapp}/${stars}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    alert("foi dado as estrelas")
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
+                        alert("foi dado as estrelas")
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
 
-        })
-        .catch(function (error) {
-            console.error(`Erro: ${error.message}`);
-        });
+            })
+            .catch(function(error) {
+                console.error(`Erro: ${error.message}`);
+            });
 
 
     }

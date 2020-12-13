@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <main>
+    <main id="eventos">
         <div class="content-evento">
             <div id="card-evento">
             </div>
@@ -44,7 +44,7 @@
     <div class="footer">
         <div class="alinharCentro">
             <h1><a href="calculadora.html">Seja um patrocinador!</a></h1>
-            <h1>&COPY; 2020 Humildificadores. Todos os Direitos Reservados.</h1>
+            <h1><a href="login-admin.html">&COPY</a> 2020 Humildificadores. Todos os Direitos Reservados.</h1>
         </div>
     </div>
 </body>
@@ -67,24 +67,24 @@
     function adicionarParque() {
 
         fetch(`/leituras/eventos/${sessionStorage.Id_usuario_meuapp}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    resposta.reverse();
+                        resposta.reverse();
 
-                    dados = resposta;
-                    let contador = 0;
-                    let htmlPark = "";
+                        dados = resposta;
+                        let contador = 0;
+                        let htmlPark = "";
 
-                    for (let cont = 0; resposta.length > cont; cont++) {
+                        for (let cont = 0; resposta.length > cont; cont++) {
 
-                        for (let cont2 = 0; cont2 < 1 && contador < resposta.length; cont2++) {
+                            for (let cont2 = 0; cont2 < 1 && contador < resposta.length; cont2++) {
 
-                            htmlPark += `
+                                htmlPark += `
                             <div id="cards-eventos">
                                 <div id="container-card-eventos">
                                     <div id="part-one-card-eventos">
@@ -107,22 +107,22 @@
                                         </div >
                                     </div >
                                 </div >
-                            </div >`;                            
-                            contador++;
+                            </div >`;
+                                contador++;
+                            }
                         }
-                    }
-                    document.getElementById(`card-evento`).innerHTML = htmlPark;
-                    // aqui, após 'registro.' use os nomes 
-                    // dos atributos que vem no JSON 
-                    // que gerou na consulta ao banco de dados
-                    console.log(JSON.stringify(dados));
-                    console.log(dados);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
+                        document.getElementById(`card-evento`).innerHTML = htmlPark;
+                        // aqui, após 'registro.' use os nomes 
+                        // dos atributos que vem no JSON 
+                        // que gerou na consulta ao banco de dados
+                        console.log(JSON.stringify(dados));
+                        console.log(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(error) {
                 console.error(`Erro na obtenção dos dados p / gráfico: ${ error.message }`);
             });
 
@@ -133,22 +133,22 @@
 
     function participar(idParqueEvento) {
         fetch(`/usuarios/participar/${idParqueEvento}/${sessionStorage.Id_usuario_meuapp}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                cache: 'no-store'
+            }).then(function(response) {
+                if (response.ok) {
+                    response.json().then(function(resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    console.log("Confirmar");
+                        console.log("Confirmar");
+                        adicionarParque();
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
                     adicionarParque();
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                adicionarParque();
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro: ${error.message}`);
-        });
+                }
+            })
+            .catch(function(error) {
+                console.error(`Erro: ${error.message}`);
+            });
     }
 </script>

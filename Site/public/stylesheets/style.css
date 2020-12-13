@@ -655,37 +655,6 @@ title {
     font-style: italic;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #h1Calc {
     font-family: 'Roboto Mono';
     font-style: normal;
@@ -757,16 +726,6 @@ h3 {
     display: none;
 }
 
-
-
-
-
-
-
-
-
-
-
 @media screen and (max-width: 768px) {
     .container {
         padding: 0!important;
@@ -783,10 +742,11 @@ h3 {
         flex-direction: column;
         margin: 0;
     }
-    .header .nav {
-        float: none;
-        text-align: center;
-        margin: 0px 0px 15px 0px;
+    #header ul {
+        padding: 0;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        justify-content: center;
     }
     .header .nav ul {
         padding: 0;
@@ -798,24 +758,29 @@ h3 {
         font-size: 16px;
     }
     .format {
-        flex-direction: column-reverse;
-        flex-shrink: 2;
         margin: 20px 0;
         height: auto;
     }
+    .format-side {
+        flex-direction: column;
+    }
+    .cont2 {
+        flex-direction: column-reverse;
+    }
     .conteudoEsquerda,
     .conteudoDireita {
-        float: none;
-        text-align: center;
+        display: flex;
     }
     .conteudo {
-        width: 100%;
+        text-align: center;
+        margin: 10px;
     }
     .conteudo h1 {
         font-size: 24px;
     }
     .conteudo h3 {
         font-size: 16px;
+        line-height: 1.5rem;
     }
     .button-s {
         font-size: 16px;
@@ -849,6 +814,9 @@ h3 {
         padding: 0;
         width: 100%;
     }
+    #form_login input {
+        width: 250px;
+    }
     .formLogin input:first-child {
         margin-bottom: 10px;
     }
@@ -865,16 +833,29 @@ h3 {
         padding: 40px 0;
         width: 90%;
     }
-    .formCadastro {
-        width: 90%;
+    #containerPosition {
+        width: 100%;
+        display: flex;
+        overflow: visible;
+        height: 350px;
+    }
+    #containerCadastro {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    #select_button {
+        display: none;
+    }
+    .btnCadastro {
+        width: 80%;
     }
     .formCadastro input {
         text-indent: 20px;
         margin: 0;
         padding: 0;
     }
-    .formCadastro input:not(:last-of-type) {
-        margin-bottom: 10px;
+    .formCadastro input {
+        margin: 5px;
     }
     /* Calculator */
     .boxCalculadora {
@@ -898,16 +879,28 @@ h3 {
         width: 90%;
     }
     /* Dashboard */
-    
     /* Park */
-    
-    
     .alinharCentro {
         text-align: center;
     }
+    #dashboard,
+    #parques {
+        padding-top: 170px;
+    }
+    #exibirAlertas {
+        text-align: center;
+    }
+    .container-dash {
+        display: block !important;
+    }
+    .part-two .container-part-two {
+        margin: 0;
+    }
+    .grafico-park {
+        height: 20vh;
+        padding: 0;
+    }
 }
-
-
 
 html,
 body {
