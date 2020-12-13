@@ -152,23 +152,38 @@
                     valores.shift();
                     valores.shift();
 
-                    let doug = dados[dados.length - 1]["credito"];
+                    let doug = dados[dados.length - 1].credito;
                     dadosDoughnut.push((doug * 0.62).toFixed(2));
                     dadosDoughnut.push((doug * 0.21).toFixed(2));
                     dadosDoughnut.push((doug * 0.17).toFixed(2));
 
-                    for (let cont = dados.length - 10; cont < dados.length; cont++) {
-                        valores.push(dados[cont]["credito"]);
-                        monthsTime.push(dados[cont]["mesAno"].replace("2019/","").replace("2020/","").replace("2021/",""));
-                        barChartData.datasets.data.push(dados[cont]["mesAno"].replace("2019/","").replace("2020/","").replace("2021/",""));
-                    }
                     
                     let dadosRecebidos = [];
                     for (let cont = 0; cont < dados.length; cont++) {
-                        dadosRecebidos.push(dados[cont]["credito"]);
+                        dadosRecebidos.push(dados[cont].credito);
+                    }
+
+                    let valorAnterior = 0
+                    for (let cont = dados.length - 10; cont < dados.length; cont++) {
+                        valorAnterior = (dados[cont].credito)
+
+                        let valorAtual = 0;
+                        if (cont == dados.length - 10) {
+                            valorAtual = valorAnterior - 50;
+                        } else {
+                            valorAtual = valorAnterior - valorAtual;
+                        }
+
+                        valores.push(valorAtual);
+                        monthsTime.push(parseInt(dados[cont].mesAno.replace("2019/","").replace("2020/","").replace("2021/","")));
                     }
 
                     calculoForecast(dadosRecebidos);
+
+                    for (let cont = 0; cont < monthsTime.length; cont++) {
+                        barChartData.labels.push(months[monthsTime[cont] - 1]);
+                    }
+
                     plotarGraficos();
                 });
             } else {
