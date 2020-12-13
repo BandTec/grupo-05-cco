@@ -30,7 +30,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setTitle("Login");
         TelasParques parques = new TelasParques();
         parques.setVisible(true);
-        dadosJira();
+        //dadosJira();
         
     }
     
