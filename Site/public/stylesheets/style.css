@@ -655,187 +655,36 @@ title {
     font-style: italic;
 }
 
-.dashboard {
-    height: 600px;
-    /* width: 150%; */
-}
 
-.boxDashboard,
-.boxDashboard2,
-.boxDashboard3,
-.boxDashboard4 {
-    /* margin-left: 50px; */
-    margin: auto;
-    font-size: 15px;
-    width: 310px;
-    height: 600px;
-    padding: 40px;
-    margin-bottom: 24px;
-    text-align: center;
-    background-color: white;
-    box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
-    border-radius: 18px;
-    /* float: left; */
-    /* float: left; */
-}
 
-.boxDashboard {
-    margin-left: 50px;
-    float: left;
-}
 
-.boxDashboard2 {
-    float: left;
-    margin-left: 50px;
-}
 
-.boxDashboard3 {
-    float: left;
-    margin-left: 50px;
-}
 
-.boxDashboard4 {
-    float: left;
-    margin-left: 50px;
-    width: 310px;
-    overflow: hidden;
-}
 
-.boxDashboard4 .h2Dashboard {
-    overflow: hidden;
-    margin-right: 10px;
-    width: 167px;
-}
 
-.gradient {
-    position: absolute;
-    right: 0;
-    top: 83.4px;
-    /* border-radius: 30px 0px 0px 30px; */
-    /* background-color: #000; */
-    height: 818px;
-    width: 130px;
-    opacity: 0.7;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5550595238095238) 48%, rgba(0, 0, 0, 0.9752275910364145) 100%);
-}
 
-.boxDashboard input {
-    font-family: 'Roboto Mono';
-    font-style: normal;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    color: #01B979;
-    border-radius: 25px;
-    border: none;
-    background: rgba(120, 120, 120, 0.15);
-    margin: 10px;
-    width: 300px;
-    height: 40px;
-    text-indent: 10px;
-}
 
-.boxDashboard input::placeholder {
-    font-size: 15px;
-    color: #01B979;
-    font-weight: bold;
-}
 
-#h1Dashboard {
-    font-family: 'Roboto Mono';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 50px;
-    line-height: 56px;
-    color: white;
-    text-align: center;
-}
 
-.imagem1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.imgstar {
-    width: 25px;
-}
 
-.imgPark2 {
-    height: 140px;
-    padding: 5px;
-}
 
-.barraCinza {
-    background-color: #232323;
-    height: 2px;
-    border-radius: 2px;
-    width: 100%;
-    margin: auto;
-}
 
-#imagemClima {
-    width: 250px;
-    background-color: #F15959;
-    border-radius: 24px;
-}
 
-#imagemClimaBom {
-    width: 300px;
-    background-color: #00F5A0;
-    border-radius: 24px;
-}
 
-#boxParque {
-    margin: auto;
-    font-size: 15px;
-    width: 800px;
-    padding: 40px;
-    margin-bottom: 24px;
-    text-align: center;
-    background-color: white;
-    box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-}
 
-.barraMeio {
-    background-color: #232323;
-    width: 2px;
-    border-radius: 2px;
-    height: 50px;
-}
 
-.infoClima {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.infoClima h2 {
-    font-size: 2.5em;
-    margin: 0 20px 0 20px;
-}
 
-#tempCliente {
-    background-color: #00D9F5;
-}
 
-.boxGrafico {
-    margin: 20px;
-    font-size: 15px;
-    padding: 40px;
-    margin-bottom: 24px;
-    text-align: center;
-    background-color: white;
-    box-shadow: 0px 4px 77px rgba(0, 0, 0, 0.25);
-    border-radius: 18px;
-}
 
-.grafico {
-    width: 100%;
-    height: 500px;
-}
+
+
+
+
+
+
+
 
 #h1Calc {
     font-family: 'Roboto Mono';
@@ -908,79 +757,15 @@ h3 {
     display: none;
 }
 
-#temperatura {
-    -webkit-appearance: none;
-    width: 640px;
-    height: 25px;
-    background: linear-gradient(90deg, rgba(0, 255, 255, 1) 0%, rgba(51, 204, 204, 1) 25%, rgba(51, 204, 51, 1) 50%, rgba(255, 127, 0, 1) 75%, rgba(255, 80, 80, 1) 100%);
-    outline: none;
-    opacity: 0.7;
-    padding-left: 10px;
-    padding-right: 10px;
-    transition: all .2s;
-    cursor: pointer;
-}
 
-#temperatura:hover {
-    opacity: 1;
-}
 
-#temperatura::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 40px;
-    border-radius: 15px;
-    background-color: white;
-    border: gray 2px solid;
-    cursor: pointer;
-}
 
-#umidade {
-    -webkit-appearance: none;
-    width: 640px;
-    height: 25px;
-    background: linear-gradient(90deg, rgba(255, 80, 80, 1) 0%, rgba(255, 127, 0, 1) 25%, rgba(51, 204, 51, 1) 50%, rgba(51, 204, 204, 1) 75%, rgba(0, 255, 255, 1) 100%);
-    outline: none;
-    opacity: 0.7;
-    padding-left: 10px;
-    padding-right: 10px;
-    transition: all .2s;
-    cursor: pointer;
-}
 
-#umidade:hover {
-    opacity: 1;
-}
 
-#umidade::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 40px;
-    border-radius: 15px;
-    background: white;
-    border: gray 2px solid;
-    cursor: pointer;
-}
 
-#selectTemp {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 50px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-}
 
-#selectUmi {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 50px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-}
+
+
 
 @media screen and (max-width: 768px) {
     .container {
@@ -1113,95 +898,16 @@ h3 {
         width: 90%;
     }
     /* Dashboard */
-    #h1Dashboard {
-        font-size: 30px;
-    }
-    .boxDashboard {
-        padding: 40px 0;
-        width: 90%;
-    }
-    .boxDashboard .imagem1 {
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
-    .boxDashboard .imgPark2 {
-        width: 120px;
-        height: auto;
-    }
-    .boxDashboard .barraCinza {
-        margin: 10px auto;
-        width: 70%;
-    }
+    
     /* Park */
-    #boxParque {
-        padding: 40px 15px;
-        width: 90%;
-    }
-    #imagemClima {
-        width: 100px;
-    }
-    .infoClima h2 {
-        font-size: 1.5em;
-    }
-    .infoClima .barraMeio {
-        height: 25px;
-    }
-    #resultado {
-        font-size: 18px;
-    }
-    #boxParque iframe {
-        margin: 0!important;
-        width: 100%;
-    }
-    #boxParque .btn-saibamais {
-        margin-bottom: 0;
-    }
-    .modal-header .close {
-        right: 7px;
-        font-size: 30px;
-    }
-    .modal-title {
-        font-size: 18px;
-    }
-    .modal-body {
-        overflow: scroll;
-    }
-    .modal-body::after {
-        content: '* Arraste para o lado para ver tudo';
-        color: #c6c6c6;
-    }
+    
+    
     .alinharCentro {
         text-align: center;
     }
 }
 
-#temperatura {
-    padding: 5px 10px;
-    width: 90%;
-}
 
-#umidade {
-    padding: 5px 10px;
-    width: 90%;
-}
-
-#selectTemp {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 50px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-}
-
-#selectUmi {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 50px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-}
 
 html,
 body {
