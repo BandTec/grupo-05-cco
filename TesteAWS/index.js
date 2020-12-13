@@ -53,52 +53,52 @@ let data;
     // // Create connection to database
     const config = {
         authentication: {
-          options: {
-            userName: "adminlocal", // update me
-            password: "Safadinhos123@" // update me
-          },
-          type: "default"
+            options: {
+                userName: "adminlocal", // update me
+                password: "Safadinhos123@" // update me
+            },
+            type: "default"
         },
         server: "serverhumildificadores.database.windows.net", // update me
         options: {
-          database: "bancohumildificadores", //update me
-          encrypt: true
+            database: "bancohumildificadores", //update me
+            encrypt: true
         }
-      };
-      
-      const connection = new Connection(config);
-      
-      // Attempt to connect and execute queries if connection goes through
+    };
+
+    const connection = new Connection(config);
+
+    // Attempt to connect and execute queries if connection goes through
     await connection.on("connect", err => {
         if (err) {
-          console.error(err.message);
+            console.error(err.message);
         } else {
-          queryDatabase();
+            queryDatabase();
         }
-      });
-      
+    });
+
     function queryDatabase() {
         console.log("Reading rows from the Table...");
         let momento = new Date()
-        // Read all rows from table
+            // Read all rows from table
         const request = new Request(
-          `insert into biling values (${data}, '${momento.getFullYear()}-${momento.getMonth()+1}-${momento.getDate()}')`,
-          (err, rowCount) => {
-            if (err) {
-              console.error(err.message);
-            } else {
-              console.log(`${rowCount} row(s) returned`);
+            `insert into biling values (${data}, '${momento.getFullYear()}-${momento.getMonth()+1}-${momento.getDate()}')`,
+            (err, rowCount) => {
+                if (err) {
+                    console.error(err.message);
+                } else {
+                    console.log(`${rowCount} linha(s) alteradas`);
+                }
             }
-          }
         );
-      
+
         request.on("row", columns => {
-          columns.forEach(column => {
-              console.log("------------")
-            console.log("%s - %s", column.metadata.colName, column.value);
-          });
+            columns.forEach(column => {
+                console.log("------------")
+                console.log("%s - %s", column.metadata.colName, column.value);
+            });
         });
-      
+
         connection.execSql(request);
-      }
+    }
 })();
