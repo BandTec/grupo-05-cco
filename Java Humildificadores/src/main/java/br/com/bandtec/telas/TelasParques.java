@@ -30,15 +30,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import jdk.internal.net.http.common.Demand;
+import org.netbeans.examples.lib.timerbean.Timer;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 public class TelasParques extends JFrame {
 
     ConexaoBancoAzure conexao = new ConexaoBancoAzure();
-     public static void main(String[] args) throws IOException {
-        new TelasParques();
-        
-    }
     // TelasParques tela = new TelaDashboard();
 
     public TelasParques() {        
@@ -56,7 +53,6 @@ public class TelasParques extends JFrame {
                         new BeanPropertyRowMapper(DadosParques.class));
         
         ConexaoBanco conexao = new ConexaoBanco();
-        DemoDeUsoClienteApi demoJira = new DemoDeUsoClienteApi();
         
 //        for (int i = 0; i < lista.size(); i++) {
         for (DadosParques dados : lista) {
@@ -91,17 +87,24 @@ public class TelasParques extends JFrame {
             painel.add(botao, BorderLayout.SOUTH);
             painel.setLayout(new GridLayout(3, 1));
             add(painel);
+            
         }
         
-        try {
-            demoJira.jira();
-            // Chamado
-        } catch (IOException ex) {
-            Logger.getLogger(TelasParques.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
-        
+//        JButton botao = new JButton("Começar a monitorar");
+//        botao.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent arg0) {
+//                DemoDeUsoClienteApi demoJira = new DemoDeUsoClienteApi();
+//                demoJira.setVisible(false);
+//                demoJira.dispose();
+//            }
+//        });
+//        add(botao);
+    }
+    
+    public static void main(String[] args) throws IOException {
+        new TelasParques();
         
     }
+    
 }

@@ -9,20 +9,22 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
-public class DemoDeUsoClienteApi {
+public class DemoDeUsoClienteApi extends JFrame {
 
-    ClienteJiraApi clienteJiraApi = new ClienteJiraApi(
-            "humildifica.atlassian.net",
-            "201grupo4c@bandtec.com.br",
-            "ElJVjLEk4h8vJ1N7FfisD5F0",
-            0
-    );
-    Issue novaIssue = new Issue();
+    public DemoDeUsoClienteApi() {
 
-    public void jira() throws IOException {
-
+        Issue novaIssue = new Issue();
+        ClienteJiraApi clienteJiraApi = new ClienteJiraApi(
+                "humildifica.atlassian.net",
+                "201grupo4c@bandtec.com.br",
+                "ElJVjLEk4h8vJ1N7FfisD5F0",
+                0);
+        
         ConexaoBanco conexao = new ConexaoBanco();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -38,8 +40,10 @@ public class DemoDeUsoClienteApi {
 
             for (DadosParques dadosParques : lista) {
                 List<Monitoramento> consulta = conexao.jdbcTemplate.query(
-                        "select idMetrica, valor, momento, nome, limiteAlerta, usuario, fkParque from leituras l, componentes, maquinas, configuracao c\n"
-                        + "where fkParque = ? and l.fkComponente = idComponente and c.fkComponente = idComponente order by idMetrica",
+                        "select idMetrica, valor, momento, nome, limiteAlerta, usuario, fkParque"
+                        + " from leituras lei, componentes com, configuracao con,"
+                        + " maquinas where lei.fkConfiguracao = ? and lei.fkComponente = idComponente"
+                        + " and idConfiguracao = lei.fkConfiguracao and idMaquina = fkMaquina order by idMetrica asc;",
                         new BeanPropertyRowMapper(Monitoramento.class), dadosParques.getIdParque());
 
                 for (Monitoramento consultinha : consulta) {
@@ -50,7 +54,7 @@ public class DemoDeUsoClienteApi {
                             lastId = componente.getIdMetrica();
                             System.out.println(
                                     "Nome Componentes: " + componente.getNome() + " Id: " + lastId
-                                    + ", " + componente.getValor() + "\nmaquina: " + componente.getFkParque());
+                                    + ", " + componente.getValor() + "\nmaquina: " + dadosParques.getIdParque());
                             valorComponente = Double.parseDouble(componente.getValor());
                             if (valorComponente >= consultinha.getLimiteAlerta()) {
                                 if (contador == 0) {
@@ -58,7 +62,11 @@ public class DemoDeUsoClienteApi {
                                     novaIssue.setSummary("Problema na maquina " + componente.getUsuario());
                                     novaIssue.setDescription("O seu componente " + consultinha.getNome() + " excedeu o limite registrado, confira e repare. ");
                                     novaIssue.setLabels("alerta-" + componente.getNome());
-                                    clienteJiraApi.criarIssue(novaIssue);
+                                    try {
+                                        clienteJiraApi.criarIssue(novaIssue);
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(DemoDeUsoClienteApi.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                     System.out.println("Issue criada: " + gson.toJson(novaIssue));
                                     contador++;
                                 }
@@ -70,5 +78,11 @@ public class DemoDeUsoClienteApi {
 
             }
         }
+        
     }
+
+    public static void main(String[] args) {
+        new DemoDeUsoClienteApi();
+    }
+
 }
