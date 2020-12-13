@@ -95,19 +95,19 @@ public class LineChart extends ApplicationFrame {
             ArrayList<Integer> listaId = new ArrayList<>();
             ArrayList<Double> listaValores = new ArrayList<>();
             comboSelecionado = "cpu_media_temperatura";
-            List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
-                    + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
+            List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query(
+                    "select idMetrica, valor, momento, fkParque from leituras,\n"
+                    + "componentes, maquinas where fkParque = ? and fkComponente = idComponente"
+                    + " and nome = ? order by idMetrica desc limit 20;",
                     new BeanPropertyRowMapper(Monitoramento.class), id, comboSelecionado);
             dataset.clear();
             listaId.clear();
             for (Monitoramento componente : consultaTemperaturas) {
                 listaId.add(componente.getIdMetrica());
                 listaValores.add(Double.parseDouble(componente.getValor()));
-
             }
             Collections.reverse(listaId);
             Collections.reverse(listaValores);
-            System.out.println(listaId);
             for (int i = 0; i < listaId.size(); i++) {
                 dataset.addValue(listaValores.get(i), "Leituras", listaId.get(i));
             }

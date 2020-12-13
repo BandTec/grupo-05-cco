@@ -46,6 +46,7 @@ public class DemoDeUsoClienteApi extends JFrame {
             System.out.println(monitoramento.getIdMetrica());
         }
         System.out.println(ultimoId);
+        
         while (true) {
 
             for (DadosParques dadosParques : lista) {

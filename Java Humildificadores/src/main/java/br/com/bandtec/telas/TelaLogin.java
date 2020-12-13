@@ -28,20 +28,8 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         setTitle("Login");
-        TelasParques parques = new TelasParques();
-        parques.setVisible(true);
         //dadosJira();
         
-    }
-    
-    public void dadosJira() {
-        try {
-            TimeUnit.SECONDS.sleep(5);
-            DemoDeUsoClienteApi jirinha = new DemoDeUsoClienteApi();
-            jirinha.setVisible(false);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -148,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 user, pass);
         
         if (consulta.isEmpty()) {
-            lbAlerta.setText("Email e/ou senha inv�lidos, tente novamente.");
+            lbAlerta.setText("Email e/ou senha inválidos, tente novamente.");
             lbAlerta.setForeground(Color.red);
         } else {
             TelasParques parques = new TelasParques();
