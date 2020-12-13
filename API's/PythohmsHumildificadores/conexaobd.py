@@ -4,6 +4,7 @@ from datetime import datetime
 
 
 idMaquina = 0
+idConfiguracao = 0
 
 class Mysql:
     def __init__(self, user, password, host, database):
@@ -193,7 +194,7 @@ class Mysql:
             result = self.cursor.fetchall()
             self.mysql.commit()
             try:
-                select_fkMaquina = "select idMaquina from maquinas where usuario = '{}';".format(usuario_maquina)
+                select_fkMaquina = "SELECT idConfiguracao FROM configuracao con, maquinas m2 where m2.idMaquina = con.fkMaquina and m2.usuario = '{}';".format(usuario_maquina)
                 self.cursor.execute(select_fkMaquina)
                 meuresultado = self.cursor.fetchall()
                 for x in meuresultado:
