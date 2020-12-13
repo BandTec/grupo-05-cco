@@ -15,7 +15,7 @@ class Automatizando:
         try:
             mysql.selectMaquinaUsuario(crawler.getInfo()[0])
             
-            mysql.inserindoValores(crawler.getInfo(), crawler.getInfo()[0])
+            mysql.inserindoValores(crawler.getInfo()[0])
                 
         except Exception as err:
             print(err)

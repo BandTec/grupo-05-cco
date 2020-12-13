@@ -1,7 +1,9 @@
 import mysql.connector
 import time
 from datetime import datetime
+from pythohms import CrawlerOpenHardwareMonitor
 
+crawler = CrawlerOpenHardwareMonitor()
 
 idMaquina = []
 idConfiguracao = 0
@@ -187,7 +189,7 @@ class Mysql:
 
 
 
-    def inserindoValores(self, valor, usuario_maquina):
+    def inserindoValores(self, usuario_maquina):
         try:
             select_fkMaquina = "SELECT idConfiguracao, fkComponente  FROM configuracao con, maquinas m2 where m2.idMaquina = con.fkMaquina and m2.usuario = '{}';".format(usuario_maquina)
             
@@ -201,6 +203,7 @@ class Mysql:
             self.mysql.close()
         print(idMaquina)
         while True:
+            valor = crawler.getInfo()
             now = datetime.now()
             data_formatada = now.strftime('%Y-%m-%d %H:%M:%S')
 
