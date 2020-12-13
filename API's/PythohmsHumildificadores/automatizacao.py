@@ -14,9 +14,9 @@ class Automatizando:
         time.sleep(1)
         try:
             mysql.selectMaquinaUsuario(crawler.getInfo()[0])
-            while True:
-                mysql.inserindoValores(crawler.getInfo(), crawler.getInfo()[0])
-                time.sleep(5)
+            
+            mysql.inserindoValores(crawler.getInfo()[0])
+                
         except Exception as err:
             print(err)
 

@@ -1,9 +1,11 @@
 import mysql.connector
 import time
 from datetime import datetime
+from pythohms import CrawlerOpenHardwareMonitor
 
+crawler = CrawlerOpenHardwareMonitor()
 
-idMaquina = 0
+idMaquina = []
 idConfiguracao = 0
 
 class Mysql:
@@ -187,116 +189,112 @@ class Mysql:
 
 
 
-    def inserindoValores(self, valor, usuario_maquina):
+    def inserindoValores(self, usuario_maquina):
         try:
-            select = "select nome from configuracao, maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina and usuario = '{}';".format(usuario_maquina)
-            self.cursor.execute(select)
-            result = self.cursor.fetchall()
-            self.mysql.commit()
-            try:
-                select_fkMaquina = "SELECT idConfiguracao FROM configuracao con, maquinas m2 where m2.idMaquina = con.fkMaquina and m2.usuario = '{}';".format(usuario_maquina)
-                
-                self.cursor.execute(select_fkMaquina)
-                meuresultado = self.cursor.fetchall()
-                for x in meuresultado:
-                    idMaquina = x[0]
-            except Exception as err:
-                print(err)
-                self.mysql.rollback()
-                self.mysql.close()
-
-            now = datetime.now()
-            data_formatada = now.strftime('%Y-%m-%d %H:%M:%S')
-
-            for row in result:
-                if row[0] == 'cpu_count':
-                    try:
-                        print("\nInserindo Contagem da CPU")
-                        insertando = "insert into leituras values (null, {},'{}', {}, 1)".format(valor[1], data_formatada, idMaquina)
-                        self.cursor.execute(insertando)
-                        self.mysql.commit()
-                        print(insertando)
-                    except Exception as err:
-                        print(err)
-                        self.mysql.rollback()
-                        self.mysql.close()
-
-                if row[0] == 'cpu_media_temperatura':
-                    try:
-                        print("\nInserindo Media de Temperatura da CPU")
-                        insertando = "insert into leituras values (null, {},'{}', {}, 2)".format(valor[2], data_formatada, idMaquina)
-                        self.cursor.execute(insertando)
-                        self.mysql.commit()
-                        print(insertando)
-                    except Exception as err:
-                        print(err)
-                        self.mysql.rollback()
-                        self.mysql.close()
-
-                if row[0] == 'cpu_media_percent':
-                    try:
-                        print("\nInserindo Media de Percentual da CPU")
-                        insertando = "insert into leituras values (null, {},'{}', {}, 3)".format(valor[3], data_formatada, idMaquina)
-                        self.cursor.execute(insertando)
-                        self.mysql.commit()
-                        print(insertando)
-                    except Exception as err:
-                        print(err)
-                        self.mysql.rollback()
-                        self.mysql.close()
-
-                if row[0] == 'cpu_media_clock':
-                    try:
-                        print("\nInserindo Media de Clock da CPU")
-                        insertando = "insert into leituras values (null, {},'{}', {}, 4)".format(valor[4], data_formatada, idMaquina)
-                        self.cursor.execute(insertando)
-                        self.mysql.commit()
-                        print(insertando)
-                    except Exception as err:
-                        print(err)
-                        self.mysql.rollback()
-                        self.mysql.close()
-
-                if row[0] == 'memory_load':
-                    try:
-                        print("\nInserindo Percentual de uso da Memória")
-                        insertando = "insert into leituras values (null, {},'{}', {}, 5)".format(valor[5], data_formatada, idMaquina)
-                        self.cursor.execute(insertando)
-                        self.mysql.commit()
-                        print(insertando)
-                    except Exception as err:
-                        print(err)
-                        self.mysql.rollback()
-                        self.mysql.close()
-
-                if row[0] == 'memory_use':
-                    try:
-                        print("\nInserindo Uso de Memoria")
-                        insertando = "insert into leituras values (null, {},'{}', {}, 6)".format(valor[6], data_formatada, idMaquina)
-                        self.cursor.execute(insertando)
-                        self.mysql.commit()
-                        print(insertando)
-                    except Exception as err:
-                        print(err)
-                        self.mysql.rollback()
-                        self.mysql.close()
-
-                if row[0] == 'memory_available':
-                    try:
-                        print("\nInserindo Quantidade de Memória Disponível")
-                        insertando = "insert into leituras values (null, {},'{}', {}, 7)".format(valor[7], data_formatada, idMaquina)
-                        self.cursor.execute(insertando)
-                        self.mysql.commit()
-                        print(insertando)
-                    except Exception as err:
-                        print(err)
-                        self.mysql.rollback()
-                        self.mysql.close()
-                
+            select_fkMaquina = "SELECT idConfiguracao, fkComponente  FROM configuracao con, maquinas m2 where m2.idMaquina = con.fkMaquina and m2.usuario = '{}';".format(usuario_maquina)
+            
+            self.cursor.execute(select_fkMaquina)
+            meuresultado = self.cursor.fetchall()
+            for x in meuresultado:
+                idMaquina.append([x[0], x[1]])
         except Exception as err:
             print(err)
             self.mysql.rollback()
             self.mysql.close()
+        print(idMaquina)
+        while True:
+            valor = crawler.getInfo()
+            now = datetime.now()
+            data_formatada = now.strftime('%Y-%m-%d %H:%M:%S')
+
+
+
+            for row in idMaquina:
+                if row[1] == 1:
+                    try:
+                        print("\nInserindo Contagem da CPU")
+                        insertando = "insert into leituras values (null, {},'{}', {}, 1)".format(valor[1], data_formatada, row[0])
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                        print(insertando)
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+
+                if row[1] == 2:
+                    try:
+                        print("\nInserindo Media de Temperatura da CPU")
+                        insertando = "insert into leituras values (null, {},'{}', {}, 2)".format(valor[2], data_formatada, row[0])
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                        print(insertando)
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+
+                if row[1] == 3:
+                    try:
+                        print("\nInserindo Media de Percentual da CPU")
+                        insertando = "insert into leituras values (null, {},'{}', {}, 3)".format(valor[3], data_formatada, row[0])
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                        print(insertando)
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+
+                if row[1] == 4:
+                    try:
+                        print("\nInserindo Media de Clock da CPU")
+                        insertando = "insert into leituras values (null, {},'{}', {}, 4)".format(valor[4], data_formatada, row[0])
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                        print(insertando)
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+
+                if row[1] == 5:
+                    try:
+                        print("\nInserindo Percentual de uso da Memória")
+                        insertando = "insert into leituras values (null, {},'{}', {}, 5)".format(valor[5], data_formatada, row[0])
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                        print(insertando)
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+
+                if row[1] == 6:
+                    try:
+                        print("\nInserindo Uso de Memoria")
+                        insertando = "insert into leituras values (null, {},'{}', {}, 6)".format(valor[6], data_formatada, row[0])
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                        print(insertando)
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+
+                if row[1] == 7:
+                    try:
+                        print("\nInserindo Quantidade de Memória Disponível")
+                        insertando = "insert into leituras values (null, {},'{}', {}, 7)".format(valor[7], data_formatada, row[0])
+                        self.cursor.execute(insertando)
+                        self.mysql.commit()
+                        print(insertando)
+                    except Exception as err:
+                        print(err)
+                        self.mysql.rollback()
+                        self.mysql.close()
+            time.sleep(5)
+            
 
 
     # Fechando conexão
