@@ -20,11 +20,12 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     ConexaoBancoAzure conexao = new ConexaoBancoAzure();
-
+    
     public TelaLogin() {
         initComponents();
         TelasParques parques = new TelasParques();
         parques.setVisible(true);
+        setTitle("Login");
     }
 
     /**
@@ -36,6 +37,7 @@ public class TelaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        timer1 = new org.netbeans.examples.lib.timerbean.Timer();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -45,12 +47,16 @@ public class TelaLogin extends javax.swing.JFrame {
         tfPass = new javax.swing.JPasswordField();
         lbAlerta = new javax.swing.JLabel();
 
+        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
+            public void onTime(java.awt.event.ActionEvent evt) {
+                timer1OnTime(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
         jLabel1.setText("LOGIN");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aluno\\Documents\\grupo-04-cco\\Java Humildificadores\\src\\main\\java\\br\\com\\bandtec\\imagens\\logo3.png")); // NOI18N
 
         jLabel3.setText("Usuario:");
 
@@ -126,7 +132,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 user, pass);
         
         if (consulta.isEmpty()) {
-            lbAlerta.setText("Email e/ou senha inválidos, tente novamente.");
+            lbAlerta.setText("Email e/ou senha invï¿½lidos, tente novamente.");
             lbAlerta.setForeground(Color.red);
         } else {
             TelasParques parques = new TelasParques();
@@ -137,6 +143,10 @@ public class TelaLogin extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void timer1OnTime(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timer1OnTime
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timer1OnTime
 
     /**
      * @param args the command line arguments
@@ -182,5 +192,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lbAlerta;
     private javax.swing.JPasswordField tfPass;
     private javax.swing.JTextField tfUser;
+    private org.netbeans.examples.lib.timerbean.Timer timer1;
     // End of variables declaration//GEN-END:variables
 }
