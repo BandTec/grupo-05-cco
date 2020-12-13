@@ -189,22 +189,18 @@ class Mysql:
 
     def inserindoValores(self, valor, usuario_maquina):
         try:
-            select = "select nome from configuracao, maquinas, componentes where idComponente = fkComponente and idMaquina = fkMaquina and usuario = '{}';".format(usuario_maquina)
-            self.cursor.execute(select)
-            result = self.cursor.fetchall()
-            self.mysql.commit()
-            try:
-                select_fkMaquina = "SELECT idConfiguracao, fkComponente  FROM configuracao con, maquinas m2 where m2.idMaquina = con.fkMaquina and m2.usuario = '{}';".format(usuario_maquina)
-                
-                self.cursor.execute(select_fkMaquina)
-                meuresultado = self.cursor.fetchall()
-                for x in meuresultado:
-                    idMaquina.append([x[0], x[1]])
-            except Exception as err:
-                print(err)
-                self.mysql.rollback()
-                self.mysql.close()
-            print(idMaquina)
+            select_fkMaquina = "SELECT idConfiguracao, fkComponente  FROM configuracao con, maquinas m2 where m2.idMaquina = con.fkMaquina and m2.usuario = '{}';".format(usuario_maquina)
+            
+            self.cursor.execute(select_fkMaquina)
+            meuresultado = self.cursor.fetchall()
+            for x in meuresultado:
+                idMaquina.append([x[0], x[1]])
+        except Exception as err:
+            print(err)
+            self.mysql.rollback()
+            self.mysql.close()
+        print(idMaquina)
+        while True:
             now = datetime.now()
             data_formatada = now.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -294,11 +290,8 @@ class Mysql:
                         print(err)
                         self.mysql.rollback()
                         self.mysql.close()
-                
-        except Exception as err:
-            print(err)
-            self.mysql.rollback()
-            self.mysql.close()
+            time.sleep(5)
+            
 
 
     # Fechando conexão
