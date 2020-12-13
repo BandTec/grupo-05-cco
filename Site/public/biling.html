@@ -135,7 +135,7 @@
         window.location.href = 'select-cliente.html';
     }
     window.onload = obterDadosDaTabela();
-    window.onload = plotarGraficos();
+    // window.onload = plotarGraficos();
 
     function obterDadosDaTabela() {
         fetch(`/leituras/custo`, {
@@ -144,22 +144,31 @@
             if (response.ok) {
                 response.json().then(function(resposta) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    // console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                     resposta.reverse();
                     dados = resposta;
-                    console.log(JSON.stringify(dados));
+                    // console.log(JSON.stringify(dados));
                     valores.shift();
                     valores.shift();
-                    
-                    for (let cont = 0; cont < dados.length; cont++) {
-                        console.log("dados: ",dados[cont]["credito"]);
+
+                    let doug = dados[dados.length - 1]["credito"];
+                    dadosDoughnut.push((doug * 0.62).toFixed(2));
+                    dadosDoughnut.push((doug * 0.21).toFixed(2));
+                    dadosDoughnut.push((doug * 0.17).toFixed(2));
+
+                    for (let cont = dados.length - 10; cont < dados.length; cont++) {
                         valores.push(dados[cont]["credito"]);
-
-                        forecastBarChartData.labels.push(months[cont]);
-
+                        monthsTime.push(dados[cont]["mesAno"].replace("2019/","").replace("2020/","").replace("2021/",""));
+                        barChartData.datasets.data.push(dados[cont]["mesAno"].replace("2019/","").replace("2020/","").replace("2021/",""));
                     }
-                    calculoForecast();
+                    
+                    let dadosRecebidos = [];
+                    for (let cont = 0; cont < dados.length; cont++) {
+                        dadosRecebidos.push(dados[cont]["credito"]);
+                    }
+
+                    calculoForecast(dadosRecebidos);
                     plotarGraficos();
                 });
             } else {

@@ -15,20 +15,33 @@ function alterar(botao) {
 }
 
 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+var monthsTime = [];
 var valores = [];
-console.log("valores: ",valores)
-let dataAtual = new Date;
-let mesAtual = dataAtual.getMonth();
-var miniBarMonths = [(mesAtual - 1), mesAtual, (mesAtual + 1)];
+
+var dataAtual = new Date;
+var mesAtual = dataAtual.getMonth();
+
+var mesSeguinte;
+if (mesAtual + 1 > 11) {
+    mesSeguinte = 0;
+} else {
+    mesSeguinte = mesAtual + 1;
+} 
+
+var miniBarMonths = [
+    months[(mesAtual - 1)], 
+    months[mesAtual], 
+    months[mesSeguinte]
+];
+
 var jurosMonths = [];
 
 var jurosBarChartData = {
     labels: jurosMonths,
     datasets: [{
         label: 'Simulação de juros',
-        backgroundColor: [
-            'lightblue'
-        ],
+        backgroundColor: 'lightblue',
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
@@ -37,12 +50,10 @@ var jurosBarChartData = {
 };
 
 var forecastBarChartData = {
-    labels: [],
+    labels: miniBarMonths,
     datasets: [{
         label: 'Forecast',
-        backgroundColor: [
-            'lightgreen',
-        ],
+        backgroundColor: 'lightgreen',
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
@@ -50,48 +61,42 @@ var forecastBarChartData = {
     }]
 };
 
+let dadosDoughnut = [];
+
 var config = {
-    type: 'doughnut',
-    data: {
-        datasets: [{
-            data: [
-                62,
-                21,
-                17
-            ],
-            backgroundColor: [
-                'red',
-                'lightgreen',
-                'aqua'
-            ]
-        }],
-        labels: [
-            'EBS' ,
-            'S3',
-            'EC2',
+    datasets: [{
+        data: dadosDoughnut,
+        backgroundColor: [
+            'red',
+            'lightgreen',
+            'aqua'
         ]
-    },
-    options: {
-        responsive: true,
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: true,
-            text: 'Custo de Serviços de Cloud'
-        },
-        animation: {
-            animateScale: true,
-            animateRotate: true
-        }
-    }
+    }],
+    labels: [
+        'EBS' ,
+        'S3',
+        'EC2',
+    ]
 };
 
 var barChartData = {
-    labels: months,
+    labels: [],
     datasets: [{
         label: 'Linha Temporal',
-        backgroundColor: 'red',
+        backgroundColor: [
+            'red',
+            'red',
+            'red',
+            'red',
+            'red',
+            'red',
+            'red',
+            'red',
+            'red',
+            'red',
+            'lightgreen',
+            'lightgreen',
+        ],
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
@@ -175,5 +180,22 @@ function plotarGraficos() {
         }
     });
     var doug = document.getElementById('services').getContext('2d');
-    window.myDoughnut = new Chart(doug, config);
+    window.myDoughnut = new Chart(doug, {
+        type: 'doughnut',
+        data: config,
+        options: {
+            responsive: true,
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: true,
+                text: 'Custo de Serviços de Cloud'
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    });
 };

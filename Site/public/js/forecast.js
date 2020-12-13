@@ -23,30 +23,29 @@ function media(x) {
     return somatorio(x) / x.length;
 }
 
-function calculoForecast() {
+function calculoForecast(dados) {
     var x = [];
-    for (let cont = 1; cont <= valores.length; cont++) {
-        console.log(cont);
+    for (let cont = 1; cont <= dados.length; cont++) {
         x.push(cont);
     }
-    var y = valores;
-    console.log("x: ",x)
-    console.log("y: ",valores)
+    var y = dados;
 
     var m = somatorio(produto(x,y)) - somatorio(x) * somatorio(y) / x.length;
     m /= somatorio(quadrados(x)) - somatorio(x)*somatorio(x) / x.length;
 
     var b = media(y) - m * media(x);
 
-    console.log(b);
-    console.log(m);
-
     for (let ex = 1; ex <= 2; ex++) {
-        var calculo = Math.round((m * (y.length + 1) + b), 0);
-        console.log(`m * ${(y.length + 1)} + b = ${calculo}`)
-        console.log("ex = ",ex)
+        var calculo = parseFloat((m * (y.length + 1) + b).toFixed(2));
+        
         y.push(calculo);
+        valores.push(calculo);
+
+        var mesForecast = monthsTime[monthsTime.length - 1] + 1;
+        if (mesForecast > 12) {
+            mesForecast = 1;
+        }
+        monthsTime.push(mesForecast)
     }
 
-    console.log("y: ",y)
 }
