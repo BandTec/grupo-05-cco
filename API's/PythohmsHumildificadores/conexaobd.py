@@ -98,7 +98,8 @@ class Mysql:
                             print('Inserindo...\n')
                             if row == 'cpu_count':
                                 try:
-                                    insert_config = "insert into configuracao values (null, {}, 1, null)".format(idMaquina)
+                                    alerta = float(input("Valor para alerta cpu_count: "))
+                                    insert_config = "insert into configuracao values (null, {}, 1, {})".format(idMaquina, alerta)
                                     print(insert_config)
                                     self.cursor.execute(insert_config)
                                     self.mysql.commit()
@@ -109,7 +110,8 @@ class Mysql:
 
                             if row == 'cpu_media_temperatura':
                                 try:
-                                    insert_config = "insert into configuracao values (null, {}, 2, '80.00')".format(idMaquina)
+                                    alerta = float(input("Valor para alerta cpu_media_temperatura: "))
+                                    insert_config = "insert into configuracao values (null, {}, 2, {})".format(idMaquina, alerta)
                                     print(insert_config)
                                     self.cursor.execute(insert_config)
                                     self.mysql.commit()
@@ -120,7 +122,8 @@ class Mysql:
 
                             if row == 'cpu_media_percent':
                                 try:
-                                    insert_config = "insert into configuracao values (null, {}, 3,'90.00')".format(idMaquina)
+                                    alerta = float(input("Valor para alerta cpu_media_percent: "))
+                                    insert_config = "insert into configuracao values (null, {}, 3, {})".format(idMaquina, alerta)
                                     print(insert_config)
                                     self.cursor.execute(insert_config)
                                     self.mysql.commit()
@@ -131,7 +134,8 @@ class Mysql:
 
                             if row == 'cpu_media_clock':
                                 try:
-                                    insert_config = "insert into configuracao values (null, {}, 4, null)".format(idMaquina)
+                                    alerta = float(input("Valor para alerta cpu_media_clock: "))
+                                    insert_config = "insert into configuracao values (null, {}, 4, {})".format(idMaquina, alerta)
                                     print(insert_config)
                                     self.cursor.execute(insert_config)
                                     self.mysql.commit()
@@ -142,7 +146,8 @@ class Mysql:
 
                             if row == 'memory_load':
                                 try:
-                                    insert_config = "insert into configuracao values (null, {}, 5, null)".format(idMaquina)
+                                    alerta = float(input("Valor para alerta memory_load: "))
+                                    insert_config = "insert into configuracao values (null, {}, 5, {})".format(idMaquina, alerta)
                                     print(insert_config)
                                     self.cursor.execute(insert_config)
                                     self.mysql.commit()
@@ -153,7 +158,8 @@ class Mysql:
 
                             if row == 'memory_use':
                                 try:
-                                    insert_config = "insert into configuracao values (null, {}, 6,'90.00')".format(idMaquina)
+                                    alerta = float(input("Valor para alerta memory_use: "))
+                                    insert_config = "insert into configuracao values (null, {}, 6, {})".format(idMaquina, alerta)
                                     print(insert_config)
                                     self.cursor.execute(insert_config)
                                     self.mysql.commit()
@@ -164,7 +170,8 @@ class Mysql:
                                     
                             if row == 'memory_available':
                                 try:
-                                    insert_config = "insert into configuracao values (null, {}, 7, 'null')".format(idMaquina)
+                                    alerta = float(input("Valor para alerta memory_available: "))
+                                    insert_config = "insert into configuracao values (null, {}, 7, {})".format(idMaquina, alerta)
                                     print(insert_config)
                                     self.cursor.execute(insert_config)
                                     self.mysql.commit()
@@ -206,8 +213,6 @@ class Mysql:
             valor = crawler.getInfo()
             now = datetime.now()
             data_formatada = now.strftime('%Y-%m-%d %H:%M:%S')
-
-
 
             for row in idMaquina:
                 if row[1] == 1:
