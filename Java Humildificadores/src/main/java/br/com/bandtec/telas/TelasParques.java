@@ -10,7 +10,6 @@ import br.com.bandtec.Conexoes.ConexaoBancoAzure;
 import br.com.bandtec.Conexoes.Monitoramento;
 import br.com.bandtec.TesteJChart.LineChart;
 import br.com.bandtec.clientejira.ClienteJiraApi;
-import br.com.bandtec.clientejira.DemoDeUsoClienteApi;
 import br.com.bandtec.clientejira.modelo.Issue;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -31,7 +30,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import jdk.internal.net.http.common.Demand;
-import org.netbeans.examples.lib.timerbean.Timer;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 public class TelasParques extends JFrame {

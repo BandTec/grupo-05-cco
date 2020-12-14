@@ -28,12 +28,12 @@ public class ClienteJira {
         BotTelegram bot = new BotTelegram();
         Issue novaIssue = new Issue();
         Integer lastId = 0;
-        Integer contadorChamados = 185;
         Double valorComponente = 0.0;
         
         List<Monitoramento> ultimoId = conexaoAWS.jdbcTemplate.query(
                 "SELECT idMetrica from leituras l  order by idMetrica desc limit 1;", 
                 new BeanPropertyRowMapper(Monitoramento.class));
+        
         ArrayList<Integer> ultimoid = new ArrayList<>();
         for (Monitoramento monitoramento : ultimoId) {
             ultimoid.add(monitoramento.getIdMetrica());
@@ -76,10 +76,9 @@ public class ClienteJira {
                             try {
                                 clienteJiraApi.criarIssue(novaIssue);
                             } catch (IOException ex) {
-                                Logger.getLogger(DemoDeUsoClienteApi.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(ClienteJira.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            bot.chamadoTelegram(monitoramento.getNome(), monitoramento.getUsuario(), contadorChamados.toString());
-                            contadorChamados++;
+                            bot.chamadoTelegram(monitoramento.getNome(), monitoramento.getUsuario());
                         }
                     }
                 }

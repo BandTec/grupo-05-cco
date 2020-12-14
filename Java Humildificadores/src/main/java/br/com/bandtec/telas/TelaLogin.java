@@ -6,12 +6,8 @@
 package br.com.bandtec.telas;
 
 import br.com.bandtec.Conexoes.ConexaoBancoAzure;
-import br.com.bandtec.clientejira.DemoDeUsoClienteApi;
 import java.awt.Color;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 /**
@@ -20,16 +16,16 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
  */
 public class TelaLogin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaLogin
-     */
     ConexaoBancoAzure conexao = new ConexaoBancoAzure();
     
+    /**
+     * Creates new form TelaLogin2
+     */
     public TelaLogin() {
         initComponents();
         setTitle("Login");
-        //dadosJira();
-        
+        TelasParques parques = new TelasParques();
+            parques.setVisible(true);
     }
 
     /**
@@ -41,21 +37,14 @@ public class TelaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        timer1 = new org.netbeans.examples.lib.timerbean.Timer();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tfUser = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         tfPass = new javax.swing.JPasswordField();
         lbAlerta = new javax.swing.JLabel();
-
-        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
-            public void onTime(java.awt.event.ActionEvent evt) {
-                timer1OnTime(evt);
-            }
-        });
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +54,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setText("Usuario:");
 
         tfUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(6, 208, 138)));
-        tfUser.setPreferredSize(new java.awt.Dimension(63, 18));
 
         jLabel4.setText("Senha:");
 
@@ -78,52 +66,63 @@ public class TelaLogin extends javax.swing.JFrame {
 
         tfPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(6, 208, 138)));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo3.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel2)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jLabel1)
-                        .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbAlerta))
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(tfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
+                        .addGap(30, 30, 30)
+                        .addComponent(lbAlerta))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel2)
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(135, 135, 135))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(tfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(104, 104, 104)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))))))
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
                         .addComponent(jLabel1)
-                        .addGap(19, 19, 19)
+                        .addGap(15, 15, 15)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(jButton1)
-                        .addGap(29, 29, 29)
-                        .addComponent(lbAlerta))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel2)))
-                .addContainerGap(128, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(lbAlerta)
+                .addGap(22, 22, 22))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -131,26 +130,22 @@ public class TelaLogin extends javax.swing.JFrame {
         String user = tfUser.getText();
 
         List<DadosAdmin> consulta = conexao.jdbcTemplate.query(
-                "select * from administracao where email = ? and senha = ?",
-                new BeanPropertyRowMapper(DadosAdmin.class),
-                user, pass);
-        
+            "select * from administracao where email = ? and senha = ?",
+            new BeanPropertyRowMapper(DadosAdmin.class),
+            user, pass);
+
         if (consulta.isEmpty()) {
             lbAlerta.setText("Email e/ou senha inválidos, tente novamente.");
-            lbAlerta.setForeground(Color.red);
+            lbAlerta.setForeground(Color.RED);
         } else {
             TelasParques parques = new TelasParques();
             parques.setVisible(true);
-//            TelasParques parques = new TelasParques();
-//            parques.setVisible(true);
-//            dispose();
+            //            TelasParques parques = new TelasParques();
+            //            parques.setVisible(true);
+            //            dispose();
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void timer1OnTime(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timer1OnTime
-        // TODO add your handling code here:
-    }//GEN-LAST:event_timer1OnTime
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +173,7 @@ public class TelaLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -196,6 +192,5 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lbAlerta;
     private javax.swing.JPasswordField tfPass;
     private javax.swing.JTextField tfUser;
-    private org.netbeans.examples.lib.timerbean.Timer timer1;
     // End of variables declaration//GEN-END:variables
 }
