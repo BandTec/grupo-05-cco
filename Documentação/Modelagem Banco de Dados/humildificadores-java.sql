@@ -41,7 +41,24 @@ select idMetrica, valor, momento, nome, limiteAlerta, usuario, fkParque from lei
 where l.fkComponente = idComponente and c.fkComponente = idComponente order by idMetrica;
 
 select idMetrica, valor, usuario, nome, limiteAlerta from leituras lei, configuracao con, maquinas, componentes where fkConfiguracao = idConfiguracao and idMaquina = fkMaquina and con.fkComponente = idComponente and fkMaquina = 2 order by idMetrica;
-idMetrica, valor, usuario
+
+create table chamados (
+idChamado int primary key auto_increment,
+maquina varchar(40),
+componente varchar(40)
+) auto_increment = 316;
+select * from componentes;
+select * from configuracao, componentes where idComponente = fkComponente;
+select * from configuracao;
+select * from chamados;
+select idChamado from chamados order by idChamado desc limit 1;
+insert into chamados values (null, 'HSL017', 'memory_use');
+select idMetrica, valor, momento, fkParque from leituras, componentes, maquinas where fkParque = 1 and fkComponente = idComponente and nome = 'cpu_media_temperatura' order by idMetrica desc limit 20;
+select * from leituras order by idMetrica desc;
+
+
+
+
 
 select nome, idParque, usuario from parque, maquinas where idParque = fkParque;
 select nome, idParque from parque;

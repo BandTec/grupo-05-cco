@@ -19,7 +19,7 @@ public class BotTelegram {
         BaseResponse baseResponse;
 
         Integer m = 0;
-        String mensagem = String.format("Ol√°, recebemos um chamado de um componente em alerta.\n"
+        String mensagem = String.format("Ol·, recebemos um chamado de um componente em alerta.\n"
                 + "Componente: %s\n"
                 + "Maquina: %s\n"
                 + "Parque: %s\n"
