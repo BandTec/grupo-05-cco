@@ -29,6 +29,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import jdk.internal.net.http.common.Demand;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
@@ -43,7 +44,6 @@ public class TelasParques extends JFrame {
 
         setTitle("Parques");
         setSize(1200, 700);
-//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         List<DadosParques> lista
@@ -53,7 +53,6 @@ public class TelasParques extends JFrame {
         
         ConexaoBanco conexao = new ConexaoBanco();
         
-//        for (int i = 0; i < lista.size(); i++) {
         for (DadosParques dados : lista) {
             
             JPanel painel = new JPanel();
@@ -78,6 +77,9 @@ public class TelasParques extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     LineChart chart = new LineChart("", dados.getNome(), dados.getIdParque());
                     chart.setVisible(true);
+                    chart.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                    chart.setDefaultCloseOperation(NORMAL);
+                    chart.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
                 }
             });
 
@@ -89,17 +91,6 @@ public class TelasParques extends JFrame {
             add(painel);
             
         }
-        
-//        JButton botao = new JButton("Começar a monitorar");
-//        botao.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent arg0) {
-//                DemoDeUsoClienteApi demoJira = new DemoDeUsoClienteApi();
-//                demoJira.setVisible(false);
-//                demoJira.dispose();
-//            }
-//        });
-//        add(botao);
     }
     
     public static void main(String[] args) throws IOException {

@@ -6,6 +6,7 @@
 package br.com.bandtec.telas;
 
 import br.com.bandtec.Conexoes.ConexaoBancoAzure;
+import br.com.bandtec.clientejira.ClienteJira;
 import java.awt.Color;
 import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -24,8 +25,7 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         setTitle("Login");
-        TelasParques parques = new TelasParques();
-            parques.setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -140,6 +140,7 @@ public class TelaLogin extends javax.swing.JFrame {
         } else {
             TelasParques parques = new TelasParques();
             parques.setVisible(true);
+            new ClienteJira(5);
             //            TelasParques parques = new TelasParques();
             //            parques.setVisible(true);
             //            dispose();

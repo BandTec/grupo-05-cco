@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -48,6 +49,7 @@ public class LineChart extends ApplicationFrame {
         setSize(1020, 600);
         JPanel painel = new JPanel();
         painel.setSize(getWidth(), getWidth());
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setDefaultCloseOperation(NORMAL);
         setLocationRelativeTo(null);
         add(painel);
@@ -75,14 +77,18 @@ public class LineChart extends ApplicationFrame {
         }
         );
     }
-    
+
     ArrayList<Integer> listaId = new ArrayList<>();
     ArrayList<Double> listaValores = new ArrayList<>();
 
     public void plotarGrafico(Integer fkParque) {
         comboSelecionado = combo.getSelectedItem().toString();
-        List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("select idMetrica, valor, momento, fkParque from leituras,\n"
-                + "componentes, maquinas where fkParque = ? and fkComponente = idComponente and nome = ? order by idMetrica desc limit 20;",
+        List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query("SELECT idMetrica, valor, momento, fkParque from maquinas maq\n"
+                + "LEFT OUTER JOIN configuracao con ON maq.idMaquina = con.fkMaquina \n"
+                + "LEFT OUTER JOIN leituras lei ON con.idConfiguracao = lei.fkConfiguracao\n"
+                + "LEFT OUTER JOIN componentes com ON lei.fkComponente = com.idComponente \n"
+                + "where fkParque = ? and nome = ?\n"
+                + "order by idMetrica desc limit 20",
                 new BeanPropertyRowMapper(Monitoramento.class), fkParque, comboSelecionado);
         dataset.clear();
         listaId.clear();
@@ -108,9 +114,12 @@ public class LineChart extends ApplicationFrame {
             ArrayList<Double> listaValores = new ArrayList<>();
             comboSelecionado = "cpu_media_temperatura";
             List<Monitoramento> consultaTemperaturas = conexao.jdbcTemplate.query(
-                    "select idMetrica, valor, momento, fkParque from leituras,\n"
-                    + "componentes, maquinas where fkParque = ? and fkComponente = idComponente"
-                    + " and nome = ? order by idMetrica desc limit 20;",
+                    "SELECT idMetrica, valor, momento, fkParque from maquinas maq\n"
+                + "LEFT OUTER JOIN configuracao con ON maq.idMaquina = con.fkMaquina \n"
+                + "LEFT OUTER JOIN leituras lei ON con.idConfiguracao = lei.fkConfiguracao\n"
+                + "LEFT OUTER JOIN componentes com ON lei.fkComponente = com.idComponente \n"
+                + "where fkParque = ? and nome = ?\n"
+                + "order by idMetrica desc limit 20;",
                     new BeanPropertyRowMapper(Monitoramento.class), id, comboSelecionado);
             dataset.clear();
             listaId.clear();

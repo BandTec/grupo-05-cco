@@ -14,12 +14,14 @@ import java.text.SimpleDateFormat;
 public class Monitoramento {
     
     public Integer idMetrica;
+    public Integer idChamado;
     public String valor;
     public String momento;
     public String nome;
     public String fkParque;
     public Double limiteAlerta;
     public String usuario;
+    public String parque;
 
     public String getUsuario() {
         return usuario;
@@ -27,6 +29,14 @@ public class Monitoramento {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    public Integer getIdChamado() {
+        return idChamado;
+    }
+
+    public void setIdChamado(Integer idChamado) {
+        this.idChamado = idChamado;
     }
     
     
@@ -77,6 +87,14 @@ public class Monitoramento {
 
     public void setMomento(String momento) {
         this.momento = momento;
+    }
+
+    public String getParque() {
+        return parque;
+    }
+
+    public void setParque(String parque) {
+        this.parque = parque;
     }
 
     
