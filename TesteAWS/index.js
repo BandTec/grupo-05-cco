@@ -25,7 +25,7 @@ let data;
 
     await page.goto('https://www.awseducate.com/student/s/classrooms');
 
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
 
     await page.click('[data-id="a1v3m00000588gCAAQ"]');
 
