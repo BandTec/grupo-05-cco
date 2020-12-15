@@ -14,23 +14,25 @@ function alterar(botao) {
     }
 }
 
-var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
 var monthsTime = [];
 var valores = [];
 
 
-var jurosMonths = [];
+var jurosMonths = ["Outubro", "Novembro", "Dezembro"];
 
 var jurosBarChartData = {
     labels: jurosMonths,
     datasets: [{
-        label: 'Simulação de juros',
+        label: 'Valor não a ser pago',
         backgroundColor: 'lightblue',
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
-        data: valores
+        data: [
+            3.21
+        ]
     }]
 };
 
@@ -40,7 +42,11 @@ var forecastBarChartData = {
     labels: miniBarMonths,
     datasets: [{
         label: 'Forecast',
-        backgroundColor: 'lightgreen',
+        backgroundColor: [
+            'lightgreen',
+            'lightgreen',
+            'green'
+        ],
         borderColor: 'transparent',
         hoverBorderColor: 'black',
         borderWidth: 3,
@@ -69,7 +75,7 @@ var config = {
 var barChartData = {
     labels: [],
     datasets: [{
-        label: 'Mês',
+        label: 'Valor Mensal ($)',
         backgroundColor: [
             'red',
             'red',
@@ -99,10 +105,10 @@ function plotarGraficos() {
         data: barChartData,
         options: {
             legend: {
-                label: 'Testando valores',
+                label: 'Valores',
                 display: true,
                 labels: {
-                    yLabel: 'Valores',
+                    xLabel: 'Dólar ($)',
                     fontColor: 'rgb(255, 99, 132)'
                 }
             },
@@ -111,17 +117,23 @@ function plotarGraficos() {
                 position: 'top',
             },
             title: {
-                display: false,
-                text: 'Time series'
+                display: true,
+                text: 'Gastos dos últimos meses em AWS cloud'
             },
             scales: {
                 yAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Crédito utilizado'
+                        labelString: 'Dólar ($)'
                     },
                     ticks: {
                         beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Meses',
                     }
                 }]
             }
@@ -137,17 +149,23 @@ function plotarGraficos() {
                 position: 'top',
             },
             title: {
-                display: false,
-                text: 'mini'
+                display: true,
+                text: 'Valor a ser pago com juros'
             },
             scales: {
                 yAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Valor a ser pago',
+                        labelString: 'Dólar ($)',
                     },
                     ticks: {
                         beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Meses',
                     }
                 }]
             }
@@ -175,6 +193,12 @@ function plotarGraficos() {
                     ticks: {
                         beginAtZero: true
                     }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Meses',
+                    }
                 }]
             }
         }
@@ -190,7 +214,7 @@ function plotarGraficos() {
             },
             title: {
                 display: true,
-                text: ''
+                text: 'Distribuição do custo do mês atual em serviços'
             },
             animation: {
                 animateScale: true,

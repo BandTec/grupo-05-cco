@@ -76,7 +76,7 @@
 
             </li>
             <li id="biling_nav" class="has-subnav">
-                <a href="biling.html">
+                <a href="billing.html">
                     <i class="fas fa-dollar-sign"></i>
                     <span class="nav-text">
                             Billing
@@ -140,7 +140,6 @@
         window.location.href = 'select-cliente.html';
     }
     window.onload = obterDadosDaTabela();
-    // window.onload = plotarGraficos();
 
     function obterDadosDaTabela() {
         fetch(`/leituras/custo`, {
@@ -148,9 +147,7 @@
             }).then(function(response) {
                 if (response.ok) {
                     response.json().then(function(resposta) {
-
                         // console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
                         resposta.reverse();
                         dados = resposta;
 
@@ -168,8 +165,8 @@
 
                         for (let cont = 0; cont < dados.length; cont++) {
 
-                            let valorAnterior = 0;
-                            let valorAtual = 0;
+                            let valorAnterior;
+                            let valorAtual;
 
                             valorAtual = dados[cont].credito;
 
@@ -193,13 +190,17 @@
 
                         for (let cont = 0; cont < monthsTime.length; cont++) {
                             barChartData.labels.push(months[monthsTime[cont] - 1]);
-
                         }
 
                         for (let cont = 4; cont > 1; cont--) {
                             miniBarMonths.push(months[monthsTime[monthsTime.length - cont] - 1]);
                             forecastBarChartData.datasets[0].data.push(valores[valores.length - cont]);
                             console.log("cont: ", cont, "Valores:  ", valores[valores.length - cont]);
+                        }
+                        for (let cont = 0; cont < jurosMonths.length; cont++) {
+                            let valor = jurosBarChartData.datasets[0].data[cont];
+                            let calculo = (valor * 0.15) + valor;
+                            jurosBarChartData.datasets[0].data.push(parseFloat(calculo.toFixed(2)));
                         }
 
                         plotarGraficos();
