@@ -181,8 +181,8 @@ function plotarGraficos() {
                 position: 'top',
             },
             title: {
-                display: false,
-                text: 'mini'
+                display: true,
+                text: 'Previsão de custo do mês seguinte'
             },
             scales: {
                 yAxes: [{
