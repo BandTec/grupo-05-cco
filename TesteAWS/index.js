@@ -48,57 +48,57 @@ let data;
 
     console.log(data)
 
-    await browser.close();
+    // await browser.close();
 
     // // Create connection to database
-    const config = {
-        authentication: {
-            options: {
-                userName: "adminlocal", // update me
-                password: "Safadinhos123@" // update me
-            },
-            type: "default"
-        },
-        server: "serverhumildificadores.database.windows.net", // update me
-        options: {
-            database: "bancohumildificadores", //update me
-            encrypt: true
-        }
-    };
+    // const config = {
+    //     authentication: {
+    //         options: {
+    //             userName: "adminlocal", // update me
+    //             password: "Safadinhos123@" // update me
+    //         },
+    //         type: "default"
+    //     },
+    //     server: "serverhumildificadores.database.windows.net", // update me
+    //     options: {
+    //         database: "bancohumildificadores", //update me
+    //         encrypt: true
+    //     }
+    // };
 
-    const connection = new Connection(config);
+    // const connection = new Connection(config);
 
-    // Attempt to connect and execute queries if connection goes through
-    await connection.on("connect", err => {
-        if (err) {
-            console.error(err.message);
-        } else {
-            queryDatabase();
-        }
-    });
+    // // Attempt to connect and execute queries if connection goes through
+    // await connection.on("connect", err => {
+    //     if (err) {
+    //         console.error(err.message);
+    //     } else {
+    //         queryDatabase();
+    //     }
+    // });
 
-    function queryDatabase() {
-        console.log("Reading rows from the Table...");
-        let momento = new Date()
-            // Read all rows from table
-        const request = new Request(
-            `insert into biling values (${data}, '${momento.getFullYear()}-${momento.getMonth()+1}-${momento.getDate()}')`,
-            (err, rowCount) => {
-                if (err) {
-                    console.error(err.message);
-                } else {
-                    console.log(`${rowCount} linha(s) alteradas`);
-                }
-            }
-        );
+    // function queryDatabase() {
+    //     console.log("Reading rows from the Table...");
+    //     let momento = new Date()
+    //         // Read all rows from table
+    //     const request = new Request(
+    //         `insert into biling values (${data}, '${momento.getFullYear()}-${momento.getMonth()+1}-${momento.getDate()}')`,
+    //         (err, rowCount) => {
+    //             if (err) {
+    //                 console.error(err.message);
+    //             } else {
+    //                 console.log(`${rowCount} linha(s) alteradas`);
+    //             }
+    //         }
+    //     );
 
-        request.on("row", columns => {
-            columns.forEach(column => {
-                console.log("------------")
-                console.log("%s - %s", column.metadata.colName, column.value);
-            });
-        });
+    //     request.on("row", columns => {
+    //         columns.forEach(column => {
+    //             console.log("------------")
+    //             console.log("%s - %s", column.metadata.colName, column.value);
+    //         });
+    //     });
 
-        connection.execSql(request);
-    }
+    //     connection.execSql(request);
+    // }
 })();
